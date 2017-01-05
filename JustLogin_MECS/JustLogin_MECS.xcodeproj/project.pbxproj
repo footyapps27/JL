@@ -1,0 +1,616 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8C00F62B1E1E633B0007F29C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C00F62A1E1E633B0007F29C /* Assets.xcassets */; };
+		8C00F62E1E1E633B0007F29C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C00F62C1E1E633B0007F29C /* LaunchScreen.storyboard */; };
+		8C00F6391E1E633B0007F29C /* JustLogin_MECSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C00F6381E1E633B0007F29C /* JustLogin_MECSTests.swift */; };
+		8C00F6441E1E633B0007F29C /* JustLogin_MECSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C00F6431E1E633B0007F29C /* JustLogin_MECSUITests.swift */; };
+		8C00F6601E1E651A0007F29C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C00F6531E1E651A0007F29C /* AppDelegate.swift */; };
+		8C00F6611E1E651A0007F29C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C00F65B1E1E651A0007F29C /* Main.storyboard */; };
+		8C00F6621E1E651A0007F29C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C00F65E1E1E651A0007F29C /* ViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8C00F6351E1E633B0007F29C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8C00F6181E1E633B0007F29C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C00F61F1E1E633B0007F29C;
+			remoteInfo = JustLogin_MECS;
+		};
+		8C00F6401E1E633B0007F29C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8C00F6181E1E633B0007F29C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C00F61F1E1E633B0007F29C;
+			remoteInfo = JustLogin_MECS;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		8C00F6201E1E633B0007F29C /* JustLogin_MECS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JustLogin_MECS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C00F62A1E1E633B0007F29C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8C00F62D1E1E633B0007F29C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8C00F62F1E1E633B0007F29C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8C00F6341E1E633B0007F29C /* JustLogin_MECSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JustLogin_MECSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C00F6381E1E633B0007F29C /* JustLogin_MECSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JustLogin_MECSTests.swift; sourceTree = "<group>"; };
+		8C00F63A1E1E633B0007F29C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8C00F63F1E1E633B0007F29C /* JustLogin_MECSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JustLogin_MECSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C00F6431E1E633B0007F29C /* JustLogin_MECSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JustLogin_MECSUITests.swift; sourceTree = "<group>"; };
+		8C00F6451E1E633B0007F29C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8C00F6531E1E651A0007F29C /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8C00F65B1E1E651A0007F29C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		8C00F65E1E1E651A0007F29C /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8C00F61D1E1E633B0007F29C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C00F6311E1E633B0007F29C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C00F63C1E1E633B0007F29C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8C00F6171E1E633B0007F29C = {
+			isa = PBXGroup;
+			children = (
+				8C00F6221E1E633B0007F29C /* JustLogin_MECS */,
+				8C00F6371E1E633B0007F29C /* JustLogin_MECSTests */,
+				8C00F6421E1E633B0007F29C /* JustLogin_MECSUITests */,
+				8C00F6211E1E633B0007F29C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8C00F6211E1E633B0007F29C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8C00F6201E1E633B0007F29C /* JustLogin_MECS.app */,
+				8C00F6341E1E633B0007F29C /* JustLogin_MECSTests.xctest */,
+				8C00F63F1E1E633B0007F29C /* JustLogin_MECSUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8C00F6221E1E633B0007F29C /* JustLogin_MECS */ = {
+			isa = PBXGroup;
+			children = (
+				8C00F6511E1E65070007F29C /* Analytics */,
+				8C00F6521E1E651A0007F29C /* App Delegate */,
+				8C00F6541E1E651A0007F29C /* Constants */,
+				8C00F6551E1E651A0007F29C /* Logger */,
+				8C00F6561E1E651A0007F29C /* Manager */,
+				8C00F6571E1E651A0007F29C /* Model */,
+				8C00F6581E1E651A0007F29C /* Service */,
+				8C00F6591E1E651A0007F29C /* Singleton */,
+				8C00F65A1E1E651A0007F29C /* Storyboard */,
+				8C00F65C1E1E651A0007F29C /* Utilities */,
+				8C00F65D1E1E651A0007F29C /* ViewControllers */,
+				8C00F65F1E1E651A0007F29C /* Views */,
+				8C00F62A1E1E633B0007F29C /* Assets.xcassets */,
+				8C00F62C1E1E633B0007F29C /* LaunchScreen.storyboard */,
+				8C00F62F1E1E633B0007F29C /* Info.plist */,
+			);
+			path = JustLogin_MECS;
+			sourceTree = "<group>";
+		};
+		8C00F6371E1E633B0007F29C /* JustLogin_MECSTests */ = {
+			isa = PBXGroup;
+			children = (
+				8C00F6381E1E633B0007F29C /* JustLogin_MECSTests.swift */,
+				8C00F63A1E1E633B0007F29C /* Info.plist */,
+			);
+			path = JustLogin_MECSTests;
+			sourceTree = "<group>";
+		};
+		8C00F6421E1E633B0007F29C /* JustLogin_MECSUITests */ = {
+			isa = PBXGroup;
+			children = (
+				8C00F6431E1E633B0007F29C /* JustLogin_MECSUITests.swift */,
+				8C00F6451E1E633B0007F29C /* Info.plist */,
+			);
+			path = JustLogin_MECSUITests;
+			sourceTree = "<group>";
+		};
+		8C00F6511E1E65070007F29C /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Analytics;
+			sourceTree = "<group>";
+		};
+		8C00F6521E1E651A0007F29C /* App Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				8C00F6531E1E651A0007F29C /* AppDelegate.swift */,
+			);
+			path = "App Delegate";
+			sourceTree = "<group>";
+		};
+		8C00F6541E1E651A0007F29C /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		8C00F6551E1E651A0007F29C /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Logger;
+			sourceTree = "<group>";
+		};
+		8C00F6561E1E651A0007F29C /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		8C00F6571E1E651A0007F29C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8C00F6581E1E651A0007F29C /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		8C00F6591E1E651A0007F29C /* Singleton */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Singleton;
+			sourceTree = "<group>";
+		};
+		8C00F65A1E1E651A0007F29C /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				8C00F65B1E1E651A0007F29C /* Main.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		8C00F65C1E1E651A0007F29C /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		8C00F65D1E1E651A0007F29C /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				8C00F65E1E1E651A0007F29C /* ViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		8C00F65F1E1E651A0007F29C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8C00F61F1E1E633B0007F29C /* JustLogin_MECS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C00F6481E1E633B0007F29C /* Build configuration list for PBXNativeTarget "JustLogin_MECS" */;
+			buildPhases = (
+				8C00F61C1E1E633B0007F29C /* Sources */,
+				8C00F61D1E1E633B0007F29C /* Frameworks */,
+				8C00F61E1E1E633B0007F29C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JustLogin_MECS;
+			productName = JustLogin_MECS;
+			productReference = 8C00F6201E1E633B0007F29C /* JustLogin_MECS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8C00F6331E1E633B0007F29C /* JustLogin_MECSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C00F64B1E1E633B0007F29C /* Build configuration list for PBXNativeTarget "JustLogin_MECSTests" */;
+			buildPhases = (
+				8C00F6301E1E633B0007F29C /* Sources */,
+				8C00F6311E1E633B0007F29C /* Frameworks */,
+				8C00F6321E1E633B0007F29C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8C00F6361E1E633B0007F29C /* PBXTargetDependency */,
+			);
+			name = JustLogin_MECSTests;
+			productName = JustLogin_MECSTests;
+			productReference = 8C00F6341E1E633B0007F29C /* JustLogin_MECSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		8C00F63E1E1E633B0007F29C /* JustLogin_MECSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C00F64E1E1E633B0007F29C /* Build configuration list for PBXNativeTarget "JustLogin_MECSUITests" */;
+			buildPhases = (
+				8C00F63B1E1E633B0007F29C /* Sources */,
+				8C00F63C1E1E633B0007F29C /* Frameworks */,
+				8C00F63D1E1E633B0007F29C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8C00F6411E1E633B0007F29C /* PBXTargetDependency */,
+			);
+			name = JustLogin_MECSUITests;
+			productName = JustLogin_MECSUITests;
+			productReference = 8C00F63F1E1E633B0007F29C /* JustLogin_MECSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8C00F6181E1E633B0007F29C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = SMRT;
+				TargetAttributes = {
+					8C00F61F1E1E633B0007F29C = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
+					8C00F6331E1E633B0007F29C = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 8C00F61F1E1E633B0007F29C;
+					};
+					8C00F63E1E1E633B0007F29C = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 8C00F61F1E1E633B0007F29C;
+					};
+				};
+			};
+			buildConfigurationList = 8C00F61B1E1E633B0007F29C /* Build configuration list for PBXProject "JustLogin_MECS" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8C00F6171E1E633B0007F29C;
+			productRefGroup = 8C00F6211E1E633B0007F29C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8C00F61F1E1E633B0007F29C /* JustLogin_MECS */,
+				8C00F6331E1E633B0007F29C /* JustLogin_MECSTests */,
+				8C00F63E1E1E633B0007F29C /* JustLogin_MECSUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8C00F61E1E1E633B0007F29C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C00F6611E1E651A0007F29C /* Main.storyboard in Resources */,
+				8C00F62E1E1E633B0007F29C /* LaunchScreen.storyboard in Resources */,
+				8C00F62B1E1E633B0007F29C /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C00F6321E1E633B0007F29C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C00F63D1E1E633B0007F29C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8C00F61C1E1E633B0007F29C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C00F6621E1E651A0007F29C /* ViewController.swift in Sources */,
+				8C00F6601E1E651A0007F29C /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C00F6301E1E633B0007F29C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C00F6391E1E633B0007F29C /* JustLogin_MECSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C00F63B1E1E633B0007F29C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C00F6441E1E633B0007F29C /* JustLogin_MECSUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8C00F6361E1E633B0007F29C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C00F61F1E1E633B0007F29C /* JustLogin_MECS */;
+			targetProxy = 8C00F6351E1E633B0007F29C /* PBXContainerItemProxy */;
+		};
+		8C00F6411E1E633B0007F29C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C00F61F1E1E633B0007F29C /* JustLogin_MECS */;
+			targetProxy = 8C00F6401E1E633B0007F29C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8C00F62C1E1E633B0007F29C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8C00F62D1E1E633B0007F29C /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8C00F6461E1E633B0007F29C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8C00F6471E1E633B0007F29C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8C00F6491E1E633B0007F29C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = JustLogin_MECS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.footyapps27.JustLogin-MECS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		8C00F64A1E1E633B0007F29C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = JustLogin_MECS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.footyapps27.JustLogin-MECS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		8C00F64C1E1E633B0007F29C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = JustLogin_MECSTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.footyapps27.JustLogin-MECSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JustLogin_MECS.app/JustLogin_MECS";
+			};
+			name = Debug;
+		};
+		8C00F64D1E1E633B0007F29C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = JustLogin_MECSTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.footyapps27.JustLogin-MECSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JustLogin_MECS.app/JustLogin_MECS";
+			};
+			name = Release;
+		};
+		8C00F64F1E1E633B0007F29C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = JustLogin_MECSUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.footyapps27.JustLogin-MECSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = JustLogin_MECS;
+			};
+			name = Debug;
+		};
+		8C00F6501E1E633B0007F29C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = JustLogin_MECSUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.footyapps27.JustLogin-MECSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = JustLogin_MECS;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8C00F61B1E1E633B0007F29C /* Build configuration list for PBXProject "JustLogin_MECS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C00F6461E1E633B0007F29C /* Debug */,
+				8C00F6471E1E633B0007F29C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8C00F6481E1E633B0007F29C /* Build configuration list for PBXNativeTarget "JustLogin_MECS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C00F6491E1E633B0007F29C /* Debug */,
+				8C00F64A1E1E633B0007F29C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		8C00F64B1E1E633B0007F29C /* Build configuration list for PBXNativeTarget "JustLogin_MECSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C00F64C1E1E633B0007F29C /* Debug */,
+				8C00F64D1E1E633B0007F29C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		8C00F64E1E1E633B0007F29C /* Build configuration list for PBXNativeTarget "JustLogin_MECSUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C00F64F1E1E633B0007F29C /* Debug */,
+				8C00F6501E1E633B0007F29C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8C00F6181E1E633B0007F29C /* Project object */;
+}
