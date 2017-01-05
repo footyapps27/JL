@@ -18,6 +18,12 @@
 		8C5141291E1E98EC003AD3B1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5141281E1E98EC003AD3B1 /* Constants.swift */; };
 		8C51412A1E1E98EC003AD3B1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5141281E1E98EC003AD3B1 /* Constants.swift */; };
 		8C51412B1E1E98EC003AD3B1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5141281E1E98EC003AD3B1 /* Constants.swift */; };
+		8C51412D1E1E9D14003AD3B1 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C51412C1E1E9D14003AD3B1 /* SignUpViewController.swift */; };
+		8C51412E1E1E9D14003AD3B1 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C51412C1E1E9D14003AD3B1 /* SignUpViewController.swift */; };
+		8C51412F1E1E9D14003AD3B1 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C51412C1E1E9D14003AD3B1 /* SignUpViewController.swift */; };
+		8C5141311E1E9D22003AD3B1 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5141301E1E9D22003AD3B1 /* SignInViewController.swift */; };
+		8C5141321E1E9D22003AD3B1 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5141301E1E9D22003AD3B1 /* SignInViewController.swift */; };
+		8C5141331E1E9D22003AD3B1 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5141301E1E9D22003AD3B1 /* SignInViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +59,8 @@
 		8C00F65E1E1E651A0007F29C /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8C00F6641E1E870B0007F29C /* LaunchCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchCollectionViewCell.swift; sourceTree = "<group>"; };
 		8C5141281E1E98EC003AD3B1 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		8C51412C1E1E9D14003AD3B1 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		8C5141301E1E9D22003AD3B1 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +225,8 @@
 			isa = PBXGroup;
 			children = (
 				8C00F65E1E1E651A0007F29C /* ViewController.swift */,
+				8C51412C1E1E9D14003AD3B1 /* SignUpViewController.swift */,
+				8C5141301E1E9D22003AD3B1 /* SignInViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -373,8 +383,10 @@
 			files = (
 				8C00F6651E1E870B0007F29C /* LaunchCollectionViewCell.swift in Sources */,
 				8C00F6621E1E651A0007F29C /* ViewController.swift in Sources */,
+				8C5141311E1E9D22003AD3B1 /* SignInViewController.swift in Sources */,
 				8C00F6601E1E651A0007F29C /* AppDelegate.swift in Sources */,
 				8C5141291E1E98EC003AD3B1 /* Constants.swift in Sources */,
+				8C51412D1E1E9D14003AD3B1 /* SignUpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,6 +394,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C5141321E1E9D22003AD3B1 /* SignInViewController.swift in Sources */,
+				8C51412E1E1E9D14003AD3B1 /* SignUpViewController.swift in Sources */,
 				8C00F6391E1E633B0007F29C /* JustLogin_MECSTests.swift in Sources */,
 				8C51412A1E1E98EC003AD3B1 /* Constants.swift in Sources */,
 			);
@@ -391,6 +405,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C5141331E1E9D22003AD3B1 /* SignInViewController.swift in Sources */,
+				8C51412F1E1E9D14003AD3B1 /* SignUpViewController.swift in Sources */,
 				8C00F6441E1E633B0007F29C /* JustLogin_MECSUITests.swift in Sources */,
 				8C51412B1E1E98EC003AD3B1 /* Constants.swift in Sources */,
 			);

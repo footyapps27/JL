@@ -40,6 +40,7 @@
                                 <state key="normal" title="Sign Up"/>
                                 <connections>
                                     <action selector="signUpTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Bnb-uN-VhE"/>
+                                    <segue destination="z5m-l4-fbM" kind="presentation" id="eJu-1Z-2CC"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qOp-1T-yNL" userLabel="Sign In">
@@ -51,6 +52,7 @@
                                 <state key="normal" title="Sign In"/>
                                 <connections>
                                     <action selector="signInTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="o12-8I-Wp0"/>
+                                    <segue destination="0p1-Bm-BJP" kind="presentation" id="mcG-uY-lcH"/>
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4pg-Mb-o8h">
@@ -154,6 +156,82 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-530.39999999999998" y="120.98950524737631"/>
+        </scene>
+        <!--Sign In-->
+        <scene sceneID="AYa-w2-xoS">
+            <objects>
+                <viewController id="NGf-qt-Udd" customClass="SignInViewController" customModule="JustLogin_MECS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1ix-Lu-jY4"/>
+                        <viewControllerLayoutGuide type="bottom" id="4B8-DW-t3i"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kv2-9J-NVD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Sign In" id="rMc-ug-ULJ"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ClJ-7d-Xd5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1592.8" y="-159.67016491754123"/>
+        </scene>
+        <!--Sign Up-->
+        <scene sceneID="AWR-ac-OYG">
+            <objects>
+                <viewController id="zSt-Qa-ivp" customClass="SignUpViewController" customModule="JustLogin_MECS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lPW-i4-IXk"/>
+                        <viewControllerLayoutGuide type="bottom" id="xM9-fB-i3y"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rOp-Ca-92Q">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Sign Up" id="8uo-se-1Gz"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ysJ-3q-ZOr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1583.2" y="605.84707646176912"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="774-gu-LWg">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0p1-Bm-BJP" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nzo-o8-3C8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="NGf-qt-Udd" kind="relationship" relationship="rootViewController" id="2ei-kH-ibj"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DqO-ky-Jv1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="653.60000000000002" y="-159.67016491754123"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="9lx-du-aHn">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="z5m-l4-fbM" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="5MD-nA-81M">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="zSt-Qa-ivp" kind="relationship" relationship="rootViewController" id="RPk-DS-L1c"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w2x-tt-x4D" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="644" y="605.84707646176912"/>
         </scene>
     </scenes>
 </document>
