@@ -11,19 +11,31 @@ import UIKit
 class ViewController: UIViewController {
 
     /***********************************/
-    // MARK - Properties
+    //MARK - Properties
     /***********************************/
+    
     @IBOutlet weak var btnSignUp: UIButton!
     @IBOutlet weak var btnSignIn: UIButton!
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var pageControl: UIPageControl!
+    
+    
+    struct LaunchContent {
+        var imageName: String!
+        var description: String!
+    }
     
     /***********************************/
     // MARK - View Lifecycle
     /***********************************/
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        automaticallyAdjustsScrollViewInsets = false;
+        
+        setCustomLayoutForCollectionView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,7 +48,6 @@ class ViewController: UIViewController {
     // MARK - Actions
     /***********************************/
     
-
     @IBAction func signUpTapped(_ sender: Any) {
         
     }
@@ -45,5 +56,60 @@ class ViewController: UIViewController {
         
     }
     
+    /***********************************/
+    // MARK - Hepers
+    /***********************************/
+    
+    /**
+     Method to set custom layout to the collection view. Removes the spaces between the cells, which wa not possible to remove in the default flow layout.
+     */
+    func setCustomLayoutForCollectionView() {
+        let customFlow = UICollectionViewFlowLayout()
+        customFlow.itemSize = CGSize(width:collectionView.frame.width, height:collectionView.frame.height)
+        customFlow.scrollDirection = UICollectionViewScrollDirection.horizontal
+        customFlow.minimumInteritemSpacing = 0
+        customFlow.minimumLineSpacing = 0
+        collectionView.collectionViewLayout = customFlow
+    }
+    
+    /**
+     Method to set the content that will be displayed in the collection view.
+     */
+    func getLaunchContent() -> [LaunchContent] {
+        // TODO - Put these in the constants file.
+        return [LaunchContent(imageName:"", description:"Effortlessly Expense Reporting."),
+                LaunchContent(imageName:"", description:"Automatically extract data from receipts."),
+                LaunchContent(imageName:"", description:"Know everything about your expense."),
+                LaunchContent(imageName:"", description:"Track mileage with your phone.")]
+    }
 }
 
+extension ViewController: UICollectionViewDataSource {
+    
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return getLaunchContent().count
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.CellIdentifiers.LaunchCollectionViewCellIdentifier, for: indexPath) as! LaunchCollectionViewCell
+        //TODO - Uncomment once you have the images.
+        //let imageName = getLaunchContent()[indexPath.row].imageName
+        //cell.imgView.image = UIImage.init(named: imageName!)
+        cell.lblDescription.text = getLaunchContent()[indexPath.row].description
+        return cell
+    }
+}
+
+extension ViewController: UICollectionViewDelegate {
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        
+        let pageWidth = self.collectionView.frame.size.width
+        pageControl.currentPage = Int(self.collectionView.contentOffset.x / pageWidth)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
+    }
+}
