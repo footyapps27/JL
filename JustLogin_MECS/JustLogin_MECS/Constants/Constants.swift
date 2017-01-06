@@ -13,4 +13,9 @@ struct Constants {
     struct CellIdentifiers {
         static let LaunchCollectionViewCellIdentifier = "launchCollectionCellIdentifier"
     }
+    
+    struct StoryboardIds {
+        static let ApproverAndAdminDashboard = "approverAndAdminDashboard"
+        static let SubmitterDashboard = "submitterDashboard"
+    }
 }

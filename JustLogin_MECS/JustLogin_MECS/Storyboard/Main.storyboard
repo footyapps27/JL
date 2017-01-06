@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="mNz-6a-KXi">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -22,7 +22,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You will need a JustLogin account to Sign in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qzf-eu-f2x">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You will need a Justlogin account to Sign in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qzf-eu-f2x">
                                 <rect key="frame" x="36" y="626" width="303" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="kcJ-4D-a2G"/>
@@ -66,7 +66,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="launchCollectionCellIdentifier" id="8NI-Pd-VMF" customClass="LaunchCollectionViewCell" customModule="JustLogin_MECS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="-4" width="373" height="495"/>
+                                        <rect key="frame" x="0.0" y="-3.5" width="373" height="495"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="373" height="495"/>
@@ -146,6 +146,7 @@
                             <constraint firstAttribute="trailing" secondItem="4pg-Mb-o8h" secondAttribute="trailing" id="vJJ-Bo-BzD"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="sst-Cs-ic4"/>
                     <connections>
                         <outlet property="btnSignIn" destination="qOp-1T-yNL" id="W84-HT-vtp"/>
                         <outlet property="btnSignUp" destination="tCW-D6-hxb" id="HSD-0O-naG"/>
@@ -155,7 +156,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-530.39999999999998" y="120.98950524737631"/>
+            <point key="canvasLocation" x="408.80000000000001" y="120.98950524737631"/>
         </scene>
         <!--Sign In-->
         <scene sceneID="AYa-w2-xoS">
@@ -168,7 +169,21 @@
                     <view key="view" contentMode="scaleToFill" id="kv2-9J-NVD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZmC-VV-NQg">
+                                <rect key="frame" x="127" y="318" width="120" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="JCZ-Vn-bPA"/>
+                                    <constraint firstAttribute="height" constant="30" id="MPh-Qt-jXq"/>
+                                </constraints>
+                                <state key="normal" title="Submitter Flow"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ZmC-VV-NQg" firstAttribute="centerX" secondItem="kv2-9J-NVD" secondAttribute="centerX" id="emM-vL-KGd"/>
+                            <constraint firstItem="ZmC-VV-NQg" firstAttribute="centerY" secondItem="kv2-9J-NVD" secondAttribute="centerY" id="soW-TV-d5i"/>
+                        </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Sign In" id="rMc-ug-ULJ"/>
@@ -176,7 +191,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ClJ-7d-Xd5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1592.8" y="-159.67016491754123"/>
+            <point key="canvasLocation" x="2532" y="-159.67016491754123"/>
         </scene>
         <!--Sign Up-->
         <scene sceneID="AWR-ac-OYG">
@@ -189,13 +204,27 @@
                     <view key="view" contentMode="scaleToFill" id="rOp-Ca-92Q">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ruo-to-aez">
+                                <rect key="frame" x="147.5" y="318" width="79" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="MHn-gI-iA6"/>
+                                    <constraint firstAttribute="width" constant="79" id="qrO-0h-dSi"/>
+                                </constraints>
+                                <state key="normal" title="Admin Flow"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ruo-to-aez" firstAttribute="centerX" secondItem="rOp-Ca-92Q" secondAttribute="centerX" id="QsZ-3b-9bE"/>
+                            <constraint firstItem="ruo-to-aez" firstAttribute="centerY" secondItem="rOp-Ca-92Q" secondAttribute="centerY" id="zQd-VR-tA5"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Sign Up" id="8uo-se-1Gz"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ysJ-3q-ZOr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1583.2" y="605.84707646176912"/>
+            <point key="canvasLocation" x="2522.4000000000001" y="605.84707646176912"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="774-gu-LWg">
@@ -213,7 +242,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DqO-ky-Jv1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="653.60000000000002" y="-159.67016491754123"/>
+            <point key="canvasLocation" x="1592.8" y="-159.67016491754123"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9lx-du-aHn">
@@ -231,7 +260,25 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w2x-tt-x4D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="644" y="605.84707646176912"/>
+            <point key="canvasLocation" x="1583.2" y="605.84707646176912"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="bM5-dL-3R3">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mNz-6a-KXi" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aUG-Ka-t2G">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="87J-hq-apC"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V2o-Dy-7rt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-530.39999999999998" y="120.98950524737631"/>
         </scene>
     </scenes>
 </document>

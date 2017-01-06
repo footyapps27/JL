@@ -33,6 +33,9 @@ class LaunchViewController: BaseViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        // Hide the navigation bar
+        navigationController?.isNavigationBarHidden = true
+        
         automaticallyAdjustsScrollViewInsets = false;
         
         setCustomLayoutForCollectionView()
