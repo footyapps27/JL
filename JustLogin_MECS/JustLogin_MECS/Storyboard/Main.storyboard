@@ -177,6 +177,9 @@
                                     <constraint firstAttribute="height" constant="30" id="MPh-Qt-jXq"/>
                                 </constraints>
                                 <state key="normal" title="Submitter Flow"/>
+                                <connections>
+                                    <action selector="signInTapped:" destination="NGf-qt-Udd" eventType="touchUpInside" id="iT6-Ep-5MW"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -212,6 +215,9 @@
                                     <constraint firstAttribute="width" constant="79" id="qrO-0h-dSi"/>
                                 </constraints>
                                 <state key="normal" title="Admin Flow"/>
+                                <connections>
+                                    <action selector="signUpTapped:" destination="zSt-Qa-ivp" eventType="touchUpInside" id="EpS-RV-esG"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

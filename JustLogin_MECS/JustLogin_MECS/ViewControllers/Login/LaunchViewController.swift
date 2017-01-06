@@ -36,11 +36,18 @@ class LaunchViewController: BaseViewController {
         // Hide the navigation bar
         navigationController?.isNavigationBarHidden = true
         
+        // Register to the login successful notification
+        NotificationCenter.default.addObserver(self, selector: #selector(LaunchViewController.navigateToDashboard), name: Notification.Name(Constants.Notifications.LoginSuccessful), object: nil)
+        
         automaticallyAdjustsScrollViewInsets = false;
         
         setCustomLayoutForCollectionView()
     }
 
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -84,6 +91,41 @@ class LaunchViewController: BaseViewController {
                 LaunchContent(imageName:"", description:"Automatically extract data from receipts."),
                 LaunchContent(imageName:"", description:"Know everything about your expense."),
                 LaunchContent(imageName:"", description:"Track mileage with your phone.")]
+    }
+    
+    /**
+     Method to navigate to the dashboard after the user has logged in.
+     */
+    func navigateToDashboard(notification:Notification) {
+        if let user = notification.object as? User {
+            switch user.role {
+            case .Submitter:
+                // Navigate to submitter dashboard
+                navigateToSubmitterDashboard()
+            case .Admin, .Approver:
+                // Navigate to admin/approver dashboard
+                navigateToAdminAndApproverDashboard()
+            }
+        }
+    }
+    
+    /**
+     Method to navigate to the submitter's dashboard.
+     */
+    func navigateToSubmitterDashboard() {
+        
+        let submitterDashboard = UIStoryboard(name: Constants.StoryboardIds.DashboardStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.SubmitterDashboard) as! UITabBarController
+        
+        navigationController?.pushViewController(submitterDashboard, animated: true)
+    }
+    
+    /**
+     Method to navigate to the admin/approver's dashboard.
+     */
+    func navigateToAdminAndApproverDashboard() {
+        let approverAndAdminDashboard = UIStoryboard(name: Constants.StoryboardIds.DashboardStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.ApproverAndAdminDashboard) as! UITabBarController
+        
+        navigationController?.pushViewController(approverAndAdminDashboard, animated: true)
     }
 }
 

@@ -15,7 +15,12 @@ struct Constants {
     }
     
     struct StoryboardIds {
+        static let DashboardStoryboard = "Dashboard"
         static let ApproverAndAdminDashboard = "approverAndAdminDashboard"
         static let SubmitterDashboard = "submitterDashboard"
+    }
+    
+    struct Notifications {
+        static let LoginSuccessful = "loginSuccessful"
     }
 }
