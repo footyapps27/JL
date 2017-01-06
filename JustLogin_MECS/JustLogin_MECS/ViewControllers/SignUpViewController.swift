@@ -9,13 +9,21 @@
 import Foundation
 import UIKit
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: BaseViewController {
+    
+    /***********************************/
+    // MARK: - View Lifecycle
+    /***********************************/
     
     override func viewDidLoad() {
         let cancel = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelTapped))
         
         navigationItem.leftBarButtonItems = [cancel]
     }
+    
+    /***********************************/
+    // MARK: - Helpers
+    /***********************************/
     
     func cancelTapped() {
         dismiss(animated: true, completion: nil)

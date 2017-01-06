@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class LaunchCollectionViewCell: UICollectionViewCell {
+class LaunchCollectionViewCell: BaseCustomCollectionViewCell {
     
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var lblDescription: UILabel!
