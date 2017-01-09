@@ -12,6 +12,8 @@ struct Constants {
     
     struct CellIdentifiers {
         static let LaunchCollectionViewCellIdentifier = "launchCollectionCellIdentifier"
+        static let ExpenseListTableViewCellIdentifier = "expenseListTableViewCellIdentifier"
+        static let SettingsListTableViewCellIdentifier = "settingsListTableViewCellIdentifier"
     }
     
     struct StoryboardIds {

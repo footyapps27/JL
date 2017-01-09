@@ -47,6 +47,15 @@
 		8C96021D1E1FE14A00EE66A3 /* Roles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C96021C1E1FE14A00EE66A3 /* Roles.swift */; };
 		8C96021E1E1FE14A00EE66A3 /* Roles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C96021C1E1FE14A00EE66A3 /* Roles.swift */; };
 		8C96021F1E1FE14A00EE66A3 /* Roles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C96021C1E1FE14A00EE66A3 /* Roles.swift */; };
+		8CD333191E23BC7D00557B6F /* ExpenseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD333181E23BC7D00557B6F /* ExpenseListViewController.swift */; };
+		8CD3331A1E23BC7D00557B6F /* ExpenseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD333181E23BC7D00557B6F /* ExpenseListViewController.swift */; };
+		8CD3331B1E23BC7D00557B6F /* ExpenseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD333181E23BC7D00557B6F /* ExpenseListViewController.swift */; };
+		8CD3331D1E23C48000557B6F /* SettingsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD3331C1E23C48000557B6F /* SettingsListViewController.swift */; };
+		8CD3331E1E23C48000557B6F /* SettingsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD3331C1E23C48000557B6F /* SettingsListViewController.swift */; };
+		8CD3331F1E23C48000557B6F /* SettingsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD3331C1E23C48000557B6F /* SettingsListViewController.swift */; };
+		8CD333211E23C4E500557B6F /* BaseViewControllerWithTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD333201E23C4E500557B6F /* BaseViewControllerWithTableView.swift */; };
+		8CD333221E23C4E500557B6F /* BaseViewControllerWithTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD333201E23C4E500557B6F /* BaseViewControllerWithTableView.swift */; };
+		8CD333231E23C4E500557B6F /* BaseViewControllerWithTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD333201E23C4E500557B6F /* BaseViewControllerWithTableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +100,9 @@
 		8C9602131E1FDB9900EE66A3 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8C9602171E1FDFA900EE66A3 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8C96021C1E1FE14A00EE66A3 /* Roles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Roles.swift; sourceTree = "<group>"; };
+		8CD333181E23BC7D00557B6F /* ExpenseListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseListViewController.swift; sourceTree = "<group>"; };
+		8CD3331C1E23C48000557B6F /* SettingsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsListViewController.swift; sourceTree = "<group>"; };
+		8CD333201E23C4E500557B6F /* BaseViewControllerWithTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewControllerWithTableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -259,10 +271,10 @@
 			children = (
 				8C5141351E1F5F3D003AD3B1 /* Base */,
 				8C9602021E1FDB7F00EE66A3 /* Dashboard */,
-				8C9602031E1FDB7F00EE66A3 /* Expense */,
 				8C9602041E1FDB7F00EE66A3 /* Login */,
-				8C9602081E1FDB7F00EE66A3 /* Report */,
-				8C9602091E1FDB7F00EE66A3 /* Settings */,
+				8CD333151E23BC4D00557B6F /* Expense */,
+				8CD333161E23BC4D00557B6F /* Report */,
+				8CD333171E23BC4D00557B6F /* Settings */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -297,6 +309,7 @@
 			isa = PBXGroup;
 			children = (
 				8C5141361E1F5F53003AD3B1 /* BaseViewController.swift */,
+				8CD333201E23C4E500557B6F /* BaseViewControllerWithTableView.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -309,13 +322,6 @@
 			path = Dashboard;
 			sourceTree = "<group>";
 		};
-		8C9602031E1FDB7F00EE66A3 /* Expense */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Expense;
-			sourceTree = "<group>";
-		};
 		8C9602041E1FDB7F00EE66A3 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -326,26 +332,35 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
-		8C9602081E1FDB7F00EE66A3 /* Report */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Report;
-			sourceTree = "<group>";
-		};
-		8C9602091E1FDB7F00EE66A3 /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Settings;
-			sourceTree = "<group>";
-		};
 		8C96021B1E1FE13100EE66A3 /* Enums */ = {
 			isa = PBXGroup;
 			children = (
 				8C96021C1E1FE14A00EE66A3 /* Roles.swift */,
 			);
 			path = Enums;
+			sourceTree = "<group>";
+		};
+		8CD333151E23BC4D00557B6F /* Expense */ = {
+			isa = PBXGroup;
+			children = (
+				8CD333181E23BC7D00557B6F /* ExpenseListViewController.swift */,
+			);
+			path = Expense;
+			sourceTree = "<group>";
+		};
+		8CD333161E23BC4D00557B6F /* Report */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Report;
+			sourceTree = "<group>";
+		};
+		8CD333171E23BC4D00557B6F /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				8CD3331C1E23C48000557B6F /* SettingsListViewController.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -485,12 +500,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CD3331D1E23C48000557B6F /* SettingsListViewController.swift in Sources */,
 				8C96020D1E1FDB7F00EE66A3 /* SignInViewController.swift in Sources */,
+				8CD333191E23BC7D00557B6F /* ExpenseListViewController.swift in Sources */,
 				8C00F6651E1E870B0007F29C /* LaunchCollectionViewCell.swift in Sources */,
 				8C96020A1E1FDB7F00EE66A3 /* LaunchViewController.swift in Sources */,
 				8C00F6601E1E651A0007F29C /* AppDelegate.swift in Sources */,
 				8C9602101E1FDB7F00EE66A3 /* SignUpViewController.swift in Sources */,
 				8C9602141E1FDB9900EE66A3 /* HomeViewController.swift in Sources */,
+				8CD333211E23C4E500557B6F /* BaseViewControllerWithTableView.swift in Sources */,
 				8C5141291E1E98EC003AD3B1 /* Constants.swift in Sources */,
 				8C51413B1E1F5F95003AD3B1 /* BaseCustomCollectionViewCell.swift in Sources */,
 				8C51413F1E1F5FDB003AD3B1 /* BaseCustomTableViewCell.swift in Sources */,
@@ -504,8 +522,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CD3331E1E23C48000557B6F /* SettingsListViewController.swift in Sources */,
 				8C5141381E1F5F53003AD3B1 /* BaseViewController.swift in Sources */,
 				8C5141401E1F5FDB003AD3B1 /* BaseCustomTableViewCell.swift in Sources */,
+				8CD333221E23C4E500557B6F /* BaseViewControllerWithTableView.swift in Sources */,
 				8C96021E1E1FE14A00EE66A3 /* Roles.swift in Sources */,
 				8C9602111E1FDB7F00EE66A3 /* SignUpViewController.swift in Sources */,
 				8C51413C1E1F5F95003AD3B1 /* BaseCustomCollectionViewCell.swift in Sources */,
@@ -513,6 +533,7 @@
 				8C9602151E1FDB9900EE66A3 /* HomeViewController.swift in Sources */,
 				8C00F6391E1E633B0007F29C /* JustLogin_MECSTests.swift in Sources */,
 				8C51412A1E1E98EC003AD3B1 /* Constants.swift in Sources */,
+				8CD3331A1E23BC7D00557B6F /* ExpenseListViewController.swift in Sources */,
 				8C9602191E1FDFA900EE66A3 /* User.swift in Sources */,
 				8C96020B1E1FDB7F00EE66A3 /* LaunchViewController.swift in Sources */,
 			);
@@ -522,8 +543,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CD3331F1E23C48000557B6F /* SettingsListViewController.swift in Sources */,
 				8C5141391E1F5F53003AD3B1 /* BaseViewController.swift in Sources */,
 				8C5141411E1F5FDB003AD3B1 /* BaseCustomTableViewCell.swift in Sources */,
+				8CD333231E23C4E500557B6F /* BaseViewControllerWithTableView.swift in Sources */,
 				8C96021F1E1FE14A00EE66A3 /* Roles.swift in Sources */,
 				8C9602121E1FDB7F00EE66A3 /* SignUpViewController.swift in Sources */,
 				8C51413D1E1F5F95003AD3B1 /* BaseCustomCollectionViewCell.swift in Sources */,
@@ -531,6 +554,7 @@
 				8C9602161E1FDB9900EE66A3 /* HomeViewController.swift in Sources */,
 				8C00F6441E1E633B0007F29C /* JustLogin_MECSUITests.swift in Sources */,
 				8C51412B1E1E98EC003AD3B1 /* Constants.swift in Sources */,
+				8CD3331B1E23BC7D00557B6F /* ExpenseListViewController.swift in Sources */,
 				8C96021A1E1FDFA900EE66A3 /* User.swift in Sources */,
 				8C96020C1E1FDB7F00EE66A3 /* LaunchViewController.swift in Sources */,
 			);
