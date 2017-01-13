@@ -47,6 +47,15 @@
 		8C96021D1E1FE14A00EE66A3 /* Roles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C96021C1E1FE14A00EE66A3 /* Roles.swift */; };
 		8C96021E1E1FE14A00EE66A3 /* Roles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C96021C1E1FE14A00EE66A3 /* Roles.swift */; };
 		8C96021F1E1FE14A00EE66A3 /* Roles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C96021C1E1FE14A00EE66A3 /* Roles.swift */; };
+		8CA4B6EA1E28A3DA007C3BE5 /* ReportListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA4B6E91E28A3DA007C3BE5 /* ReportListViewController.swift */; };
+		8CA4B6EB1E28A3DF007C3BE5 /* ReportListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA4B6E91E28A3DA007C3BE5 /* ReportListViewController.swift */; };
+		8CA4B6EC1E28A3E0007C3BE5 /* ReportListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA4B6E91E28A3DA007C3BE5 /* ReportListViewController.swift */; };
+		8CA4B6EF1E28A5A8007C3BE5 /* ApprovalListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA4B6EE1E28A5A8007C3BE5 /* ApprovalListViewController.swift */; };
+		8CA4B6F01E28A5A8007C3BE5 /* ApprovalListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA4B6EE1E28A5A8007C3BE5 /* ApprovalListViewController.swift */; };
+		8CA4B6F11E28A5A8007C3BE5 /* ApprovalListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA4B6EE1E28A5A8007C3BE5 /* ApprovalListViewController.swift */; };
+		8CA4B6F31E28ACA6007C3BE5 /* ReportListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA4B6F21E28ACA6007C3BE5 /* ReportListTableViewCell.swift */; };
+		8CA4B6F41E28ACA6007C3BE5 /* ReportListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA4B6F21E28ACA6007C3BE5 /* ReportListTableViewCell.swift */; };
+		8CA4B6F51E28ACA6007C3BE5 /* ReportListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA4B6F21E28ACA6007C3BE5 /* ReportListTableViewCell.swift */; };
 		8CD333191E23BC7D00557B6F /* ExpenseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD333181E23BC7D00557B6F /* ExpenseListViewController.swift */; };
 		8CD3331A1E23BC7D00557B6F /* ExpenseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD333181E23BC7D00557B6F /* ExpenseListViewController.swift */; };
 		8CD3331B1E23BC7D00557B6F /* ExpenseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD333181E23BC7D00557B6F /* ExpenseListViewController.swift */; };
@@ -100,6 +109,9 @@
 		8C9602131E1FDB9900EE66A3 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8C9602171E1FDFA900EE66A3 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8C96021C1E1FE14A00EE66A3 /* Roles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Roles.swift; sourceTree = "<group>"; };
+		8CA4B6E91E28A3DA007C3BE5 /* ReportListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportListViewController.swift; sourceTree = "<group>"; };
+		8CA4B6EE1E28A5A8007C3BE5 /* ApprovalListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApprovalListViewController.swift; sourceTree = "<group>"; };
+		8CA4B6F21E28ACA6007C3BE5 /* ReportListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportListTableViewCell.swift; sourceTree = "<group>"; };
 		8CD333181E23BC7D00557B6F /* ExpenseListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseListViewController.swift; sourceTree = "<group>"; };
 		8CD3331C1E23C48000557B6F /* SettingsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsListViewController.swift; sourceTree = "<group>"; };
 		8CD333201E23C4E500557B6F /* BaseViewControllerWithTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewControllerWithTableView.swift; sourceTree = "<group>"; };
@@ -269,6 +281,7 @@
 		8C00F65D1E1E651A0007F29C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				8CA4B6ED1E28A58D007C3BE5 /* Approval */,
 				8C5141351E1F5F3D003AD3B1 /* Base */,
 				8C9602021E1FDB7F00EE66A3 /* Dashboard */,
 				8C9602041E1FDB7F00EE66A3 /* Login */,
@@ -292,6 +305,7 @@
 			children = (
 				8C5141341E1F5F2F003AD3B1 /* Base */,
 				8C00F6641E1E870B0007F29C /* LaunchCollectionViewCell.swift */,
+				8CA4B6F21E28ACA6007C3BE5 /* ReportListTableViewCell.swift */,
 			);
 			path = "Custom Cells";
 			sourceTree = "<group>";
@@ -340,6 +354,14 @@
 			path = Enums;
 			sourceTree = "<group>";
 		};
+		8CA4B6ED1E28A58D007C3BE5 /* Approval */ = {
+			isa = PBXGroup;
+			children = (
+				8CA4B6EE1E28A5A8007C3BE5 /* ApprovalListViewController.swift */,
+			);
+			path = Approval;
+			sourceTree = "<group>";
+		};
 		8CD333151E23BC4D00557B6F /* Expense */ = {
 			isa = PBXGroup;
 			children = (
@@ -351,6 +373,7 @@
 		8CD333161E23BC4D00557B6F /* Report */ = {
 			isa = PBXGroup;
 			children = (
+				8CA4B6E91E28A3DA007C3BE5 /* ReportListViewController.swift */,
 			);
 			path = Report;
 			sourceTree = "<group>";
@@ -500,6 +523,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CA4B6EA1E28A3DA007C3BE5 /* ReportListViewController.swift in Sources */,
 				8CD3331D1E23C48000557B6F /* SettingsListViewController.swift in Sources */,
 				8C96020D1E1FDB7F00EE66A3 /* SignInViewController.swift in Sources */,
 				8CD333191E23BC7D00557B6F /* ExpenseListViewController.swift in Sources */,
@@ -508,6 +532,7 @@
 				8C00F6601E1E651A0007F29C /* AppDelegate.swift in Sources */,
 				8C9602101E1FDB7F00EE66A3 /* SignUpViewController.swift in Sources */,
 				8C9602141E1FDB9900EE66A3 /* HomeViewController.swift in Sources */,
+				8CA4B6EF1E28A5A8007C3BE5 /* ApprovalListViewController.swift in Sources */,
 				8CD333211E23C4E500557B6F /* BaseViewControllerWithTableView.swift in Sources */,
 				8C5141291E1E98EC003AD3B1 /* Constants.swift in Sources */,
 				8C51413B1E1F5F95003AD3B1 /* BaseCustomCollectionViewCell.swift in Sources */,
@@ -515,6 +540,7 @@
 				8C5141371E1F5F53003AD3B1 /* BaseViewController.swift in Sources */,
 				8C9602181E1FDFA900EE66A3 /* User.swift in Sources */,
 				8C96021D1E1FE14A00EE66A3 /* Roles.swift in Sources */,
+				8CA4B6F31E28ACA6007C3BE5 /* ReportListTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -528,8 +554,11 @@
 				8CD333221E23C4E500557B6F /* BaseViewControllerWithTableView.swift in Sources */,
 				8C96021E1E1FE14A00EE66A3 /* Roles.swift in Sources */,
 				8C9602111E1FDB7F00EE66A3 /* SignUpViewController.swift in Sources */,
+				8CA4B6F01E28A5A8007C3BE5 /* ApprovalListViewController.swift in Sources */,
+				8CA4B6F41E28ACA6007C3BE5 /* ReportListTableViewCell.swift in Sources */,
 				8C51413C1E1F5F95003AD3B1 /* BaseCustomCollectionViewCell.swift in Sources */,
 				8C96020E1E1FDB7F00EE66A3 /* SignInViewController.swift in Sources */,
+				8CA4B6EB1E28A3DF007C3BE5 /* ReportListViewController.swift in Sources */,
 				8C9602151E1FDB9900EE66A3 /* HomeViewController.swift in Sources */,
 				8C00F6391E1E633B0007F29C /* JustLogin_MECSTests.swift in Sources */,
 				8C51412A1E1E98EC003AD3B1 /* Constants.swift in Sources */,
@@ -549,8 +578,11 @@
 				8CD333231E23C4E500557B6F /* BaseViewControllerWithTableView.swift in Sources */,
 				8C96021F1E1FE14A00EE66A3 /* Roles.swift in Sources */,
 				8C9602121E1FDB7F00EE66A3 /* SignUpViewController.swift in Sources */,
+				8CA4B6F11E28A5A8007C3BE5 /* ApprovalListViewController.swift in Sources */,
+				8CA4B6F51E28ACA6007C3BE5 /* ReportListTableViewCell.swift in Sources */,
 				8C51413D1E1F5F95003AD3B1 /* BaseCustomCollectionViewCell.swift in Sources */,
 				8C96020F1E1FDB7F00EE66A3 /* SignInViewController.swift in Sources */,
+				8CA4B6EC1E28A3E0007C3BE5 /* ReportListViewController.swift in Sources */,
 				8C9602161E1FDB9900EE66A3 /* HomeViewController.swift in Sources */,
 				8C00F6441E1E633B0007F29C /* JustLogin_MECSUITests.swift in Sources */,
 				8C51412B1E1E98EC003AD3B1 /* Constants.swift in Sources */,

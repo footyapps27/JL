@@ -1,15 +1,15 @@
 //
-//  ExpenseListViewController.swift
+//  ReportListViewController.swift
 //  JustLogin_MECS
 //
-//  Created by Samrat on 9/1/17.
+//  Created by Samrat on 13/1/17.
 //  Copyright © 2017 SMRT. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class ExpenseListViewController: BaseViewControllerWithTableView {
+class ReportListViewController: BaseViewControllerWithTableView {
     
     /***********************************/
     // MARK: - Properties
@@ -41,21 +41,16 @@ class ExpenseListViewController: BaseViewControllerWithTableView {
     // MARK: - Helpers
     /***********************************/
     func filterContentForSearchText(searchText: String, scope: String = "All") {
-//        filteredCandies = candies.filter { candy in
-//            return candy.name.lowercaseString.containsString(searchText.lowercaseString)
-//        }
+        //        filteredCandies = candies.filter { candy in
+        //            return candy.name.lowercaseString.containsString(searchText.lowercaseString)
+        //        }
         
         tableView.reloadData()
     }
     
 }
 
-extension ExpenseListViewController: UITableViewDataSource {
-    
-    public func numberOfSections(in tableView: UITableView) -> Int {
-        tableView.backgroundView?.backgroundColor = UIColor.blue
-        return 1
-    }
+extension ReportListViewController: UITableViewDataSource {
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // TODO: - Hardcoded data
@@ -63,17 +58,25 @@ extension ExpenseListViewController: UITableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.ExpenseListTableViewCellIdentifier, for: indexPath)
-        cell.textLabel?.text = "Expense \(indexPath.row)"
-        return cell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.ReportListTableViewCellIdentifier, for: indexPath) as? ReportListTableViewCell {
+            cell.lblReportName.text = "Report Name"
+            cell.lblDate.text = "04/07/2016 to 29/07/2016"
+            cell.lblAmount.text = "$ 41.05"
+            cell.lblStatus.text = "Approved"
+            return cell
+        }
+        // TODO: - This has to be updated
+        return UITableViewCell()
     }
 }
 
-extension ExpenseListViewController: UITableViewDelegate {
-    
+extension ReportListViewController: UITableViewDelegate {
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return CGFloat(Constants.CellHeight.ReportListCellHeight)
+    }
 }
 
-extension ExpenseListViewController: UISearchResultsUpdating {
+extension ReportListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         //filterContentForSearchText(searchController.searchBar.text!)
     }

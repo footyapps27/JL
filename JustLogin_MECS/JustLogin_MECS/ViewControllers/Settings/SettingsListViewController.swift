@@ -44,6 +44,7 @@ extension SettingsListViewController: UITableViewDataSource {
     }
     
     public func numberOfSections(in tableView: UITableView) -> Int {
+        // TODO: - Hardcoded data
         return 2
     }
     

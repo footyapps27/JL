@@ -14,6 +14,12 @@ struct Constants {
         static let LaunchCollectionViewCellIdentifier = "launchCollectionCellIdentifier"
         static let ExpenseListTableViewCellIdentifier = "expenseListTableViewCellIdentifier"
         static let SettingsListTableViewCellIdentifier = "settingsListTableViewCellIdentifier"
+        static let ReportListTableViewCellIdentifier = "reportListTableViewCellIdentifier"
+        static let ApprovalListTableViewCellIdentifier = "approvalListTableViewCellIdentifier"
+    }
+    
+    struct CellHeight {
+        static let ReportListCellHeight = 68
     }
     
     struct StoryboardIds {

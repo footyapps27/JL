@@ -1,15 +1,15 @@
 //
-//  ExpenseListViewController.swift
+//  ApprovalListViewController.swift
 //  JustLogin_MECS
 //
-//  Created by Samrat on 9/1/17.
+//  Created by Samrat on 13/1/17.
 //  Copyright © 2017 SMRT. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class ExpenseListViewController: BaseViewControllerWithTableView {
+class ApprovalListViewController: BaseViewControllerWithTableView {
     
     /***********************************/
     // MARK: - Properties
@@ -41,21 +41,16 @@ class ExpenseListViewController: BaseViewControllerWithTableView {
     // MARK: - Helpers
     /***********************************/
     func filterContentForSearchText(searchText: String, scope: String = "All") {
-//        filteredCandies = candies.filter { candy in
-//            return candy.name.lowercaseString.containsString(searchText.lowercaseString)
-//        }
+        //        filteredCandies = candies.filter { candy in
+        //            return candy.name.lowercaseString.containsString(searchText.lowercaseString)
+        //        }
         
         tableView.reloadData()
     }
     
 }
 
-extension ExpenseListViewController: UITableViewDataSource {
-    
-    public func numberOfSections(in tableView: UITableView) -> Int {
-        tableView.backgroundView?.backgroundColor = UIColor.blue
-        return 1
-    }
+extension ApprovalListViewController: UITableViewDataSource {
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // TODO: - Hardcoded data
@@ -63,17 +58,17 @@ extension ExpenseListViewController: UITableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.ExpenseListTableViewCellIdentifier, for: indexPath)
-        cell.textLabel?.text = "Expense \(indexPath.row)"
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.ApprovalListTableViewCellIdentifier, for: indexPath)
+        cell.textLabel?.text = "Approval \(indexPath.row)"
         return cell
     }
 }
 
-extension ExpenseListViewController: UITableViewDelegate {
+extension ApprovalListViewController: UITableViewDelegate {
     
 }
 
-extension ExpenseListViewController: UISearchResultsUpdating {
+extension ApprovalListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         //filterContentForSearchText(searchController.searchBar.text!)
     }
