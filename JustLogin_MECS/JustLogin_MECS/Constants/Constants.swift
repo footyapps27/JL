@@ -20,6 +20,7 @@ struct Constants {
     
     struct CellHeight {
         static let ReportListCellHeight = 68
+        static let ExpenseListCellHeight = 90
     }
     
     struct StoryboardIds {

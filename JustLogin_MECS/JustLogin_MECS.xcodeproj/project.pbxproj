@@ -56,6 +56,9 @@
 		8CA4B6F31E28ACA6007C3BE5 /* ReportListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA4B6F21E28ACA6007C3BE5 /* ReportListTableViewCell.swift */; };
 		8CA4B6F41E28ACA6007C3BE5 /* ReportListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA4B6F21E28ACA6007C3BE5 /* ReportListTableViewCell.swift */; };
 		8CA4B6F51E28ACA6007C3BE5 /* ReportListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA4B6F21E28ACA6007C3BE5 /* ReportListTableViewCell.swift */; };
+		8CA4B6F71E28C3A6007C3BE5 /* ExpenseListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA4B6F61E28C3A6007C3BE5 /* ExpenseListTableViewCell.swift */; };
+		8CA4B6F81E28C3A6007C3BE5 /* ExpenseListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA4B6F61E28C3A6007C3BE5 /* ExpenseListTableViewCell.swift */; };
+		8CA4B6F91E28C3A6007C3BE5 /* ExpenseListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA4B6F61E28C3A6007C3BE5 /* ExpenseListTableViewCell.swift */; };
 		8CD333191E23BC7D00557B6F /* ExpenseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD333181E23BC7D00557B6F /* ExpenseListViewController.swift */; };
 		8CD3331A1E23BC7D00557B6F /* ExpenseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD333181E23BC7D00557B6F /* ExpenseListViewController.swift */; };
 		8CD3331B1E23BC7D00557B6F /* ExpenseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD333181E23BC7D00557B6F /* ExpenseListViewController.swift */; };
@@ -112,6 +115,7 @@
 		8CA4B6E91E28A3DA007C3BE5 /* ReportListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportListViewController.swift; sourceTree = "<group>"; };
 		8CA4B6EE1E28A5A8007C3BE5 /* ApprovalListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApprovalListViewController.swift; sourceTree = "<group>"; };
 		8CA4B6F21E28ACA6007C3BE5 /* ReportListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportListTableViewCell.swift; sourceTree = "<group>"; };
+		8CA4B6F61E28C3A6007C3BE5 /* ExpenseListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseListTableViewCell.swift; sourceTree = "<group>"; };
 		8CD333181E23BC7D00557B6F /* ExpenseListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseListViewController.swift; sourceTree = "<group>"; };
 		8CD3331C1E23C48000557B6F /* SettingsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsListViewController.swift; sourceTree = "<group>"; };
 		8CD333201E23C4E500557B6F /* BaseViewControllerWithTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewControllerWithTableView.swift; sourceTree = "<group>"; };
@@ -306,6 +310,7 @@
 				8C5141341E1F5F2F003AD3B1 /* Base */,
 				8C00F6641E1E870B0007F29C /* LaunchCollectionViewCell.swift */,
 				8CA4B6F21E28ACA6007C3BE5 /* ReportListTableViewCell.swift */,
+				8CA4B6F61E28C3A6007C3BE5 /* ExpenseListTableViewCell.swift */,
 			);
 			path = "Custom Cells";
 			sourceTree = "<group>";
@@ -527,6 +532,7 @@
 				8CD3331D1E23C48000557B6F /* SettingsListViewController.swift in Sources */,
 				8C96020D1E1FDB7F00EE66A3 /* SignInViewController.swift in Sources */,
 				8CD333191E23BC7D00557B6F /* ExpenseListViewController.swift in Sources */,
+				8CA4B6F71E28C3A6007C3BE5 /* ExpenseListTableViewCell.swift in Sources */,
 				8C00F6651E1E870B0007F29C /* LaunchCollectionViewCell.swift in Sources */,
 				8C96020A1E1FDB7F00EE66A3 /* LaunchViewController.swift in Sources */,
 				8C00F6601E1E651A0007F29C /* AppDelegate.swift in Sources */,
@@ -550,6 +556,7 @@
 			files = (
 				8CD3331E1E23C48000557B6F /* SettingsListViewController.swift in Sources */,
 				8C5141381E1F5F53003AD3B1 /* BaseViewController.swift in Sources */,
+				8CA4B6F81E28C3A6007C3BE5 /* ExpenseListTableViewCell.swift in Sources */,
 				8C5141401E1F5FDB003AD3B1 /* BaseCustomTableViewCell.swift in Sources */,
 				8CD333221E23C4E500557B6F /* BaseViewControllerWithTableView.swift in Sources */,
 				8C96021E1E1FE14A00EE66A3 /* Roles.swift in Sources */,
@@ -574,6 +581,7 @@
 			files = (
 				8CD3331F1E23C48000557B6F /* SettingsListViewController.swift in Sources */,
 				8C5141391E1F5F53003AD3B1 /* BaseViewController.swift in Sources */,
+				8CA4B6F91E28C3A6007C3BE5 /* ExpenseListTableViewCell.swift in Sources */,
 				8C5141411E1F5FDB003AD3B1 /* BaseCustomTableViewCell.swift in Sources */,
 				8CD333231E23C4E500557B6F /* BaseViewControllerWithTableView.swift in Sources */,
 				8C96021F1E1FE14A00EE66A3 /* Roles.swift in Sources */,

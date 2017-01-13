@@ -14,7 +14,7 @@ class ReportListTableViewCell: BaseCustomTableViewCell {
     // The name of the report.
     @IBOutlet weak var lblReportName: UILabel!
     
-    // The total amount (includes the currency code), e.g. $ 41.00.
+    // The total amount (includes the currency code), e.g. $41.00.
     @IBOutlet weak var lblAmount: UILabel!
     
     // The status of the report.

@@ -61,7 +61,7 @@ extension ReportListViewController: UITableViewDataSource {
         if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.ReportListTableViewCellIdentifier, for: indexPath) as? ReportListTableViewCell {
             cell.lblReportName.text = "Report Name"
             cell.lblDate.text = "04/07/2016 to 29/07/2016"
-            cell.lblAmount.text = "$ 41.05"
+            cell.lblAmount.text = "$41.05"
             cell.lblStatus.text = "Approved"
             return cell
         }

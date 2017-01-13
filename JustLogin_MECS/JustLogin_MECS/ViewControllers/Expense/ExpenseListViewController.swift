@@ -63,14 +63,23 @@ extension ExpenseListViewController: UITableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.ExpenseListTableViewCellIdentifier, for: indexPath)
-        cell.textLabel?.text = "Expense \(indexPath.row)"
-        return cell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.ExpenseListTableViewCellIdentifier, for: indexPath) as? ExpenseListTableViewCell {
+            cell.lblExpenseName.text = "Air Travel Expense"
+            cell.lblDateAndDescription.text = "04/07/2016 | Starbucks"
+            cell.lblAmount.text = "$121.75"
+            cell.lblStatus.text = "Submitted"
+            return cell
+        }
+        // TODO: - This has to be updated
+        return UITableViewCell()
     }
 }
 
 extension ExpenseListViewController: UITableViewDelegate {
-    
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return CGFloat(Constants.CellHeight.ExpenseListCellHeight)
+    }
+
 }
 
 extension ExpenseListViewController: UISearchResultsUpdating {
