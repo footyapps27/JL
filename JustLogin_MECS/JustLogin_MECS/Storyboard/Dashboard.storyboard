@@ -307,13 +307,65 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="approvalListTableViewCellIdentifier" id="awN-ur-Sv8">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="approvalListTableViewCellIdentifier" rowHeight="68" id="awN-ur-Sv8" customClass="ApprovalListTableViewCell" customModule="JustLogin_MECS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="68"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="awN-ur-Sv8" id="4vr-4W-QcR">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="67"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="0Wj-FJ-Djh" userLabel="Name Stack View">
+                                                    <rect key="frame" x="20" y="2" width="335" height="32"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Report Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Un9-Iy-8CY">
+                                                            <rect key="frame" x="0.0" y="6" width="101.5" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="$ 1.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pua-fW-CTf">
+                                                            <rect key="frame" x="278" y="4" width="57" height="24"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="2D1-ga-t74" userLabel="Status Stack View">
+                                                    <rect key="frame" x="20" y="34" width="335" height="31.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Doe" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f3p-cr-Vka">
+                                                            <rect key="frame" x="0.0" y="5.5" width="73" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Overdue by 20 days" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oaD-gE-VEJ">
+                                                            <rect key="frame" x="181.5" y="5.5" width="153.5" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="0Wj-FJ-Djh" firstAttribute="leading" secondItem="4vr-4W-QcR" secondAttribute="leading" constant="20" id="B0S-7b-rSr"/>
+                                                <constraint firstAttribute="bottom" secondItem="2D1-ga-t74" secondAttribute="bottom" constant="2" id="LEC-Xa-fWa"/>
+                                                <constraint firstItem="2D1-ga-t74" firstAttribute="height" secondItem="0Wj-FJ-Djh" secondAttribute="height" id="Q20-pj-oQT"/>
+                                                <constraint firstAttribute="trailing" secondItem="0Wj-FJ-Djh" secondAttribute="trailing" constant="20" id="XfR-Ab-7kt"/>
+                                                <constraint firstAttribute="trailing" secondItem="2D1-ga-t74" secondAttribute="trailing" constant="20" id="b1w-Cz-eyL"/>
+                                                <constraint firstItem="2D1-ga-t74" firstAttribute="top" secondItem="0Wj-FJ-Djh" secondAttribute="bottom" id="dbf-LB-svW"/>
+                                                <constraint firstItem="0Wj-FJ-Djh" firstAttribute="top" secondItem="4vr-4W-QcR" secondAttribute="top" constant="2" id="hYs-1M-ySy"/>
+                                                <constraint firstItem="2D1-ga-t74" firstAttribute="leading" secondItem="4vr-4W-QcR" secondAttribute="leading" constant="20" id="hp5-vQ-h4F"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="lblAmount" destination="Pua-fW-CTf" id="Cuj-qc-FLD"/>
+                                            <outlet property="lblEmployeeName" destination="f3p-cr-Vka" id="W85-dB-5AB"/>
+                                            <outlet property="lblReportName" destination="Un9-Iy-8CY" id="wR6-Q5-Qg2"/>
+                                            <outlet property="lblStatus" destination="oaD-gE-VEJ" id="BM7-Y7-Kmi"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>

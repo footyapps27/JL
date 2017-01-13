@@ -58,14 +58,22 @@ extension ApprovalListViewController: UITableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.ApprovalListTableViewCellIdentifier, for: indexPath)
-        cell.textLabel?.text = "Approval \(indexPath.row)"
-        return cell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.ApprovalListTableViewCellIdentifier, for: indexPath) as? ApprovalListTableViewCell {
+            cell.lblReportName.text = "Office party"
+            cell.lblEmployeeName.text = "John Doe"
+            cell.lblAmount.text = "$98.55"
+            cell.lblStatus.text = "Overdue by 1 day"
+            return cell
+        }
+        // TODO: - This has to be updated
+        return UITableViewCell()
     }
 }
 
 extension ApprovalListViewController: UITableViewDelegate {
-    
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return CGFloat(Constants.CellHeight.ApprovalListCellHeight)
+    }
 }
 
 extension ApprovalListViewController: UISearchResultsUpdating {
