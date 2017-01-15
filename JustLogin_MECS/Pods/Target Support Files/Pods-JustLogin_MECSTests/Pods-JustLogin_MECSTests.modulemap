@@ -1,0 +1,6 @@
+framework module Pods_JustLogin_MECSTests {
+  umbrella header "Pods-JustLogin_MECSTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
