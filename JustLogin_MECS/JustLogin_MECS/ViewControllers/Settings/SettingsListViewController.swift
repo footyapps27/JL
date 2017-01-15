@@ -16,6 +16,10 @@ class SettingsListViewController: BaseViewControllerWithTableView {
     /***********************************/
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var imgVwProfile: UIImageView!
+    @IBOutlet weak var lblRole: UILabel!
+    @IBOutlet weak var lblOrganization: UILabel!
+    
     /***********************************/
     // MARK: - View Lifecycle
     /***********************************/
@@ -51,10 +55,10 @@ extension SettingsListViewController: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.SettingsListTableViewCellIdentifier, for: indexPath)
         cell.textLabel?.text = "Settings \(indexPath.row)"
+        cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         return cell
     }
 }
 
 extension SettingsListViewController: UITableViewDelegate {
-    
 }
