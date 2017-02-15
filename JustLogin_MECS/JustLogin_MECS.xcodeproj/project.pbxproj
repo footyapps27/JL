@@ -959,7 +959,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C1E5D39D743F2AA54C3A1C46 /* Pods-JustLogin_MECS.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = JustLogin_MECS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -974,7 +974,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 41F056EBCE94E2A428FC86DB /* Pods-JustLogin_MECS.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = JustLogin_MECS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -989,7 +989,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 19C1B91D14D85716219E9654 /* Pods-JustLogin_MECSTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = JustLogin_MECSTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1004,7 +1004,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CF3885E556538396244297B4 /* Pods-JustLogin_MECSTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = JustLogin_MECSTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1019,7 +1019,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 393DAF4CB3929DEB427088BA /* Pods-JustLogin_MECSUITests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				INFOPLIST_FILE = JustLogin_MECSUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.footyapps27.JustLogin-MECSUITests";
@@ -1033,7 +1033,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 103CBA0393E63585FE04544A /* Pods-JustLogin_MECSUITests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				INFOPLIST_FILE = JustLogin_MECSUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.footyapps27.JustLogin-MECSUITests";

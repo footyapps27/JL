@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0820"
+   LastUpgradeVersion = "0700"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "242DA01FD50EF0117448F547514B7853"
+               BlueprintIdentifier = "62FEA4864CF4E831D257F53CECD7798C"
                BuildableName = "Pods_JustLogin_MECS.framework"
                BlueprintName = "Pods-JustLogin_MECS"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "242DA01FD50EF0117448F547514B7853"
+            BlueprintIdentifier = "62FEA4864CF4E831D257F53CECD7798C"
             BuildableName = "Pods_JustLogin_MECS.framework"
             BlueprintName = "Pods-JustLogin_MECS"
             ReferencedContainer = "container:Pods.xcodeproj">

@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>NVActivityIndicatorView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-JustLogin_MECS.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -24,6 +29,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SwiftyBeaver.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SwiftyJSON.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,17 +42,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1E8C88E5D4E7FD92FD6598EBBFCF1A33</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>242DA01FD50EF0117448F547514B7853</key>
+		<key>3EDFE4052B5DE7D509935AC0774CB135</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>58BE1B3AF9A4483890CB0859D64AA9B4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5E7695921CBDE4D61EA348D2C51C721C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>62FEA4864CF4E831D257F53CECD7798C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -53,6 +68,11 @@
 			<true/>
 		</dict>
 		<key>9F56BB40A587CF8D53DB73EF2A8DD4E8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C7213B776CCDF1744595EC0181B69B7B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
