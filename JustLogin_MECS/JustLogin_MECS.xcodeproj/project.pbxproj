@@ -29,7 +29,7 @@
 		8C9602101E1FDB7F00EE66A3 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9602071E1FDB7F00EE66A3 /* SignUpViewController.swift */; };
 		8C9602141E1FDB9900EE66A3 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9602131E1FDB9900EE66A3 /* HomeViewController.swift */; };
 		8C9602181E1FDFA900EE66A3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9602171E1FDFA900EE66A3 /* User.swift */; };
-		8C96021D1E1FE14A00EE66A3 /* Roles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C96021C1E1FE14A00EE66A3 /* Roles.swift */; };
+		8C96021D1E1FE14A00EE66A3 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C96021C1E1FE14A00EE66A3 /* Enums.swift */; };
 		8CA4B6EA1E28A3DA007C3BE5 /* ReportListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA4B6E91E28A3DA007C3BE5 /* ReportListViewController.swift */; };
 		8CA4B6EF1E28A5A8007C3BE5 /* ApprovalListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA4B6EE1E28A5A8007C3BE5 /* ApprovalListViewController.swift */; };
 		8CA4B6F31E28ACA6007C3BE5 /* ReportListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA4B6F21E28ACA6007C3BE5 /* ReportListTableViewCell.swift */; };
@@ -45,6 +45,13 @@
 		8CEAADBE1E55468100BDB5ED /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEAADBD1E55468100BDB5ED /* BaseService.swift */; };
 		8CF655C71E58387100D4FEF3 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655C61E58387100D4FEF3 /* LoginService.swift */; };
 		8CF655C91E58455A00D4FEF3 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655C81E58455A00D4FEF3 /* Member.swift */; };
+		8CF655CB1E585A8200D4FEF3 /* Role.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655CA1E585A8200D4FEF3 /* Role.swift */; };
+		8CF655CD1E585ACE00D4FEF3 /* AccessPrivilege.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655CC1E585ACE00D4FEF3 /* AccessPrivilege.swift */; };
+		8CF655CF1E58693500D4FEF3 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655CE1E58693500D4FEF3 /* Organization.swift */; };
+		8CF655D11E58694400D4FEF3 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655D01E58694400D4FEF3 /* Category.swift */; };
+		8CF655D31E58694E00D4FEF3 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655D21E58694E00D4FEF3 /* Currency.swift */; };
+		8CF655D51E586CF900D4FEF3 /* OrganizationDetailsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655D41E586CF900D4FEF3 /* OrganizationDetailsService.swift */; };
+		8CF655D71E5875CF00D4FEF3 /* Singleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655D61E5875CF00D4FEF3 /* Singleton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,7 +102,7 @@
 		8C9602071E1FDB7F00EE66A3 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		8C9602131E1FDB9900EE66A3 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8C9602171E1FDFA900EE66A3 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		8C96021C1E1FE14A00EE66A3 /* Roles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Roles.swift; sourceTree = "<group>"; };
+		8C96021C1E1FE14A00EE66A3 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		8CA4B6E91E28A3DA007C3BE5 /* ReportListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportListViewController.swift; sourceTree = "<group>"; };
 		8CA4B6EE1E28A5A8007C3BE5 /* ApprovalListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApprovalListViewController.swift; sourceTree = "<group>"; };
 		8CA4B6F21E28ACA6007C3BE5 /* ReportListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportListTableViewCell.swift; sourceTree = "<group>"; };
@@ -109,6 +116,13 @@
 		8CEAADBD1E55468100BDB5ED /* BaseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
 		8CF655C61E58387100D4FEF3 /* LoginService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		8CF655C81E58455A00D4FEF3 /* Member.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
+		8CF655CA1E585A8200D4FEF3 /* Role.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Role.swift; sourceTree = "<group>"; };
+		8CF655CC1E585ACE00D4FEF3 /* AccessPrivilege.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessPrivilege.swift; sourceTree = "<group>"; };
+		8CF655CE1E58693500D4FEF3 /* Organization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
+		8CF655D01E58694400D4FEF3 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		8CF655D21E58694E00D4FEF3 /* Currency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		8CF655D41E586CF900D4FEF3 /* OrganizationDetailsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationDetailsService.swift; sourceTree = "<group>"; };
+		8CF655D61E5875CF00D4FEF3 /* Singleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Singleton.swift; sourceTree = "<group>"; };
 		C1E5D39D743F2AA54C3A1C46 /* Pods-JustLogin_MECS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JustLogin_MECS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JustLogin_MECS/Pods-JustLogin_MECS.debug.xcconfig"; sourceTree = "<group>"; };
 		CF3885E556538396244297B4 /* Pods-JustLogin_MECSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JustLogin_MECSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-JustLogin_MECSTests/Pods-JustLogin_MECSTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -234,6 +248,11 @@
 			children = (
 				8C9602171E1FDFA900EE66A3 /* User.swift */,
 				8CF655C81E58455A00D4FEF3 /* Member.swift */,
+				8CF655CA1E585A8200D4FEF3 /* Role.swift */,
+				8CF655CC1E585ACE00D4FEF3 /* AccessPrivilege.swift */,
+				8CF655CE1E58693500D4FEF3 /* Organization.swift */,
+				8CF655D01E58694400D4FEF3 /* Category.swift */,
+				8CF655D21E58694E00D4FEF3 /* Currency.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -321,7 +340,7 @@
 		8C96021B1E1FE13100EE66A3 /* Enums */ = {
 			isa = PBXGroup;
 			children = (
-				8C96021C1E1FE14A00EE66A3 /* Roles.swift */,
+				8C96021C1E1FE14A00EE66A3 /* Enums.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -402,6 +421,7 @@
 			children = (
 				8CEAADBC1E55411000BDB5ED /* Base */,
 				8CF655C61E58387100D4FEF3 /* LoginService.swift */,
+				8CF655D41E586CF900D4FEF3 /* OrganizationDetailsService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -409,6 +429,7 @@
 		8CEAADBA1E5540B500BDB5ED /* Singleton */ = {
 			isa = PBXGroup;
 			children = (
+				8CF655D61E5875CF00D4FEF3 /* Singleton.swift */,
 			);
 			path = Singleton;
 			sourceTree = "<group>";
@@ -731,10 +752,14 @@
 				8CA4B6EA1E28A3DA007C3BE5 /* ReportListViewController.swift in Sources */,
 				8CD3331D1E23C48000557B6F /* SettingsListViewController.swift in Sources */,
 				8C96020D1E1FDB7F00EE66A3 /* SignInViewController.swift in Sources */,
+				8CF655D71E5875CF00D4FEF3 /* Singleton.swift in Sources */,
+				8CF655CD1E585ACE00D4FEF3 /* AccessPrivilege.swift in Sources */,
 				8CD333191E23BC7D00557B6F /* ExpenseListViewController.swift in Sources */,
+				8CF655D31E58694E00D4FEF3 /* Currency.swift in Sources */,
 				8CA4B6F71E28C3A6007C3BE5 /* ExpenseListTableViewCell.swift in Sources */,
 				8C00F6651E1E870B0007F29C /* LaunchCollectionViewCell.swift in Sources */,
 				8C96020A1E1FDB7F00EE66A3 /* LaunchViewController.swift in Sources */,
+				8CF655D51E586CF900D4FEF3 /* OrganizationDetailsService.swift in Sources */,
 				8CF655C91E58455A00D4FEF3 /* Member.swift in Sources */,
 				8C00F6601E1E651A0007F29C /* AppDelegate.swift in Sources */,
 				8C9602101E1FDB7F00EE66A3 /* SignUpViewController.swift in Sources */,
@@ -749,9 +774,12 @@
 				8C51413F1E1F5FDB003AD3B1 /* BaseCustomTableViewCell.swift in Sources */,
 				8C5141371E1F5F53003AD3B1 /* BaseViewController.swift in Sources */,
 				8C9602181E1FDFA900EE66A3 /* User.swift in Sources */,
-				8C96021D1E1FE14A00EE66A3 /* Roles.swift in Sources */,
+				8C96021D1E1FE14A00EE66A3 /* Enums.swift in Sources */,
 				8CE007151E28D7C90089D159 /* ApprovalListTableViewCell.swift in Sources */,
 				8CA4B6F31E28ACA6007C3BE5 /* ReportListTableViewCell.swift in Sources */,
+				8CF655CF1E58693500D4FEF3 /* Organization.swift in Sources */,
+				8CF655CB1E585A8200D4FEF3 /* Role.swift in Sources */,
+				8CF655D11E58694400D4FEF3 /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

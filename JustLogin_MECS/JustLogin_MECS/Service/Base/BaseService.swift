@@ -68,7 +68,7 @@ extension Alamofire.DataResponse {
         log.debug("response url -> \((self.request?.url?.absoluteString)!)")
         
         if let message = self.result.error?.localizedDescription {
-            log.debug("response failure -> \(message)")
+            log.error("response failure -> \(message)")
             return NetworkAdapterResponse.Failure(message)
         }
         
@@ -78,10 +78,12 @@ extension Alamofire.DataResponse {
         
         // Check the success status code first.
         guard self.response?.statusCode == 200 else {
+            log.error("Invalid status code -> \((self.response?.statusCode)!)")
             return NetworkAdapterResponse.Failure("Server returned status code != 200")
         }
         
         guard let json = self.result.value as? [String: Any] else {
+            log.error("Invalid json received -> \(self.result.value)")
             return NetworkAdapterResponse.Failure("Invalid JSON response")
         }
         

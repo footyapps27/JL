@@ -7,20 +7,38 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 struct Member {
     
     /***********************************/
     // MARK: - Properties
     /***********************************/
-    //let memberId: String
+    let id: String
     
+    let userId: String
     
+    let fullName: String
     
+    let status: Bool
+    
+    let organizationId: String
+    
+    let role: Role
     /***********************************/
     // MARK: - Initializer
     /***********************************/
-    init?(_ jsonDict:[String:Any]) {
-        // Parse the json dictionary here.
+    init(_ json:JSON) {
+        id = json[Constants.ResponseParameters.MemberId].exists() ? json[Constants.ResponseParameters.MemberId].stringValue : Constants.General.EmptyString
+        
+        userId = json[Constants.ResponseParameters.UserId].exists() ? json[Constants.ResponseParameters.UserId].stringValue : Constants.General.EmptyString
+        
+        fullName = json[Constants.ResponseParameters.FullName].exists() ? json[Constants.ResponseParameters.FullName].stringValue : Constants.General.EmptyString
+        
+        status = json[Constants.ResponseParameters.Status].exists() ? json[Constants.ResponseParameters.Status].boolValue : false
+        
+        organizationId = json[Constants.ResponseParameters.OrganizationId].exists() ? json[Constants.ResponseParameters.OrganizationId].stringValue : Constants.General.EmptyString
+        
+        role = Role(json[Constants.ResponseParameters.Role])
     }
 }

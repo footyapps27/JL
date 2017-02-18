@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 protocol ILoginService {
     
@@ -35,7 +36,11 @@ struct LoginService: ILoginService {
         serviceAdapter.post(destination: Constants.URLs.Login, payload: payload, headers: [:]) { (response) in
             switch(response) {
             case .Success(let success):
-                log.debug("Success \(success)")
+                
+                // TODO: - Save the headers to singleton.
+                let json = JSON(success)
+                let member = Member(json)
+                log.debug("Success \(member)")
             case .Errors(let error):
                 log.debug("Error \(error)")
             case .Failure(let description):

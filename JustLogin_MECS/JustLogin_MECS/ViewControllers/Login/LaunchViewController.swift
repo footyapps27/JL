@@ -114,9 +114,15 @@ class LaunchViewController: BaseViewController {
      */
     func navigateToSubmitterDashboard() {
         
-        let submitterDashboard = UIStoryboard(name: Constants.StoryboardIds.DashboardStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.SubmitterDashboard) as! UITabBarController
+        //let service = LoginService()
+        //service.loginUser(withOrganizationName: "fargotest", userId: "admin", password: "admin", completionHandler: { _ in })
         
-        navigationController?.pushViewController(submitterDashboard, animated: true)
+        //let service = OrganizationDetailsService()
+        //service.getOrganizationDetail { _ in }
+        
+        //let submitterDashboard = UIStoryboard(name: Constants.StoryboardIds.DashboardStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.SubmitterDashboard) as! UITabBarController
+        
+        //navigationController?.pushViewController(submitterDashboard, animated: true)
     }
     
     /**
