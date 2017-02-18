@@ -42,6 +42,7 @@
 		8CE007271E28F3420089D159 /* SettingsTableProfileSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CE007261E28F3420089D159 /* SettingsTableProfileSectionHeaderView.xib */; };
 		8CE007281E28F3420089D159 /* SettingsTableProfileSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CE007261E28F3420089D159 /* SettingsTableProfileSectionHeaderView.xib */; };
 		8CE007291E28F3420089D159 /* SettingsTableProfileSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CE007261E28F3420089D159 /* SettingsTableProfileSectionHeaderView.xib */; };
+		8CEAADBE1E55468100BDB5ED /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEAADBD1E55468100BDB5ED /* BaseService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +104,7 @@
 		8CE007141E28D7C90089D159 /* ApprovalListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApprovalListTableViewCell.swift; sourceTree = "<group>"; };
 		8CE007211E28F3280089D159 /* SettingsTableProfileSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableProfileSectionHeaderView.swift; sourceTree = "<group>"; };
 		8CE007261E28F3420089D159 /* SettingsTableProfileSectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsTableProfileSectionHeaderView.xib; sourceTree = "<group>"; };
+		8CEAADBD1E55468100BDB5ED /* BaseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
 		C1E5D39D743F2AA54C3A1C46 /* Pods-JustLogin_MECS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JustLogin_MECS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JustLogin_MECS/Pods-JustLogin_MECS.debug.xcconfig"; sourceTree = "<group>"; };
 		CF3885E556538396244297B4 /* Pods-JustLogin_MECSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JustLogin_MECSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-JustLogin_MECSTests/Pods-JustLogin_MECSTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -170,17 +172,16 @@
 		8C00F6221E1E633B0007F29C /* JustLogin_MECS */ = {
 			isa = PBXGroup;
 			children = (
-				8C00F6511E1E65070007F29C /* Analytics */,
+				8CEAADB71E55408400BDB5ED /* Analytics */,
 				8C00F6521E1E651A0007F29C /* App Delegate */,
 				8C00F6541E1E651A0007F29C /* Constants */,
 				8C96021B1E1FE13100EE66A3 /* Enums */,
-				8C00F6551E1E651A0007F29C /* Logger */,
-				8C00F6561E1E651A0007F29C /* Manager */,
+				8CEAADB81E55409400BDB5ED /* Manager */,
 				8C00F6571E1E651A0007F29C /* Model */,
-				8C00F6581E1E651A0007F29C /* Service */,
-				8C00F6591E1E651A0007F29C /* Singleton */,
+				8CEAADB91E5540A500BDB5ED /* Service */,
+				8CEAADBA1E5540B500BDB5ED /* Singleton */,
 				8C00F65A1E1E651A0007F29C /* Storyboard */,
-				8C00F65C1E1E651A0007F29C /* Utilities */,
+				8CEAADBB1E5540CA00BDB5ED /* Utilities */,
 				8C00F65D1E1E651A0007F29C /* ViewControllers */,
 				8C00F65F1E1E651A0007F29C /* Views */,
 				8C00F62A1E1E633B0007F29C /* Assets.xcassets */,
@@ -208,13 +209,6 @@
 			path = JustLogin_MECSUITests;
 			sourceTree = "<group>";
 		};
-		8C00F6511E1E65070007F29C /* Analytics */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Analytics;
-			sourceTree = "<group>";
-		};
 		8C00F6521E1E651A0007F29C /* App Delegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -231,40 +225,12 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
-		8C00F6551E1E651A0007F29C /* Logger */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Logger;
-			sourceTree = "<group>";
-		};
-		8C00F6561E1E651A0007F29C /* Manager */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Manager;
-			sourceTree = "<group>";
-		};
 		8C00F6571E1E651A0007F29C /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				8C9602171E1FDFA900EE66A3 /* User.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		8C00F6581E1E651A0007F29C /* Service */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Service;
-			sourceTree = "<group>";
-		};
-		8C00F6591E1E651A0007F29C /* Singleton */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Singleton;
 			sourceTree = "<group>";
 		};
 		8C00F65A1E1E651A0007F29C /* Storyboard */ = {
@@ -274,13 +240,6 @@
 				8C9601FE1E1FAE8C00EE66A3 /* Dashboard.storyboard */,
 			);
 			path = Storyboard;
-			sourceTree = "<group>";
-		};
-		8C00F65C1E1E651A0007F29C /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Utilities;
 			sourceTree = "<group>";
 		};
 		8C00F65D1E1E651A0007F29C /* ViewControllers */ = {
@@ -417,6 +376,50 @@
 				8CE007261E28F3420089D159 /* SettingsTableProfileSectionHeaderView.xib */,
 			);
 			path = Xib;
+			sourceTree = "<group>";
+		};
+		8CEAADB71E55408400BDB5ED /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Analytics;
+			sourceTree = "<group>";
+		};
+		8CEAADB81E55409400BDB5ED /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		8CEAADB91E5540A500BDB5ED /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				8CEAADBC1E55411000BDB5ED /* Base */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		8CEAADBA1E5540B500BDB5ED /* Singleton */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Singleton;
+			sourceTree = "<group>";
+		};
+		8CEAADBB1E5540CA00BDB5ED /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		8CEAADBC1E55411000BDB5ED /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				8CEAADBD1E55468100BDB5ED /* BaseService.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 		C5CD3670715C6E149859CB9E /* Pods */ = {
@@ -729,6 +732,7 @@
 				8C00F6601E1E651A0007F29C /* AppDelegate.swift in Sources */,
 				8C9602101E1FDB7F00EE66A3 /* SignUpViewController.swift in Sources */,
 				8C9602141E1FDB9900EE66A3 /* HomeViewController.swift in Sources */,
+				8CEAADBE1E55468100BDB5ED /* BaseService.swift in Sources */,
 				8CA4B6EF1E28A5A8007C3BE5 /* ApprovalListViewController.swift in Sources */,
 				8CE007231E28F3280089D159 /* SettingsTableProfileSectionHeaderView.swift in Sources */,
 				8CD333211E23C4E500557B6F /* BaseViewControllerWithTableView.swift in Sources */,

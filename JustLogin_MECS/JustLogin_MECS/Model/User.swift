@@ -8,7 +8,7 @@
 
 import Foundation
 
-class User {
+struct User {
     var name: String = ""
     var role: Roles
     

@@ -9,7 +9,5 @@
 import Foundation
 
 enum Roles {
-    case Submitter
-    case Approver
-    case Admin
+    case Submitter, Approver, Admin
 }
