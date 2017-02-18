@@ -12,27 +12,33 @@ import SwiftyJSON
 protocol IOrganizationDetailsService {
     
     /**
-     * Organization Details
+     * Get details of the organization the current logged in member is attached to.
      */
     func getOrganizationDetails(_ completionHandler:( @escaping (Result<Organization>) -> Void))
 }
 
 struct OrganizationDetailsService: IOrganizationDetailsService {
     
-    var serviceAdapter = AlamofireNetworkAdapter()
+    var serviceAdapter: NetworkAdapter = AlamofireNetworkAdapter()
+    
+    /***********************************/
+    // MARK: - IOrganizationDetailsService implementation
+    /***********************************/
     
     func getOrganizationDetails(_ completionHandler: @escaping ((Result<Organization>) -> Void)) {
         
-        serviceAdapter.post(destination: Constants.URLs.OrganizationDetails, payload: [:], headers: ["AccessToken":"bcfe0cb7-0b83-488d-a014-7644d3804619"]) { (response) in
+        serviceAdapter.post(destination: Constants.URLs.OrganizationDetails, payload: [:], headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
             switch(response) {
             case .Success(let success):
-                let json = JSON(success)
-                let organization = Organization(json)
-                log.debug("Success \(organization)")
+                let organization = Organization(JSON(success))
+                completionHandler(Result.Success(organization))
+                
             case .Errors(let error):
-                log.debug("Error \(error)")
+                let error = ServiceError(JSON(error))
+                completionHandler(Result.Error(error))
+
             case .Failure(let description):
-                log.debug("Failure \(description)")
+                completionHandler(Result.Failure(description))
             }
         }
     }

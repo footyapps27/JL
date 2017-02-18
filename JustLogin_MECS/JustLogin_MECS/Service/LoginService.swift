@@ -24,36 +24,43 @@ protocol ILoginService {
 
 struct LoginService: ILoginService {
     
-    var serviceAdapter = AlamofireNetworkAdapter()
+    var serviceAdapter: NetworkAdapter = AlamofireNetworkAdapter()
     
-    /**
-     * Login user
-     */
+    /***********************************/
+    // MARK: - ILoginService implementation
+    /***********************************/
+    
     func loginUser(withOrganizationName organizationName: String, userId: String, password: String, completionHandler:( @escaping (Result<Member>) -> Void)) {
         
         let payload = getPayloadForLogin(withOrganizationName: organizationName, userId: userId, password: password)
         
         serviceAdapter.post(destination: Constants.URLs.Login, payload: payload, headers: [:]) { (response) in
             switch(response) {
-            case .Success(let success):
+            case .Success(let success, let headers):
                 
-                // TODO: - Save the headers to singleton.
-                let json = JSON(success)
-                let member = Member(json)
-                log.debug("Success \(member)")
+                // Since the login service provides the headers, we save it for the other services
+                if let accessToken = headers[Constants.ResponseParameters.AccessToken] {
+                    Singleton.sharedInstance.accessTokenHeader[Constants.ResponseParameters.AccessToken] = accessToken
+                }
+                
+                let member = Member(JSON(success))
+                completionHandler(Result.Success(member))
+                
             case .Errors(let error):
-                log.debug("Error \(error)")
+                let error = ServiceError(JSON(error))
+                completionHandler(Result.Error(error))
+                
             case .Failure(let description):
-                log.debug("Failure \(description)")
+                completionHandler(Result.Failure(description))
             }
         }
     }
     
-    /**
-     * Logout
-     */
+    
     func logoutUser() {
-        
+        serviceAdapter.post(destination: Constants.URLs.Logout, payload: [:], headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
+            
+        }
     }
 }
 

@@ -25,6 +25,7 @@ struct Member {
     let organizationId: String
     
     let role: Role
+    
     /***********************************/
     // MARK: - Initializer
     /***********************************/

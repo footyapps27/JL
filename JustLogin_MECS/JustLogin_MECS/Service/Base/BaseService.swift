@@ -8,12 +8,13 @@
 
 import Foundation
 import Alamofire
+import SwiftyJSON
 
 /**
  * The response of the network adapter.
  */
 enum NetworkAdapterResponse {
-    case Success([String: Any])
+    case Success(response : [String: Any], headers : [String:String])
     case Errors([String: Any])
     case Failure(String)
 }
@@ -23,8 +24,22 @@ enum NetworkAdapterResponse {
  */
 enum Result<T> {
     case Success(T)
-    case Error([String: String])
+    case Error(ServiceError)
     case Failure(String)
+}
+
+/**
+ * The error received from the server.
+ */
+struct ServiceError {
+    let errorCode: String
+    let errorMessage: String
+    
+    init(_ json:JSON) {
+        errorCode = json[Constants.ResponseParameters.ErrorCode].exists() ? json[Constants.ResponseParameters.ErrorCode].stringValue : Constants.General.EmptyString
+        
+        errorMessage = json[Constants.ResponseParameters.ErrorMessage].exists() ? json[Constants.ResponseParameters.ErrorMessage].stringValue : Constants.General.EmptyString
+    }
 }
 
 /**
@@ -45,10 +60,10 @@ struct AlamofireNetworkAdapter: NetworkAdapter {
         log.debug("*****************************")
         log.debug("**** Web Service Request ****")
         log.debug("*****************************")
-        log.debug("request url -> \(destination)")
-        log.debug("request type -> HTTP POST")
-        log.debug("request headers -> \(headers)")
-        log.debug("request payload -> \(payload)")
+        log.debug("Request url -> \(destination)")
+        log.debug("Request type -> HTTP POST")
+        log.debug("Request headers -> \(headers)")
+        log.debug("Request payload -> \(payload)")
         
         Alamofire.request(destination, method: .post, parameters: payload, encoding: JSONEncoding.default)
             .responseJSON { response in responseHandler(response.networkAdapterResponse) }
@@ -65,19 +80,21 @@ extension Alamofire.DataResponse {
         log.debug("*****************************")
         log.debug("**** Web Service Reponse ****")
         log.debug("*****************************")
-        log.debug("response url -> \((self.request?.url?.absoluteString)!)")
+        log.debug("Response url -> \((self.request?.url?.absoluteString)!)")
         
         if let message = self.result.error?.localizedDescription {
-            log.error("response failure -> \(message)")
+            log.error("Response failure -> \(message)")
             return NetworkAdapterResponse.Failure(message)
         }
         
-        log.debug("response status code -> \((self.response?.statusCode)!)")
-        log.debug("response headers -> \(self.response?.allHeaderFields as! [String: String])")
-        log.debug("response payload -> \((self.result.value)!)")
+        let headers = self.response?.allHeaderFields as! [String: String]
+        
+        log.debug("Response status code -> \((self.response?.statusCode)!)")
+        log.debug("Response headers -> \(headers)")
+        log.debug("Response payload -> \((self.result.value)!)")
         
         // Check the success status code first.
-        guard self.response?.statusCode == 200 else {
+        guard self.response?.statusCode == Constants.ResponseParameters.StatusCode else {
             log.error("Invalid status code -> \((self.response?.statusCode)!)")
             return NetworkAdapterResponse.Failure("Server returned status code != 200")
         }
@@ -87,9 +104,11 @@ extension Alamofire.DataResponse {
             return NetworkAdapterResponse.Failure("Invalid JSON response")
         }
         
-        if let errors = json["errors"] as? [String: Any] {
+        if let errors = json[Constants.ResponseParameters.Errors] as? [String: Any] {
             return NetworkAdapterResponse.Errors(errors)
         }
-        return NetworkAdapterResponse.Success(json["data"] as! [String: Any])
+        
+        let data = json[Constants.ResponseParameters.Data] as! [String: Any]
+        return NetworkAdapterResponse.Success(response: data, headers: headers)
     }
 }

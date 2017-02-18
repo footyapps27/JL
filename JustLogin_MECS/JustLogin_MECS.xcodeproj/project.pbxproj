@@ -52,6 +52,12 @@
 		8CF655D31E58694E00D4FEF3 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655D21E58694E00D4FEF3 /* Currency.swift */; };
 		8CF655D51E586CF900D4FEF3 /* OrganizationDetailsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655D41E586CF900D4FEF3 /* OrganizationDetailsService.swift */; };
 		8CF655D71E5875CF00D4FEF3 /* Singleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655D61E5875CF00D4FEF3 /* Singleton.swift */; };
+		8CF655D91E589EB700D4FEF3 /* ExpenseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655D81E589EB700D4FEF3 /* ExpenseService.swift */; };
+		8CF655DB1E589F1B00D4FEF3 /* ReportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655DA1E589F1B00D4FEF3 /* ReportService.swift */; };
+		8CF655DD1E58B06300D4FEF3 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655DC1E58B06300D4FEF3 /* Expense.swift */; };
+		8CF655DF1E58B07000D4FEF3 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655DE1E58B07000D4FEF3 /* Report.swift */; };
+		8CF655E71E58B59B00D4FEF3 /* SignInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655E61E58B59B00D4FEF3 /* SignInManager.swift */; };
+		8CF655EC1E58BE2E00D4FEF3 /* LoginServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655EB1E58BE2E00D4FEF3 /* LoginServiceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +129,12 @@
 		8CF655D21E58694E00D4FEF3 /* Currency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		8CF655D41E586CF900D4FEF3 /* OrganizationDetailsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationDetailsService.swift; sourceTree = "<group>"; };
 		8CF655D61E5875CF00D4FEF3 /* Singleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Singleton.swift; sourceTree = "<group>"; };
+		8CF655D81E589EB700D4FEF3 /* ExpenseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseService.swift; sourceTree = "<group>"; };
+		8CF655DA1E589F1B00D4FEF3 /* ReportService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportService.swift; sourceTree = "<group>"; };
+		8CF655DC1E58B06300D4FEF3 /* Expense.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
+		8CF655DE1E58B07000D4FEF3 /* Report.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
+		8CF655E61E58B59B00D4FEF3 /* SignInManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInManager.swift; sourceTree = "<group>"; };
+		8CF655EB1E58BE2E00D4FEF3 /* LoginServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginServiceTests.swift; sourceTree = "<group>"; };
 		C1E5D39D743F2AA54C3A1C46 /* Pods-JustLogin_MECS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JustLogin_MECS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JustLogin_MECS/Pods-JustLogin_MECS.debug.xcconfig"; sourceTree = "<group>"; };
 		CF3885E556538396244297B4 /* Pods-JustLogin_MECSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JustLogin_MECSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-JustLogin_MECSTests/Pods-JustLogin_MECSTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -212,6 +224,9 @@
 		8C00F6371E1E633B0007F29C /* JustLogin_MECSTests */ = {
 			isa = PBXGroup;
 			children = (
+				8CF655E81E58BD7B00D4FEF3 /* Manager */,
+				8CF655E91E58BD7B00D4FEF3 /* Service */,
+				8CF655EA1E58BD7B00D4FEF3 /* ViewController */,
 				8C00F6381E1E633B0007F29C /* JustLogin_MECSTests.swift */,
 				8C00F63A1E1E633B0007F29C /* Info.plist */,
 			);
@@ -253,6 +268,8 @@
 				8CF655CE1E58693500D4FEF3 /* Organization.swift */,
 				8CF655D01E58694400D4FEF3 /* Category.swift */,
 				8CF655D21E58694E00D4FEF3 /* Currency.swift */,
+				8CF655DC1E58B06300D4FEF3 /* Expense.swift */,
+				8CF655DE1E58B07000D4FEF3 /* Report.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -412,6 +429,12 @@
 		8CEAADB81E55409400BDB5ED /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				8CF655E01E58B55600D4FEF3 /* Approval */,
+				8CF655E11E58B55600D4FEF3 /* Dashboard */,
+				8CF655E21E58B55600D4FEF3 /* Expense */,
+				8CF655E31E58B55600D4FEF3 /* Login */,
+				8CF655E41E58B55600D4FEF3 /* Report */,
+				8CF655E51E58B55600D4FEF3 /* Settings */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -422,6 +445,8 @@
 				8CEAADBC1E55411000BDB5ED /* Base */,
 				8CF655C61E58387100D4FEF3 /* LoginService.swift */,
 				8CF655D41E586CF900D4FEF3 /* OrganizationDetailsService.swift */,
+				8CF655D81E589EB700D4FEF3 /* ExpenseService.swift */,
+				8CF655DA1E589F1B00D4FEF3 /* ReportService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -447,6 +472,71 @@
 				8CEAADBD1E55468100BDB5ED /* BaseService.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		8CF655E01E58B55600D4FEF3 /* Approval */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Approval;
+			sourceTree = "<group>";
+		};
+		8CF655E11E58B55600D4FEF3 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		8CF655E21E58B55600D4FEF3 /* Expense */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Expense;
+			sourceTree = "<group>";
+		};
+		8CF655E31E58B55600D4FEF3 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				8CF655E61E58B59B00D4FEF3 /* SignInManager.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		8CF655E41E58B55600D4FEF3 /* Report */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Report;
+			sourceTree = "<group>";
+		};
+		8CF655E51E58B55600D4FEF3 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		8CF655E81E58BD7B00D4FEF3 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		8CF655E91E58BD7B00D4FEF3 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				8CF655EB1E58BE2E00D4FEF3 /* LoginServiceTests.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		8CF655EA1E58BD7B00D4FEF3 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		C5CD3670715C6E149859CB9E /* Pods */ = {
@@ -761,9 +851,11 @@
 				8C96020A1E1FDB7F00EE66A3 /* LaunchViewController.swift in Sources */,
 				8CF655D51E586CF900D4FEF3 /* OrganizationDetailsService.swift in Sources */,
 				8CF655C91E58455A00D4FEF3 /* Member.swift in Sources */,
+				8CF655DD1E58B06300D4FEF3 /* Expense.swift in Sources */,
 				8C00F6601E1E651A0007F29C /* AppDelegate.swift in Sources */,
 				8C9602101E1FDB7F00EE66A3 /* SignUpViewController.swift in Sources */,
 				8C9602141E1FDB9900EE66A3 /* HomeViewController.swift in Sources */,
+				8CF655DF1E58B07000D4FEF3 /* Report.swift in Sources */,
 				8CEAADBE1E55468100BDB5ED /* BaseService.swift in Sources */,
 				8CA4B6EF1E28A5A8007C3BE5 /* ApprovalListViewController.swift in Sources */,
 				8CE007231E28F3280089D159 /* SettingsTableProfileSectionHeaderView.swift in Sources */,
@@ -773,11 +865,14 @@
 				8C51413B1E1F5F95003AD3B1 /* BaseCustomCollectionViewCell.swift in Sources */,
 				8C51413F1E1F5FDB003AD3B1 /* BaseCustomTableViewCell.swift in Sources */,
 				8C5141371E1F5F53003AD3B1 /* BaseViewController.swift in Sources */,
+				8CF655D91E589EB700D4FEF3 /* ExpenseService.swift in Sources */,
 				8C9602181E1FDFA900EE66A3 /* User.swift in Sources */,
 				8C96021D1E1FE14A00EE66A3 /* Enums.swift in Sources */,
+				8CF655DB1E589F1B00D4FEF3 /* ReportService.swift in Sources */,
 				8CE007151E28D7C90089D159 /* ApprovalListTableViewCell.swift in Sources */,
 				8CA4B6F31E28ACA6007C3BE5 /* ReportListTableViewCell.swift in Sources */,
 				8CF655CF1E58693500D4FEF3 /* Organization.swift in Sources */,
+				8CF655E71E58B59B00D4FEF3 /* SignInManager.swift in Sources */,
 				8CF655CB1E585A8200D4FEF3 /* Role.swift in Sources */,
 				8CF655D11E58694400D4FEF3 /* Category.swift in Sources */,
 			);
@@ -788,6 +883,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C00F6391E1E633B0007F29C /* JustLogin_MECSTests.swift in Sources */,
+				8CF655EC1E58BE2E00D4FEF3 /* LoginServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
