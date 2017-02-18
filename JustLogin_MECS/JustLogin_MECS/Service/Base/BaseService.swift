@@ -12,9 +12,18 @@ import Alamofire
 /**
  * The response of the network adapter.
  */
-public enum NetworkAdapterResponse {
+enum NetworkAdapterResponse {
     case Success([String: Any])
     case Errors([String: Any])
+    case Failure(String)
+}
+
+/**
+ * Enum that will be returned from the service class to the manager.
+ */
+enum Result<T> {
+    case Success(T)
+    case Error([String: String])
     case Failure(String)
 }
 
@@ -51,20 +60,21 @@ struct AlamofireNetworkAdapter: NetworkAdapter {
  */
 extension Alamofire.DataResponse {
     
-    public var networkAdapterResponse: NetworkAdapterResponse {
+    var networkAdapterResponse: NetworkAdapterResponse {
         
         log.debug("*****************************")
         log.debug("**** Web Service Reponse ****")
         log.debug("*****************************")
-        log.debug("response url -> \(self.request?.url?.absoluteString)")
+        log.debug("response url -> \((self.request?.url?.absoluteString)!)")
         
         if let message = self.result.error?.localizedDescription {
             log.debug("response failure -> \(message)")
             return NetworkAdapterResponse.Failure(message)
         }
         
-        log.debug("response status code -> \(self.response?.statusCode)")
-        log.debug("response payload -> \(self.result.value)")
+        log.debug("response status code -> \((self.response?.statusCode)!)")
+        log.debug("response headers -> \(self.response?.allHeaderFields as! [String: String])")
+        log.debug("response payload -> \((self.result.value)!)")
         
         // Check the success status code first.
         guard self.response?.statusCode == 200 else {
@@ -78,7 +88,6 @@ extension Alamofire.DataResponse {
         if let errors = json["errors"] as? [String: Any] {
             return NetworkAdapterResponse.Errors(errors)
         }
-        
         return NetworkAdapterResponse.Success(json["data"] as! [String: Any])
     }
 }

@@ -33,4 +33,22 @@ struct Constants {
     struct Notifications {
         static let LoginSuccessful = "loginSuccessful"
     }
+    
+    /***********************************/
+    // MARK: - Web service related constants
+    /***********************************/
+    struct URLs {
+        static let BaseURL = "http://52.220.239.178/api"
+        static let Login = URLs.BaseURL + "/authentication/login"
+    }
+    
+    struct RequestParameters {
+        
+        struct Login {
+            static let OrganizationName = "organizationName"
+            static let MemberName = "memberName"
+            static let Password = "password"
+        }
+        
+    }
 }
