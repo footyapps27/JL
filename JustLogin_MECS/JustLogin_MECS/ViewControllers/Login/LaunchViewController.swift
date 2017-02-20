@@ -19,12 +19,7 @@ class LaunchViewController: BaseViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var pageControl: UIPageControl!
     
-    
-    struct LaunchContent {
-        var imageName: String!
-        var description: String!
-    }
-    
+    let manager = SignInManager()
     /***********************************/
     // MARK: - View Lifecycle
     /***********************************/
@@ -83,17 +78,6 @@ class LaunchViewController: BaseViewController {
     }
     
     /**
-     Method to set the content that will be displayed in the collection view.
-     */
-    func getLaunchContent() -> [LaunchContent] {
-        // TODO: - Put these in the constants file.
-        return [LaunchContent(imageName:"", description:"Effortlessly Expense Reporting."),
-                LaunchContent(imageName:"", description:"Automatically extract data from receipts."),
-                LaunchContent(imageName:"", description:"Know everything about your expense."),
-                LaunchContent(imageName:"", description:"Track mileage with your phone.")]
-    }
-    
-    /**
      Method to navigate to the dashboard after the user has logged in.
      */
     func navigateToDashboard(notification:Notification) {
@@ -114,11 +98,9 @@ class LaunchViewController: BaseViewController {
      */
     func navigateToSubmitterDashboard() {
         
-        //let service = LoginService()
-        //service.loginUser(withOrganizationName: "fargotest", userId: "admin", password: "admin", completionHandler: { _ in })
-        
-        //let service = OrganizationDetailsService()
-        //service.getOrganizationDetail { _ in }
+        manager.login(withOrganizationName: "fargoTest", userId: "admin", password: "admin") { (member) in
+            log.debug("Member object received -> \(member)")
+        }
         
         //let submitterDashboard = UIStoryboard(name: Constants.StoryboardIds.DashboardStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.SubmitterDashboard) as! UITabBarController
         
@@ -129,16 +111,21 @@ class LaunchViewController: BaseViewController {
      Method to navigate to the admin/approver's dashboard.
      */
     func navigateToAdminAndApproverDashboard() {
-        let approverAndAdminDashboard = UIStoryboard(name: Constants.StoryboardIds.DashboardStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.ApproverAndAdminDashboard) as! UITabBarController
         
-        navigationController?.pushViewController(approverAndAdminDashboard, animated: true)
+        manager.getOrganizationDetails { (organization) in
+            log.debug("Organization object received -> \(organization)")
+        }
+        
+//        let approverAndAdminDashboard = UIStoryboard(name: Constants.StoryboardIds.DashboardStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.ApproverAndAdminDashboard) as! UITabBarController
+//        
+//        navigationController?.pushViewController(approverAndAdminDashboard, animated: true)
     }
 }
 
 extension LaunchViewController: UICollectionViewDataSource {
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return getLaunchContent().count
+        return manager.getLaunchContent().count
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -147,7 +134,7 @@ extension LaunchViewController: UICollectionViewDataSource {
         // TODO: - Uncomment once you have the images.
         //let imageName = getLaunchContent()[indexPath.row].imageName
         //cell.imgView.image = UIImage.init(named: imageName!)
-        cell.lblDescription.text = getLaunchContent()[indexPath.row].description
+        cell.lblDescription.text = manager.getLaunchContent()[indexPath.row].description
         return cell
     }
 }

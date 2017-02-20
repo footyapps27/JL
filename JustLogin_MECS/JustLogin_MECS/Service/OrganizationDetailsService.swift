@@ -29,7 +29,7 @@ struct OrganizationDetailsService: IOrganizationDetailsService {
         
         serviceAdapter.post(destination: Constants.URLs.OrganizationDetails, payload: [:], headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
             switch(response) {
-            case .Success(let success):
+            case .Success(let success, _ ):
                 let organization = Organization(JSON(success))
                 completionHandler(Result.Success(organization))
                 

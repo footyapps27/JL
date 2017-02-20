@@ -47,7 +47,7 @@ struct ServiceError {
  */
 protocol NetworkAdapter {
     
-    func post(destination: String, payload: [String: Any], headers: [String : String],responseHandler: @escaping (NetworkAdapterResponse) -> Void)
+    func post(destination: String, payload: [String: Any], headers: [String : String]?,responseHandler: @escaping (NetworkAdapterResponse) -> Void)
 }
 
 /**
@@ -55,7 +55,7 @@ protocol NetworkAdapter {
  */
 struct AlamofireNetworkAdapter: NetworkAdapter {
     
-    func post(destination: String, payload: [String : Any], headers: [String : String], responseHandler: @escaping (NetworkAdapterResponse) -> Void) {
+    func post(destination: String, payload: [String : Any], headers: [String : String]?, responseHandler: @escaping (NetworkAdapterResponse) -> Void) {
         
         log.debug("*****************************")
         log.debug("**** Web Service Request ****")
@@ -65,7 +65,7 @@ struct AlamofireNetworkAdapter: NetworkAdapter {
         log.debug("Request headers -> \(headers)")
         log.debug("Request payload -> \(payload)")
         
-        Alamofire.request(destination, method: .post, parameters: payload, encoding: JSONEncoding.default)
+        Alamofire.request(destination, method: .post, parameters: payload, encoding: JSONEncoding.default, headers: headers)
             .responseJSON { response in responseHandler(response.networkAdapterResponse) }
     }
 }
@@ -82,16 +82,23 @@ extension Alamofire.DataResponse {
         log.debug("*****************************")
         log.debug("Response url -> \((self.request?.url?.absoluteString)!)")
         
+        let headers = self.response?.allHeaderFields as! [String: String]
+        
+        if let statusCode = self.response?.statusCode {
+            log.debug("Response status code -> \(statusCode)")
+        }
+        
+        log.debug("Response headers -> \(headers)")
+        
+        if let value = self.result.value {
+            log.debug("Response payload -> \(value)")
+        }
+        
+        
         if let message = self.result.error?.localizedDescription {
             log.error("Response failure -> \(message)")
             return NetworkAdapterResponse.Failure(message)
         }
-        
-        let headers = self.response?.allHeaderFields as! [String: String]
-        
-        log.debug("Response status code -> \((self.response?.statusCode)!)")
-        log.debug("Response headers -> \(headers)")
-        log.debug("Response payload -> \((self.result.value)!)")
         
         // Check the success status code first.
         guard self.response?.statusCode == Constants.ResponseParameters.StatusCode else {

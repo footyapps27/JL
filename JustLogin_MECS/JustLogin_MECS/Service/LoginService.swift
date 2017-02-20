@@ -34,7 +34,7 @@ struct LoginService: ILoginService {
         
         let payload = getPayloadForLogin(withOrganizationName: organizationName, userId: userId, password: password)
         
-        serviceAdapter.post(destination: Constants.URLs.Login, payload: payload, headers: [:]) { (response) in
+        serviceAdapter.post(destination: Constants.URLs.Login, payload: payload, headers: nil) { (response) in
             switch(response) {
             case .Success(let success, let headers):
                 
