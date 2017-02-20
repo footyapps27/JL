@@ -9,7 +9,7 @@
 import Foundation
 
 /**
- * Manager for ExpenseListManager
+ * Manager for ExpenseListViewController
  */
 struct ExpenseListManager {
 

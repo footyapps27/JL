@@ -18,6 +18,7 @@ struct Constants {
         static let DecimalPlaces = 2
         static let Amount = 0.00
         static let ExpenseStatus = 0
+        static let ReportStatus = 0
     }
     
     struct CellIdentifiers {
@@ -60,7 +61,7 @@ struct Constants {
         static let UpdateExpense = URLs.BaseURL + "/organization/details"
         static let DeleteExpense = URLs.BaseURL + "/organization/details"
         
-        static let GetAllReports = URLs.BaseURL + "/organization/details"
+        static let GetAllReports = URLs.BaseURL + "/report/retrievebymember"
         static let CreateReport = URLs.BaseURL + "/organization/details"
         static let UpdateReport = URLs.BaseURL + "/organization/details"
         static let DeleteReport = URLs.BaseURL + "/organization/details"
@@ -123,6 +124,12 @@ struct Constants {
         static let PaymentMode = "paymentMode"
         static let SubmitterId = "submitterId"
         
+        static let Reports = "reports"
         static let ReportId = "reportId"
+        static let BusinessPurpose = "businessPurpose"
+        static let StartDate = "startDate"
+        static let EndDate = "endDate"
+        static let Title = "title"
+        static let ExpenseIds = "expenseIds"
     }
 }

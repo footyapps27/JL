@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 protocol IReportService {
     
@@ -45,7 +46,23 @@ struct ReportService : IReportService {
      */
     func getAllReports(_ completionHandler:( @escaping (Result<[Report]>) -> Void)) {
         serviceAdapter.post(destination: Constants.URLs.GetAllReports, payload: [:], headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
-            // TODO: - Need to handle the scenarios here.
+            switch(response) {
+                case .Success(let success, _ ):
+                    var allReports: [Report] = []
+                    if let jsonReports = success[Constants.ResponseParameters.Expenses] as? [Any] {
+                        for report in jsonReports {
+                            allReports.append(Report(JSON(report)))
+                        }
+                    }
+                    completionHandler(Result.Success(allReports))
+                
+            case .Errors(let error):
+                let error = ServiceError(JSON(error))
+                completionHandler(Result.Error(error))
+                
+            case .Failure(let description):
+                completionHandler(Result.Failure(description))
+            }
         }
     }
     
