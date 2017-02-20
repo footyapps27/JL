@@ -14,6 +14,12 @@ struct Constants {
         static let EmptyString = ""
     }
     
+    struct Defaults {
+        static let DecimalPlaces = 2
+        static let Amount = 0.00
+        static let ExpenseStatus = 0
+    }
+    
     struct CellIdentifiers {
         static let LaunchCollectionViewCellIdentifier = "launchCollectionCellIdentifier"
         static let ExpenseListTableViewCellIdentifier = "expenseListTableViewCellIdentifier"
@@ -49,7 +55,7 @@ struct Constants {
         
         static let OrganizationDetails = URLs.BaseURL + "/organization/details"
         
-        static let GetAllExpenses = URLs.BaseURL + "/organization/details"
+        static let GetAllExpenses = URLs.BaseURL + "/expense/retrievebymember"
         static let CreateExpense = URLs.BaseURL + "/organization/details"
         static let UpdateExpense = URLs.BaseURL + "/organization/details"
         static let DeleteExpense = URLs.BaseURL + "/organization/details"
@@ -90,5 +96,33 @@ struct Constants {
         static let Description = "description"
         static let IsDefault = "isDefault"
         static let AccessPrivileges = "accessPrivileges"
+        
+        static let BaseCurrencyId = "baseCurrencyId"
+        static let Currencies = "currencies"
+        static let Categories = "categories"
+        
+        static let CategoryId = "categoryId"
+        static let Logo = "logo"
+        static let AccountCode = "accountCode"
+        static let IsActive = "isActive"
+        
+        static let CurrencyId = "currencyId"
+        static let DecimalPlaces = "decimalPlaces"
+        static let Format = "format"
+        static let Symbol = "symbol"
+        static let Code = "code"
+        
+        static let Expenses = "expenses"
+        static let ExpenseId = "expenseId"
+        static let Date = "date"
+        static let Amount = "amount"
+        static let Location = "location"
+        static let ReferenceNumber = "referenceNumber"
+        static let Notes = "notes"
+        static let MerchantName = "merchantName"
+        static let PaymentMode = "paymentMode"
+        static let SubmitterId = "submitterId"
+        
+        static let ReportId = "reportId"
     }
 }

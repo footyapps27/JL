@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 protocol IExpenseService {
     
@@ -40,7 +41,23 @@ struct ExpenseService : IExpenseService {
     /***********************************/
     func getAllExpenses(_ completionHandler:( @escaping (Result<[Expense]>) -> Void)) {
         serviceAdapter.post(destination: Constants.URLs.GetAllExpenses, payload: [:], headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
-            // TODO: - Need to handle the scenarios here.
+            switch(response) {
+            case .Success(let success, _ ):
+                var allExpenses: [Expense] = []
+                if let jsonExpenses = success[Constants.ResponseParameters.Expenses] as? [Any] {
+                    for expense in jsonExpenses {
+                        allExpenses.append(Expense(JSON(expense)))
+                    }
+                }
+                completionHandler(Result.Success(allExpenses))
+                
+            case .Errors(let error):
+                let error = ServiceError(JSON(error))
+                completionHandler(Result.Error(error))
+                
+            case .Failure(let description):
+                completionHandler(Result.Failure(description))
+            }
         }
     }
     

@@ -28,19 +28,19 @@ struct Organization {
     // MARK: - Initializer
     /***********************************/
     init(_ json:JSON) {
-        id = json["organizationId"].exists() ? json["organizationId"].stringValue : ""
+        id = json[Constants.ResponseParameters.OrganizationId].exists() ? json[Constants.ResponseParameters.OrganizationId].stringValue : Constants.General.EmptyString
         
-        name = json["name"].exists() ? json["name"].stringValue : ""
+        name = json[Constants.ResponseParameters.Name].exists() ? json[Constants.ResponseParameters.Name].stringValue : Constants.General.EmptyString
         
-        baseCurrencyId = json["baseCurrencyId"].exists() ? json["baseCurrencyId"].stringValue : ""
+        baseCurrencyId = json[Constants.ResponseParameters.BaseCurrencyId].exists() ? json[Constants.ResponseParameters.BaseCurrencyId].stringValue : Constants.General.EmptyString
         
-        let jsonCurrencies = json["currencies"].exists() ? json["currencies"].arrayValue : []
+        let jsonCurrencies = json[Constants.ResponseParameters.Currencies].exists() ? json[Constants.ResponseParameters.Currencies].arrayValue : []
         for jsonCurrency in jsonCurrencies {
             let currency = Currency(jsonCurrency)
             currencies[currency.id] = currency
         }
         
-        let jsonCategories = json["categories"].exists() ? json["categories"].arrayValue : []
+        let jsonCategories = json[Constants.ResponseParameters.Categories].exists() ? json[Constants.ResponseParameters.Categories].arrayValue : []
         for jsonCategory in jsonCategories {
             let category = Category(jsonCategory)
             categories[category.id] = category

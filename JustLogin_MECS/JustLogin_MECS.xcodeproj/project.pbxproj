@@ -34,6 +34,7 @@
 		8CA4B6EF1E28A5A8007C3BE5 /* ApprovalListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA4B6EE1E28A5A8007C3BE5 /* ApprovalListViewController.swift */; };
 		8CA4B6F31E28ACA6007C3BE5 /* ReportListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA4B6F21E28ACA6007C3BE5 /* ReportListTableViewCell.swift */; };
 		8CA4B6F71E28C3A6007C3BE5 /* ExpenseListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA4B6F61E28C3A6007C3BE5 /* ExpenseListTableViewCell.swift */; };
+		8CB44AD21E5AC642005CC04D /* ExpenseListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB44AD11E5AC642005CC04D /* ExpenseListManager.swift */; };
 		8CD333191E23BC7D00557B6F /* ExpenseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD333181E23BC7D00557B6F /* ExpenseListViewController.swift */; };
 		8CD3331D1E23C48000557B6F /* SettingsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD3331C1E23C48000557B6F /* SettingsListViewController.swift */; };
 		8CD333211E23C4E500557B6F /* BaseViewControllerWithTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD333201E23C4E500557B6F /* BaseViewControllerWithTableView.swift */; };
@@ -56,7 +57,7 @@
 		8CF655DB1E589F1B00D4FEF3 /* ReportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655DA1E589F1B00D4FEF3 /* ReportService.swift */; };
 		8CF655DD1E58B06300D4FEF3 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655DC1E58B06300D4FEF3 /* Expense.swift */; };
 		8CF655DF1E58B07000D4FEF3 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655DE1E58B07000D4FEF3 /* Report.swift */; };
-		8CF655E71E58B59B00D4FEF3 /* SignInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655E61E58B59B00D4FEF3 /* SignInManager.swift */; };
+		8CF655E71E58B59B00D4FEF3 /* LaunchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655E61E58B59B00D4FEF3 /* LaunchManager.swift */; };
 		8CF655EC1E58BE2E00D4FEF3 /* LoginServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655EB1E58BE2E00D4FEF3 /* LoginServiceTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -113,6 +114,7 @@
 		8CA4B6EE1E28A5A8007C3BE5 /* ApprovalListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApprovalListViewController.swift; sourceTree = "<group>"; };
 		8CA4B6F21E28ACA6007C3BE5 /* ReportListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportListTableViewCell.swift; sourceTree = "<group>"; };
 		8CA4B6F61E28C3A6007C3BE5 /* ExpenseListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseListTableViewCell.swift; sourceTree = "<group>"; };
+		8CB44AD11E5AC642005CC04D /* ExpenseListManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseListManager.swift; sourceTree = "<group>"; };
 		8CD333181E23BC7D00557B6F /* ExpenseListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseListViewController.swift; sourceTree = "<group>"; };
 		8CD3331C1E23C48000557B6F /* SettingsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsListViewController.swift; sourceTree = "<group>"; };
 		8CD333201E23C4E500557B6F /* BaseViewControllerWithTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewControllerWithTableView.swift; sourceTree = "<group>"; };
@@ -133,7 +135,7 @@
 		8CF655DA1E589F1B00D4FEF3 /* ReportService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportService.swift; sourceTree = "<group>"; };
 		8CF655DC1E58B06300D4FEF3 /* Expense.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 		8CF655DE1E58B07000D4FEF3 /* Report.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
-		8CF655E61E58B59B00D4FEF3 /* SignInManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInManager.swift; sourceTree = "<group>"; };
+		8CF655E61E58B59B00D4FEF3 /* LaunchManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchManager.swift; sourceTree = "<group>"; };
 		8CF655EB1E58BE2E00D4FEF3 /* LoginServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginServiceTests.swift; sourceTree = "<group>"; };
 		C1E5D39D743F2AA54C3A1C46 /* Pods-JustLogin_MECS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JustLogin_MECS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JustLogin_MECS/Pods-JustLogin_MECS.debug.xcconfig"; sourceTree = "<group>"; };
 		CF3885E556538396244297B4 /* Pods-JustLogin_MECSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JustLogin_MECSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-JustLogin_MECSTests/Pods-JustLogin_MECSTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -491,6 +493,7 @@
 		8CF655E21E58B55600D4FEF3 /* Expense */ = {
 			isa = PBXGroup;
 			children = (
+				8CB44AD11E5AC642005CC04D /* ExpenseListManager.swift */,
 			);
 			path = Expense;
 			sourceTree = "<group>";
@@ -498,7 +501,7 @@
 		8CF655E31E58B55600D4FEF3 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				8CF655E61E58B59B00D4FEF3 /* SignInManager.swift */,
+				8CF655E61E58B59B00D4FEF3 /* LaunchManager.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -858,6 +861,7 @@
 				8CF655DF1E58B07000D4FEF3 /* Report.swift in Sources */,
 				8CEAADBE1E55468100BDB5ED /* BaseService.swift in Sources */,
 				8CA4B6EF1E28A5A8007C3BE5 /* ApprovalListViewController.swift in Sources */,
+				8CB44AD21E5AC642005CC04D /* ExpenseListManager.swift in Sources */,
 				8CE007231E28F3280089D159 /* SettingsTableProfileSectionHeaderView.swift in Sources */,
 				8CF655C71E58387100D4FEF3 /* LoginService.swift in Sources */,
 				8CD333211E23C4E500557B6F /* BaseViewControllerWithTableView.swift in Sources */,
@@ -872,7 +876,7 @@
 				8CE007151E28D7C90089D159 /* ApprovalListTableViewCell.swift in Sources */,
 				8CA4B6F31E28ACA6007C3BE5 /* ReportListTableViewCell.swift in Sources */,
 				8CF655CF1E58693500D4FEF3 /* Organization.swift in Sources */,
-				8CF655E71E58B59B00D4FEF3 /* SignInManager.swift in Sources */,
+				8CF655E71E58B59B00D4FEF3 /* LaunchManager.swift in Sources */,
 				8CF655CB1E585A8200D4FEF3 /* Role.swift in Sources */,
 				8CF655D11E58694400D4FEF3 /* Category.swift in Sources */,
 			);

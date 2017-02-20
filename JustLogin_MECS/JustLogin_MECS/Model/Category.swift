@@ -30,11 +30,16 @@ struct Category {
     // MARK: - Initializer
     /***********************************/
     init(_ json:JSON) {
-        id = json["categoryId"].exists() ? json["categoryId"].stringValue : ""
-        logo = json["logo"].exists() ? json["logo"].intValue : 0
-        name = json["name"].exists() ? json["name"].stringValue : ""
-        accountCode = json["accountCode"].exists() ? json["accountCode"].stringValue : ""
-        description = json["description"].exists() ? json["description"].stringValue : ""
-        isActive = json["isActive"].exists() ? json["isActive"].boolValue : false
+        id = json[Constants.ResponseParameters.CategoryId].exists() ? json[Constants.ResponseParameters.CategoryId].stringValue : Constants.General.EmptyString
+        
+        logo = json[Constants.ResponseParameters.Logo].exists() ? json[Constants.ResponseParameters.Logo].intValue : 0
+        
+        name = json[Constants.ResponseParameters.Name].exists() ? json[Constants.ResponseParameters.Name].stringValue : Constants.General.EmptyString
+        
+        accountCode = json[Constants.ResponseParameters.AccountCode].exists() ? json[Constants.ResponseParameters.AccountCode].stringValue : Constants.General.EmptyString
+        
+        description = json[Constants.ResponseParameters.Description].exists() ? json[Constants.ResponseParameters.Description].stringValue : Constants.General.EmptyString
+        
+        isActive = json[Constants.ResponseParameters.IsActive].exists() ? json[Constants.ResponseParameters.IsActive].boolValue : false
     }
 }

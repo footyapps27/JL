@@ -19,7 +19,11 @@ class LaunchViewController: BaseViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var pageControl: UIPageControl!
     
-    let manager = SignInManager()
+    let manager = LaunchManager()
+    
+    // TODO: - Remove this reference
+    let expenseListManager = ExpenseListManager()
+    
     /***********************************/
     // MARK: - View Lifecycle
     /***********************************/
@@ -98,13 +102,13 @@ class LaunchViewController: BaseViewController {
      */
     func navigateToSubmitterDashboard() {
         
-        manager.login(withOrganizationName: "fargoTest", userId: "admin", password: "admin") { (member) in
+        manager.login(withOrganizationName: "MathewCo", userId: "admin", password: "admin1") { (member) in
             log.debug("Member object received -> \(member)")
         }
         
-        //let submitterDashboard = UIStoryboard(name: Constants.StoryboardIds.DashboardStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.SubmitterDashboard) as! UITabBarController
-        
-        //navigationController?.pushViewController(submitterDashboard, animated: true)
+//        let submitterDashboard = UIStoryboard(name: Constants.StoryboardIds.DashboardStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.SubmitterDashboard) as! UITabBarController
+//        
+//        navigationController?.pushViewController(submitterDashboard, animated: true)
     }
     
     /**
@@ -112,8 +116,12 @@ class LaunchViewController: BaseViewController {
      */
     func navigateToAdminAndApproverDashboard() {
         
-        manager.getOrganizationDetails { (organization) in
-            log.debug("Organization object received -> \(organization)")
+//        manager.getOrganizationDetails { (organization) in
+//            log.debug("Organization object received -> \(organization)")
+//        }
+        
+        expenseListManager.getAllExpenses { (expenses) in
+            log.debug("Expense received are: \(expenses)")
         }
         
 //        let approverAndAdminDashboard = UIStoryboard(name: Constants.StoryboardIds.DashboardStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.ApproverAndAdminDashboard) as! UITabBarController

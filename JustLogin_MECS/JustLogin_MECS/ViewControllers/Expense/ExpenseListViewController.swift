@@ -18,12 +18,19 @@ class ExpenseListViewController: BaseViewControllerWithTableView {
     @IBOutlet weak var tableView: UITableView!
     let searchController = UISearchController(searchResultsController: nil)
     
+    let manager = ExpenseListManager()
+    
     /***********************************/
     // MARK: - View Lifecycle
     /***********************************/
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // TODO: - Remove the call
+        manager.getAllExpenses { (expenses) in
+            log.debug(expenses)
+        }
         
         // Add the search controller
         searchController.searchResultsUpdater = self

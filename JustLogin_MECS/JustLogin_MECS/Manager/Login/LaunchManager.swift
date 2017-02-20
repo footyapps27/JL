@@ -11,7 +11,7 @@ import Foundation
 /**
  * Manager for SignInViewController
  */
-struct SignInManager {
+struct LaunchManager {
     
     var loginService: ILoginService = LoginService()
     var organizationDetailsService: IOrganizationDetailsService = OrganizationDetailsService()

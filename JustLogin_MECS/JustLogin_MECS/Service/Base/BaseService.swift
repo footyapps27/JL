@@ -82,6 +82,7 @@ extension Alamofire.DataResponse {
         log.debug("*****************************")
         log.debug("Response url -> \((self.request?.url?.absoluteString)!)")
         
+        // TODO: - Handle the scenario where the headers are nil. Need to clean up this piece of code.
         let headers = self.response?.allHeaderFields as! [String: String]
         
         if let statusCode = self.response?.statusCode {

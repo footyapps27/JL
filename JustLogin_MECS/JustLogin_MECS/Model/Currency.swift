@@ -28,14 +28,14 @@ struct Currency {
     // MARK: - Initializer
     /***********************************/
     init(_ json:JSON) {
-        id = json["currencyId"].exists() ? json["currencyId"].stringValue : ""
+        id = json[Constants.ResponseParameters.CurrencyId].exists() ? json[Constants.ResponseParameters.CurrencyId].stringValue : Constants.General.EmptyString
         
-        decimalPlaces = json["decimalPlaces"].exists() ? json["decimalPlaces"].intValue : 2
+        decimalPlaces = json[Constants.ResponseParameters.DecimalPlaces].exists() ? json[Constants.ResponseParameters.DecimalPlaces].intValue : Constants.Defaults.DecimalPlaces
         
-        format = json["format"].exists() ? json["format"].stringValue : ""
+        format = json[Constants.ResponseParameters.Format].exists() ? json[Constants.ResponseParameters.Format].stringValue : ""
         
-        symbol = json["symbol"].exists() ? json["symbol"].stringValue : ""
+        symbol = json[Constants.ResponseParameters.Symbol].exists() ? json[Constants.ResponseParameters.Symbol].stringValue : Constants.General.EmptyString
         
-        code = json["code"].exists() ? json["code"].stringValue : ""
+        code = json[Constants.ResponseParameters.Code].exists() ? json[Constants.ResponseParameters.Code].stringValue : Constants.General.EmptyString
     }
 }
