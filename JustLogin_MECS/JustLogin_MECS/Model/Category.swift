@@ -14,25 +14,36 @@ struct Category {
     /***********************************/
     // MARK: - Properties
     /***********************************/
-    let id: String
+    var id: String?
     
-    let logo: Int
+    var logo: Int = Constants.Defaults.CategoryLogo
     
-    let name: String
+    var name: String?
     
-    let accountCode: String
+    var accountCode: String?
     
-    let description: String
+    var description: String?
     
-    let isActive: Bool
+    var isActive: Bool = false
     
     /***********************************/
     // MARK: - Initializer
     /***********************************/
-    init(_ json:JSON) {
+    
+    /**
+     * Default initializer
+     */
+    init() {
+        
+    }
+    
+    /**
+     * Initialize using the JSON object received from the server.
+     */
+    init(withJSON json:JSON) {
         id = json[Constants.ResponseParameters.CategoryId].exists() ? json[Constants.ResponseParameters.CategoryId].stringValue : Constants.General.EmptyString
         
-        logo = json[Constants.ResponseParameters.Logo].exists() ? json[Constants.ResponseParameters.Logo].intValue : 0
+        logo = json[Constants.ResponseParameters.Logo].exists() ? json[Constants.ResponseParameters.Logo].intValue : Constants.Defaults.CategoryLogo
         
         name = json[Constants.ResponseParameters.Name].exists() ? json[Constants.ResponseParameters.Name].stringValue : Constants.General.EmptyString
         

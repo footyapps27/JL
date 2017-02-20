@@ -12,6 +12,8 @@ struct Constants {
     
     struct General {
         static let EmptyString = ""
+        static let ServerDateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        static let LocalDisplayDateFormat = "yyyy-MM-dd"
     }
     
     struct Defaults {
@@ -19,6 +21,8 @@ struct Constants {
         static let Amount = 0.00
         static let ExpenseStatus = 0
         static let ReportStatus = 0
+        static let CategoryLogo = 0
+        static let AccessPrivilegeApproveReports = 0
     }
     
     struct CellIdentifiers {
@@ -72,6 +76,18 @@ struct Constants {
             static let OrganizationName = "organizationName"
             static let MemberName = "memberName"
             static let Password = "password"
+        }
+        
+        struct Expense {
+            static let ExpenseId = "expenseId"
+            static let Date = "date"
+            static let Amount = "amount"
+            static let Status = "status"
+            static let PaymentMode = "paymentMode"
+            static let Description = "description"
+            static let Location = "location"
+            static let ReferenceNumber = "referenceNumber"
+            static let Notes = "notes"
         }
     }
     

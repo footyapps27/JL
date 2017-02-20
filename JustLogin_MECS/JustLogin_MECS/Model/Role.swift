@@ -14,20 +14,31 @@ struct Role {
     /***********************************/
     // MARK: - Properties
     /***********************************/
-    let id: String
+    var id: String?
     
-    let name: String
+    var name: String?
     
-    let description: String
+    var description: String?
     
-    let isDefault: Bool
+    var isDefault: Bool = false
     
-    let accessPrivileges: AccessPrivilege
+    var accessPrivileges: AccessPrivilege?
     
     /***********************************/
     // MARK: - Initializer
     /***********************************/
-    init(_ json:JSON) {
+    
+    /**
+     * Default initializer
+     */
+    init() {
+        
+    }
+    
+    /**
+     * Initialize using the JSON object received from the server.
+     */
+    init(withJSON json:JSON) {
         
         id = json[Constants.ResponseParameters.RoleId].exists() ? json[Constants.ResponseParameters.RoleId].stringValue : Constants.General.EmptyString
         
@@ -37,6 +48,6 @@ struct Role {
         
         isDefault = json[Constants.ResponseParameters.IsDefault].exists() ? json[Constants.ResponseParameters.IsDefault].boolValue : false
         
-        accessPrivileges = AccessPrivilege(json[Constants.ResponseParameters.AccessPrivileges])
+        accessPrivileges = AccessPrivilege(withJSON: json[Constants.ResponseParameters.AccessPrivileges])
     }
 }

@@ -14,22 +14,33 @@ struct Member {
     /***********************************/
     // MARK: - Properties
     /***********************************/
-    let id: String
+    var id: String?
     
-    let userId: String
+    var userId: String?
     
-    let fullName: String
+    var fullName: String?
     
-    let status: Bool
+    var status: Bool = false
     
-    let organizationId: String
+    var organizationId: String?
     
-    let role: Role
+    var role: Role?
     
     /***********************************/
     // MARK: - Initializer
     /***********************************/
-    init(_ json:JSON) {
+    
+    /**
+     * Default initializer
+     */
+    init() {
+        
+    }
+    
+    /**
+     * Initialize using the JSON object received from the server.
+     */
+    init(withJSON json:JSON) {
         id = json[Constants.ResponseParameters.MemberId].exists() ? json[Constants.ResponseParameters.MemberId].stringValue : Constants.General.EmptyString
         
         userId = json[Constants.ResponseParameters.UserId].exists() ? json[Constants.ResponseParameters.UserId].stringValue : Constants.General.EmptyString
@@ -40,6 +51,6 @@ struct Member {
         
         organizationId = json[Constants.ResponseParameters.OrganizationId].exists() ? json[Constants.ResponseParameters.OrganizationId].stringValue : Constants.General.EmptyString
         
-        role = Role(json[Constants.ResponseParameters.Role])
+        role = Role(withJSON: json[Constants.ResponseParameters.Role])
     }
 }

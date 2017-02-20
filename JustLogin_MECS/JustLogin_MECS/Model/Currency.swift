@@ -14,25 +14,36 @@ struct Currency {
     /***********************************/
     // MARK: - Properties
     /***********************************/
-    let id: String
+    var id: String?
     
-    let decimalPlaces: Int
+    var decimalPlaces: Int = Constants.Defaults.DecimalPlaces
     
-    let format: String
+    var format: String?
     
-    let symbol: String
+    var symbol: String?
     
-    let code: String
+    var code: String?
     
     /***********************************/
     // MARK: - Initializer
     /***********************************/
-    init(_ json:JSON) {
+    
+    /**
+     * Default initializer
+     */
+    init() {
+        
+    }
+    
+    /**
+     * Initialize using the JSON object received from the server.
+     */
+    init(withJSON json:JSON) {
         id = json[Constants.ResponseParameters.CurrencyId].exists() ? json[Constants.ResponseParameters.CurrencyId].stringValue : Constants.General.EmptyString
         
         decimalPlaces = json[Constants.ResponseParameters.DecimalPlaces].exists() ? json[Constants.ResponseParameters.DecimalPlaces].intValue : Constants.Defaults.DecimalPlaces
         
-        format = json[Constants.ResponseParameters.Format].exists() ? json[Constants.ResponseParameters.Format].stringValue : ""
+        format = json[Constants.ResponseParameters.Format].exists() ? json[Constants.ResponseParameters.Format].stringValue : Constants.General.EmptyString
         
         symbol = json[Constants.ResponseParameters.Symbol].exists() ? json[Constants.ResponseParameters.Symbol].stringValue : Constants.General.EmptyString
         

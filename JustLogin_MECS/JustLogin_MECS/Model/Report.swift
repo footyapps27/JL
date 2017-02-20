@@ -14,37 +14,50 @@ struct Report {
     /***********************************/
     // MARK: - Properties
     /***********************************/
-    let id: String
+    var id: String?
     
-    let amount: Double
+    var amount: Double = Constants.Defaults.Amount
     
-    let businessPurpose: String
+    var businessPurpose: String?
     
-    let startDate: String
+    var startDate: Date?
     
-    let endDate: String
+    var endDate: Date?
     
-    let title: String
+    var title: String?
     
-    let status: Int
+    var status: Int = Constants.Defaults.ReportStatus
     
     var expenseIds: [String] = []
     
     /***********************************/
     // MARK: - Initializer
     /***********************************/
-    init(_ json:JSON) {
+    
+    /**
+     * Default initializer
+     */
+    init() {
+        
+    }
+    
+    /**
+     * Initialize using the JSON object received from the server.
+     */
+    init(withJSON json:JSON) {
         id = json[Constants.ResponseParameters.ReportId].exists() ? json[Constants.ResponseParameters.ReportId].stringValue : Constants.General.EmptyString
         
         amount = json[Constants.ResponseParameters.Amount].exists() ? json[Constants.ResponseParameters.Amount].doubleValue : Constants.Defaults.Amount
         
         businessPurpose = json[Constants.ResponseParameters.BusinessPurpose].exists() ? json[Constants.ResponseParameters.BusinessPurpose].stringValue : Constants.General.EmptyString
         
-        // TODO: - Convert to date
-        startDate = json[Constants.ResponseParameters.StartDate].exists() ? json[Constants.ResponseParameters.StartDate].stringValue : Constants.General.EmptyString
+        if let jsonStartDate = json[Constants.ResponseParameters.StartDate].string {
+            startDate = Utilities.convertServerStringToDate(jsonStartDate)
+        }
         
-        // TODO: - Convert to date
-        endDate = json[Constants.ResponseParameters.EndDate].exists() ? json[Constants.ResponseParameters.EndDate].stringValue : Constants.General.EmptyString
+        if let jsonEndDate = json[Constants.ResponseParameters.EndDate].string {
+            endDate = Utilities.convertServerStringToDate(jsonEndDate)
+        }
         
         title = json[Constants.ResponseParameters.Title].exists() ? json[Constants.ResponseParameters.Title].stringValue : Constants.General.EmptyString
         

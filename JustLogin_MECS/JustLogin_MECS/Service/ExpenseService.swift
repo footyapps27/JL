@@ -46,7 +46,7 @@ struct ExpenseService : IExpenseService {
                 var allExpenses: [Expense] = []
                 if let jsonExpenses = success[Constants.ResponseParameters.Expenses] as? [Any] {
                     for expense in jsonExpenses {
-                        allExpenses.append(Expense(JSON(expense)))
+                        allExpenses.append(Expense(withJSON: JSON(expense)))
                     }
                 }
                 completionHandler(Result.Success(allExpenses))
@@ -88,15 +88,22 @@ extension ExpenseService {
     /**
      * Method to format payload for create expense.
      */
-    func getPayloadForCreateExpense(_ expense: Expense) -> [String : String] {
-        // TODO: - Need to handle the scenarios here.
-        return [:]
+    func getPayloadForCreateExpense(_ expense: Expense) -> [String : Any] {
+        var payload: [String : Any] = [:]
+        
+        payload[Constants.RequestParameters.Expense.Amount] = expense.amount
+        
+        payload[Constants.RequestParameters.Expense.Status] = expense.status
+        
+        
+        
+        return payload
     }
     
     /**
      * Method to format payload for update expense.
      */
-    func getPayloadForUpdateExpense(_ expense: Expense) -> [String : String] {
+    func getPayloadForUpdateExpense(_ expense: Expense) -> [String : Any] {
         // TODO: - Need to handle the scenarios here.
         return [:]
     }
@@ -104,7 +111,7 @@ extension ExpenseService {
     /**
      * Method to format payload for delete expense.
      */
-    func getPayloadForDeleteExpense(_ expenseId: String) -> [String : String] {
+    func getPayloadForDeleteExpense(_ expenseId: String) -> [String : Any] {
         // TODO: - Need to handle the scenarios here.
         return [:]
     }

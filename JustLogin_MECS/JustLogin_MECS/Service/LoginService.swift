@@ -43,7 +43,7 @@ struct LoginService: ILoginService {
                     Singleton.sharedInstance.accessTokenHeader[Constants.ResponseParameters.AccessToken] = accessToken
                 }
                 
-                let member = Member(JSON(success))
+                let member = Member(withJSON: JSON(success))
                 completionHandler(Result.Success(member))
                 
             case .Errors(let error):

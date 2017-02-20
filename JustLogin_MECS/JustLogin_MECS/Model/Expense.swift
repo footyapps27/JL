@@ -14,43 +14,56 @@ struct Expense {
     /***********************************/
     // MARK: - Properties
     /***********************************/
-    let id: String
+    var id: String?
     
-    let date: String
+    var date: Date?
     
-    let amount: Double
+    var amount: Double = Constants.Defaults.Amount
     
-    let status: Int
+    var status: Int = Constants.Defaults.ExpenseStatus
     
-    let description: String
+    var description: String?
     
-    let location: String
+    var location: String?
     
-    let referenceNumber: String
+    var referenceNumber: String?
     
-    let notes: String
+    var notes: String?
     
-    let merchantName: String
+    var merchantName: String?
     
-    let paymentMode: String
+    var paymentMode: String?
     
-    let categoryId: String
+    var categoryId: String?
     
-    let currencyId: String
+    var currencyId: String?
     
-    let organizationId: String
+    var organizationId: String?
     
-    let submitterId: String
+    // TODO: - Speak to Bavithra about the JSON
+    var submitterId: String?
     
-    let reportId: String
+    var reportId: String?
     /***********************************/
     // MARK: - Initializer
     /***********************************/
-    init(_ json:JSON) {
+    
+    /**
+     * Default initializer
+     */
+    init() {
+        
+    }
+    
+    /**
+     * Initialize using the JSON object received from the server.
+     */
+    init(withJSON json:JSON) {
         id = json[Constants.ResponseParameters.ExpenseId].exists() ? json[Constants.ResponseParameters.ExpenseId].stringValue : Constants.General.EmptyString
         
-        // TODO: - Parse the data here & create a date object
-        date = json[Constants.ResponseParameters.Date].exists() ? json[Constants.ResponseParameters.Date].stringValue : Constants.General.EmptyString
+        if let jsonDate = json[Constants.ResponseParameters.Date].string {
+            date = Utilities.convertServerStringToDate(jsonDate)
+        }
         
         amount = json[Constants.ResponseParameters.Amount].exists() ? json[Constants.ResponseParameters.Amount].doubleValue : Constants.Defaults.Amount
         

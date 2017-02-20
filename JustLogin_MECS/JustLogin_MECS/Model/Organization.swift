@@ -14,11 +14,11 @@ struct Organization {
     /***********************************/
     // MARK: - Properties
     /***********************************/
-    let id: String
+    var id: String?
     
-    let name: String
+    var name: String?
     
-    let baseCurrencyId: String
+    var baseCurrencyId: String?
     
     var currencies: [String: Currency] = [:]
     
@@ -27,7 +27,18 @@ struct Organization {
     /***********************************/
     // MARK: - Initializer
     /***********************************/
-    init(_ json:JSON) {
+    
+    /**
+     * Default initializer
+     */
+    init() {
+        
+    }
+    
+    /**
+     * Initialize using the JSON object received from the server.
+     */
+    init(withJSON json:JSON) {
         id = json[Constants.ResponseParameters.OrganizationId].exists() ? json[Constants.ResponseParameters.OrganizationId].stringValue : Constants.General.EmptyString
         
         name = json[Constants.ResponseParameters.Name].exists() ? json[Constants.ResponseParameters.Name].stringValue : Constants.General.EmptyString
@@ -36,14 +47,14 @@ struct Organization {
         
         let jsonCurrencies = json[Constants.ResponseParameters.Currencies].exists() ? json[Constants.ResponseParameters.Currencies].arrayValue : []
         for jsonCurrency in jsonCurrencies {
-            let currency = Currency(jsonCurrency)
-            currencies[currency.id] = currency
+            let currency = Currency(withJSON: jsonCurrency)
+            currencies[currency.id!] = currency
         }
         
         let jsonCategories = json[Constants.ResponseParameters.Categories].exists() ? json[Constants.ResponseParameters.Categories].arrayValue : []
         for jsonCategory in jsonCategories {
-            let category = Category(jsonCategory)
-            categories[category.id] = category
+            let category = Category(withJSON: jsonCategory)
+            categories[category.id!] = category
         }
     }
 }

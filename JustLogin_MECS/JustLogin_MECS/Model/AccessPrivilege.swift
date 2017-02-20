@@ -15,50 +15,61 @@ struct AccessPrivilege {
     // MARK: - Properties
     /***********************************/
     
-    let createAndSubmitReports: Bool
+    var createAndSubmitReports: Bool = false
     
-    let recordEmployeeAdvance: Bool
+    var recordEmployeeAdvance: Bool = false
     
-    let recordEmployeeAdvanceForOthers: Bool
+    var recordEmployeeAdvanceForOthers: Bool = false
     
-    let preventExpenseCreationForParentCategory: Bool
+    var preventExpenseCreationForParentCategory: Bool = false
     
-    let viewAllCompanyReports: Bool
+    var viewAllCompanyReports: Bool = false
     
-    let approveReport: Int
+    var approveReport: Int = Constants.Defaults.AccessPrivilegeApproveReports
     
-    let approveReportWithPolicyViolation: Bool
+    var approveReportWithPolicyViolation: Bool = false
     
-    let modifyExpenseInSubmittedReport: Bool
+    var modifyExpenseInSubmittedReport: Bool = false
     
-    let reimburseReport: Bool
+    var reimburseReport: Bool = false
     
-    let modifySettingsUsers: Bool
+    var modifySettingsUsers: Bool = false
     
-    let modifySettingsPreferences: Bool
+    var modifySettingsPreferences: Bool = false
     
-    let modifySettingsExpenseCategories: Bool
+    var modifySettingsExpenseCategories: Bool = false
     
-    let modifySettingsCustomers: Bool
+    var modifySettingsCustomers: Bool = false
     
-    let modifySettingsProjects: Bool
+    var modifySettingsProjects: Bool = false
     
-    let modifySettingsMerchants: Bool
+    var modifySettingsMerchants: Bool = false
     
-    let modifySettingsCurrencies: Bool
+    var modifySettingsCurrencies: Bool = false
     
-    let modifySettingsTaxes: Bool
+    var modifySettingsTaxes: Bool = false
     
-    let modifySettingsPaymentMode: Bool
+    var modifySettingsPaymentMode: Bool = false
     
-    let modifySettingsManageIntegrations: Bool
+    var modifySettingsManageIntegrations: Bool = false
     
-    let modifySettingsBilling: Bool
+    var modifySettingsBilling: Bool = false
     
     /***********************************/
     // MARK: - Initializer
     /***********************************/
-    init(_ json:JSON) {
+    
+    /**
+     * Default initializer
+     */
+    init() {
+        
+    }
+    
+    /**
+     * Initialize using the JSON object received from the server.
+     */
+    init(withJSON json:JSON) {
         createAndSubmitReports = json["createAndSubmitReports"].exists() ? json["createAndSubmitReports"].boolValue : false
         
         recordEmployeeAdvance = json["recordEmployeeAdvance"].exists() ? json["recordEmployeeAdvance"].boolValue : false

@@ -36,6 +36,7 @@
 		8CA4B6F71E28C3A6007C3BE5 /* ExpenseListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA4B6F61E28C3A6007C3BE5 /* ExpenseListTableViewCell.swift */; };
 		8CB44AD21E5AC642005CC04D /* ExpenseListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB44AD11E5AC642005CC04D /* ExpenseListManager.swift */; };
 		8CB44AD41E5B0380005CC04D /* ReportListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB44AD31E5B0380005CC04D /* ReportListManager.swift */; };
+		8CB44AD61E5B1163005CC04D /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB44AD51E5B1163005CC04D /* Utilities.swift */; };
 		8CD333191E23BC7D00557B6F /* ExpenseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD333181E23BC7D00557B6F /* ExpenseListViewController.swift */; };
 		8CD3331D1E23C48000557B6F /* SettingsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD3331C1E23C48000557B6F /* SettingsListViewController.swift */; };
 		8CD333211E23C4E500557B6F /* BaseViewControllerWithTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD333201E23C4E500557B6F /* BaseViewControllerWithTableView.swift */; };
@@ -117,6 +118,7 @@
 		8CA4B6F61E28C3A6007C3BE5 /* ExpenseListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseListTableViewCell.swift; sourceTree = "<group>"; };
 		8CB44AD11E5AC642005CC04D /* ExpenseListManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseListManager.swift; sourceTree = "<group>"; };
 		8CB44AD31E5B0380005CC04D /* ReportListManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportListManager.swift; sourceTree = "<group>"; };
+		8CB44AD51E5B1163005CC04D /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		8CD333181E23BC7D00557B6F /* ExpenseListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseListViewController.swift; sourceTree = "<group>"; };
 		8CD3331C1E23C48000557B6F /* SettingsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsListViewController.swift; sourceTree = "<group>"; };
 		8CD333201E23C4E500557B6F /* BaseViewControllerWithTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewControllerWithTableView.swift; sourceTree = "<group>"; };
@@ -466,6 +468,7 @@
 		8CEAADBB1E5540CA00BDB5ED /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				8CB44AD51E5B1163005CC04D /* Utilities.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -875,6 +878,7 @@
 				8CB44AD41E5B0380005CC04D /* ReportListManager.swift in Sources */,
 				8CF655D91E589EB700D4FEF3 /* ExpenseService.swift in Sources */,
 				8C9602181E1FDFA900EE66A3 /* User.swift in Sources */,
+				8CB44AD61E5B1163005CC04D /* Utilities.swift in Sources */,
 				8C96021D1E1FE14A00EE66A3 /* Enums.swift in Sources */,
 				8CF655DB1E589F1B00D4FEF3 /* ReportService.swift in Sources */,
 				8CE007151E28D7C90089D159 /* ApprovalListTableViewCell.swift in Sources */,

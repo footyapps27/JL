@@ -51,7 +51,7 @@ struct ReportService : IReportService {
                     var allReports: [Report] = []
                     if let jsonReports = success[Constants.ResponseParameters.Expenses] as? [Any] {
                         for report in jsonReports {
-                            allReports.append(Report(JSON(report)))
+                            allReports.append(Report(withJSON: JSON(report)))
                         }
                     }
                     completionHandler(Result.Success(allReports))
