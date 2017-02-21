@@ -24,4 +24,10 @@ struct ExpenseListManager {
             log.debug(expenses)
         })
     }
+    
+    func createNewExpense(_ expense: Expense, complimentionHandler: (@escaping (Result<Expense>) -> Void)) {
+        expenseService.create(expense: expense) { (expense) in
+            log.debug(expense)
+        }
+    }
 }

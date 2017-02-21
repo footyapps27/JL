@@ -21,4 +21,6 @@ final class Singleton {
     // MARK: - Properties
     /***********************************/
     var accessTokenHeader: [String:String] = [:]
+    
+    var organization: Organization?
 }

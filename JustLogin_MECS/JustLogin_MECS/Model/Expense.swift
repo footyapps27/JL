@@ -22,6 +22,8 @@ struct Expense {
     
     var status: Int = Constants.Defaults.ExpenseStatus
     
+    var exchange: Double = Constants.Defaults.ExchangeRate
+    
     var description: String?
     
     var location: String?
@@ -38,11 +40,6 @@ struct Expense {
     
     var currencyId: String?
     
-    var organizationId: String?
-    
-    // TODO: - Speak to Bavithra about the JSON
-    var submitterId: String?
-    
     var reportId: String?
     /***********************************/
     // MARK: - Initializer
@@ -51,9 +48,7 @@ struct Expense {
     /**
      * Default initializer
      */
-    init() {
-        
-    }
+    init() { }
     
     /**
      * Initialize using the JSON object received from the server.
@@ -66,6 +61,8 @@ struct Expense {
         }
         
         amount = json[Constants.ResponseParameters.Amount].exists() ? json[Constants.ResponseParameters.Amount].doubleValue : Constants.Defaults.Amount
+        
+        exchange = json[Constants.ResponseParameters.Exchange].exists() ? json[Constants.ResponseParameters.Exchange].doubleValue : Constants.Defaults.ExchangeRate
         
         status = json[Constants.ResponseParameters.Status].exists() ? json[Constants.ResponseParameters.Status].intValue : Constants.Defaults.ExpenseStatus
         
@@ -84,10 +81,6 @@ struct Expense {
         categoryId = json[Constants.ResponseParameters.CategoryId].exists() ? json[Constants.ResponseParameters.CategoryId].stringValue : Constants.General.EmptyString
         
         currencyId = json[Constants.ResponseParameters.CurrencyId].exists() ? json[Constants.ResponseParameters.CurrencyId].stringValue : Constants.General.EmptyString
-        
-        organizationId = json[Constants.ResponseParameters.OrganizationId].exists() ? json[Constants.ResponseParameters.OrganizationId].stringValue : Constants.General.EmptyString
-        
-        submitterId = json[Constants.ResponseParameters.SubmitterId].exists() ? json[Constants.ResponseParameters.SubmitterId].stringValue : Constants.General.EmptyString
         
         reportId = json[Constants.ResponseParameters.ReportId].exists() ? json[Constants.ResponseParameters.ReportId].stringValue : Constants.General.EmptyString
     }

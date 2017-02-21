@@ -9,7 +9,7 @@
 import UIKit
 
 class LaunchViewController: BaseViewController {
-
+    
     /***********************************/
     // MARK: - Properties
     /***********************************/
@@ -42,7 +42,7 @@ class LaunchViewController: BaseViewController {
         
         setCustomLayoutForCollectionView()
     }
-
+    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
@@ -51,8 +51,8 @@ class LaunchViewController: BaseViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    
     /***********************************/
     // MARK: - Actions
     /***********************************/
@@ -106,9 +106,9 @@ class LaunchViewController: BaseViewController {
             log.debug("Member object received -> \(member)")
         }
         
-//        let submitterDashboard = UIStoryboard(name: Constants.StoryboardIds.DashboardStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.SubmitterDashboard) as! UITabBarController
-//        
-//        navigationController?.pushViewController(submitterDashboard, animated: true)
+        //        let submitterDashboard = UIStoryboard(name: Constants.StoryboardIds.DashboardStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.SubmitterDashboard) as! UITabBarController
+        //
+        //        navigationController?.pushViewController(submitterDashboard, animated: true)
     }
     
     /**
@@ -116,17 +116,68 @@ class LaunchViewController: BaseViewController {
      */
     func navigateToAdminAndApproverDashboard() {
         
-//        manager.getOrganizationDetails { (organization) in
-//            log.debug("Organization object received -> \(organization)")
-//        }
+        //        manager.getOrganizationDetails { (result) in
+        //            switch(result){
+        //            case .Success(let organization):
+        //                log.debug("Organization object received -> \(organization)")
+        //
+        //                var expense = Expense()
+        //                expense.categoryId = Singleton.sharedInstance.organization?.categories.first?.value.id
+        //                expense.currencyId = Singleton.sharedInstance.organization?.baseCurrencyId
+        //                expense.amount = 27.02
+        //                expense.date = Date()
+        //                expense.exchange = 1.0
+        //
+        //                self.expenseListManager.createNewExpense(expense, complimentionHandler: { (result) in
+        //                    log.debug(result)
+        //                })
+        //
+        //            default:
+        //                log.debug("Some Issue")
+        //            }
+        //        }
         
-        expenseListManager.getAllExpenses { (expenses) in
-            log.debug("Expense received are: \(expenses)")
+        manager.getOrganizationDetails { (result) in
+            switch(result) {
+            case .Success(let organization):
+                log.debug(organization)
+                
+                var expense = Expense()
+                expense.categoryId = Singleton.sharedInstance.organization?.categories.first?.value.id
+                expense.currencyId = Singleton.sharedInstance.organization?.baseCurrencyId
+                expense.amount = 27.02
+                expense.date = Date()
+                expense.exchange = 1.0
+                
+                self.expenseListManager.createNewExpense(expense, complimentionHandler: { (result) in
+                    switch(result) {
+                    case .Success(let expenseResponse):
+                    log.debug(expenseResponse)
+                    case .Error(let error):
+                    log.debug(error)
+                    case .Failure(let failure):
+                    log.debug(failure)
+                    }
+                })
+                
+            case .Error(let error):
+                log.debug(error)
+            case .Failure(let failure):
+                log.debug(failure)
+            }
         }
         
-//        let approverAndAdminDashboard = UIStoryboard(name: Constants.StoryboardIds.DashboardStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.ApproverAndAdminDashboard) as! UITabBarController
-//        
-//        navigationController?.pushViewController(approverAndAdminDashboard, animated: true)
+        //        expenseListManager.getAllExpenses { (expenses) in
+        //            log.debug("Expense received are: \(expenses)")
+        //        }
+        
+        
+        
+        //expenseListManager.
+        
+        //        let approverAndAdminDashboard = UIStoryboard(name: Constants.StoryboardIds.DashboardStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.ApproverAndAdminDashboard) as! UITabBarController
+        //
+        //        navigationController?.pushViewController(approverAndAdminDashboard, animated: true)
     }
 }
 

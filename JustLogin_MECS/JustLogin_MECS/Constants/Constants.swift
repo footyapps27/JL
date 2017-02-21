@@ -23,6 +23,7 @@ struct Constants {
         static let ReportStatus = 0
         static let CategoryLogo = 0
         static let AccessPrivilegeApproveReports = 0
+        static let ExchangeRate = 1.0
     }
     
     struct CellIdentifiers {
@@ -61,7 +62,7 @@ struct Constants {
         static let OrganizationDetails = URLs.BaseURL + "/organization/details"
         
         static let GetAllExpenses = URLs.BaseURL + "/expense/retrievebymember"
-        static let CreateExpense = URLs.BaseURL + "/organization/details"
+        static let CreateExpense = URLs.BaseURL + "/expense/create"
         static let UpdateExpense = URLs.BaseURL + "/organization/details"
         static let DeleteExpense = URLs.BaseURL + "/organization/details"
         
@@ -80,8 +81,12 @@ struct Constants {
         
         struct Expense {
             static let ExpenseId = "expenseId"
+            static let CategoryId = "categoryId"
+            static let CurrencyId = "currencyId"
+            static let ReportId = "reportId"
             static let Date = "date"
             static let Amount = "amount"
+            static let Exchange = "exchange"
             static let Status = "status"
             static let PaymentMode = "paymentMode"
             static let Description = "description"
@@ -133,6 +138,7 @@ struct Constants {
         static let ExpenseId = "expenseId"
         static let Date = "date"
         static let Amount = "amount"
+        static let Exchange = "exchange"
         static let Location = "location"
         static let ReferenceNumber = "referenceNumber"
         static let Notes = "notes"

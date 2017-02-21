@@ -30,7 +30,18 @@ struct LaunchManager {
     }
     
     func getOrganizationDetails(complimentionHandler: (@escaping (Result<Organization>) -> Void)) {
-        organizationDetailsService.getOrganizationDetails(complimentionHandler)
+        organizationDetailsService.getOrganizationDetails { (result) in
+            switch(result) {
+            case .Success(let organization):
+                // TODO: - Check if this is required
+                Singleton.sharedInstance.organization = organization
+                complimentionHandler(Result.Success(organization))
+            case .Error(let error):
+                complimentionHandler(Result.Error(error))
+            case .Failure(let failure):
+                complimentionHandler(Result.Failure(failure))
+            }
+        }
     }
     
     /**
