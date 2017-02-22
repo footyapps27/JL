@@ -46,6 +46,8 @@
 		8CE007281E28F3420089D159 /* SettingsTableProfileSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CE007261E28F3420089D159 /* SettingsTableProfileSectionHeaderView.xib */; };
 		8CE007291E28F3420089D159 /* SettingsTableProfileSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CE007261E28F3420089D159 /* SettingsTableProfileSectionHeaderView.xib */; };
 		8CEAADBE1E55468100BDB5ED /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEAADBD1E55468100BDB5ED /* BaseService.swift */; };
+		8CF342411E5D3941008387BF /* SignInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF342401E5D3941008387BF /* SignInManager.swift */; };
+		8CF342441E5D40E4008387BF /* BaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF342431E5D40E4008387BF /* BaseManager.swift */; };
 		8CF655C71E58387100D4FEF3 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655C61E58387100D4FEF3 /* LoginService.swift */; };
 		8CF655C91E58455A00D4FEF3 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655C81E58455A00D4FEF3 /* Member.swift */; };
 		8CF655CB1E585A8200D4FEF3 /* Role.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655CA1E585A8200D4FEF3 /* Role.swift */; };
@@ -126,6 +128,8 @@
 		8CE007211E28F3280089D159 /* SettingsTableProfileSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableProfileSectionHeaderView.swift; sourceTree = "<group>"; };
 		8CE007261E28F3420089D159 /* SettingsTableProfileSectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsTableProfileSectionHeaderView.xib; sourceTree = "<group>"; };
 		8CEAADBD1E55468100BDB5ED /* BaseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
+		8CF342401E5D3941008387BF /* SignInManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInManager.swift; sourceTree = "<group>"; };
+		8CF342431E5D40E4008387BF /* BaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseManager.swift; sourceTree = "<group>"; };
 		8CF655C61E58387100D4FEF3 /* LoginService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		8CF655C81E58455A00D4FEF3 /* Member.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		8CF655CA1E585A8200D4FEF3 /* Role.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Role.swift; sourceTree = "<group>"; };
@@ -436,6 +440,7 @@
 			isa = PBXGroup;
 			children = (
 				8CF655E01E58B55600D4FEF3 /* Approval */,
+				8CF342421E5D40D7008387BF /* Base */,
 				8CF655E11E58B55600D4FEF3 /* Dashboard */,
 				8CF655E21E58B55600D4FEF3 /* Expense */,
 				8CF655E31E58B55600D4FEF3 /* Login */,
@@ -481,6 +486,14 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		8CF342421E5D40D7008387BF /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				8CF342431E5D40E4008387BF /* BaseManager.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 		8CF655E01E58B55600D4FEF3 /* Approval */ = {
 			isa = PBXGroup;
 			children = (
@@ -507,6 +520,7 @@
 			isa = PBXGroup;
 			children = (
 				8CF655E61E58B59B00D4FEF3 /* LaunchManager.swift */,
+				8CF342401E5D3941008387BF /* SignInManager.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -852,6 +866,7 @@
 				8CD3331D1E23C48000557B6F /* SettingsListViewController.swift in Sources */,
 				8C96020D1E1FDB7F00EE66A3 /* SignInViewController.swift in Sources */,
 				8CF655D71E5875CF00D4FEF3 /* Singleton.swift in Sources */,
+				8CF342441E5D40E4008387BF /* BaseManager.swift in Sources */,
 				8CF655CD1E585ACE00D4FEF3 /* AccessPrivilege.swift in Sources */,
 				8CD333191E23BC7D00557B6F /* ExpenseListViewController.swift in Sources */,
 				8CF655D31E58694E00D4FEF3 /* Currency.swift in Sources */,
@@ -873,6 +888,7 @@
 				8CD333211E23C4E500557B6F /* BaseViewControllerWithTableView.swift in Sources */,
 				8C5141291E1E98EC003AD3B1 /* Constants.swift in Sources */,
 				8C51413B1E1F5F95003AD3B1 /* BaseCustomCollectionViewCell.swift in Sources */,
+				8CF342411E5D3941008387BF /* SignInManager.swift in Sources */,
 				8C51413F1E1F5FDB003AD3B1 /* BaseCustomTableViewCell.swift in Sources */,
 				8C5141371E1F5F53003AD3B1 /* BaseViewController.swift in Sources */,
 				8CB44AD41E5B0380005CC04D /* ReportListManager.swift in Sources */,

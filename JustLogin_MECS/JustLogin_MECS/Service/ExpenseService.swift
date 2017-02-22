@@ -63,7 +63,8 @@ struct ExpenseService : IExpenseService {
     
     func create(expense: Expense, completionHandler:( @escaping (Result<Expense>) -> Void)) {
         let payload = getPayloadForCreateExpense(expense)
-        serviceAdapter.post(destination: Constants.URLs.CreateExpense, payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
+        serviceAdapter.post(destination: Constants.URLs.UpdateExpense
+        , payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
             switch(response) {
             case .Success(let success, _ ):
                 let expense = Expense(withJSON: JSON(success))
@@ -82,13 +83,24 @@ struct ExpenseService : IExpenseService {
     func update(expense: Expense, completionHandler:( @escaping (Result<Expense>) -> Void)) {
         let payload = getPayloadForUpdateExpense(expense)
         serviceAdapter.post(destination: Constants.URLs.CreateExpense, payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
-            // TODO: - Need to handle the scenarios here.
+            switch(response) {
+            case .Success(let success, _ ):
+                let expense = Expense(withJSON: JSON(success))
+                completionHandler(Result.Success(expense))
+                
+            case .Errors(let error):
+                let error = ServiceError(JSON(error))
+                completionHandler(Result.Error(error))
+                
+            case .Failure(let description):
+                completionHandler(Result.Failure(description))
+            }
         }
     }
     
     func delete(expenseId: String, completionHandler:( @escaping (Result<Expense>) -> Void)) {
         let payload = getPayloadForDeleteExpense(expenseId)
-        serviceAdapter.post(destination: Constants.URLs.CreateExpense, payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
+        serviceAdapter.post(destination: Constants.URLs.DeleteExpense, payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
             // TODO: - Need to handle the scenarios here.
         }
     }
@@ -151,8 +163,12 @@ extension ExpenseService {
      * Method to format payload for update expense.
      */
     func getPayloadForUpdateExpense(_ expense: Expense) -> [String : Any] {
-        // TODO: - Need to handle the scenarios here.
-        return [:]
+        var payload: [String : Any] = getPayloadForCreateExpense(expense)
+        
+        if let expenseId = expense.id {
+            payload[Constants.RequestParameters.Expense.ExpenseId] = expenseId
+        }
+        return payload
     }
     
     /**

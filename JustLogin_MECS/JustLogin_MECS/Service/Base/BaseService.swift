@@ -57,16 +57,23 @@ struct AlamofireNetworkAdapter: NetworkAdapter {
     
     func post(destination: String, payload: [String : Any], headers: [String : String]?, responseHandler: @escaping (NetworkAdapterResponse) -> Void) {
         
-        log.debug("*****************************")
-        log.debug("**** Web Service Request ****")
-        log.debug("*****************************")
-        log.debug("Request url -> \(destination)")
-        log.debug("Request type -> HTTP POST")
-        log.debug("Request headers -> \(headers)")
-        log.debug("Request payload -> \(payload)")
-        
-        Alamofire.request(destination, method: .post, parameters: payload, encoding: JSONEncoding.default, headers: headers)
-            .responseJSON { response in responseHandler(response.networkAdapterResponse) }
+        // Check for internet
+        if Utilities.connectedToNetwork() {
+            log.debug("*****************************")
+            log.debug("**** Web Service Request ****")
+            log.debug("*****************************")
+            log.debug("Request url -> \(destination)")
+            log.debug("Request type -> HTTP POST")
+            log.debug("Request headers -> \(headers)")
+            log.debug("Request payload -> \(payload)")
+            
+            Alamofire.request(destination, method: .post, parameters: payload, encoding: JSONEncoding.default, headers: headers)
+                .responseJSON { response in responseHandler(response.networkAdapterResponse) }
+        }
+        else {
+            // TODO: - Add this to the strings file.
+            responseHandler(NetworkAdapterResponse.Failure("No network connection"))
+        }
     }
 }
 
