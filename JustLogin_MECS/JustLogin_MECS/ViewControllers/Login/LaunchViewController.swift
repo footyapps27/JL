@@ -9,7 +9,7 @@
 import UIKit
 
 class LaunchViewController: BaseViewController {
-
+    
     /***********************************/
     // MARK: - Properties
     /***********************************/
@@ -19,11 +19,10 @@ class LaunchViewController: BaseViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var pageControl: UIPageControl!
     
+    let manager = LaunchManager()
     
-    struct LaunchContent {
-        var imageName: String!
-        var description: String!
-    }
+    // TODO: - Remove this reference
+    let expenseListManager = ExpenseListManager()
     
     /***********************************/
     // MARK: - View Lifecycle
@@ -43,7 +42,7 @@ class LaunchViewController: BaseViewController {
         
         setCustomLayoutForCollectionView()
     }
-
+    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
@@ -51,19 +50,6 @@ class LaunchViewController: BaseViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-
-
-    /***********************************/
-    // MARK: - Actions
-    /***********************************/
-    
-    @IBAction func signUpTapped(_ sender: Any) {
-        
-    }
-    
-    @IBAction func signInTapped(_ sender: Any) {
-        
     }
     
     /***********************************/
@@ -83,29 +69,13 @@ class LaunchViewController: BaseViewController {
     }
     
     /**
-     Method to set the content that will be displayed in the collection view.
-     */
-    func getLaunchContent() -> [LaunchContent] {
-        // TODO: - Put these in the constants file.
-        return [LaunchContent(imageName:"", description:"Effortlessly Expense Reporting."),
-                LaunchContent(imageName:"", description:"Automatically extract data from receipts."),
-                LaunchContent(imageName:"", description:"Know everything about your expense."),
-                LaunchContent(imageName:"", description:"Track mileage with your phone.")]
-    }
-    
-    /**
      Method to navigate to the dashboard after the user has logged in.
      */
-    func navigateToDashboard(notification:Notification) {
-        if let user = notification.object as? User {
-            switch user.role {
-            case .Submitter:
-                // Navigate to submitter dashboard
-                navigateToSubmitterDashboard()
-            case .Admin, .Approver:
-                // Navigate to admin/approver dashboard
-                navigateToAdminAndApproverDashboard()
-            }
+    func navigateToDashboard() {
+        if manager.navigateToApprovalFlow() {
+            navigateToAdminAndApproverDashboard()
+        } else {
+            navigateToSubmitterDashboard()
         }
     }
     
@@ -123,6 +93,7 @@ class LaunchViewController: BaseViewController {
      Method to navigate to the admin/approver's dashboard.
      */
     func navigateToAdminAndApproverDashboard() {
+        
         let approverAndAdminDashboard = UIStoryboard(name: Constants.StoryboardIds.DashboardStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.ApproverAndAdminDashboard) as! UITabBarController
         
         navigationController?.pushViewController(approverAndAdminDashboard, animated: true)
@@ -132,7 +103,7 @@ class LaunchViewController: BaseViewController {
 extension LaunchViewController: UICollectionViewDataSource {
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return getLaunchContent().count
+        return manager.getLaunchContent().count
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -141,7 +112,7 @@ extension LaunchViewController: UICollectionViewDataSource {
         // TODO: - Uncomment once you have the images.
         //let imageName = getLaunchContent()[indexPath.row].imageName
         //cell.imgView.image = UIImage.init(named: imageName!)
-        cell.lblDescription.text = getLaunchContent()[indexPath.row].description
+        cell.lblDescription.text = manager.getLaunchContent()[indexPath.row].description
         return cell
     }
 }
