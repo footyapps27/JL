@@ -8,7 +8,10 @@
 
 import Foundation
 
-enum ValidationResponse {
-    case Success
-    case Failure(String)
+/**
+ * This will be used by the manager to send the response to the view controller.
+ */
+enum ManagerResponseToController<T> {
+    case Success(T)
+    case Failure(code: String,message: String)
 }

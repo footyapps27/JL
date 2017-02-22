@@ -35,13 +35,12 @@ class SignInViewController: BaseViewController {
         let cancel = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelTapped))
         
         navigationItem.leftBarButtonItems = [cancel]
-        scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(0,0,0,0)
     }
     
     /***********************************/
     // MARK: - Helpers
     /***********************************/
-
+    
     /**
      Method to dismiss the controller when cancel is tapped.
      */
@@ -54,41 +53,55 @@ class SignInViewController: BaseViewController {
      */
     @IBAction func signInTapped(_ sender: UIButton) {
         
-        activityIndicator?.startAnimating()
-        
         let validationResponse = manager.validateLoginParameters(organizationName: txtCompanyId.text!, userId: txtUserId.text!, password: txtPassword.text!)
         
         switch validationResponse {
-        case .Failure(let errorMessage):
+        case .Failure(_ , let errorMessage):
             Utilities.showErrorAlert(withMessage: errorMessage, onController: self)
-        default:
-            // Call web service
-            //callLoginService()
-            break
+        case .Success(_):
+            callLoginService()
         }
     }
     
+    /**
+     * Call the login service to authenticate the member.
+     */
     private func callLoginService() {
-        manager.login(withOrganizationName: txtCompanyId.text!, userId: txtUserId.text!, password: txtPassword.text!) { (member) in
-            print(member)
-            // Inform the parent that the user logged in successfully, and the user that has logged in.
-            let user = User.init(name: "John Doe", role: .Submitter)
-            NotificationCenter.default.post(name: Notification.Name(Constants.Notifications.LoginSuccessful), object: user)
-            self.dismiss(animated: false, completion: nil)
+        
+        // TODO: - Add the loading indicator.
+        manager.login(withOrganizationName: txtCompanyId.text!, userId: txtUserId.text!, password: txtPassword.text!) { [weak self] (result) in
+            guard let `self` = self else {
+                log.error("self reference missing in closure.")
+                return
+            }
+            
+            switch(result) {
+            case .Success( _):
+                
+                // Inform the parent that the user logged in successfully, and the member that has logged in.
+                NotificationCenter.default.post(name: Notification.Name(Constants.Notifications.LoginSuccessful), object: nil)
+                self.dismiss(animated: false, completion: nil)
+                
+            case .Failure(_ , let message):
+                Utilities.showErrorAlert(withMessage: message, onController: self)
+            }
         }
     }
 }
 
+/***********************************/
+// MARK: - Keyboard event listeners
+/***********************************/
 extension SignInViewController {
     override func keyboardWillShow(_ notification: Notification) {
         if !isKeyboardVisible {
             super.keyboardWillShow(notification)
-            Utilities.adjustInsetForKeyboardShow(show: true, notification: notification, scrollView: scrollView)
+            Utilities.adjustInsetForKeyboardShow(true, notification: notification, scrollView: scrollView)
         }
     }
     
     override func keyboardWillHide(_ notification: Notification) {
         super.keyboardWillHide(notification)
-        Utilities.adjustInsetForKeyboardShow(show: false, notification: notification, scrollView: scrollView)
+        Utilities.adjustInsetForKeyboardShow(false, notification: notification, scrollView: scrollView)
     }
 }

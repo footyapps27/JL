@@ -44,12 +44,10 @@ class BaseViewController: UIViewController {
     
     func keyboardWillShow(_ notification: Notification) {
         isKeyboardVisible = true
-        log.debug("keyboardWillShow")
     }
     
     func keyboardWillHide(_ notification: Notification) {
         isKeyboardVisible = false
-        log.debug("keyboardWillHide")
     }
     
     /***********************************/
@@ -73,7 +71,8 @@ class BaseViewController: UIViewController {
     }
     
     private func removeKeyboardNotificationListeners() {
-        NotificationCenter.default.removeObserver(self)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     private func addActivityIndicator() {

@@ -52,19 +52,6 @@ class LaunchViewController: BaseViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
-    /***********************************/
-    // MARK: - Actions
-    /***********************************/
-    
-    @IBAction func signUpTapped(_ sender: Any) {
-        
-    }
-    
-    @IBAction func signInTapped(_ sender: Any) {
-        
-    }
-    
     /***********************************/
     // MARK: - Helpers
     /***********************************/
@@ -84,16 +71,11 @@ class LaunchViewController: BaseViewController {
     /**
      Method to navigate to the dashboard after the user has logged in.
      */
-    func navigateToDashboard(notification:Notification) {
-        if let user = notification.object as? User {
-            switch user.role {
-            case .Submitter:
-                // Navigate to submitter dashboard
-                navigateToSubmitterDashboard()
-            case .Admin, .Approver:
-                // Navigate to admin/approver dashboard
-                navigateToAdminAndApproverDashboard()
-            }
+    func navigateToDashboard() {
+        if manager.navigateToApprovalFlow() {
+            navigateToAdminAndApproverDashboard()
+        } else {
+            navigateToSubmitterDashboard()
         }
     }
     
@@ -102,13 +84,9 @@ class LaunchViewController: BaseViewController {
      */
     func navigateToSubmitterDashboard() {
         
-        manager.login(withOrganizationName: "MathewCo", userId: "admin", password: "admin1") { (member) in
-            log.debug("Member object received -> \(member)")
-        }
+        let submitterDashboard = UIStoryboard(name: Constants.StoryboardIds.DashboardStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.SubmitterDashboard) as! UITabBarController
         
-        //        let submitterDashboard = UIStoryboard(name: Constants.StoryboardIds.DashboardStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.SubmitterDashboard) as! UITabBarController
-        //
-        //        navigationController?.pushViewController(submitterDashboard, animated: true)
+        navigationController?.pushViewController(submitterDashboard, animated: true)
     }
     
     /**
@@ -116,68 +94,9 @@ class LaunchViewController: BaseViewController {
      */
     func navigateToAdminAndApproverDashboard() {
         
-        //        manager.getOrganizationDetails { (result) in
-        //            switch(result){
-        //            case .Success(let organization):
-        //                log.debug("Organization object received -> \(organization)")
-        //
-        //                var expense = Expense()
-        //                expense.categoryId = Singleton.sharedInstance.organization?.categories.first?.value.id
-        //                expense.currencyId = Singleton.sharedInstance.organization?.baseCurrencyId
-        //                expense.amount = 27.02
-        //                expense.date = Date()
-        //                expense.exchange = 1.0
-        //
-        //                self.expenseListManager.createNewExpense(expense, complimentionHandler: { (result) in
-        //                    log.debug(result)
-        //                })
-        //
-        //            default:
-        //                log.debug("Some Issue")
-        //            }
-        //        }
+        let approverAndAdminDashboard = UIStoryboard(name: Constants.StoryboardIds.DashboardStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.ApproverAndAdminDashboard) as! UITabBarController
         
-        manager.getOrganizationDetails { (result) in
-            switch(result) {
-            case .Success(let organization):
-                log.debug(organization)
-                
-                var expense = Expense()
-                expense.categoryId = Singleton.sharedInstance.organization?.categories.first?.value.id
-                expense.currencyId = Singleton.sharedInstance.organization?.baseCurrencyId
-                expense.amount = 27.02
-                expense.date = Date()
-                expense.exchange = 1.0
-                
-                self.expenseListManager.createNewExpense(expense, complimentionHandler: { (result) in
-                    switch(result) {
-                    case .Success(let expenseResponse):
-                    log.debug(expenseResponse)
-                    case .Error(let error):
-                    log.debug(error)
-                    case .Failure(let failure):
-                    log.debug(failure)
-                    }
-                })
-                
-            case .Error(let error):
-                log.debug(error)
-            case .Failure(let failure):
-                log.debug(failure)
-            }
-        }
-        
-        //        expenseListManager.getAllExpenses { (expenses) in
-        //            log.debug("Expense received are: \(expenses)")
-        //        }
-        
-        
-        
-        //expenseListManager.
-        
-        //        let approverAndAdminDashboard = UIStoryboard(name: Constants.StoryboardIds.DashboardStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.ApproverAndAdminDashboard) as! UITabBarController
-        //
-        //        navigationController?.pushViewController(approverAndAdminDashboard, animated: true)
+        navigationController?.pushViewController(approverAndAdminDashboard, animated: true)
     }
 }
 

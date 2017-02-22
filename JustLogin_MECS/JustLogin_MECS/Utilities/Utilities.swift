@@ -73,7 +73,7 @@ class Utilities {
     /**
      * Method to adjust the inset of a scroll view when the keyboard is displayed or hidden.
      */
-    static func adjustInsetForKeyboardShow(show: Bool, notification: Notification, scrollView: UIScrollView) {
+    static func adjustInsetForKeyboardShow(_ show: Bool, notification: Notification, scrollView: UIScrollView) {
         guard let value = notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue else { return }
         let keyboardFrame = value.cgRectValue
         let adjustmentHeight = (keyboardFrame.height + 20) * (show ? 1 : -1)

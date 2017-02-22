@@ -25,25 +25,6 @@ struct LaunchManager {
     // MARK: - Public Methods
     /***********************************/
     
-    func login(withOrganizationName organizationName: String, userId: String, password: String, completionHandler:( @escaping (Result<Member>) -> Void)) {
-        loginService.loginUser(withOrganizationName: organizationName, userId: userId, password: password, completionHandler: completionHandler)
-    }
-    
-    func getOrganizationDetails(complimentionHandler: (@escaping (Result<Organization>) -> Void)) {
-        organizationDetailsService.getOrganizationDetails { (result) in
-            switch(result) {
-            case .Success(let organization):
-                // TODO: - Check if this is required
-                Singleton.sharedInstance.organization = organization
-                complimentionHandler(Result.Success(organization))
-            case .Error(let error):
-                complimentionHandler(Result.Error(error))
-            case .Failure(let failure):
-                complimentionHandler(Result.Failure(failure))
-            }
-        }
-    }
-    
     /**
      Method to set the content that will be displayed in the collection view.
      */
@@ -53,5 +34,15 @@ struct LaunchManager {
                 LaunchContent(imageName:"", description:"Automatically extract data from receipts."),
                 LaunchContent(imageName:"", description:"Know everything about your expense."),
                 LaunchContent(imageName:"", description:"Track mileage with your phone.")]
+    }
+    
+    /**
+     *
+     */
+    func navigateToApprovalFlow() -> Bool {
+        guard let member = Singleton.sharedInstance.member else {
+            return false
+        }
+        return (member.role?.accessPrivileges?.approveReport)! > 0
     }
 }

@@ -23,4 +23,6 @@ final class Singleton {
     var accessTokenHeader: [String:String] = [:]
     
     var organization: Organization?
+    
+    var member: Member?
 }

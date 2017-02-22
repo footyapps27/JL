@@ -32,13 +32,13 @@ enum Result<T> {
  * The error received from the server.
  */
 struct ServiceError {
-    let errorCode: String
-    let errorMessage: String
+    let code: String
+    let message: String
     
     init(_ json:JSON) {
-        errorCode = json[Constants.ResponseParameters.ErrorCode].exists() ? json[Constants.ResponseParameters.ErrorCode].stringValue : Constants.General.EmptyString
+        code = json[Constants.ResponseParameters.ErrorCode].exists() ? json[Constants.ResponseParameters.ErrorCode].stringValue : Constants.General.EmptyString
         
-        errorMessage = json[Constants.ResponseParameters.ErrorMessage].exists() ? json[Constants.ResponseParameters.ErrorMessage].stringValue : Constants.General.EmptyString
+        message = json[Constants.ResponseParameters.ErrorMessage].exists() ? json[Constants.ResponseParameters.ErrorMessage].stringValue : Constants.General.EmptyString
     }
 }
 
