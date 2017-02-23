@@ -18,11 +18,11 @@ struct Expense {
     
     var date: Date?
     
-    var amount: Double = Constants.Defaults.Amount
+    var amount: Double = Constants.Defaults.amount
     
     var status: Int = Constants.Defaults.ExpenseStatus
     
-    var exchange: Double = Constants.Defaults.ExchangeRate
+    var exchange: Double = Constants.Defaults.exchangeRate
     
     var description: String?
     
@@ -55,60 +55,34 @@ struct Expense {
      */
     init(withJSON json:JSON) {
         
-        if json[Constants.ResponseParameters.ExpenseId].exists() {
-            id = json[Constants.ResponseParameters.ExpenseId].stringValue
-        }
+        id = json[Constants.ResponseParameters.expenseId].stringValue
         
-        if let jsonDate = json[Constants.ResponseParameters.Date].string {
+        if let jsonDate = json[Constants.ResponseParameters.date].string {
             date = Utilities.convertServerStringToDate(jsonDate)
         }
         
-        if json[Constants.ResponseParameters.Amount].exists() {
-            amount = json[Constants.ResponseParameters.Amount].doubleValue
-        }
+        amount = json[Constants.ResponseParameters.amount].doubleValue
+
+        exchange = json[Constants.ResponseParameters.exchange].doubleValue
+
+        status = json[Constants.ResponseParameters.status].intValue
         
-        if json[Constants.ResponseParameters.Exchange].exists() {
-            exchange = json[Constants.ResponseParameters.Exchange].doubleValue
-        }
+        description = json[Constants.ResponseParameters.description].stringValue
         
-        if json[Constants.ResponseParameters.Status].exists() {
-            status = json[Constants.ResponseParameters.Status].intValue
-        }
+        location = json[Constants.ResponseParameters.location].stringValue
         
-        if json[Constants.ResponseParameters.Description].exists() {
-            description = json[Constants.ResponseParameters.Description].stringValue
-        }
+        referenceNumber = json[Constants.ResponseParameters.referenceNumber].stringValue
         
-        if json[Constants.ResponseParameters.Location].exists() {
-            location = json[Constants.ResponseParameters.Location].stringValue
-        }
+        notes = json[Constants.ResponseParameters.notes].stringValue
         
-        if json[Constants.ResponseParameters.ReferenceNumber].exists() {
-            referenceNumber = json[Constants.ResponseParameters.ReferenceNumber].stringValue
-        }
+        merchantName = json[Constants.ResponseParameters.merchantName].stringValue
         
-        if json[Constants.ResponseParameters.Notes].exists() {
-            notes = json[Constants.ResponseParameters.Notes].stringValue
-        }
+        paymentMode = json[Constants.ResponseParameters.paymentMode].stringValue
         
-        //if json[Constants.ResponseParameters.MerchantName].exists() {
-            merchantName = json["Ts"].stringValue
-        //}
+        categoryId = json[Constants.ResponseParameters.categoryId].stringValue
         
-        if json[Constants.ResponseParameters.PaymentMode].exists() {
-            paymentMode = json[Constants.ResponseParameters.PaymentMode].stringValue
-        }
+        currencyId = json[Constants.ResponseParameters.currencyId].stringValue
         
-        if json[Constants.ResponseParameters.CategoryId].exists() {
-            categoryId = json[Constants.ResponseParameters.CategoryId].stringValue
-        }
-        
-        if json[Constants.ResponseParameters.CurrencyId].exists() {
-            currencyId = json[Constants.ResponseParameters.CurrencyId].stringValue
-        }
-        
-        if json[Constants.ResponseParameters.ReportId].exists() {
-            reportId = json[Constants.ResponseParameters.ReportId].stringValue
-        }
+        reportId = json[Constants.ResponseParameters.reportId].stringValue
     }
 }

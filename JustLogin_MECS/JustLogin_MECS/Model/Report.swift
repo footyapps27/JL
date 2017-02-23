@@ -16,7 +16,7 @@ struct Report {
     /***********************************/
     var id: String?
     
-    var amount: Double = Constants.Defaults.Amount
+    var amount: Double = Constants.Defaults.amount
     
     var businessPurpose: String?
     
@@ -26,7 +26,7 @@ struct Report {
     
     var title: String?
     
-    var status: Int = Constants.Defaults.ReportStatus
+    var status: Int = Constants.Defaults.reportStatus
     
     var expenseIds: [String] = []
     
@@ -46,35 +46,28 @@ struct Report {
      */
     init(withJSON json:JSON) {
         
-        if json[Constants.ResponseParameters.ReportId].exists() {
-            id = json[Constants.ResponseParameters.ReportId].stringValue
-        }
         
-        if json[Constants.ResponseParameters.Amount].exists() {
-            amount = json[Constants.ResponseParameters.Amount].doubleValue
-        }
+            id = json[Constants.ResponseParameters.reportId].stringValue
         
-        if json[Constants.ResponseParameters.BusinessPurpose].exists() {
-            businessPurpose = json[Constants.ResponseParameters.BusinessPurpose].stringValue
-        }
         
-        if json[Constants.ResponseParameters.Title].exists() {
-            title = json[Constants.ResponseParameters.Title].stringValue
-        }
+            amount = json[Constants.ResponseParameters.amount].doubleValue
         
-        if json[Constants.ResponseParameters.Status].exists() {
-            status = json[Constants.ResponseParameters.Status].intValue
-        }
         
-        if let jsonStartDate = json[Constants.ResponseParameters.StartDate].string {
+            businessPurpose = json[Constants.ResponseParameters.businessPurpose].stringValue
+        
+            title = json[Constants.ResponseParameters.title].stringValue
+        
+            status = json[Constants.ResponseParameters.status].intValue
+        
+        if let jsonStartDate = json[Constants.ResponseParameters.startDate].string {
             startDate = Utilities.convertServerStringToDate(jsonStartDate)
         }
         
-        if let jsonEndDate = json[Constants.ResponseParameters.EndDate].string {
+        if let jsonEndDate = json[Constants.ResponseParameters.endDate].string {
             endDate = Utilities.convertServerStringToDate(jsonEndDate)
         }
 
-        let jsonExpenseIds = json[Constants.ResponseParameters.ExpenseIds].exists() ? json[Constants.ResponseParameters.ExpenseIds].arrayValue : []
+        let jsonExpenseIds = json[Constants.ResponseParameters.expenseIds].exists() ? json[Constants.ResponseParameters.expenseIds].arrayValue : []
         for expenseId in jsonExpenseIds {
             expenseIds.append(expenseId.stringValue)
         }

@@ -36,9 +36,8 @@ struct ServiceError {
     let message: String
     
     init(_ json:JSON) {
-        code = json[Constants.ResponseParameters.ErrorCode].exists() ? json[Constants.ResponseParameters.ErrorCode].stringValue : Constants.General.EmptyString
-        
-        message = json[Constants.ResponseParameters.ErrorMessage].exists() ? json[Constants.ResponseParameters.ErrorMessage].stringValue : Constants.General.EmptyString
+        code = json[Constants.ResponseParameters.errorCode].stringValue
+        message = json[Constants.ResponseParameters.errorMessage].stringValue
     }
 }
 
@@ -107,7 +106,7 @@ extension Alamofire.DataResponse {
         }
         
         // Check the success status code first.
-        guard self.response?.statusCode == Constants.ResponseParameters.StatusCode else {
+        guard self.response?.statusCode == Constants.ResponseParameters.statusCode else {
             log.error("Invalid status code -> \(self.response?.statusCode)")
             return NetworkAdapterResponse.failure("Server returned status code != 200")
         }
@@ -117,14 +116,14 @@ extension Alamofire.DataResponse {
             return NetworkAdapterResponse.failure("Invalid JSON response")
         }
         
-        if let errors = json[Constants.ResponseParameters.Errors] as? [String: Any] {
+        if let errors = json[Constants.ResponseParameters.errors] as? [String: Any] {
             return NetworkAdapterResponse.errors(errors)
         }
         
-        if let data = json[Constants.ResponseParameters.Data] as? [String: Any] {
+        if let data = json[Constants.ResponseParameters.data] as? [String: Any] {
             return NetworkAdapterResponse.success(response: data, headers: headers)
         }
-        log.error("Invalid JSON response for data key -> \(json[Constants.ResponseParameters.Data])")
+        log.error("Invalid JSON response for data key -> \(json[Constants.ResponseParameters.data])")
         return NetworkAdapterResponse.failure("Invalid JSON response for data key.")
     }
 }

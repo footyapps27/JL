@@ -81,7 +81,7 @@ extension ExpenseListViewController: UITableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.ExpenseListTableViewCellIdentifier, for: indexPath) as? ExpenseListTableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.expenseListTableViewCellIdentifier, for: indexPath) as? ExpenseListTableViewCell {
             
             let expense = manager.getExpenses()[indexPath.row]
             
@@ -98,7 +98,7 @@ extension ExpenseListViewController: UITableViewDataSource {
 
 extension ExpenseListViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat(Constants.CellHeight.ExpenseListCellHeight)
+        return CGFloat(Constants.CellHeight.expenseListCellHeight)
     }
 
 }

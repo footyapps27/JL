@@ -26,7 +26,7 @@ class Utilities {
      */
     static func convertDateToString(_ date: Date) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = Constants.General.LocalDisplayDateFormat
+        dateFormatter.dateFormat = Constants.General.localDisplayDateFormat
         return dateFormatter.string(from: date)
     }
     

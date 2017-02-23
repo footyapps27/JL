@@ -16,7 +16,7 @@ struct Category {
     /***********************************/
     var id: String?
     
-    var logo: Int = Constants.Defaults.CategoryLogo
+    var logo: Int = Constants.Defaults.categoryLogo
     
     var name: String?
     
@@ -42,28 +42,16 @@ struct Category {
      */
     init(withJSON json:JSON) {
         
-        if json[Constants.ResponseParameters.CategoryId].exists() {
-            id = json[Constants.ResponseParameters.CategoryId].stringValue
-        }
+        id = json[Constants.ResponseParameters.categoryId].stringValue
         
-        if json[Constants.ResponseParameters.Logo].exists() {
-            logo = json[Constants.ResponseParameters.Logo].intValue
-        }
+        logo = json[Constants.ResponseParameters.logo].intValue
         
-        if json[Constants.ResponseParameters.Name].exists() {
-            name = json[Constants.ResponseParameters.Name].stringValue
-        }
+        name = json[Constants.ResponseParameters.name].stringValue
         
-        if json[Constants.ResponseParameters.AccountCode].exists() {
-            accountCode = json[Constants.ResponseParameters.AccountCode].stringValue
-        }
+        accountCode = json[Constants.ResponseParameters.accountCode].stringValue
         
-        if json[Constants.ResponseParameters.Description].exists() {
-            description = json[Constants.ResponseParameters.Description].stringValue
-        }
+        description = json[Constants.ResponseParameters.description].stringValue
         
-        if json[Constants.ResponseParameters.IsActive].exists() {
-            isActive = json[Constants.ResponseParameters.IsActive].boolValue
-        }
+        isActive = json[Constants.ResponseParameters.isActive].boolValue
     }
 }

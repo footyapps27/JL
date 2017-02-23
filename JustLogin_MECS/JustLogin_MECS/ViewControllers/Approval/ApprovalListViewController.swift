@@ -58,7 +58,7 @@ extension ApprovalListViewController: UITableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.ApprovalListTableViewCellIdentifier, for: indexPath) as? ApprovalListTableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.approvalListTableViewCellIdentifier, for: indexPath) as? ApprovalListTableViewCell {
             cell.lblReportName.text = "Office party"
             cell.lblEmployeeName.text = "John Doe"
             cell.lblAmount.text = "$98.55"
@@ -72,7 +72,7 @@ extension ApprovalListViewController: UITableViewDataSource {
 
 extension ApprovalListViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat(Constants.CellHeight.ApprovalListCellHeight)
+        return CGFloat(Constants.CellHeight.approvalListCellHeight)
     }
 }
 
