@@ -34,13 +34,13 @@ struct LoginService: ILoginService {
         
         let payload = getPayloadForLogin(withOrganizationName: organizationName, userId: userId, password: password)
         
-        serviceAdapter.post(destination: Constants.URLs.Login, payload: payload, headers: nil) { (response) in
+        serviceAdapter.post(destination: Constants.URLs.login, payload: payload, headers: nil) { (response) in
             switch(response) {
             case .success(let success, let headers):
                 
                 // Since the login service provides the headers, we save it for the other services
-                if let accessToken = headers?[Constants.ResponseParameters.AccessToken] {
-                    Singleton.sharedInstance.accessTokenHeader[Constants.ResponseParameters.AccessToken] = accessToken
+                if let accessToken = headers?[Constants.ResponseParameters.accessToken] {
+                    Singleton.sharedInstance.accessTokenHeader[Constants.ResponseParameters.accessToken] = accessToken
                 }
                 
                 let member = Member(withJSON: JSON(success))
@@ -58,7 +58,7 @@ struct LoginService: ILoginService {
     
     
     func logoutUser() {
-        serviceAdapter.post(destination: Constants.URLs.Logout, payload: [:], headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
+        serviceAdapter.post(destination: Constants.URLs.logout, payload: [:], headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
             
         }
     }
@@ -69,8 +69,8 @@ extension LoginService {
      * Method to get payload from the company Id, user Id & password.
      */
     func getPayloadForLogin(withOrganizationName organizationName: String, userId: String, password: String) -> [String : String] {
-        return [Constants.RequestParameters.Login.OrganizationName : organizationName,
-                Constants.RequestParameters.Login.MemberName : userId,
-                Constants.RequestParameters.Login.Password : password];
+        return [Constants.RequestParameters.Login.organizationName : organizationName,
+                Constants.RequestParameters.Login.memberName : userId,
+                Constants.RequestParameters.Login.password : password];
     }
 }

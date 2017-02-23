@@ -16,7 +16,7 @@ struct Currency {
     /***********************************/
     var id: String?
     
-    var decimalPlaces: Int = Constants.Defaults.DecimalPlaces
+    var decimalPlaces: Int = Constants.Defaults.decimalPlaces
     
     var format: String?
     
@@ -40,24 +40,14 @@ struct Currency {
      */
     init(withJSON json:JSON) {
         
-        if json[Constants.ResponseParameters.CurrencyId].exists() {
-            id = json[Constants.ResponseParameters.CurrencyId].stringValue
-        }
+        id = json[Constants.ResponseParameters.currencyId].stringValue
         
-        if json[Constants.ResponseParameters.DecimalPlaces].exists() {
-            decimalPlaces = json[Constants.ResponseParameters.DecimalPlaces].intValue
-        }
+        decimalPlaces = json[Constants.ResponseParameters.decimalPlaces].intValue
         
-        if json[Constants.ResponseParameters.Format].exists() {
-            format = json[Constants.ResponseParameters.Format].stringValue
-        }
+        format = json[Constants.ResponseParameters.format].stringValue
         
-        if json[Constants.ResponseParameters.Symbol].exists() {
-            symbol = json[Constants.ResponseParameters.Symbol].stringValue
-        }
+        symbol = json[Constants.ResponseParameters.symbol].stringValue
         
-        if json[Constants.ResponseParameters.Code].exists() {
-            code = json[Constants.ResponseParameters.Code].stringValue
-        }
+        code = json[Constants.ResponseParameters.code].stringValue
     }
 }

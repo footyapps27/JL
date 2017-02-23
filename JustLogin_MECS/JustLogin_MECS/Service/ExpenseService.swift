@@ -40,11 +40,11 @@ struct ExpenseService : IExpenseService {
     // MARK: - IExpenseService implementation
     /***********************************/
     func getAllExpenses(_ completionHandler:( @escaping (Result<[Expense]>) -> Void)) {
-        serviceAdapter.post(destination: Constants.URLs.GetAllExpenses, payload: [:], headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
+        serviceAdapter.post(destination: Constants.URLs.getAllExpenses, payload: [:], headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
             switch(response) {
             case .success(let success, _ ):
                 var allExpenses: [Expense] = []
-                if let jsonExpenses = success[Constants.ResponseParameters.Expenses] as? [Any] {
+                if let jsonExpenses = success[Constants.ResponseParameters.expenses] as? [Any] {
                     for expense in jsonExpenses {
                         allExpenses.append(Expense(withJSON: JSON(expense)))
                     }
@@ -63,7 +63,7 @@ struct ExpenseService : IExpenseService {
     
     func create(expense: Expense, completionHandler:( @escaping (Result<Expense>) -> Void)) {
         let payload = getPayloadForCreateExpense(expense)
-        serviceAdapter.post(destination: Constants.URLs.UpdateExpense
+        serviceAdapter.post(destination: Constants.URLs.updateExpense
         , payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
             switch(response) {
             case .success(let success, _ ):
@@ -82,7 +82,7 @@ struct ExpenseService : IExpenseService {
     
     func update(expense: Expense, completionHandler:( @escaping (Result<Expense>) -> Void)) {
         let payload = getPayloadForUpdateExpense(expense)
-        serviceAdapter.post(destination: Constants.URLs.CreateExpense, payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
+        serviceAdapter.post(destination: Constants.URLs.createExpense, payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
             switch(response) {
             case .success(let success, _ ):
                 let expense = Expense(withJSON: JSON(success))
@@ -100,7 +100,7 @@ struct ExpenseService : IExpenseService {
     
     func delete(expenseId: String, completionHandler:( @escaping (Result<Expense>) -> Void)) {
         let payload = getPayloadForDeleteExpense(expenseId)
-        serviceAdapter.post(destination: Constants.URLs.DeleteExpense, payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
+        serviceAdapter.post(destination: Constants.URLs.deleteExpense, payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
             // TODO: - Need to handle the scenarios here.
         }
     }
@@ -114,46 +114,46 @@ extension ExpenseService {
     func getPayloadForCreateExpense(_ expense: Expense) -> [String : Any] {
         var payload: [String : Any] = [:]
         
-        payload[Constants.RequestParameters.Expense.Amount] = expense.amount
+        payload[Constants.RequestParameters.Expense.amount] = expense.amount
         
-        payload[Constants.RequestParameters.Expense.Status] = expense.status
+        payload[Constants.RequestParameters.Expense.status] = expense.status
         
-        payload[Constants.RequestParameters.Expense.Exchange] = expense.exchange
+        payload[Constants.RequestParameters.Expense.exchange] = expense.exchange
         
         if let date = expense.date {
-            payload[Constants.RequestParameters.Expense.Date] = Utilities.convertDateToString(date)
+            payload[Constants.RequestParameters.Expense.date] = Utilities.convertDateToString(date)
         }
         
         if let description = expense.description {
-            payload[Constants.RequestParameters.Expense.Description] = description
+            payload[Constants.RequestParameters.Expense.description] = description
         }
         
         if let location = expense.location {
-            payload[Constants.RequestParameters.Expense.Location] = location
+            payload[Constants.RequestParameters.Expense.location] = location
         }
         
         if let referenceNumber = expense.referenceNumber {
-            payload[Constants.RequestParameters.Expense.ReferenceNumber] = referenceNumber
+            payload[Constants.RequestParameters.Expense.referenceNumber] = referenceNumber
         }
         
         if let notes = expense.notes {
-            payload[Constants.RequestParameters.Expense.Notes] = notes
+            payload[Constants.RequestParameters.Expense.notes] = notes
         }
         
         if let paymentMode = expense.paymentMode {
-            payload[Constants.RequestParameters.Expense.PaymentMode] = paymentMode
+            payload[Constants.RequestParameters.Expense.paymentMode] = paymentMode
         }
         
         if let categoryId = expense.categoryId {
-            payload[Constants.RequestParameters.Expense.CategoryId] = categoryId
+            payload[Constants.RequestParameters.Expense.categoryId] = categoryId
         }
         
         if let currencyId = expense.currencyId {
-            payload[Constants.RequestParameters.Expense.CurrencyId] = currencyId
+            payload[Constants.RequestParameters.Expense.currencyId] = currencyId
         }
         
         if let reportId = expense.reportId {
-            payload[Constants.RequestParameters.Expense.ReportId] = reportId
+            payload[Constants.RequestParameters.Expense.reportId] = reportId
         }
         
         return payload
@@ -166,7 +166,7 @@ extension ExpenseService {
         var payload: [String : Any] = getPayloadForCreateExpense(expense)
         
         if let expenseId = expense.id {
-            payload[Constants.RequestParameters.Expense.ExpenseId] = expenseId
+            payload[Constants.RequestParameters.Expense.expenseId] = expenseId
         }
         return payload
     }

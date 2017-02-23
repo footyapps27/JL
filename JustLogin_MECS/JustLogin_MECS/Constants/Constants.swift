@@ -11,168 +11,168 @@ import Foundation
 struct Constants {
     
     struct General {
-        static let EmptyString = ""
+        static let emptyString = ""
         static let ServerDateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-        static let LocalDisplayDateFormat = "yyyy-MM-dd"
+        static let localDisplayDateFormat = "yyyy-MM-dd"
     }
     
     struct Defaults {
-        static let DecimalPlaces = 2
-        static let Amount = 0.00
+        static let decimalPlaces = 2
+        static let amount = 0.00
         static let ExpenseStatus = 0
-        static let ReportStatus = 0
-        static let CategoryLogo = 0
-        static let AccessPrivilegeApproveReports = 0
-        static let ExchangeRate = 1.0
+        static let reportStatus = 0
+        static let categoryLogo = 0
+        static let accessPrivilegeApproveReports = 0
+        static let exchangeRate = 1.0
     }
     
     struct CellIdentifiers {
-        static let LaunchCollectionViewCellIdentifier = "launchCollectionCellIdentifier"
-        static let ExpenseListTableViewCellIdentifier = "expenseListTableViewCellIdentifier"
-        static let SettingsListTableViewCellIdentifier = "settingsListTableViewCellIdentifier"
-        static let ReportListTableViewCellIdentifier = "reportListTableViewCellIdentifier"
-        static let ApprovalListTableViewCellIdentifier = "approvalListTableViewCellIdentifier"
+        static let launchCollectionViewCellIdentifier = "launchCollectionCellIdentifier"
+        static let expenseListTableViewCellIdentifier = "expenseListTableViewCellIdentifier"
+        static let settingsListTableViewCellIdentifier = "settingsListTableViewCellIdentifier"
+        static let reportListTableViewCellIdentifier = "reportListTableViewCellIdentifier"
+        static let approvalListTableViewCellIdentifier = "approvalListTableViewCellIdentifier"
     }
     
     struct CellHeight {
-        static let ReportListCellHeight = 68
-        static let ApprovalListCellHeight = 68
-        static let ExpenseListCellHeight = 90
+        static let reportListCellHeight = 68
+        static let approvalListCellHeight = 68
+        static let expenseListCellHeight = 90
     }
     
     struct StoryboardIds {
-        static let DashboardStoryboard = "Dashboard"
-        static let ApproverAndAdminDashboard = "approverAndAdminDashboard"
-        static let SubmitterDashboard = "submitterDashboard"
+        static let dashboardStoryboard = "Dashboard"
+        static let approverAndAdminDashboard = "approverAndAdminDashboard"
+        static let submitterDashboard = "submitterDashboard"
     }
     
     struct Notifications {
-        static let LoginSuccessful = "loginSuccessful"
+        static let loginSuccessful = "loginSuccessful"
     }
     
     /***********************************/
     // MARK: - Web service related constants
     /***********************************/
     struct URLs {
-        static let BaseURL = "http://52.220.239.178/api"
+        static let baseURL = "http://52.220.239.178/api"
         
-        static let Login = URLs.BaseURL + "/authentication/login"
-        static let Logout = URLs.BaseURL + "/authentication/logout"
+        static let login = URLs.baseURL + "/authentication/login"
+        static let logout = URLs.baseURL + "/authentication/logout"
         
-        static let OrganizationDetails = URLs.BaseURL + "/organization/details"
+        static let organizationDetails = URLs.baseURL + "/organization/details"
         
-        static let GetAllExpenses = URLs.BaseURL + "/expense/retrievebymember"
-        static let CreateExpense = URLs.BaseURL + "/expense/create"
-        static let UpdateExpense = URLs.BaseURL + "/organization/details"
-        static let DeleteExpense = URLs.BaseURL + "/organization/details"
+        static let getAllExpenses = URLs.baseURL + "/expense/retrievebymember"
+        static let createExpense = URLs.baseURL + "/expense/create"
+        static let updateExpense = URLs.baseURL + "/organization/details"
+        static let deleteExpense = URLs.baseURL + "/organization/details"
         
-        static let GetAllReports = URLs.BaseURL + "/report/retrievebymember"
-        static let CreateReport = URLs.BaseURL + "/organization/details"
-        static let UpdateReport = URLs.BaseURL + "/organization/details"
-        static let DeleteReport = URLs.BaseURL + "/organization/details"
+        static let getAllReports = URLs.baseURL + "/report/retrievebymember"
+        static let createReport = URLs.baseURL + "/organization/details"
+        static let updateReport = URLs.baseURL + "/organization/details"
+        static let deleteReport = URLs.baseURL + "/organization/details"
     }
     
     struct RequestParameters {
         struct Login {
-            static let OrganizationName = "organizationName"
-            static let MemberName = "memberName"
-            static let Password = "password"
+            static let organizationName = "organizationName"
+            static let memberName = "memberName"
+            static let password = "password"
         }
         
         struct Expense {
-            static let ExpenseId = "expenseId"
-            static let CategoryId = "categoryId"
-            static let CurrencyId = "currencyId"
-            static let ReportId = "reportId"
-            static let Date = "date"
-            static let Amount = "amount"
-            static let Exchange = "exchange"
-            static let Status = "status"
-            static let PaymentMode = "paymentMode"
-            static let Description = "description"
-            static let Location = "location"
-            static let ReferenceNumber = "referenceNumber"
-            static let Notes = "notes"
+            static let expenseId = "expenseId"
+            static let categoryId = "categoryId"
+            static let currencyId = "currencyId"
+            static let reportId = "reportId"
+            static let date = "date"
+            static let amount = "amount"
+            static let exchange = "exchange"
+            static let status = "status"
+            static let paymentMode = "paymentMode"
+            static let description = "description"
+            static let location = "location"
+            static let referenceNumber = "referenceNumber"
+            static let notes = "notes"
         }
     }
     
     struct ResponseParameters {
-        static let AccessToken = "AccessToken"
+        static let accessToken = "AccessToken"
         
-        static let StatusCode = 200
-        static let Data = "data"
+        static let statusCode = 200
+        static let data = "data"
         
-        static let Errors = "errors"
-        static let ErrorCode = "errorCode"
-        static let ErrorMessage = "errorMessage"
+        static let errors = "errors"
+        static let errorCode = "errorCode"
+        static let errorMessage = "errorMessage"
         
-        static let MemberId = "memberId"
-        static let UserId = "userId"
-        static let FullName = "fullName"
-        static let Status = "status"
-        static let OrganizationId = "organizationId"
-        static let Role = "role"
+        static let memberId = "memberId"
+        static let userId = "userId"
+        static let fullName = "fullName"
+        static let status = "status"
+        static let organizationId = "organizationId"
+        static let role = "role"
         
-        static let RoleId = "roleId"
-        static let Name = "name"
-        static let Description = "description"
-        static let IsDefault = "isDefault"
-        static let AccessPrivileges = "accessPrivileges"
+        static let roleId = "roleId"
+        static let name = "name"
+        static let description = "description"
+        static let isDefault = "isDefault"
+        static let accessPrivileges = "accessPrivileges"
         
-        static let BaseCurrencyId = "baseCurrencyId"
-        static let Currencies = "currencies"
-        static let Categories = "categories"
+        static let baseCurrencyId = "baseCurrencyId"
+        static let currencies = "currencies"
+        static let categories = "categories"
         
-        static let CategoryId = "categoryId"
-        static let Logo = "logo"
-        static let AccountCode = "accountCode"
-        static let IsActive = "isActive"
+        static let categoryId = "categoryId"
+        static let logo = "logo"
+        static let accountCode = "accountCode"
+        static let isActive = "isActive"
         
-        static let CurrencyId = "currencyId"
-        static let DecimalPlaces = "decimalPlaces"
-        static let Format = "format"
-        static let Symbol = "symbol"
-        static let Code = "code"
+        static let currencyId = "currencyId"
+        static let decimalPlaces = "decimalPlaces"
+        static let format = "format"
+        static let symbol = "symbol"
+        static let code = "code"
         
-        static let CreateAndSubmitReports = "createAndSubmitReports"
-        static let RecordEmployeeAdvance = "recordEmployeeAdvance"
-        static let RecordEmployeeAdvanceForOthers = "recordEmployeeAdvanceForOthers"
-        static let PreventExpenseCreationForParentCategory = "preventExpenseCreationForParentCategory"
-        static let ViewAllCompanyReports = "viewAllCompanyReports"
-        static let ApproveReport = "approveReport"
-        static let ApproveReportWithPolicyViolation = "approveReportWithPolicyViolation"
-        static let ModifyExpenseInSubmittedReport = "modifyExpenseInSubmittedReport"
-        static let ReimburseReport = "reimburseReport"
-        static let ModifySettingsUsers = "users"
-        static let ModifySettingsPreferences = "preferences"
-        static let ModifySettingsExpenseCategories = "expenseCategories"
-        static let ModifySettingsCustomers = "customers"
-        static let ModifySettingsProjects = "projects"
-        static let ModifySettingsMerchants = "merchants"
-        static let ModifySettingsCurrencies = "currencies"
-        static let ModifySettingsTaxes = "taxes"
-        static let ModifySettingsPaymentMode = "paymentMode"
-        static let ModifySettingsManageIntegrations = "manageIntegrations"
-        static let ModifySettingsBilling = "billing"
+        static let createAndSubmitReports = "createAndSubmitReports"
+        static let recordEmployeeAdvance = "recordEmployeeAdvance"
+        static let recordEmployeeAdvanceForOthers = "recordEmployeeAdvanceForOthers"
+        static let preventExpenseCreationForParentCategory = "preventExpenseCreationForParentCategory"
+        static let viewAllCompanyReports = "viewAllCompanyReports"
+        static let approveReport = "approveReport"
+        static let approveReportWithPolicyViolation = "approveReportWithPolicyViolation"
+        static let modifyExpenseInSubmittedReport = "modifyExpenseInSubmittedReport"
+        static let reimburseReport = "reimburseReport"
+        static let modifySettingsUsers = "users"
+        static let modifySettingsPreferences = "preferences"
+        static let modifySettingsExpenseCategories = "expenseCategories"
+        static let modifySettingsCustomers = "customers"
+        static let modifySettingsProjects = "projects"
+        static let modifySettingsMerchants = "merchants"
+        static let modifySettingsCurrencies = "currencies"
+        static let modifySettingsTaxes = "taxes"
+        static let modifySettingsPaymentMode = "paymentMode"
+        static let modifySettingsManageIntegrations = "manageIntegrations"
+        static let modifySettingsBilling = "billing"
         
-        static let Expenses = "expenses"
-        static let ExpenseId = "expenseId"
-        static let Date = "date"
-        static let Amount = "amount"
-        static let Exchange = "exchange"
-        static let Location = "location"
-        static let ReferenceNumber = "referenceNumber"
-        static let Notes = "notes"
-        static let MerchantName = "merchantName"
-        static let PaymentMode = "paymentMode"
-        static let SubmitterId = "submitterId"
+        static let expenses = "expenses"
+        static let expenseId = "expenseId"
+        static let date = "date"
+        static let amount = "amount"
+        static let exchange = "exchange"
+        static let location = "location"
+        static let referenceNumber = "referenceNumber"
+        static let notes = "notes"
+        static let merchantName = "merchantName"
+        static let paymentMode = "paymentMode"
+        static let submitterId = "submitterId"
         
-        static let Reports = "reports"
-        static let ReportId = "reportId"
-        static let BusinessPurpose = "businessPurpose"
-        static let StartDate = "startDate"
-        static let EndDate = "endDate"
-        static let Title = "title"
-        static let ExpenseIds = "expenseIds"
+        static let reports = "reports"
+        static let reportId = "reportId"
+        static let businessPurpose = "businessPurpose"
+        static let startDate = "startDate"
+        static let endDate = "endDate"
+        static let title = "title"
+        static let expenseIds = "expenseIds"
     }
 }

@@ -40,25 +40,20 @@ struct Organization {
      */
     init(withJSON json:JSON) {
         
-        if json[Constants.ResponseParameters.OrganizationId].exists() {
-            id = json[Constants.ResponseParameters.OrganizationId].stringValue
-        }
         
-        if json[Constants.ResponseParameters.Name].exists() {
-            name = json[Constants.ResponseParameters.Name].stringValue
-        }
+            id = json[Constants.ResponseParameters.organizationId].stringValue
         
-        if json[Constants.ResponseParameters.BaseCurrencyId].exists() {
-            baseCurrencyId = json[Constants.ResponseParameters.BaseCurrencyId].stringValue
-        }
+            name = json[Constants.ResponseParameters.name].stringValue
         
-        let jsonCurrencies = json[Constants.ResponseParameters.Currencies].exists() ? json[Constants.ResponseParameters.Currencies].arrayValue : []
+            baseCurrencyId = json[Constants.ResponseParameters.baseCurrencyId].stringValue
+        
+        let jsonCurrencies = json[Constants.ResponseParameters.currencies].exists() ? json[Constants.ResponseParameters.currencies].arrayValue : []
         for jsonCurrency in jsonCurrencies {
             let currency = Currency(withJSON: jsonCurrency)
             currencies[currency.id!] = currency
         }
         
-        let jsonCategories = json[Constants.ResponseParameters.Categories].exists() ? json[Constants.ResponseParameters.Categories].arrayValue : []
+        let jsonCategories = json[Constants.ResponseParameters.categories].exists() ? json[Constants.ResponseParameters.categories].arrayValue : []
         for jsonCategory in jsonCategories {
             let category = Category(withJSON: jsonCategory)
             categories[category.id!] = category

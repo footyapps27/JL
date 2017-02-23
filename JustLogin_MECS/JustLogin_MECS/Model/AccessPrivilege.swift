@@ -25,7 +25,7 @@ struct AccessPrivilege {
     
     var viewAllCompanyReports: Bool = false
     
-    var approveReport: Int = Constants.Defaults.AccessPrivilegeApproveReports
+    var approveReport: Int = Constants.Defaults.accessPrivilegeApproveReports
     
     var approveReportWithPolicyViolation: Bool = false
     
@@ -71,84 +71,46 @@ struct AccessPrivilege {
      */
     init(withJSON json:JSON) {
         
-        if json[Constants.ResponseParameters.CreateAndSubmitReports].exists() {
-            createAndSubmitReports = json[Constants.ResponseParameters.CreateAndSubmitReports].boolValue
-        }
+        createAndSubmitReports = json[Constants.ResponseParameters.createAndSubmitReports].boolValue
         
-        if json[Constants.ResponseParameters.RecordEmployeeAdvance].exists() {
-            recordEmployeeAdvance = json[Constants.ResponseParameters.RecordEmployeeAdvance].boolValue
-        }
+        recordEmployeeAdvance = json[Constants.ResponseParameters.recordEmployeeAdvance].boolValue
         
-        if json[Constants.ResponseParameters.RecordEmployeeAdvanceForOthers].exists() {
-            recordEmployeeAdvanceForOthers = json[Constants.ResponseParameters.RecordEmployeeAdvanceForOthers].boolValue
-        }
+        recordEmployeeAdvanceForOthers = json[Constants.ResponseParameters.recordEmployeeAdvanceForOthers].boolValue
         
-        if json[Constants.ResponseParameters.PreventExpenseCreationForParentCategory].exists() {
-            preventExpenseCreationForParentCategory = json[Constants.ResponseParameters.PreventExpenseCreationForParentCategory].boolValue
-        }
+        preventExpenseCreationForParentCategory = json[Constants.ResponseParameters.preventExpenseCreationForParentCategory].boolValue
         
-        if json[Constants.ResponseParameters.ViewAllCompanyReports].exists() {
-            viewAllCompanyReports = json[Constants.ResponseParameters.ViewAllCompanyReports].boolValue
-        }
+        viewAllCompanyReports = json[Constants.ResponseParameters.viewAllCompanyReports].boolValue
         
-        if json[Constants.ResponseParameters.ApproveReport].exists() {
-            approveReport = json[Constants.ResponseParameters.ApproveReport].intValue
-        }
+        approveReport = json[Constants.ResponseParameters.approveReport].intValue
         
-        if json[Constants.ResponseParameters.ApproveReportWithPolicyViolation].exists() {
-            approveReportWithPolicyViolation = json[Constants.ResponseParameters.ApproveReportWithPolicyViolation].boolValue
-        }
+        approveReportWithPolicyViolation = json[Constants.ResponseParameters.approveReportWithPolicyViolation].boolValue
         
-        if json[Constants.ResponseParameters.ModifyExpenseInSubmittedReport].exists() {
-            modifyExpenseInSubmittedReport = json[Constants.ResponseParameters.ModifyExpenseInSubmittedReport].boolValue
-        }
+        modifyExpenseInSubmittedReport = json[Constants.ResponseParameters.modifyExpenseInSubmittedReport].boolValue
         
-        if json[Constants.ResponseParameters.ReimburseReport].exists() {
-            reimburseReport = json[Constants.ResponseParameters.ReimburseReport].boolValue
-        }
+        reimburseReport = json[Constants.ResponseParameters.reimburseReport].boolValue
         
-        if json[Constants.ResponseParameters.ModifySettingsUsers].exists() {
-            modifySettingsUsers = json[Constants.ResponseParameters.ModifySettingsUsers].boolValue
-        }
+        modifySettingsUsers = json[Constants.ResponseParameters.modifySettingsUsers].boolValue
         
-        if json[Constants.ResponseParameters.ModifySettingsPreferences].exists() {
-            modifySettingsPreferences = json[Constants.ResponseParameters.ModifySettingsPreferences].boolValue
-        }
+        modifySettingsPreferences = json[Constants.ResponseParameters.modifySettingsPreferences].boolValue
         
-        if json[Constants.ResponseParameters.ModifySettingsExpenseCategories].exists() {
-            modifySettingsExpenseCategories = json[Constants.ResponseParameters.ModifySettingsExpenseCategories].boolValue
-        }
+        modifySettingsExpenseCategories = json[Constants.ResponseParameters.modifySettingsExpenseCategories].boolValue
         
-        if json[Constants.ResponseParameters.ModifySettingsCustomers].exists() {
-            modifySettingsCustomers = json[Constants.ResponseParameters.ModifySettingsCustomers].boolValue
-        }
+        modifySettingsCustomers = json[Constants.ResponseParameters.modifySettingsCustomers].boolValue
         
-        if json[Constants.ResponseParameters.ModifySettingsProjects].exists() {
-            modifySettingsProjects = json[Constants.ResponseParameters.ModifySettingsProjects].boolValue
-        }
+        modifySettingsProjects = json[Constants.ResponseParameters.modifySettingsProjects].boolValue
         
-        if json[Constants.ResponseParameters.ModifySettingsMerchants].exists() {
-            modifySettingsMerchants = json[Constants.ResponseParameters.ModifySettingsMerchants].boolValue
-        }
+        modifySettingsMerchants = json[Constants.ResponseParameters.modifySettingsMerchants].boolValue
         
-        if json[Constants.ResponseParameters.ModifySettingsCurrencies].exists() {
-            modifySettingsCurrencies = json[Constants.ResponseParameters.ModifySettingsCurrencies].boolValue
-        }
         
-        if json[Constants.ResponseParameters.ModifySettingsTaxes].exists() {
-            modifySettingsTaxes = json[Constants.ResponseParameters.ModifySettingsTaxes].boolValue
-        }
+        modifySettingsCurrencies = json[Constants.ResponseParameters.modifySettingsCurrencies].boolValue
         
-        if json[Constants.ResponseParameters.ModifySettingsPaymentMode].exists() {
-            modifySettingsPaymentMode = json[Constants.ResponseParameters.ModifySettingsPaymentMode].boolValue
-        }
         
-        if json[Constants.ResponseParameters.ModifySettingsManageIntegrations].exists() {
-            modifySettingsManageIntegrations = json[Constants.ResponseParameters.ModifySettingsManageIntegrations].boolValue
-        }
+        modifySettingsTaxes = json[Constants.ResponseParameters.modifySettingsTaxes].boolValue
         
-        if json[Constants.ResponseParameters.ModifySettingsBilling].exists() {
-            modifySettingsBilling = json[Constants.ResponseParameters.ModifySettingsBilling].boolValue
-        }
+        modifySettingsPaymentMode = json[Constants.ResponseParameters.modifySettingsPaymentMode].boolValue
+        
+        modifySettingsManageIntegrations = json[Constants.ResponseParameters.modifySettingsManageIntegrations].boolValue
+        
+        modifySettingsBilling = json[Constants.ResponseParameters.modifySettingsBilling].boolValue
     }
 }

@@ -36,14 +36,14 @@ class ExpenseListManager {
             return Singleton.sharedInstance.organization?.categories[categoryId]?.name
         }
         log.error("Category Id is nil")
-        return Constants.General.EmptyString
+        return Constants.General.emptyString
     }
     
     /**
      * Method to get the formatted date & description for an expense.
      */
     func getDateAndDescription(forExpense expense: Expense) -> String? {
-        var dateAndDescription = Constants.General.EmptyString
+        var dateAndDescription = Constants.General.emptyString
         
         if let date = expense.date {
             dateAndDescription = Utilities.convertDateToString(date)
@@ -51,7 +51,7 @@ class ExpenseListManager {
             log.error("Expense date is nil")
         }
         
-        if !(expense.merchantName ?? Constants.General.EmptyString).isEmpty {
+        if !(expense.merchantName ?? Constants.General.emptyString).isEmpty {
             dateAndDescription += " | " + expense.merchantName!
         }
         

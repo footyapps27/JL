@@ -42,26 +42,16 @@ struct Member {
      */
     init(withJSON json:JSON) {
         
-        if json[Constants.ResponseParameters.MemberId].exists() {
-            id = json[Constants.ResponseParameters.MemberId].stringValue
-        }
+        id = json[Constants.ResponseParameters.memberId].stringValue
         
-        if json[Constants.ResponseParameters.UserId].exists() {
-            userId = json[Constants.ResponseParameters.UserId].stringValue
-        }
+        userId = json[Constants.ResponseParameters.userId].stringValue
         
-        if json[Constants.ResponseParameters.FullName].exists() {
-            fullName = json[Constants.ResponseParameters.FullName].stringValue
-        }
+        fullName = json[Constants.ResponseParameters.fullName].stringValue
         
-        if json[Constants.ResponseParameters.Status].exists() {
-            status =  json[Constants.ResponseParameters.Status].boolValue
-        }
+        status =  json[Constants.ResponseParameters.status].boolValue
         
-        if json[Constants.ResponseParameters.OrganizationId].exists() {
-            organizationId =  json[Constants.ResponseParameters.OrganizationId].stringValue
-        }
+        organizationId =  json[Constants.ResponseParameters.organizationId].stringValue
         
-        role = Role(withJSON: json[Constants.ResponseParameters.Role])
+        role = Role(withJSON: json[Constants.ResponseParameters.role])
     }
 }

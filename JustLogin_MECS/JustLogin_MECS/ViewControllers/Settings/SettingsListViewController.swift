@@ -53,7 +53,7 @@ extension SettingsListViewController: UITableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.SettingsListTableViewCellIdentifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.settingsListTableViewCellIdentifier, for: indexPath)
         cell.textLabel?.text = "Settings \(indexPath.row)"
         cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         return cell

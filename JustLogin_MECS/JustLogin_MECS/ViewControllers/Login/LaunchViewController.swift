@@ -36,7 +36,7 @@ class LaunchViewController: BaseViewController {
         navigationController?.isNavigationBarHidden = true
         
         // Register to the login successful notification
-        NotificationCenter.default.addObserver(self, selector: #selector(LaunchViewController.navigateToDashboard), name: Notification.Name(Constants.Notifications.LoginSuccessful), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(LaunchViewController.navigateToDashboard), name: Notification.Name(Constants.Notifications.loginSuccessful), object: nil)
         
         automaticallyAdjustsScrollViewInsets = false;
         
@@ -44,7 +44,7 @@ class LaunchViewController: BaseViewController {
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self, name: Notification.Name(Constants.Notifications.LoginSuccessful), object: nil)
+        NotificationCenter.default.removeObserver(self, name: Notification.Name(Constants.Notifications.loginSuccessful), object: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -89,7 +89,7 @@ class LaunchViewController: BaseViewController {
      */
     func navigateToSubmitterDashboard() {
         
-        let submitterDashboard = UIStoryboard(name: Constants.StoryboardIds.DashboardStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.SubmitterDashboard) as! UITabBarController
+        let submitterDashboard = UIStoryboard(name: Constants.StoryboardIds.dashboardStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.submitterDashboard) as! UITabBarController
         
         navigationController?.pushViewController(submitterDashboard, animated: true)
     }
@@ -99,7 +99,7 @@ class LaunchViewController: BaseViewController {
      */
     func navigateToAdminAndApproverDashboard() {
         
-        let approverAndAdminDashboard = UIStoryboard(name: Constants.StoryboardIds.DashboardStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.ApproverAndAdminDashboard) as! UITabBarController
+        let approverAndAdminDashboard = UIStoryboard(name: Constants.StoryboardIds.dashboardStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.approverAndAdminDashboard) as! UITabBarController
         
         navigationController?.pushViewController(approverAndAdminDashboard, animated: true)
     }
@@ -113,7 +113,7 @@ extension LaunchViewController: UICollectionViewDataSource {
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.CellIdentifiers.LaunchCollectionViewCellIdentifier, for: indexPath) as! LaunchCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.CellIdentifiers.launchCollectionViewCellIdentifier, for: indexPath) as! LaunchCollectionViewCell
         // TODO: - Uncomment once you have the images.
         //let imageName = getLaunchContent()[indexPath.row].imageName
         //cell.imgView.image = UIImage.init(named: imageName!)

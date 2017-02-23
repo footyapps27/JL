@@ -58,7 +58,7 @@ extension ReportListViewController: UITableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.ReportListTableViewCellIdentifier, for: indexPath) as? ReportListTableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.reportListTableViewCellIdentifier, for: indexPath) as? ReportListTableViewCell {
             cell.lblReportName.text = "Report Name"
             cell.lblDate.text = "04/07/2016 to 29/07/2016"
             cell.lblAmount.text = "$41.05"
@@ -72,7 +72,7 @@ extension ReportListViewController: UITableViewDataSource {
 
 extension ReportListViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat(Constants.CellHeight.ReportListCellHeight)
+        return CGFloat(Constants.CellHeight.reportListCellHeight)
     }
 }
 

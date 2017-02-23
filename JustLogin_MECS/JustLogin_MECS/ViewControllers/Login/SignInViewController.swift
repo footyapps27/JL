@@ -79,7 +79,7 @@ class SignInViewController: BaseViewController {
             case .success( _):
                 
                 // Inform the parent that the user logged in successfully, and the member that has logged in.
-                NotificationCenter.default.post(name: Notification.Name(Constants.Notifications.LoginSuccessful), object: nil)
+                NotificationCenter.default.post(name: Notification.Name(Constants.Notifications.loginSuccessful), object: nil)
                 self.dismiss(animated: false, completion: nil)
                 
             case .failure(_ , let message):
