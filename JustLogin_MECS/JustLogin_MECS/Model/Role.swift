@@ -40,13 +40,21 @@ struct Role {
      */
     init(withJSON json:JSON) {
         
-        id = json[Constants.ResponseParameters.RoleId].exists() ? json[Constants.ResponseParameters.RoleId].stringValue : Constants.General.EmptyString
+        if json[Constants.ResponseParameters.RoleId].exists() {
+            id = json[Constants.ResponseParameters.RoleId].stringValue
+        }
         
-        name = json[Constants.ResponseParameters.Name].exists() ? json[Constants.ResponseParameters.Name].stringValue : Constants.General.EmptyString
+        if json[Constants.ResponseParameters.Name].exists() {
+            name = json[Constants.ResponseParameters.Name].stringValue
+        }
         
-        description = json[Constants.ResponseParameters.Description].exists() ? json[Constants.ResponseParameters.Description].stringValue : Constants.General.EmptyString
+        if json[Constants.ResponseParameters.Description].exists() {
+            description = json[Constants.ResponseParameters.Description].stringValue
+        }
         
-        isDefault = json[Constants.ResponseParameters.IsDefault].exists() ? json[Constants.ResponseParameters.IsDefault].boolValue : false
+        if json[Constants.ResponseParameters.IsDefault].exists() {
+            isDefault = json[Constants.ResponseParameters.IsDefault].boolValue
+        }
         
         accessPrivileges = AccessPrivilege(withJSON: json[Constants.ResponseParameters.AccessPrivileges])
     }

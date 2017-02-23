@@ -26,10 +26,22 @@ class ExpenseListViewController: BaseViewControllerWithTableView {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.isHidden = true
         
-        // TODO: - Remove the call
-        manager.getAllExpenses { (expenses) in
-            log.debug(expenses)
+        manager.fetchExpenses { [weak self] (response) in
+            // TODO: - Add loading indicator
+            guard let `self` = self else {
+                log.error("self reference missing in closure.")
+                return
+            }
+            
+            switch(response) {
+            case .success(_):
+                self.tableView.isHidden = false
+                self.tableView.reloadData()
+            case .failure(_, let message):
+                Utilities.showErrorAlert(withMessage: message, onController: self)
+            }
         }
         
         // Add the search controller
@@ -60,21 +72,23 @@ class ExpenseListViewController: BaseViewControllerWithTableView {
 extension ExpenseListViewController: UITableViewDataSource {
     
     public func numberOfSections(in tableView: UITableView) -> Int {
-        tableView.backgroundView?.backgroundColor = UIColor.blue
+        // TODO: - Move to constants
         return 1
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // TODO: - Hardcoded data
-        return 10
+        return manager.getExpenses().count
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.ExpenseListTableViewCellIdentifier, for: indexPath) as? ExpenseListTableViewCell {
-            cell.lblExpenseName.text = "Air Travel Expense"
-            cell.lblDateAndDescription.text = "04/07/2016 | Starbucks"
-            cell.lblAmount.text = "$121.75"
-            cell.lblStatus.text = "Submitted"
+            
+            let expense = manager.getExpenses()[indexPath.row]
+            
+            cell.lblExpenseName.text = manager.getCategoryName(forExpense: expense)
+            cell.lblDateAndDescription.text = manager.getDateAndDescription(forExpense: expense)
+            cell.lblAmount.text = String(expense.amount)
+            cell.lblStatus.text = String(expense.status)
             return cell
         }
         // TODO: - This has to be updated

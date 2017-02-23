@@ -45,11 +45,26 @@ struct Report {
      * Initialize using the JSON object received from the server.
      */
     init(withJSON json:JSON) {
-        id = json[Constants.ResponseParameters.ReportId].exists() ? json[Constants.ResponseParameters.ReportId].stringValue : Constants.General.EmptyString
         
-        amount = json[Constants.ResponseParameters.Amount].exists() ? json[Constants.ResponseParameters.Amount].doubleValue : Constants.Defaults.Amount
+        if json[Constants.ResponseParameters.ReportId].exists() {
+            id = json[Constants.ResponseParameters.ReportId].stringValue
+        }
         
-        businessPurpose = json[Constants.ResponseParameters.BusinessPurpose].exists() ? json[Constants.ResponseParameters.BusinessPurpose].stringValue : Constants.General.EmptyString
+        if json[Constants.ResponseParameters.Amount].exists() {
+            amount = json[Constants.ResponseParameters.Amount].doubleValue
+        }
+        
+        if json[Constants.ResponseParameters.BusinessPurpose].exists() {
+            businessPurpose = json[Constants.ResponseParameters.BusinessPurpose].stringValue
+        }
+        
+        if json[Constants.ResponseParameters.Title].exists() {
+            title = json[Constants.ResponseParameters.Title].stringValue
+        }
+        
+        if json[Constants.ResponseParameters.Status].exists() {
+            status = json[Constants.ResponseParameters.Status].intValue
+        }
         
         if let jsonStartDate = json[Constants.ResponseParameters.StartDate].string {
             startDate = Utilities.convertServerStringToDate(jsonStartDate)
@@ -58,11 +73,7 @@ struct Report {
         if let jsonEndDate = json[Constants.ResponseParameters.EndDate].string {
             endDate = Utilities.convertServerStringToDate(jsonEndDate)
         }
-        
-        title = json[Constants.ResponseParameters.Title].exists() ? json[Constants.ResponseParameters.Title].stringValue : Constants.General.EmptyString
-        
-        status = json[Constants.ResponseParameters.Status].exists() ? json[Constants.ResponseParameters.Status].intValue : Constants.Defaults.ReportStatus
-        
+
         let jsonExpenseIds = json[Constants.ResponseParameters.ExpenseIds].exists() ? json[Constants.ResponseParameters.ExpenseIds].arrayValue : []
         for expenseId in jsonExpenseIds {
             expenseIds.append(expenseId.stringValue)

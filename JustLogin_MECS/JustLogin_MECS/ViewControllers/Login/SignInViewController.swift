@@ -56,9 +56,9 @@ class SignInViewController: BaseViewController {
         let validationResponse = manager.validateLoginParameters(organizationName: txtCompanyId.text!, userId: txtUserId.text!, password: txtPassword.text!)
         
         switch validationResponse {
-        case .Failure(_ , let errorMessage):
+        case .failure(_ , let errorMessage):
             Utilities.showErrorAlert(withMessage: errorMessage, onController: self)
-        case .Success(_):
+        case .success(_):
             callLoginService()
         }
     }
@@ -76,13 +76,13 @@ class SignInViewController: BaseViewController {
             }
             
             switch(result) {
-            case .Success( _):
+            case .success( _):
                 
                 // Inform the parent that the user logged in successfully, and the member that has logged in.
                 NotificationCenter.default.post(name: Notification.Name(Constants.Notifications.LoginSuccessful), object: nil)
                 self.dismiss(animated: false, completion: nil)
                 
-            case .Failure(_ , let message):
+            case .failure(_ , let message):
                 Utilities.showErrorAlert(withMessage: message, onController: self)
             }
         }

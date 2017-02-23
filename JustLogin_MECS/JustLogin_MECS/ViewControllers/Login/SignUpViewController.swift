@@ -41,8 +41,7 @@ class SignUpViewController: BaseViewController {
         // For demo, now we are navigating to Admin flow from here.
         
         // Inform the parent that the user logged in successfully, and the user that has logged in.
-        let user = User.init(name: "John Doe", role: .Admin)
-        NotificationCenter.default.post(name: Notification.Name(Constants.Notifications.LoginSuccessful), object: user)
+        NotificationCenter.default.post(name: Notification.Name(Constants.Notifications.LoginSuccessful), object: nil)
         dismiss(animated: false, completion: nil)
     }
     

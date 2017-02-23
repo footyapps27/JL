@@ -29,16 +29,16 @@ struct OrganizationDetailsService: IOrganizationDetailsService {
         
         serviceAdapter.post(destination: Constants.URLs.OrganizationDetails, payload: [:], headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
             switch(response) {
-            case .Success(let success, _ ):
+            case .success(let success, _ ):
                 let organization = Organization(withJSON: JSON(success))
-                completionHandler(Result.Success(organization))
+                completionHandler(Result.success(organization))
                 
-            case .Errors(let error):
+            case .errors(let error):
                 let error = ServiceError(JSON(error))
-                completionHandler(Result.Error(error))
+                completionHandler(Result.error(error))
 
-            case .Failure(let description):
-                completionHandler(Result.Failure(description))
+            case .failure(let description):
+                completionHandler(Result.failure(description))
             }
         }
     }

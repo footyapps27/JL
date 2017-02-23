@@ -41,16 +41,29 @@ struct Category {
      * Initialize using the JSON object received from the server.
      */
     init(withJSON json:JSON) {
-        id = json[Constants.ResponseParameters.CategoryId].exists() ? json[Constants.ResponseParameters.CategoryId].stringValue : Constants.General.EmptyString
         
-        logo = json[Constants.ResponseParameters.Logo].exists() ? json[Constants.ResponseParameters.Logo].intValue : Constants.Defaults.CategoryLogo
+        if json[Constants.ResponseParameters.CategoryId].exists() {
+            id = json[Constants.ResponseParameters.CategoryId].stringValue
+        }
         
-        name = json[Constants.ResponseParameters.Name].exists() ? json[Constants.ResponseParameters.Name].stringValue : Constants.General.EmptyString
+        if json[Constants.ResponseParameters.Logo].exists() {
+            logo = json[Constants.ResponseParameters.Logo].intValue
+        }
         
-        accountCode = json[Constants.ResponseParameters.AccountCode].exists() ? json[Constants.ResponseParameters.AccountCode].stringValue : Constants.General.EmptyString
+        if json[Constants.ResponseParameters.Name].exists() {
+            name = json[Constants.ResponseParameters.Name].stringValue
+        }
         
-        description = json[Constants.ResponseParameters.Description].exists() ? json[Constants.ResponseParameters.Description].stringValue : Constants.General.EmptyString
+        if json[Constants.ResponseParameters.AccountCode].exists() {
+            accountCode = json[Constants.ResponseParameters.AccountCode].stringValue
+        }
         
-        isActive = json[Constants.ResponseParameters.IsActive].exists() ? json[Constants.ResponseParameters.IsActive].boolValue : false
+        if json[Constants.ResponseParameters.Description].exists() {
+            description = json[Constants.ResponseParameters.Description].stringValue
+        }
+        
+        if json[Constants.ResponseParameters.IsActive].exists() {
+            isActive = json[Constants.ResponseParameters.IsActive].boolValue
+        }
     }
 }

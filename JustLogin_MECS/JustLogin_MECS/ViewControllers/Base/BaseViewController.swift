@@ -87,7 +87,7 @@ class BaseViewController: UIViewController {
         self.view.addSubview(activityIndicator!)
         
         // Autoresizing mask
-        activityIndicator!.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator?.translatesAutoresizingMaskIntoConstraints = false
         // Constraints
         self.view.addConstraint(NSLayoutConstraint(item: activityIndicator!, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0))
         self.view.addConstraint(NSLayoutConstraint(item: activityIndicator!, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0))

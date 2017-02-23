@@ -14,18 +14,18 @@ import SwiftyJSON
  * The response of the network adapter.
  */
 enum NetworkAdapterResponse {
-    case Success(response : [String: Any], headers : [String:String])
-    case Errors([String: Any])
-    case Failure(String)
+    case success(response : [String: Any], headers : [String:String]?)
+    case errors([String: Any])
+    case failure(String)
 }
 
 /**
  * Enum that will be returned from the service class to the manager.
  */
 enum Result<T> {
-    case Success(T)
-    case Error(ServiceError)
-    case Failure(String)
+    case success(T)
+    case error(ServiceError)
+    case failure(String)
 }
 
 /**
@@ -72,7 +72,7 @@ struct AlamofireNetworkAdapter: NetworkAdapter {
         }
         else {
             // TODO: - Add this to the strings file.
-            responseHandler(NetworkAdapterResponse.Failure("No network connection"))
+            responseHandler(NetworkAdapterResponse.failure("No network connection"))
         }
     }
 }
@@ -87,10 +87,9 @@ extension Alamofire.DataResponse {
         log.debug("*****************************")
         log.debug("**** Web Service Reponse ****")
         log.debug("*****************************")
-        log.debug("Response url -> \((self.request?.url?.absoluteString)!)")
+        log.debug("Response url -> \(self.request?.url?.absoluteString)")
         
-        // TODO: - Handle the scenario where the headers are nil. Need to clean up this piece of code.
-        let headers = self.response?.allHeaderFields as! [String: String]
+        let headers = self.response?.allHeaderFields as? [String: String]
         
         if let statusCode = self.response?.statusCode {
             log.debug("Response status code -> \(statusCode)")
@@ -102,28 +101,30 @@ extension Alamofire.DataResponse {
             log.debug("Response payload -> \(value)")
         }
         
-        
         if let message = self.result.error?.localizedDescription {
             log.error("Response failure -> \(message)")
-            return NetworkAdapterResponse.Failure(message)
+            return NetworkAdapterResponse.failure(message)
         }
         
         // Check the success status code first.
         guard self.response?.statusCode == Constants.ResponseParameters.StatusCode else {
-            log.error("Invalid status code -> \((self.response?.statusCode)!)")
-            return NetworkAdapterResponse.Failure("Server returned status code != 200")
+            log.error("Invalid status code -> \(self.response?.statusCode)")
+            return NetworkAdapterResponse.failure("Server returned status code != 200")
         }
         
         guard let json = self.result.value as? [String: Any] else {
             log.error("Invalid json received -> \(self.result.value)")
-            return NetworkAdapterResponse.Failure("Invalid JSON response")
+            return NetworkAdapterResponse.failure("Invalid JSON response")
         }
         
         if let errors = json[Constants.ResponseParameters.Errors] as? [String: Any] {
-            return NetworkAdapterResponse.Errors(errors)
+            return NetworkAdapterResponse.errors(errors)
         }
         
-        let data = json[Constants.ResponseParameters.Data] as! [String: Any]
-        return NetworkAdapterResponse.Success(response: data, headers: headers)
+        if let data = json[Constants.ResponseParameters.Data] as? [String: Any] {
+            return NetworkAdapterResponse.success(response: data, headers: headers)
+        }
+        log.error("Invalid JSON response for data key -> \(json[Constants.ResponseParameters.Data])")
+        return NetworkAdapterResponse.failure("Invalid JSON response for data key.")
     }
 }
