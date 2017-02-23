@@ -11,7 +11,7 @@ import Foundation
 /**
  * Manager for SignInViewController
  */
-struct LaunchManager {
+class LaunchManager {
     
     var loginService: ILoginService = LoginService()
     var organizationDetailsService: IOrganizationDetailsService = OrganizationDetailsService()
@@ -39,10 +39,12 @@ struct LaunchManager {
     /**
      *
      */
-    func navigateToApprovalFlow() -> Bool {
-        guard let member = Singleton.sharedInstance.member else {
-            return false
+    func navigateToApprovalFlow() throws -> Bool {
+        
+        guard let accessPrivileges = Singleton.sharedInstance.member?.role?.accessPrivileges else {
+            log.error("Access Privileges found nil when unwrapping")
+            throw CustomError.accessPrivilegesNotFound
         }
-        return (member.role?.accessPrivileges?.approveReport)! > 0
+        return accessPrivileges.approveReport > 0
     }
 }

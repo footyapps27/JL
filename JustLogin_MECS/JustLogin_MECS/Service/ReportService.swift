@@ -47,21 +47,21 @@ struct ReportService : IReportService {
     func getAllReports(_ completionHandler:( @escaping (Result<[Report]>) -> Void)) {
         serviceAdapter.post(destination: Constants.URLs.GetAllReports, payload: [:], headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
             switch(response) {
-                case .Success(let success, _ ):
+                case .success(let success, _ ):
                     var allReports: [Report] = []
                     if let jsonReports = success[Constants.ResponseParameters.Expenses] as? [Any] {
                         for report in jsonReports {
                             allReports.append(Report(withJSON: JSON(report)))
                         }
                     }
-                    completionHandler(Result.Success(allReports))
+                    completionHandler(Result.success(allReports))
                 
-            case .Errors(let error):
+            case .errors(let error):
                 let error = ServiceError(JSON(error))
-                completionHandler(Result.Error(error))
+                completionHandler(Result.error(error))
                 
-            case .Failure(let description):
-                completionHandler(Result.Failure(description))
+            case .failure(let description):
+                completionHandler(Result.failure(description))
             }
         }
     }

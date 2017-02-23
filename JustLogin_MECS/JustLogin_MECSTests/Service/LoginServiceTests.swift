@@ -41,7 +41,7 @@ class LoginServiceTests: XCTestCase {
         
         let testScenario: TestScenario
         var payload: [String : Any] = [:]
-        var headers: [String: String] = [:]
+        var headers: [String: String]? = [:]
         var isPostCalled: Bool = false
         
         // Initializer
@@ -49,7 +49,7 @@ class LoginServiceTests: XCTestCase {
             self.testScenario = testScenario
         }
         
-        func post(destination: String, payload: [String : Any], headers: [String : String], responseHandler: @escaping (NetworkAdapterResponse) -> Void) {
+        func post(destination: String, payload: [String : Any], headers: [String : String]?, responseHandler: @escaping (NetworkAdapterResponse) -> Void) {
             
             self.payload = payload
             self.headers = headers
@@ -57,7 +57,7 @@ class LoginServiceTests: XCTestCase {
             
             switch testScenario {
             case TestScenario.Success:
-                responseHandler(NetworkAdapterResponse.Success(response: [:],headers: headers))
+                responseHandler(NetworkAdapterResponse.Success(response: [:],headers: self.headers))
             case TestScenario.Errors:
                 responseHandler(NetworkAdapterResponse.Errors([:]))
             case TestScenario.Failure:

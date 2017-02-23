@@ -12,6 +12,11 @@ import Foundation
  * This will be used by the manager to send the response to the view controller.
  */
 enum ManagerResponseToController<T> {
-    case Success(T)
-    case Failure(code: String,message: String)
+    case success(T)
+    case failure(code: String,message: String)
+}
+
+enum CustomError: Error {
+    case memberNotFound
+    case accessPrivilegesNotFound
 }

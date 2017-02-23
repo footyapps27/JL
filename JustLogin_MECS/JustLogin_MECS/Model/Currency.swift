@@ -39,14 +39,25 @@ struct Currency {
      * Initialize using the JSON object received from the server.
      */
     init(withJSON json:JSON) {
-        id = json[Constants.ResponseParameters.CurrencyId].exists() ? json[Constants.ResponseParameters.CurrencyId].stringValue : Constants.General.EmptyString
         
-        decimalPlaces = json[Constants.ResponseParameters.DecimalPlaces].exists() ? json[Constants.ResponseParameters.DecimalPlaces].intValue : Constants.Defaults.DecimalPlaces
+        if json[Constants.ResponseParameters.CurrencyId].exists() {
+            id = json[Constants.ResponseParameters.CurrencyId].stringValue
+        }
         
-        format = json[Constants.ResponseParameters.Format].exists() ? json[Constants.ResponseParameters.Format].stringValue : Constants.General.EmptyString
+        if json[Constants.ResponseParameters.DecimalPlaces].exists() {
+            decimalPlaces = json[Constants.ResponseParameters.DecimalPlaces].intValue
+        }
         
-        symbol = json[Constants.ResponseParameters.Symbol].exists() ? json[Constants.ResponseParameters.Symbol].stringValue : Constants.General.EmptyString
+        if json[Constants.ResponseParameters.Format].exists() {
+            format = json[Constants.ResponseParameters.Format].stringValue
+        }
         
-        code = json[Constants.ResponseParameters.Code].exists() ? json[Constants.ResponseParameters.Code].stringValue : Constants.General.EmptyString
+        if json[Constants.ResponseParameters.Symbol].exists() {
+            symbol = json[Constants.ResponseParameters.Symbol].stringValue
+        }
+        
+        if json[Constants.ResponseParameters.Code].exists() {
+            code = json[Constants.ResponseParameters.Code].stringValue
+        }
     }
 }

@@ -11,7 +11,7 @@ import Foundation
 /**
  * Manager for ReportListViewController
  */
-struct ReportListManager {
+class ReportListManager {
     
     var reportService: IReportService = ReportService()
     

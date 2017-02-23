@@ -39,11 +39,18 @@ struct Organization {
      * Initialize using the JSON object received from the server.
      */
     init(withJSON json:JSON) {
-        id = json[Constants.ResponseParameters.OrganizationId].exists() ? json[Constants.ResponseParameters.OrganizationId].stringValue : Constants.General.EmptyString
         
-        name = json[Constants.ResponseParameters.Name].exists() ? json[Constants.ResponseParameters.Name].stringValue : Constants.General.EmptyString
+        if json[Constants.ResponseParameters.OrganizationId].exists() {
+            id = json[Constants.ResponseParameters.OrganizationId].stringValue
+        }
         
-        baseCurrencyId = json[Constants.ResponseParameters.BaseCurrencyId].exists() ? json[Constants.ResponseParameters.BaseCurrencyId].stringValue : Constants.General.EmptyString
+        if json[Constants.ResponseParameters.Name].exists() {
+            name = json[Constants.ResponseParameters.Name].stringValue
+        }
+        
+        if json[Constants.ResponseParameters.BaseCurrencyId].exists() {
+            baseCurrencyId = json[Constants.ResponseParameters.BaseCurrencyId].stringValue
+        }
         
         let jsonCurrencies = json[Constants.ResponseParameters.Currencies].exists() ? json[Constants.ResponseParameters.Currencies].arrayValue : []
         for jsonCurrency in jsonCurrencies {

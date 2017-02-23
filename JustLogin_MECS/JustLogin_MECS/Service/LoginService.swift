@@ -36,22 +36,22 @@ struct LoginService: ILoginService {
         
         serviceAdapter.post(destination: Constants.URLs.Login, payload: payload, headers: nil) { (response) in
             switch(response) {
-            case .Success(let success, let headers):
+            case .success(let success, let headers):
                 
                 // Since the login service provides the headers, we save it for the other services
-                if let accessToken = headers[Constants.ResponseParameters.AccessToken] {
+                if let accessToken = headers?[Constants.ResponseParameters.AccessToken] {
                     Singleton.sharedInstance.accessTokenHeader[Constants.ResponseParameters.AccessToken] = accessToken
                 }
                 
                 let member = Member(withJSON: JSON(success))
-                completionHandler(Result.Success(member))
+                completionHandler(Result.success(member))
                 
-            case .Errors(let error):
+            case .errors(let error):
                 let error = ServiceError(JSON(error))
-                completionHandler(Result.Error(error))
+                completionHandler(Result.error(error))
                 
-            case .Failure(let description):
-                completionHandler(Result.Failure(description))
+            case .failure(let description):
+                completionHandler(Result.failure(description))
             }
         }
     }

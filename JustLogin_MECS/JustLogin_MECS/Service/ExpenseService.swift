@@ -42,21 +42,21 @@ struct ExpenseService : IExpenseService {
     func getAllExpenses(_ completionHandler:( @escaping (Result<[Expense]>) -> Void)) {
         serviceAdapter.post(destination: Constants.URLs.GetAllExpenses, payload: [:], headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
             switch(response) {
-            case .Success(let success, _ ):
+            case .success(let success, _ ):
                 var allExpenses: [Expense] = []
                 if let jsonExpenses = success[Constants.ResponseParameters.Expenses] as? [Any] {
                     for expense in jsonExpenses {
                         allExpenses.append(Expense(withJSON: JSON(expense)))
                     }
                 }
-                completionHandler(Result.Success(allExpenses))
+                completionHandler(Result.success(allExpenses))
                 
-            case .Errors(let error):
+            case .errors(let error):
                 let error = ServiceError(JSON(error))
-                completionHandler(Result.Error(error))
+                completionHandler(Result.error(error))
                 
-            case .Failure(let description):
-                completionHandler(Result.Failure(description))
+            case .failure(let description):
+                completionHandler(Result.failure(description))
             }
         }
     }
@@ -66,16 +66,16 @@ struct ExpenseService : IExpenseService {
         serviceAdapter.post(destination: Constants.URLs.UpdateExpense
         , payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
             switch(response) {
-            case .Success(let success, _ ):
+            case .success(let success, _ ):
                 let expense = Expense(withJSON: JSON(success))
-                completionHandler(Result.Success(expense))
+                completionHandler(Result.success(expense))
                 
-            case .Errors(let error):
+            case .errors(let error):
                 let error = ServiceError(JSON(error))
-                completionHandler(Result.Error(error))
+                completionHandler(Result.error(error))
                 
-            case .Failure(let description):
-                completionHandler(Result.Failure(description))
+            case .failure(let description):
+                completionHandler(Result.failure(description))
             }
         }
     }
@@ -84,16 +84,16 @@ struct ExpenseService : IExpenseService {
         let payload = getPayloadForUpdateExpense(expense)
         serviceAdapter.post(destination: Constants.URLs.CreateExpense, payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
             switch(response) {
-            case .Success(let success, _ ):
+            case .success(let success, _ ):
                 let expense = Expense(withJSON: JSON(success))
-                completionHandler(Result.Success(expense))
+                completionHandler(Result.success(expense))
                 
-            case .Errors(let error):
+            case .errors(let error):
                 let error = ServiceError(JSON(error))
-                completionHandler(Result.Error(error))
+                completionHandler(Result.error(error))
                 
-            case .Failure(let description):
-                completionHandler(Result.Failure(description))
+            case .failure(let description):
+                completionHandler(Result.failure(description))
             }
         }
     }

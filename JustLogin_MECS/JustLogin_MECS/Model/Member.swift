@@ -41,15 +41,26 @@ struct Member {
      * Initialize using the JSON object received from the server.
      */
     init(withJSON json:JSON) {
-        id = json[Constants.ResponseParameters.MemberId].exists() ? json[Constants.ResponseParameters.MemberId].stringValue : Constants.General.EmptyString
         
-        userId = json[Constants.ResponseParameters.UserId].exists() ? json[Constants.ResponseParameters.UserId].stringValue : Constants.General.EmptyString
+        if json[Constants.ResponseParameters.MemberId].exists() {
+            id = json[Constants.ResponseParameters.MemberId].stringValue
+        }
         
-        fullName = json[Constants.ResponseParameters.FullName].exists() ? json[Constants.ResponseParameters.FullName].stringValue : Constants.General.EmptyString
+        if json[Constants.ResponseParameters.UserId].exists() {
+            userId = json[Constants.ResponseParameters.UserId].stringValue
+        }
         
-        status = json[Constants.ResponseParameters.Status].exists() ? json[Constants.ResponseParameters.Status].boolValue : false
+        if json[Constants.ResponseParameters.FullName].exists() {
+            fullName = json[Constants.ResponseParameters.FullName].stringValue
+        }
         
-        organizationId = json[Constants.ResponseParameters.OrganizationId].exists() ? json[Constants.ResponseParameters.OrganizationId].stringValue : Constants.General.EmptyString
+        if json[Constants.ResponseParameters.Status].exists() {
+            status =  json[Constants.ResponseParameters.Status].boolValue
+        }
+        
+        if json[Constants.ResponseParameters.OrganizationId].exists() {
+            organizationId =  json[Constants.ResponseParameters.OrganizationId].stringValue
+        }
         
         role = Role(withJSON: json[Constants.ResponseParameters.Role])
     }

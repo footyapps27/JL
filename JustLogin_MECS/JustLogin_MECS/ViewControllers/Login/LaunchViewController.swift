@@ -44,7 +44,7 @@ class LaunchViewController: BaseViewController {
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self)
+        NotificationCenter.default.removeObserver(self, name: Notification.Name(Constants.Notifications.LoginSuccessful), object: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -72,10 +72,15 @@ class LaunchViewController: BaseViewController {
      Method to navigate to the dashboard after the user has logged in.
      */
     func navigateToDashboard() {
-        if manager.navigateToApprovalFlow() {
-            navigateToAdminAndApproverDashboard()
-        } else {
-            navigateToSubmitterDashboard()
+        do {
+            let navigateToApprovalFlow = try manager.navigateToApprovalFlow()
+            if navigateToApprovalFlow {
+                navigateToAdminAndApproverDashboard()
+            } else {
+                navigateToSubmitterDashboard()
+            }
+        } catch {
+            
         }
     }
     

@@ -15,10 +15,10 @@ class Utilities {
     /**
      * Method to convert server string to date.
      */
-    static func convertServerStringToDate(_ string: String) -> Date {
+    static func convertServerStringToDate(_ string: String) -> Date? {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = Constants.General.ServerDateFormat
-        return dateFormatter.date(from: string)!
+        return dateFormatter.date(from: string)
     }
     
     /**

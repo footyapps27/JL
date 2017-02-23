@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct SignInManager {
+class SignInManager {
     
     /***********************************/
     // MARK: - Properties
@@ -31,31 +31,31 @@ struct SignInManager {
         loginService.loginUser(withOrganizationName: organizationName, userId: userId, password: password) { (result) in
             
             switch(result) {
-            case .Success(let member):
+            case .success(let member):
                 
                 // Now call the organization detail service
                 self.organizationDetailsService.getOrganizationDetails({ (organizationResult) in
                     
                     switch(organizationResult) {
-                    case .Success(let organization):
+                    case .success(let organization):
                         // Storing this in the Singleton, since it will be used all across the app.
                         Singleton.sharedInstance.organization = organization
                         Singleton.sharedInstance.member = member
-                        completionHandler(ManagerResponseToController.Success(member))
-                    case .Error(let serviceError):
+                        completionHandler(ManagerResponseToController.success(member))
+                    case .error(let serviceError):
                         // TODO: - Need to send the correct message
-                        completionHandler(ManagerResponseToController.Failure(code: serviceError.code, message:serviceError.message))
-                    case .Failure(let message):
+                        completionHandler(ManagerResponseToController.failure(code: serviceError.code, message:serviceError.message))
+                    case .failure(let message):
                         // TODO: - Need to send the correct message
-                        completionHandler(ManagerResponseToController.Failure(code: "", message:message))
+                        completionHandler(ManagerResponseToController.failure(code: "", message:message))
                     }
                 })
-            case .Error(let serviceError):
+            case .error(let serviceError):
                 // TODO: - Parse the error here & send a
-                completionHandler(ManagerResponseToController.Failure(code: serviceError.code, message:serviceError.message))
-            case .Failure(let message):
+                completionHandler(ManagerResponseToController.failure(code: serviceError.code, message:serviceError.message))
+            case .failure(let message):
                 // TODO: - Need to send the correct message
-                completionHandler(ManagerResponseToController.Failure(code: "", message:message))
+                completionHandler(ManagerResponseToController.failure(code: "", message:message))
             }
         }
     }
@@ -74,7 +74,7 @@ struct SignInManager {
         if password.characters.count == 0 { error = true }
         
         return error
-            ? ManagerResponseToController.Failure(code: "", message: "All fields are mandatory") // TODO: - Move to constants
-            : ManagerResponseToController.Success(true)
+            ? ManagerResponseToController.failure(code: "", message: "All fields are mandatory") // TODO: - Move to constants
+            : ManagerResponseToController.success(true)
     }
 }
