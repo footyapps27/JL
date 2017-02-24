@@ -36,11 +36,11 @@ class SignInViewController: BaseViewController {
         
         navigationItem.leftBarButtonItems = [cancel]
     }
-    
-    /***********************************/
-    // MARK: - Helpers
-    /***********************************/
-    
+}
+/***********************************/
+// MARK: - Actions
+/***********************************/
+extension SignInViewController {
     /**
      Method to dismiss the controller when cancel is tapped.
      */
@@ -62,14 +62,18 @@ class SignInViewController: BaseViewController {
             callLoginService()
         }
     }
-    
+}
+/***********************************/
+// MARK: - Service
+/***********************************/
+extension SignInViewController {
     /**
      * Call the login service to authenticate the member.
      */
-    private func callLoginService() {
-        
+    fileprivate func callLoginService() {
         // TODO: - Add the loading indicator.
         manager.login(withOrganizationName: txtCompanyId.text!, userId: txtUserId.text!, password: txtPassword.text!) { [weak self] (result) in
+            
             guard let `self` = self else {
                 log.error("self reference missing in closure.")
                 return
@@ -77,11 +81,9 @@ class SignInViewController: BaseViewController {
             
             switch(result) {
             case .success( _):
-                
                 // Inform the parent that the user logged in successfully, and the member that has logged in.
                 NotificationCenter.default.post(name: Notification.Name(Constants.Notifications.loginSuccessful), object: nil)
                 self.dismiss(animated: false, completion: nil)
-                
             case .failure(_ , let message):
                 Utilities.showErrorAlert(withMessage: message, onController: self)
             }

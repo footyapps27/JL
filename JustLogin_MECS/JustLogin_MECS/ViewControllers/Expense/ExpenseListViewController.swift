@@ -62,7 +62,7 @@ extension ExpenseListViewController {
                 showActionsForMultipleExpenses()
             }
         } else {
-            // TODO: - Start the add expense here
+            navigateToAddExpense()
         }
     }
 }
@@ -107,8 +107,13 @@ extension ExpenseListViewController {
                 }
             })
         }
-        
         Utilities.showActionSheet(withTitle: nil, message: nil, actions: [actionAddToReport, actionDeleteExpenses], onController: self)
+    }
+    
+    func navigateToAddExpense() {
+        let addExpenseViewController = UIStoryboard(name: Constants.StoryboardIds.expenseStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.addExpenseViewController) as! BaseViewController
+        
+        navigationController?.pushViewController(addExpenseViewController, animated: true)
     }
 }
 /***********************************/

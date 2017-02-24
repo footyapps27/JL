@@ -32,13 +32,13 @@ protocol IExpenseService {
     func delete(expenseIds: [String], completionHandler:( @escaping (Result<Void>) -> Void))
 }
 
+/***********************************/
+// MARK: - IExpenseService implementation
+/***********************************/
 struct ExpenseService : IExpenseService {
     
     var serviceAdapter: NetworkAdapter = AlamofireNetworkAdapter()
     
-    /***********************************/
-    // MARK: - IExpenseService implementation
-    /***********************************/
     func getAllExpenses(_ completionHandler:( @escaping (Result<[Expense]>) -> Void)) {
         serviceAdapter.post(destination: Constants.URLs.getAllExpenses, payload: [:], headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
             switch(response) {
@@ -114,6 +114,9 @@ struct ExpenseService : IExpenseService {
     }
 }
 
+/***********************************/
+// MARK: - Payload for services
+/***********************************/
 extension ExpenseService {
     
     /**
