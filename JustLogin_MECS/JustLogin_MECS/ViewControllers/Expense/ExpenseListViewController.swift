@@ -97,12 +97,13 @@ extension ExpenseListViewController {
                 return
             }
             
+            self.showLoadingIndicator(disableUserInteraction: false)
             self.manager.deleteSelectedExpenses(completionHandler: { (response) in
+                self.hideLoadingIndicator(enableUserInteraction: true)
                 switch(response) {
                 case .success(_):
                     self.tableView.reloadData()
                 case .failure(_ , let message):
-                    self.hideLoadingIndicators()
                     Utilities.showErrorAlert(withMessage: message, onController: self)
                 }
             })
@@ -135,6 +136,11 @@ extension ExpenseListViewController {
      * Method to fetch expenses that will be displayed in the tableview.
      */
     func fetchExpenses() {
+        
+        if !refreshControl.isRefreshing {
+            showLoadingIndicator(disableUserInteraction: false)
+        }
+        
         manager.fetchExpenses { [weak self] (response) in
             // TODO: - Add loading indicator
             guard let `self` = self else {
@@ -142,26 +148,15 @@ extension ExpenseListViewController {
                 return
             }
             
+            self.refreshControl.isRefreshing ? self.refreshControl.endRefreshing() : self.hideLoadingIndicator(enableUserInteraction: true)
             switch(response) {
             case .success(_):
-                self.hideLoadingIndicators()
                 self.tableView.isHidden = false
                 self.tableView.reloadData()
-                
             case .failure(_, let message):
                 // TODO: - Handle the empty table view screen.
-                self.hideLoadingIndicators()
                 Utilities.showErrorAlert(withMessage: message, onController: self)
             }
-        }
-    }
-    
-    /**
-     * Method to hide loading indicators.
-     */
-    func hideLoadingIndicators() {
-        if self.refreshControl.isRefreshing {
-            self.refreshControl.endRefreshing()
         }
     }
 }

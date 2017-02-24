@@ -17,6 +17,10 @@ struct Constants {
         static let decimalFormat = "%.2f"
     }
     
+    struct UISize {
+        static let activityIndicatorHeightWidth = 50
+    }
+    
     struct Defaults {
         static let numberOfSections = 1
         static let decimalPlaces = 2

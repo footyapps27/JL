@@ -33,7 +33,6 @@ class SignInViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let cancel = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelTapped))
-        
         navigationItem.leftBarButtonItems = [cancel]
     }
 }
@@ -54,7 +53,7 @@ extension SignInViewController {
     @IBAction func signInTapped(_ sender: UIButton) {
         
         let validationResponse = manager.validateLoginParameters(organizationName: txtCompanyId.text!, userId: txtUserId.text!, password: txtPassword.text!)
-        
+        view.endEditing(true)
         switch validationResponse {
         case .failure(_ , let errorMessage):
             Utilities.showErrorAlert(withMessage: errorMessage, onController: self)
@@ -71,7 +70,7 @@ extension SignInViewController {
      * Call the login service to authenticate the member.
      */
     fileprivate func callLoginService() {
-        // TODO: - Add the loading indicator.
+        showLoadingIndicator(disableUserInteraction: true)
         manager.login(withOrganizationName: txtCompanyId.text!, userId: txtUserId.text!, password: txtPassword.text!) { [weak self] (result) in
             
             guard let `self` = self else {
@@ -79,6 +78,7 @@ extension SignInViewController {
                 return
             }
             
+            self.hideLoadingIndicator(enableUserInteraction: true)
             switch(result) {
             case .success( _):
                 // Inform the parent that the user logged in successfully, and the member that has logged in.
@@ -90,7 +90,6 @@ extension SignInViewController {
         }
     }
 }
-
 /***********************************/
 // MARK: - Keyboard event listeners
 /***********************************/
