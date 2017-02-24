@@ -31,18 +31,20 @@ class ExpenseListManager {
     /**
      * Method to get the category name for Id
      */
-    func getCategoryName(forExpense expense: Expense) -> String? {
-        if let categoryId = expense.categoryId {
-            return Singleton.sharedInstance.organization?.categories[categoryId]?.name
+    func getCategoryName(forIndexPath indexPath: IndexPath) -> String {
+        let expense = expenses[indexPath.row]
+        if let category = Singleton.sharedInstance.organization?.categories[expense.categoryId] {
+            return category.name
         }
-        log.error("Category Id is nil")
+        log.error("Category not found")
         return Constants.General.emptyString
     }
     
     /**
      * Method to get the formatted date & description for an expense.
      */
-    func getDateAndDescription(forExpense expense: Expense) -> String? {
+    func getDateAndDescription(forIndexPath indexPath: IndexPath) -> String {
+        let expense = expenses[indexPath.row]
         var dateAndDescription = Constants.General.emptyString
         
         if let date = expense.date {
@@ -51,13 +53,44 @@ class ExpenseListManager {
             log.error("Expense date is nil")
         }
         
-        if !(expense.merchantName ?? Constants.General.emptyString).isEmpty {
-            dateAndDescription += " | " + expense.merchantName!
+        if !expense.merchantName.isEmpty {
+            dateAndDescription += " | " + expense.merchantName
         }
         
         return dateAndDescription
     }
     
+    /**
+     * Method to get the formatted amount (currency + amount)
+     */
+    func getFormattedAmount(forIndexPath indexPath: IndexPath) -> String {
+        let expense = expenses[indexPath.row]
+        var currencyAndAmount = Constants.General.emptyString
+        
+        if let category = Singleton.sharedInstance.organization?.currencies[expense.currencyId] {
+            currencyAndAmount = category.symbol
+        }
+        
+        currencyAndAmount += " " + String(format: "%.2f", expense.amount)
+        
+        return currencyAndAmount
+    }
+    
+    /**
+     * Method to get the formatted status
+     */
+    func getExpenseStatus(forIndexPath indexPath: IndexPath) -> String {
+        let expense = expenses[indexPath.row]
+        if let status = ExpenseStatus(rawValue: expense.status) {
+            return status.name.capitalized
+        }
+        log.error("Status of expense is invalid")
+        return Constants.General.emptyString
+    }
+    
+    /**
+     * Method to fetch expenses from the server.
+     */
     func fetchExpenses(complimentionHandler: (@escaping (ManagerResponseToController<[Expense]>) -> Void)) {
         expenseService.getAllExpenses({ [weak self] (result) in
             switch(result) {

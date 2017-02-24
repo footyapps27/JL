@@ -13,10 +13,11 @@ struct Constants {
     struct General {
         static let emptyString = ""
         static let ServerDateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-        static let localDisplayDateFormat = "yyyy-MM-dd"
+        static let localDisplayDateFormat = "dd/MM/yyyy"
     }
     
     struct Defaults {
+        static let numberOfSections = 1
         static let decimalPlaces = 2
         static let amount = 0.00
         static let ExpenseStatus = 0

@@ -14,15 +14,15 @@ struct Currency {
     /***********************************/
     // MARK: - Properties
     /***********************************/
-    var id: String?
+    var id: String = Constants.General.emptyString
     
     var decimalPlaces: Int = Constants.Defaults.decimalPlaces
     
-    var format: String?
+    var format: String = Constants.General.emptyString
     
-    var symbol: String?
+    var symbol: String = Constants.General.emptyString
     
-    var code: String?
+    var code: String = Constants.General.emptyString
     
     /***********************************/
     // MARK: - Initializer

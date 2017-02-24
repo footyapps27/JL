@@ -14,15 +14,15 @@ struct Member {
     /***********************************/
     // MARK: - Properties
     /***********************************/
-    var id: String?
+    var id: String = Constants.General.emptyString
     
-    var userId: String?
+    var userId: String = Constants.General.emptyString
     
-    var fullName: String?
+    var fullName: String = Constants.General.emptyString
     
     var status: Bool = false
     
-    var organizationId: String?
+    var organizationId: String = Constants.General.emptyString
     
     var role: Role?
     

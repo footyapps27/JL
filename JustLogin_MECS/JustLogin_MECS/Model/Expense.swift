@@ -14,7 +14,7 @@ struct Expense {
     /***********************************/
     // MARK: - Properties
     /***********************************/
-    var id: String?
+    var id: String = Constants.General.emptyString
     
     var date: Date?
     
@@ -24,23 +24,23 @@ struct Expense {
     
     var exchange: Double = Constants.Defaults.exchangeRate
     
-    var description: String?
+    var description: String = Constants.General.emptyString
     
-    var location: String?
+    var location: String = Constants.General.emptyString
     
-    var referenceNumber: String?
+    var referenceNumber: String = Constants.General.emptyString
     
-    var notes: String?
+    var notes: String = Constants.General.emptyString
     
-    var merchantName: String?
+    var merchantName: String = Constants.General.emptyString
     
-    var paymentMode: String?
+    var paymentMode: String = Constants.General.emptyString
     
-    var categoryId: String?
+    var categoryId: String = Constants.General.emptyString
     
-    var currencyId: String?
+    var currencyId: String = Constants.General.emptyString
     
-    var reportId: String?
+    var reportId: String = Constants.General.emptyString
     /***********************************/
     // MARK: - Initializer
     /***********************************/

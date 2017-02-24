@@ -124,36 +124,36 @@ extension ExpenseService {
             payload[Constants.RequestParameters.Expense.date] = Utilities.convertDateToString(date)
         }
         
-        if let description = expense.description {
-            payload[Constants.RequestParameters.Expense.description] = description
+        if !expense.description.isEmpty {
+            payload[Constants.RequestParameters.Expense.description] = expense.description
         }
         
-        if let location = expense.location {
-            payload[Constants.RequestParameters.Expense.location] = location
+        if !expense.location.isEmpty {
+            payload[Constants.RequestParameters.Expense.location] = expense.location
         }
         
-        if let referenceNumber = expense.referenceNumber {
-            payload[Constants.RequestParameters.Expense.referenceNumber] = referenceNumber
+        if !expense.referenceNumber.isEmpty {
+            payload[Constants.RequestParameters.Expense.referenceNumber] = expense.referenceNumber
         }
         
-        if let notes = expense.notes {
-            payload[Constants.RequestParameters.Expense.notes] = notes
+        if !expense.notes.isEmpty {
+            payload[Constants.RequestParameters.Expense.notes] = expense.notes
         }
         
-        if let paymentMode = expense.paymentMode {
-            payload[Constants.RequestParameters.Expense.paymentMode] = paymentMode
+        if !expense.paymentMode.isEmpty {
+            payload[Constants.RequestParameters.Expense.paymentMode] = expense.paymentMode
         }
         
-        if let categoryId = expense.categoryId {
-            payload[Constants.RequestParameters.Expense.categoryId] = categoryId
+        if !expense.categoryId.isEmpty {
+            payload[Constants.RequestParameters.Expense.categoryId] = expense.categoryId
         }
         
-        if let currencyId = expense.currencyId {
-            payload[Constants.RequestParameters.Expense.currencyId] = currencyId
+        if !expense.currencyId.isEmpty {
+            payload[Constants.RequestParameters.Expense.currencyId] = expense.currencyId
         }
         
-        if let reportId = expense.reportId {
-            payload[Constants.RequestParameters.Expense.reportId] = reportId
+        if !expense.reportId.isEmpty {
+            payload[Constants.RequestParameters.Expense.reportId] = expense.reportId
         }
         
         return payload
@@ -165,8 +165,8 @@ extension ExpenseService {
     func getPayloadForUpdateExpense(_ expense: Expense) -> [String : Any] {
         var payload: [String : Any] = getPayloadForCreateExpense(expense)
         
-        if let expenseId = expense.id {
-            payload[Constants.RequestParameters.Expense.expenseId] = expenseId
+        if !expense.id.isEmpty {
+            payload[Constants.RequestParameters.Expense.expenseId] = expense.id
         }
         return payload
     }

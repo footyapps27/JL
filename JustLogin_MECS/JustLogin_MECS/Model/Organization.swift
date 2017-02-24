@@ -14,11 +14,11 @@ struct Organization {
     /***********************************/
     // MARK: - Properties
     /***********************************/
-    var id: String?
+    var id: String = Constants.General.emptyString
     
-    var name: String?
+    var name: String = Constants.General.emptyString
     
-    var baseCurrencyId: String?
+    var baseCurrencyId: String = Constants.General.emptyString
     
     var currencies: [String: Currency] = [:]
     
@@ -50,13 +50,13 @@ struct Organization {
         let jsonCurrencies = json[Constants.ResponseParameters.currencies].exists() ? json[Constants.ResponseParameters.currencies].arrayValue : []
         for jsonCurrency in jsonCurrencies {
             let currency = Currency(withJSON: jsonCurrency)
-            currencies[currency.id!] = currency
+            currencies[currency.id] = currency
         }
         
         let jsonCategories = json[Constants.ResponseParameters.categories].exists() ? json[Constants.ResponseParameters.categories].arrayValue : []
         for jsonCategory in jsonCategories {
             let category = Category(withJSON: jsonCategory)
-            categories[category.id!] = category
+            categories[category.id] = category
         }
     }
 }

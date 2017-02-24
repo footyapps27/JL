@@ -14,15 +14,15 @@ struct Category {
     /***********************************/
     // MARK: - Properties
     /***********************************/
-    var id: String?
+    var id: String = Constants.General.emptyString
     
     var logo: Int = Constants.Defaults.categoryLogo
     
-    var name: String?
+    var name: String = Constants.General.emptyString
     
-    var accountCode: String?
+    var accountCode: String = Constants.General.emptyString
     
-    var description: String?
+    var description: String = Constants.General.emptyString
     
     var isActive: Bool = false
     

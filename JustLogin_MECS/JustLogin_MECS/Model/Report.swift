@@ -14,17 +14,17 @@ struct Report {
     /***********************************/
     // MARK: - Properties
     /***********************************/
-    var id: String?
+    var id: String = Constants.General.emptyString
     
     var amount: Double = Constants.Defaults.amount
     
-    var businessPurpose: String?
+    var businessPurpose: String = Constants.General.emptyString
     
     var startDate: Date?
     
     var endDate: Date?
     
-    var title: String?
+    var title: String = Constants.General.emptyString
     
     var status: Int = Constants.Defaults.reportStatus
     

@@ -14,11 +14,11 @@ struct Role {
     /***********************************/
     // MARK: - Properties
     /***********************************/
-    var id: String?
+    var id: String = Constants.General.emptyString
     
-    var name: String?
+    var name: String = Constants.General.emptyString
     
-    var description: String?
+    var description: String = Constants.General.emptyString
     
     var isDefault: Bool = false
     

@@ -31,7 +31,7 @@ class ExpenseListViewController: BaseViewControllerWithTableView {
         manager.fetchExpenses { [weak self] (response) in
             // TODO: - Add loading indicator
             guard let `self` = self else {
-                log.error("self reference missing in closure.")
+                log.error("Self reference missing in closure.")
                 return
             }
             
@@ -40,6 +40,7 @@ class ExpenseListViewController: BaseViewControllerWithTableView {
                 self.tableView.isHidden = false
                 self.tableView.reloadData()
             case .failure(_, let message):
+                // TODO: - Handle the empty table view screen.
                 Utilities.showErrorAlert(withMessage: message, onController: self)
             }
         }
@@ -60,9 +61,9 @@ class ExpenseListViewController: BaseViewControllerWithTableView {
     // MARK: - Helpers
     /***********************************/
     func filterContentForSearchText(searchText: String, scope: String = "All") {
-//        filteredCandies = candies.filter { candy in
-//            return candy.name.lowercaseString.containsString(searchText.lowercaseString)
-//        }
+        //        filteredCandies = candies.filter { candy in
+        //            return candy.name.lowercaseString.containsString(searchText.lowercaseString)
+        //        }
         
         tableView.reloadData()
     }
@@ -72,8 +73,7 @@ class ExpenseListViewController: BaseViewControllerWithTableView {
 extension ExpenseListViewController: UITableViewDataSource {
     
     public func numberOfSections(in tableView: UITableView) -> Int {
-        // TODO: - Move to constants
-        return 1
+        return Constants.Defaults.numberOfSections
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -81,18 +81,14 @@ extension ExpenseListViewController: UITableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.expenseListTableViewCellIdentifier, for: indexPath) as? ExpenseListTableViewCell {
-            
-            let expense = manager.getExpenses()[indexPath.row]
-            
-            cell.lblExpenseName.text = manager.getCategoryName(forExpense: expense)
-            cell.lblDateAndDescription.text = manager.getDateAndDescription(forExpense: expense)
-            cell.lblAmount.text = String(expense.amount)
-            cell.lblStatus.text = String(expense.status)
-            return cell
-        }
-        // TODO: - This has to be updated
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.expenseListTableViewCellIdentifier, for: indexPath) as! ExpenseListTableViewCell
+        
+        cell.lblExpenseName.text = manager.getCategoryName(forIndexPath: indexPath)
+        cell.lblDateAndDescription.text = manager.getDateAndDescription(forIndexPath: indexPath)
+        cell.lblAmount.text = manager.getFormattedAmount(forIndexPath: indexPath)
+        cell.lblStatus.text = manager.getExpenseStatus(forIndexPath: indexPath)
+        
+        return cell
     }
 }
 
@@ -100,7 +96,7 @@ extension ExpenseListViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return CGFloat(Constants.CellHeight.expenseListCellHeight)
     }
-
+    
 }
 
 extension ExpenseListViewController: UISearchResultsUpdating {

@@ -214,6 +214,7 @@
 				8C00F6521E1E651A0007F29C /* App Delegate */,
 				8C00F6541E1E651A0007F29C /* Constants */,
 				8C96021B1E1FE13100EE66A3 /* Enums */,
+				8C8995D11E5FD48700482317 /* Extensions */,
 				8CEAADB81E55409400BDB5ED /* Manager */,
 				8C00F6571E1E651A0007F29C /* Model */,
 				8CEAADB91E5540A500BDB5ED /* Service */,
@@ -341,6 +342,13 @@
 				8CD333201E23C4E500557B6F /* BaseViewControllerWithTableView.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		8C8995D11E5FD48700482317 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		8C9602021E1FDB7F00EE66A3 /* Dashboard */ = {
