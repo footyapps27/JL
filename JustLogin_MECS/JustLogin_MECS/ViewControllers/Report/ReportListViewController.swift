@@ -16,7 +16,6 @@ class ReportListViewController: BaseViewControllerWithTableView {
     /***********************************/
     
     @IBOutlet weak var tableView: UITableView!
-    let searchController = UISearchController(searchResultsController: nil)
     
     /***********************************/
     // MARK: - View Lifecycle
@@ -26,10 +25,7 @@ class ReportListViewController: BaseViewControllerWithTableView {
         super.viewDidLoad()
         
         // Add the search controller
-        searchController.searchResultsUpdater = self
-        searchController.dimsBackgroundDuringPresentation = false
-        definesPresentationContext = true
-        tableView.tableHeaderView = searchController.searchBar
+        addSearchController(toTableView: tableView, withSearchResultsUpdater: self)
     }
     
     /***********************************/

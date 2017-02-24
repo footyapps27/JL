@@ -17,8 +17,6 @@ class ExpenseListViewController: BaseViewControllerWithTableView {
     
     @IBOutlet weak var tableView: UITableView!
     
-    let searchController = UISearchController(searchResultsController: nil)
-    
     let manager = ExpenseListManager()
     
     /***********************************/
@@ -27,18 +25,19 @@ class ExpenseListViewController: BaseViewControllerWithTableView {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tableView.isHidden = true
+        self.tableView.allowsMultipleSelectionDuringEditing = true
         
         // Attach the refresh control
         addRefreshControl(toTableView: tableView, withAction: #selector(refreshTableView(_:)))
         
+        addBarButtonItems(forNormalState: true)
+        
         fetchExpenses()
         
         // Add the search controller
-        searchController.searchResultsUpdater = self
-        searchController.dimsBackgroundDuringPresentation = false
-        definesPresentationContext = true
-        tableView.tableHeaderView = searchController.searchBar
+        addSearchController(toTableView: tableView, withSearchResultsUpdater: self)
     }
     
     /***********************************/
@@ -49,6 +48,23 @@ class ExpenseListViewController: BaseViewControllerWithTableView {
         fetchExpenses()
     }
     
+    @IBAction func leftBarButtonTapped(_ sender: UIBarButtonItem) {
+        if !tableView.isEditing {
+            manager.refreshSelectedExpenses()
+        }
+        addBarButtonItems(forNormalState: tableView.isEditing)
+        self.tableView.setEditing(!tableView.isEditing, animated: true)
+    }
+    
+    @IBAction func rightBarButtonTapped(_ sender: UIBarButtonItem) {
+        if tableView.isEditing {
+            if manager.selectedExpenses.count > 0 {
+                showActionsForMultipleExpenses()
+            }
+        } else {
+            // TODO: - Start the add expense here
+        }
+    }
     /***********************************/
     // MARK: - Helpers
     /***********************************/
@@ -58,6 +74,17 @@ class ExpenseListViewController: BaseViewControllerWithTableView {
         //        }
         
         tableView.reloadData()
+    }
+    
+    /**
+     * Method to add bar button items (left & right) depending on the state of the tableview. (editing or normal).
+     */
+    func addBarButtonItems(forNormalState state: Bool) {
+        let leftSystemItem = state ? UIBarButtonSystemItem.edit : UIBarButtonSystemItem.cancel
+        let rightSystemItem = state ? UIBarButtonSystemItem.add : UIBarButtonSystemItem.done
+        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: leftSystemItem, target: self, action: #selector(leftBarButtonTapped(_:)))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: rightSystemItem, target: self, action: #selector(rightBarButtonTapped(_:)))
     }
     
     /**
@@ -76,12 +103,27 @@ class ExpenseListViewController: BaseViewControllerWithTableView {
                 self.hideLoadingIndicators()
                 self.tableView.isHidden = false
                 self.tableView.reloadData()
+                
             case .failure(_, let message):
                 // TODO: - Handle the empty table view screen.
                 self.hideLoadingIndicators()
                 Utilities.showErrorAlert(withMessage: message, onController: self)
             }
         }
+    }
+    
+    /**
+     * Method to display the actions for multiple expenses.
+     */
+    func showActionsForMultipleExpenses() {
+        // TODO - Move to string constants
+        let actionAddToReport = UIAlertAction(title:"Add to report", style: .default) { void in
+            // TODO: - Show the list of reports
+        }
+        let actionDeleteExpenses = UIAlertAction(title:"Delete expenses", style: .default) { void in
+            // TODO: - Handle the delete call
+        }
+        Utilities.showActionSheet(withTitle: nil, message: nil, actions: [actionAddToReport, actionDeleteExpenses], onController: self)
     }
     
     /**
@@ -94,6 +136,9 @@ class ExpenseListViewController: BaseViewControllerWithTableView {
     }
 }
 
+/***********************************/
+// MARK: - UITableViewDataSource
+/***********************************/
 extension ExpenseListViewController: UITableViewDataSource {
     
     public func numberOfSections(in tableView: UITableView) -> Int {
@@ -118,11 +163,21 @@ extension ExpenseListViewController: UITableViewDataSource {
     }
 }
 
+/***********************************/
+// MARK: - UITableViewDelegate
+/***********************************/
 extension ExpenseListViewController: UITableViewDelegate {
-    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return CGFloat(Constants.CellHeight.expenseListCellHeight)
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView.isEditing {
+            manager.addExpenseToSelectedExpenses(forIndexPath: indexPath)
+            return
+        }
+        // TODO: - Navigate to the detail page
+    }
 }
 
 extension ExpenseListViewController: UISearchResultsUpdating {

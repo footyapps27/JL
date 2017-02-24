@@ -17,6 +17,7 @@ class ExpenseListManager {
     
     var expenses: [Expense] = []
     
+    var selectedExpenses: [String: Expense] = [:]
     /***********************************/
     // MARK: - Public Methods
     /***********************************/
@@ -26,6 +27,17 @@ class ExpenseListManager {
      */
     func getExpenses() -> [Expense] {
         return expenses
+    }
+    
+    func refreshSelectedExpenses() {
+        selectedExpenses.removeAll()
+    }
+    
+    func addExpenseToSelectedExpenses(forIndexPath indexPath: IndexPath) {
+        let selectedExpense = expenses[indexPath.row]
+        if selectedExpenses[selectedExpense.id] == nil {
+            selectedExpenses[selectedExpense.id] = selectedExpense
+        }
     }
     
     /**

@@ -13,6 +13,8 @@ class BaseViewControllerWithTableView: BaseViewController {
     
     let refreshControl = UIRefreshControl()
     
+    let searchController = UISearchController(searchResultsController: nil)
+    
     /***********************************/
     // MARK: - View Lifecycle
     /***********************************/
@@ -21,6 +23,7 @@ class BaseViewControllerWithTableView: BaseViewController {
         super.viewDidLoad()
         self.automaticallyAdjustsScrollViewInsets = false
     }
+    
     
     func addRefreshControl(toTableView tableView: UITableView, withAction action: Selector) {
         refreshControl.addTarget(self, action: action, for: .valueChanged)
@@ -31,4 +34,11 @@ class BaseViewControllerWithTableView: BaseViewController {
         }
     }
     
+    
+    func addSearchController(toTableView tableView: UITableView, withSearchResultsUpdater searchResultsUpdater: UISearchResultsUpdating) {
+        searchController.searchResultsUpdater = searchResultsUpdater
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        tableView.tableHeaderView = searchController.searchBar
+    }
 }

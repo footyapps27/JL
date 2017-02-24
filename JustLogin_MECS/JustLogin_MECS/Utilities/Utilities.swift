@@ -43,6 +43,24 @@ class Utilities {
     }
     
     /**
+     * Method to show an action sheet.
+     */
+    static func showActionSheet(withTitle title: String?, message: String?, actions: [UIAlertAction], onController controller: UIViewController) {
+        let actionsheet = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+        
+        let actionCancel = UIAlertAction(title:"Cancel", style: .cancel) { void in
+            actionsheet.dismiss(animated: true, completion: nil)
+        }
+        actionsheet.addAction(actionCancel)
+        
+        for action in actions {
+            actionsheet.addAction(action)
+        }
+        
+        controller.present(actionsheet, animated: true, completion: nil)
+    }
+    
+    /**
      * Check if connection is available.
      */
     static func connectedToNetwork() -> Bool {
