@@ -21,9 +21,6 @@ class LaunchViewController: BaseViewController {
     
     let manager = LaunchManager()
     
-    // TODO: - Remove this reference
-    let expenseListManager = ExpenseListManager()
-    
     /***********************************/
     // MARK: - View Lifecycle
     /***********************************/
