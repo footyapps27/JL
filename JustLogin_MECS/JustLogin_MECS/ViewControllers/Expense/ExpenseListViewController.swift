@@ -50,7 +50,7 @@ class ExpenseListViewController: BaseViewControllerWithTableView {
     
     @IBAction func leftBarButtonTapped(_ sender: UIBarButtonItem) {
         if !tableView.isEditing {
-            manager.refreshSelectedExpenses()
+            manager.refreshSelectedIndices()
         }
         addBarButtonItems(forNormalState: tableView.isEditing)
         self.tableView.setEditing(!tableView.isEditing, animated: true)
@@ -58,7 +58,7 @@ class ExpenseListViewController: BaseViewControllerWithTableView {
     
     @IBAction func rightBarButtonTapped(_ sender: UIBarButtonItem) {
         if tableView.isEditing {
-            if manager.selectedExpenses.count > 0 {
+            if manager.selectedIndices.count > 0 {
                 showActionsForMultipleExpenses()
             }
         } else {
@@ -120,9 +120,27 @@ class ExpenseListViewController: BaseViewControllerWithTableView {
         let actionAddToReport = UIAlertAction(title:"Add to report", style: .default) { void in
             // TODO: - Show the list of reports
         }
-        let actionDeleteExpenses = UIAlertAction(title:"Delete expenses", style: .default) { void in
-            // TODO: - Handle the delete call
+        
+        let actionDeleteExpenses = UIAlertAction(title:"Delete expenses", style: .default) { [weak self] void in
+            
+            guard let `self` = self else {
+                log.error("Self reference missing in closure.")
+                return
+            }
+            
+            let ids = self.manager.getSelectedExpenseIds()
+            self.manager.deleteExpenses(ids, completionHandler: { (response) in
+                switch(response) {
+                case .success(_):
+                    self.manager.updateExpensesAfterDelete()
+                    self.tableView.reloadData()
+                case .failure(_ , let message):
+                    self.hideLoadingIndicators()
+                    Utilities.showErrorAlert(withMessage: message, onController: self)
+                }
+            })
         }
+        
         Utilities.showActionSheet(withTitle: nil, message: nil, actions: [actionAddToReport, actionDeleteExpenses], onController: self)
     }
     
@@ -176,6 +194,7 @@ extension ExpenseListViewController: UITableViewDelegate {
             manager.addExpenseToSelectedExpenses(forIndexPath: indexPath)
             return
         }
+        tableView.deselectRow(at: indexPath, animated: true)
         // TODO: - Navigate to the detail page
     }
 }

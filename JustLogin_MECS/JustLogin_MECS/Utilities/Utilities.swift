@@ -17,7 +17,7 @@ class Utilities {
      */
     static func convertServerStringToDate(_ string: String) -> Date? {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = Constants.General.ServerDateFormat
+        dateFormatter.dateFormat = Constants.General.serverDateFormat
         return dateFormatter.date(from: string)
     }
     

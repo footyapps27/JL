@@ -17,7 +17,7 @@ class ExpenseListManager {
     
     var expenses: [Expense] = []
     
-    var selectedExpenses: [String: Expense] = [:]
+    var selectedIndices = Set<Int>()
     /***********************************/
     // MARK: - Public Methods
     /***********************************/
@@ -29,15 +29,28 @@ class ExpenseListManager {
         return expenses
     }
     
-    func refreshSelectedExpenses() {
-        selectedExpenses.removeAll()
+    func getSelectedExpenseIds() -> [String] {
+        var ids: [String] = []
+        for index in selectedIndices {
+            ids.append(expenses[index].id)
+        }
+        return ids
+    }
+    
+    func updateExpensesAfterDelete() {
+        expenses = expenses
+            .enumerated()
+            .filter { !selectedIndices.contains($0.offset) }
+            .map { $0.element }
+        refreshSelectedIndices()
+    }
+    
+    func refreshSelectedIndices() {
+        selectedIndices.removeAll()
     }
     
     func addExpenseToSelectedExpenses(forIndexPath indexPath: IndexPath) {
-        let selectedExpense = expenses[indexPath.row]
-        if selectedExpenses[selectedExpense.id] == nil {
-            selectedExpenses[selectedExpense.id] = selectedExpense
-        }
+        selectedIndices.insert(indexPath.row)
     }
     
     /**
@@ -83,7 +96,7 @@ class ExpenseListManager {
             currencyAndAmount = category.symbol
         }
         
-        currencyAndAmount += " " + String(format: "%.2f", expense.amount)
+        currencyAndAmount += " " + String(format: Constants.General.decimalFormat, expense.amount)
         
         return currencyAndAmount
     }
@@ -103,18 +116,31 @@ class ExpenseListManager {
     /**
      * Method to fetch expenses from the server.
      */
-    func fetchExpenses(complimentionHandler: (@escaping (ManagerResponseToController<[Expense]>) -> Void)) {
+    func fetchExpenses(completionHandler: (@escaping (ManagerResponseToController<[Expense]>) -> Void)) {
         expenseService.getAllExpenses({ [weak self] (result) in
             switch(result) {
             case .success(let expenseList):
                 self?.expenses = expenseList
-                complimentionHandler(ManagerResponseToController.success(expenseList))
+                completionHandler(ManagerResponseToController.success(expenseList))
             case .error(let serviceError):
-                complimentionHandler(ManagerResponseToController.failure(code: serviceError.code, message: serviceError.message))
+                completionHandler(ManagerResponseToController.failure(code: serviceError.code, message: serviceError.message))
             case .failure(let message):
-                complimentionHandler(ManagerResponseToController.failure(code: "", message: message)) // TODO: - Pass a general code
+                completionHandler(ManagerResponseToController.failure(code: "", message: message)) // TODO: - Pass a general code
             }
         })
+    }
+    
+    func deleteExpenses(_ expenseIds: [String], completionHandler: (@escaping (ManagerResponseToController<Void>) -> Void)) {
+        expenseService.delete(expenseIds: expenseIds) { (result) in
+            switch(result) {
+            case .success(_):
+                completionHandler(ManagerResponseToController.success())
+            case .error(let serviceError):
+                completionHandler(ManagerResponseToController.failure(code: serviceError.code, message: serviceError.message))
+            case .failure(let message):
+                completionHandler(ManagerResponseToController.failure(code: "", message: message)) // TODO: - Pass a general code
+            }
+        }
     }
     
     func createNewExpense(_ expense: Expense, complimentionHandler: (@escaping (Result<Expense>) -> Void)) {
