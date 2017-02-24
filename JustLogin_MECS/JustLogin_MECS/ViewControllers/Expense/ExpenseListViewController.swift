@@ -16,6 +16,7 @@ class ExpenseListViewController: BaseViewControllerWithTableView {
     /***********************************/
     
     @IBOutlet weak var tableView: UITableView!
+    
     let searchController = UISearchController(searchResultsController: nil)
     
     let manager = ExpenseListManager()
@@ -28,22 +29,10 @@ class ExpenseListViewController: BaseViewControllerWithTableView {
         super.viewDidLoad()
         tableView.isHidden = true
         
-        manager.fetchExpenses { [weak self] (response) in
-            // TODO: - Add loading indicator
-            guard let `self` = self else {
-                log.error("Self reference missing in closure.")
-                return
-            }
-            
-            switch(response) {
-            case .success(_):
-                self.tableView.isHidden = false
-                self.tableView.reloadData()
-            case .failure(_, let message):
-                // TODO: - Handle the empty table view screen.
-                Utilities.showErrorAlert(withMessage: message, onController: self)
-            }
-        }
+        // Attach the refresh control
+        addRefreshControl(toTableView: tableView, withAction: #selector(refreshTableView(_:)))
+        
+        fetchExpenses()
         
         // Add the search controller
         searchController.searchResultsUpdater = self
@@ -56,6 +45,9 @@ class ExpenseListViewController: BaseViewControllerWithTableView {
     // MARK: - Actions
     /***********************************/
     
+    func refreshTableView(_ refreshControl: UIRefreshControl) {
+        fetchExpenses()
+    }
     
     /***********************************/
     // MARK: - Helpers
@@ -68,6 +60,29 @@ class ExpenseListViewController: BaseViewControllerWithTableView {
         tableView.reloadData()
     }
     
+    /**
+     * Method to fetch expenses that will be displayed in the tableview.
+     */
+    func fetchExpenses() {
+        manager.fetchExpenses { [weak self] (response) in
+            // TODO: - Add loading indicator
+            guard let `self` = self else {
+                log.error("Self reference missing in closure.")
+                return
+            }
+            
+            switch(response) {
+            case .success(_):
+                self.refreshControl.endRefreshing()
+                self.tableView.isHidden = false
+                self.tableView.reloadData()
+            case .failure(_, let message):
+                // TODO: - Handle the empty table view screen.
+                self.refreshControl.endRefreshing()
+                Utilities.showErrorAlert(withMessage: message, onController: self)
+            }
+        }
+    }
 }
 
 extension ExpenseListViewController: UITableViewDataSource {
@@ -87,6 +102,8 @@ extension ExpenseListViewController: UITableViewDataSource {
         cell.lblDateAndDescription.text = manager.getDateAndDescription(forIndexPath: indexPath)
         cell.lblAmount.text = manager.getFormattedAmount(forIndexPath: indexPath)
         cell.lblStatus.text = manager.getExpenseStatus(forIndexPath: indexPath)
+        
+        // TODO: - Wire up the icons
         
         return cell
     }
