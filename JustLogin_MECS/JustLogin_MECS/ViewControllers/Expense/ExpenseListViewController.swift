@@ -73,14 +73,23 @@ class ExpenseListViewController: BaseViewControllerWithTableView {
             
             switch(response) {
             case .success(_):
-                self.refreshControl.endRefreshing()
+                self.hideLoadingIndicators()
                 self.tableView.isHidden = false
                 self.tableView.reloadData()
             case .failure(_, let message):
                 // TODO: - Handle the empty table view screen.
-                self.refreshControl.endRefreshing()
+                self.hideLoadingIndicators()
                 Utilities.showErrorAlert(withMessage: message, onController: self)
             }
+        }
+    }
+    
+    /**
+     * Method to hide loading indicators.
+     */
+    func hideLoadingIndicators() {
+        if self.refreshControl.isRefreshing {
+            self.refreshControl.endRefreshing()
         }
     }
 }
