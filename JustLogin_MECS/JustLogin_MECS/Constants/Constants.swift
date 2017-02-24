@@ -47,8 +47,8 @@ struct Constants {
         static let expenseStoryboard = "Expense"
         static let approverAndAdminDashboard = "approverAndAdminDashboard"
         static let submitterDashboard = "submitterDashboard"
-        static let addExpenseViewController = "AddExpenseViewController"
-        static let expenseDetailsViewController = "ExpenseDetailsViewController"
+        static let addExpenseViewController = "addExpenseViewController"
+        static let expenseDetailsViewController = "expenseDetailsViewController"
     }
     
     struct Notifications {

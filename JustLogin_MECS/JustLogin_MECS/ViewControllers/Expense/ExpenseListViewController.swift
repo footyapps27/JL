@@ -112,8 +112,19 @@ extension ExpenseListViewController {
     
     func navigateToAddExpense() {
         let addExpenseViewController = UIStoryboard(name: Constants.StoryboardIds.expenseStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.addExpenseViewController) as! BaseViewController
-        
-        navigationController?.pushViewController(addExpenseViewController, animated: true)
+        pushControllerAndHideTabbar(addExpenseViewController)
+    }
+    
+    func navigateToExpenseDetails(forExpense expense: Expense) {
+        let expenseDetailsViewController = UIStoryboard(name: Constants.StoryboardIds.expenseStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.expenseDetailsViewController) as! ExpenseDetailsViewController
+        expenseDetailsViewController.expense = expense
+        pushControllerAndHideTabbar(expenseDetailsViewController)
+    }
+    
+    func pushControllerAndHideTabbar(_ controller: UIViewController) {
+        hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(controller, animated: true)
+        hidesBottomBarWhenPushed = false
     }
 }
 /***********************************/
@@ -193,7 +204,7 @@ extension ExpenseListViewController: UITableViewDelegate {
             return
         }
         tableView.deselectRow(at: indexPath, animated: true)
-        // TODO: - Navigate to the detail page
+        navigateToExpenseDetails(forExpense: manager.expenses[indexPath.row])
     }
 }
 /***********************************/

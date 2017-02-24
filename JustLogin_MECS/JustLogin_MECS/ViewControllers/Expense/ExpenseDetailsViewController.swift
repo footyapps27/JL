@@ -15,11 +15,11 @@ class ExpenseDetailsViewController: BaseViewController {
     /***********************************/
     let manager = ExpenseDetailsManager()
     
+    var expense: Expense?
     /***********************************/
     // MARK: - View Lifecycle
     /***********************************/
     override func viewDidLoad() {
         super.viewDidLoad()
-        hidesBottomBarWhenPushed = true
     }
 }

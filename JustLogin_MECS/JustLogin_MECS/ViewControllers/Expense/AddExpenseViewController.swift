@@ -20,6 +20,5 @@ class AddExpenseViewController: BaseViewController {
     /***********************************/
     override func viewDidLoad() {
         super.viewDidLoad()
-        hidesBottomBarWhenPushed = true
     }
 }
