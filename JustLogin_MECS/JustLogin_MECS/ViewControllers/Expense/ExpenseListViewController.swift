@@ -27,28 +27,28 @@ class ExpenseListViewController: BaseViewControllerWithTableView {
         super.viewDidLoad()
         
         tableView.isHidden = true
-        self.tableView.allowsMultipleSelectionDuringEditing = true
+        tableView.allowsMultipleSelectionDuringEditing = true
         
-        // Attach the refresh control
+        addSearchController(toTableView: tableView, withSearchResultsUpdater: self)
+        
         addRefreshControl(toTableView: tableView, withAction: #selector(refreshTableView(_:)))
         
         addBarButtonItems(forNormalState: true)
         
         fetchExpenses()
-        
-        // Add the search controller
-        addSearchController(toTableView: tableView, withSearchResultsUpdater: self)
     }
     
-    /***********************************/
-    // MARK: - Actions
-    /***********************************/
+}
+/***********************************/
+// MARK: - Actions
+/***********************************/
+extension ExpenseListViewController {
     
     func refreshTableView(_ refreshControl: UIRefreshControl) {
         fetchExpenses()
     }
     
-    @IBAction func leftBarButtonTapped(_ sender: UIBarButtonItem) {
+    func leftBarButtonTapped(_ sender: UIBarButtonItem) {
         if !tableView.isEditing {
             manager.refreshSelectedIndices()
         }
@@ -56,7 +56,7 @@ class ExpenseListViewController: BaseViewControllerWithTableView {
         self.tableView.setEditing(!tableView.isEditing, animated: true)
     }
     
-    @IBAction func rightBarButtonTapped(_ sender: UIBarButtonItem) {
+    func rightBarButtonTapped(_ sender: UIBarButtonItem) {
         if tableView.isEditing {
             if manager.selectedIndices.count > 0 {
                 showActionsForMultipleExpenses()
@@ -65,17 +65,11 @@ class ExpenseListViewController: BaseViewControllerWithTableView {
             // TODO: - Start the add expense here
         }
     }
-    /***********************************/
-    // MARK: - Helpers
-    /***********************************/
-    func filterContentForSearchText(searchText: String, scope: String = "All") {
-        //        filteredCandies = candies.filter { candy in
-        //            return candy.name.lowercaseString.containsString(searchText.lowercaseString)
-        //        }
-        
-        tableView.reloadData()
-    }
-    
+}
+/***********************************/
+// MARK: - Helpers
+/***********************************/
+extension ExpenseListViewController {
     /**
      * Method to add bar button items (left & right) depending on the state of the tableview. (editing or normal).
      */
@@ -87,6 +81,40 @@ class ExpenseListViewController: BaseViewControllerWithTableView {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: rightSystemItem, target: self, action: #selector(rightBarButtonTapped(_:)))
     }
     
+    /**
+     * Method to display the actions for multiple expenses.
+     */
+    func showActionsForMultipleExpenses() {
+        // TODO - Move to string constants
+        let actionAddToReport = UIAlertAction(title:"Add to report", style: .default) { void in
+            // TODO: - Show the list of reports
+        }
+        
+        let actionDeleteExpenses = UIAlertAction(title:"Delete expenses", style: .default) { [weak self] void in
+            
+            guard let `self` = self else {
+                log.error("Self reference missing in closure.")
+                return
+            }
+            
+            self.manager.deleteSelectedExpenses(completionHandler: { (response) in
+                switch(response) {
+                case .success(_):
+                    self.tableView.reloadData()
+                case .failure(_ , let message):
+                    self.hideLoadingIndicators()
+                    Utilities.showErrorAlert(withMessage: message, onController: self)
+                }
+            })
+        }
+        
+        Utilities.showActionSheet(withTitle: nil, message: nil, actions: [actionAddToReport, actionDeleteExpenses], onController: self)
+    }
+}
+/***********************************/
+// MARK: - Service Call
+/***********************************/
+extension ExpenseListViewController {
     /**
      * Method to fetch expenses that will be displayed in the tableview.
      */
@@ -113,38 +141,6 @@ class ExpenseListViewController: BaseViewControllerWithTableView {
     }
     
     /**
-     * Method to display the actions for multiple expenses.
-     */
-    func showActionsForMultipleExpenses() {
-        // TODO - Move to string constants
-        let actionAddToReport = UIAlertAction(title:"Add to report", style: .default) { void in
-            // TODO: - Show the list of reports
-        }
-        
-        let actionDeleteExpenses = UIAlertAction(title:"Delete expenses", style: .default) { [weak self] void in
-            
-            guard let `self` = self else {
-                log.error("Self reference missing in closure.")
-                return
-            }
-            
-            let ids = self.manager.getSelectedExpenseIds()
-            self.manager.deleteExpenses(ids, completionHandler: { (response) in
-                switch(response) {
-                case .success(_):
-                    self.manager.updateExpensesAfterDelete()
-                    self.tableView.reloadData()
-                case .failure(_ , let message):
-                    self.hideLoadingIndicators()
-                    Utilities.showErrorAlert(withMessage: message, onController: self)
-                }
-            })
-        }
-        
-        Utilities.showActionSheet(withTitle: nil, message: nil, actions: [actionAddToReport, actionDeleteExpenses], onController: self)
-    }
-    
-    /**
      * Method to hide loading indicators.
      */
     func hideLoadingIndicators() {
@@ -153,7 +149,6 @@ class ExpenseListViewController: BaseViewControllerWithTableView {
         }
     }
 }
-
 /***********************************/
 // MARK: - UITableViewDataSource
 /***********************************/
@@ -176,11 +171,9 @@ extension ExpenseListViewController: UITableViewDataSource {
         cell.lblStatus.text = manager.getExpenseStatus(forIndexPath: indexPath)
         
         // TODO: - Wire up the icons
-        
         return cell
     }
 }
-
 /***********************************/
 // MARK: - UITableViewDelegate
 /***********************************/
@@ -198,9 +191,11 @@ extension ExpenseListViewController: UITableViewDelegate {
         // TODO: - Navigate to the detail page
     }
 }
-
+/***********************************/
+// MARK: - UISearchResultsUpdating
+/***********************************/
 extension ExpenseListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        //filterContentForSearchText(searchController.searchBar.text!)
+        // TODO: - Implementation missing
     }
 }

@@ -12,16 +12,19 @@ import Foundation
  * Manager for ExpenseListViewController
  */
 class ExpenseListManager {
-
+    
     var expenseService: IExpenseService = ExpenseService()
     
     var expenses: [Expense] = []
     
     var selectedIndices = Set<Int>()
-    /***********************************/
-    // MARK: - Public Methods
-    /***********************************/
     
+}
+
+/***********************************/
+// MARK: - Data tracking methods
+/***********************************/
+extension ExpenseListManager {
     /**
      * Method to get all the expenses that need to be displayed.
      */
@@ -29,6 +32,16 @@ class ExpenseListManager {
         return expenses
     }
     
+    /**
+     * When in multiple selection mode, add the selection of the user.
+     */
+    func addExpenseToSelectedExpenses(forIndexPath indexPath: IndexPath) {
+        selectedIndices.insert(indexPath.row)
+    }
+    
+    /**
+     * Method to get the list of selected expense id's.
+     */
     func getSelectedExpenseIds() -> [String] {
         var ids: [String] = []
         for index in selectedIndices {
@@ -37,22 +50,20 @@ class ExpenseListManager {
         return ids
     }
     
-    func updateExpensesAfterDelete() {
-        expenses = expenses
-            .enumerated()
-            .filter { !selectedIndices.contains($0.offset) }
-            .map { $0.element }
-        refreshSelectedIndices()
-    }
     
+    
+    /**
+     * Remove all the indices that was earlier tracked.
+     */
     func refreshSelectedIndices() {
         selectedIndices.removeAll()
     }
-    
-    func addExpenseToSelectedExpenses(forIndexPath indexPath: IndexPath) {
-        selectedIndices.insert(indexPath.row)
-    }
-    
+}
+
+/***********************************/
+// MARK: - TableView Cell helpers
+/***********************************/
+extension ExpenseListManager {
     /**
      * Method to get the category name for Id
      */
@@ -112,9 +123,15 @@ class ExpenseListManager {
         log.error("Status of expense is invalid")
         return Constants.General.emptyString
     }
+}
+
+/***********************************/
+// MARK: - Service Calls
+/***********************************/
+extension ExpenseListManager {
     
     /**
-     * Method to fetch expenses from the server.
+     * Method to fetch all expenses from the server.
      */
     func fetchExpenses(completionHandler: (@escaping (ManagerResponseToController<[Expense]>) -> Void)) {
         expenseService.getAllExpenses({ [weak self] (result) in
@@ -130,10 +147,15 @@ class ExpenseListManager {
         })
     }
     
-    func deleteExpenses(_ expenseIds: [String], completionHandler: (@escaping (ManagerResponseToController<Void>) -> Void)) {
-        expenseService.delete(expenseIds: expenseIds) { (result) in
+    /**
+     * Delete a list of expenses. 
+     * This will alse update expenses
+     */
+    func deleteSelectedExpenses(completionHandler: (@escaping (ManagerResponseToController<Void>) -> Void)) {
+        expenseService.delete(expenseIds: getSelectedExpenseIds()) { [weak self] (result) in
             switch(result) {
             case .success(_):
+                self?.updateExpensesAfterDelete()
                 completionHandler(ManagerResponseToController.success())
             case .error(let serviceError):
                 completionHandler(ManagerResponseToController.failure(code: serviceError.code, message: serviceError.message))
@@ -143,9 +165,28 @@ class ExpenseListManager {
         }
     }
     
+    /**
+     * Create a new expense.
+     */
     func createNewExpense(_ expense: Expense, complimentionHandler: (@escaping (Result<Expense>) -> Void)) {
         expenseService.create(expense: expense) { (expense) in
             log.debug(expense)
         }
+    }
+}
+
+/***********************************/
+// MARK: - Private Methods
+/***********************************/
+extension ExpenseListManager {
+    /**
+     * Update the list of expenses after the deletion is successful.
+     */
+    fileprivate func updateExpensesAfterDelete() {
+        expenses = expenses
+            .enumerated()
+            .filter { !selectedIndices.contains($0.offset) }
+            .map { $0.element }
+        refreshSelectedIndices()
     }
 }
