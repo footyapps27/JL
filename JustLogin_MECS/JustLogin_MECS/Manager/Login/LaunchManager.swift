@@ -39,12 +39,17 @@ class LaunchManager {
     /**
      *
      */
-    func navigateToApprovalFlow() throws -> Bool {
+    func navigateToApprovalFlow(_ completionHandler: ((ManagerResponseToController<Bool>) -> Void)) {
         
         guard let accessPrivileges = Singleton.sharedInstance.member?.role?.accessPrivileges else {
             log.error("Access Privileges found nil when unwrapping")
-            throw CustomError.accessPrivilegesNotFound
+            // TODO: - Move to constants
+            completionHandler(ManagerResponseToController.failure(code: "", message: "Something went wrong. Please try again."))
+            return
         }
-        return accessPrivileges.approveReport > 0
+        
+        accessPrivileges.approveReport > 0
+            ? completionHandler(ManagerResponseToController.success(true))
+            : completionHandler(ManagerResponseToController.success(false))
     }
 }
