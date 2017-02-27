@@ -136,7 +136,6 @@ extension ExpenseListViewController {
         }
         
         manager.fetchExpenses { [weak self] (response) in
-            // TODO: - Add loading indicator
             guard let `self` = self else {
                 log.error("Self reference missing in closure.")
                 return
