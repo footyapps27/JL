@@ -113,19 +113,13 @@ extension ExpenseListViewController {
     
     func navigateToAddExpense() {
         let addExpenseViewController = UIStoryboard(name: Constants.StoryboardIds.expenseStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.addExpenseViewController) as! BaseViewController
-        pushControllerAndHideTabbar(addExpenseViewController)
+        Utilities.pushControllerAndHideTabbar(fromController:self, toController: addExpenseViewController)
     }
     
     func navigateToExpenseDetails(forExpense expense: Expense) {
         let expenseDetailsViewController = UIStoryboard(name: Constants.StoryboardIds.expenseStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.expenseDetailsViewController) as! ExpenseDetailsViewController
         expenseDetailsViewController.expense = expense
-        pushControllerAndHideTabbar(expenseDetailsViewController)
-    }
-    
-    func pushControllerAndHideTabbar(_ controller: UIViewController) {
-        hidesBottomBarWhenPushed = true
-        navigationController?.pushViewController(controller, animated: true)
-        hidesBottomBarWhenPushed = false
+        Utilities.pushControllerAndHideTabbar(fromController:self, toController: expenseDetailsViewController)
     }
 }
 /***********************************/
@@ -147,15 +141,15 @@ extension ExpenseListViewController {
                 log.error("Self reference missing in closure.")
                 return
             }
-            
-            self.refreshControl.isRefreshing ? self.refreshControl.endRefreshing() : self.hideLoadingIndicator(enableUserInteraction: true)
             switch(response) {
             case .success(_):
                 self.tableView.isHidden = false
                 self.tableView.reloadData()
+                self.refreshControl.isRefreshing ? self.refreshControl.endRefreshing() : self.hideLoadingIndicator(enableUserInteraction: true)
             case .failure(_, let message):
                 // TODO: - Handle the empty table view screen.
                 Utilities.showErrorAlert(withMessage: message, onController: self)
+                self.refreshControl.isRefreshing ? self.refreshControl.endRefreshing() : self.hideLoadingIndicator(enableUserInteraction: true)
             }
         }
     }
@@ -164,10 +158,6 @@ extension ExpenseListViewController {
 // MARK: - UITableViewDataSource
 /***********************************/
 extension ExpenseListViewController: UITableViewDataSource {
-    
-    public func numberOfSections(in tableView: UITableView) -> Int {
-        return Constants.Defaults.numberOfSections
-    }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return manager.getExpenses().count
@@ -199,7 +189,7 @@ extension ExpenseListViewController: UITableViewDelegate {
             return
         }
         tableView.deselectRow(at: indexPath, animated: true)
-        navigateToExpenseDetails(forExpense: manager.expenses[indexPath.row])
+        navigateToExpenseDetails(forExpense: manager.getExpenses()[indexPath.row])
     }
 }
 /***********************************/

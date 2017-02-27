@@ -96,9 +96,18 @@ class Utilities {
         let keyboardFrame = value.cgRectValue
         let adjustmentHeight = (keyboardFrame.height + 20) * (show ? 1 : -1)
         
-        
         scrollView.contentInset.bottom += adjustmentHeight
         scrollView.scrollIndicatorInsets.bottom += adjustmentHeight
+    }
+    
+    /**
+     * Method to push a controller & hide the tab bar.
+     * When returning back the tab bar will again be shown.
+     */
+    static func pushControllerAndHideTabbar(fromController: UIViewController, toController: UIViewController) {
+        fromController.hidesBottomBarWhenPushed = true
+        fromController.navigationController?.pushViewController(toController, animated: true)
+        fromController.hidesBottomBarWhenPushed = false
     }
 }
     
