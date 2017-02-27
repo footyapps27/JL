@@ -34,3 +34,19 @@ enum ExpenseStatus : Int {
         get { return String(describing: self) }
     }
 }
+
+enum ReportFieldType: Int {
+    case text = 0,
+    email,
+    url,
+    phone,
+    number,
+    decimal,
+    amount,
+    percent,
+    date,
+    checkBox,
+    doubleTextField,
+    textView,
+    dropdown
+}

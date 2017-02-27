@@ -17,16 +17,22 @@ class Utilities {
      */
     static func convertServerStringToDate(_ string: String) -> Date? {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = Constants.General.serverDateFormat
+        dateFormatter.dateFormat = Constants.General.dateFormatReceivedFromServer
         return dateFormatter.date(from: string)
     }
     
     /**
      * Method to convert date to string.
      */
-    static func convertDateToString(_ date: Date) -> String {
+    static func convertDateToStringForDisplay(_ date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = Constants.General.localDisplayDateFormat
+        return dateFormatter.string(from: date)
+    }
+    
+    static func convertDateToStringForServerCommunication(_ date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = Constants.General.dateFormatSentToServer
         return dateFormatter.string(from: date)
     }
     

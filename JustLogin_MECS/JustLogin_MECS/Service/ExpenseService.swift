@@ -132,7 +132,7 @@ extension ExpenseService {
         payload[Constants.RequestParameters.Expense.exchange] = expense.exchange
         
         if let date = expense.date {
-            payload[Constants.RequestParameters.Expense.date] = Utilities.convertDateToString(date)
+            payload[Constants.RequestParameters.Expense.date] = Utilities.convertDateToStringForServerCommunication(date)
         }
         
         if !expense.description.isEmpty {

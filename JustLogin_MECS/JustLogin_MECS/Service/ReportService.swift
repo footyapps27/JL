@@ -69,7 +69,7 @@ struct ReportService : IReportService {
      */
     func create(report: Report, completionHandler:( @escaping (Result<Report>) -> Void)) {
         let payload = getPayloadForCreateReport(report)
-        serviceAdapter.post(destination: Constants.URLs.createExpense, payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
+        serviceAdapter.post(destination: Constants.URLs.createReport, payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
             // TODO: - Need to handle the scenarios here.
         }
     }
@@ -101,9 +101,26 @@ extension ReportService {
     /**
      * Method to format payload for create report.
      */
-    func getPayloadForCreateReport(_ report: Report) -> [String : String] {
-        // TODO: - Need to handle the scenarios here.
-        return [:]
+    func getPayloadForCreateReport(_ report: Report) -> [String : Any] {
+        var payload: [String : Any] = [:]
+        
+        if !report.businessPurpose.isEmpty {
+            payload[Constants.RequestParameters.Report.businessPurpose] = report.businessPurpose
+        }
+        
+        if !report.title.isEmpty {
+            payload[Constants.RequestParameters.Report.title] = report.title
+        }
+        
+        if let startDate = report.startDate {
+            payload[Constants.RequestParameters.Report.startDate] = Utilities.convertDateToStringForServerCommunication(startDate)
+        }
+        
+        if let endDate = report.endDate {
+            payload[Constants.RequestParameters.Report.endDate] = Utilities.convertDateToStringForServerCommunication(endDate)
+        }
+        
+        return payload
     }
     
     /**

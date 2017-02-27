@@ -84,7 +84,7 @@ extension ExpenseListManager {
         var dateAndDescription = Constants.General.emptyString
         
         if let date = expense.date {
-            dateAndDescription = Utilities.convertDateToString(date)
+            dateAndDescription = Utilities.convertDateToStringForDisplay(date)
         } else {
             log.error("Expense date is nil")
         }

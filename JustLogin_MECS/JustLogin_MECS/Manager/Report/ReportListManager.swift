@@ -16,10 +16,6 @@ class ReportListManager {
     var reportService: IReportService = ReportService()
     
     var reports: [Report] = []
-    
-    /***********************************/
-    // MARK: - Public Methods
-    /***********************************/
 }
 /***********************************/
 // MARK: - Data tracking methods
@@ -51,11 +47,11 @@ extension ReportListManager {
         let report = reports[indexPath.row]
         
         if let startDate = report.startDate {
-            duration += Utilities.convertDateToString(startDate)
+            duration += Utilities.convertDateToStringForDisplay(startDate)
         }
         
         if let endDate = report.endDate {
-            duration += " to " + Utilities.convertDateToString(endDate)
+            duration += " to " + Utilities.convertDateToStringForDisplay(endDate)
         }
         return duration
     }
