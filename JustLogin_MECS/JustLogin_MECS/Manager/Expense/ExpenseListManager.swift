@@ -12,15 +12,19 @@ import Foundation
  * Manager for ExpenseListViewController
  */
 class ExpenseListManager {
-
+    
     var expenseService: IExpenseService = ExpenseService()
     
     var expenses: [Expense] = []
     
-    /***********************************/
-    // MARK: - Public Methods
-    /***********************************/
+    var selectedIndices = Set<Int>()
     
+}
+
+/***********************************/
+// MARK: - Data tracking methods
+/***********************************/
+extension ExpenseListManager {
     /**
      * Method to get all the expenses that need to be displayed.
      */
@@ -28,6 +32,38 @@ class ExpenseListManager {
         return expenses
     }
     
+    /**
+     * When in multiple selection mode, add the selection of the user.
+     */
+    func addExpenseToSelectedExpenses(forIndexPath indexPath: IndexPath) {
+        selectedIndices.insert(indexPath.row)
+    }
+    
+    /**
+     * Method to get the list of selected expense id's.
+     */
+    func getSelectedExpenseIds() -> [String] {
+        var ids: [String] = []
+        for index in selectedIndices {
+            ids.append(expenses[index].id)
+        }
+        return ids
+    }
+    
+    
+    
+    /**
+     * Remove all the indices that was earlier tracked.
+     */
+    func refreshSelectedIndices() {
+        selectedIndices.removeAll()
+    }
+}
+
+/***********************************/
+// MARK: - TableView Cell helpers
+/***********************************/
+extension ExpenseListManager {
     /**
      * Method to get the category name for Id
      */
@@ -71,7 +107,7 @@ class ExpenseListManager {
             currencyAndAmount = category.symbol
         }
         
-        currencyAndAmount += " " + String(format: "%.2f", expense.amount)
+        currencyAndAmount += " " + String(format: Constants.General.decimalFormat, expense.amount)
         
         return currencyAndAmount
     }
@@ -87,27 +123,70 @@ class ExpenseListManager {
         log.error("Status of expense is invalid")
         return Constants.General.emptyString
     }
+}
+
+/***********************************/
+// MARK: - Service Calls
+/***********************************/
+extension ExpenseListManager {
     
     /**
-     * Method to fetch expenses from the server.
+     * Method to fetch all expenses from the server.
      */
-    func fetchExpenses(complimentionHandler: (@escaping (ManagerResponseToController<[Expense]>) -> Void)) {
+    func fetchExpenses(completionHandler: (@escaping (ManagerResponseToController<[Expense]>) -> Void)) {
         expenseService.getAllExpenses({ [weak self] (result) in
             switch(result) {
             case .success(let expenseList):
                 self?.expenses = expenseList
-                complimentionHandler(ManagerResponseToController.success(expenseList))
+                completionHandler(ManagerResponseToController.success(expenseList))
             case .error(let serviceError):
-                complimentionHandler(ManagerResponseToController.failure(code: serviceError.code, message: serviceError.message))
+                completionHandler(ManagerResponseToController.failure(code: serviceError.code, message: serviceError.message))
             case .failure(let message):
-                complimentionHandler(ManagerResponseToController.failure(code: "", message: message)) // TODO: - Pass a general code
+                completionHandler(ManagerResponseToController.failure(code: "", message: message)) // TODO: - Pass a general code
             }
         })
     }
     
+    /**
+     * Delete a list of expenses. 
+     * This will alse update expenses
+     */
+    func deleteSelectedExpenses(completionHandler: (@escaping (ManagerResponseToController<Void>) -> Void)) {
+        expenseService.delete(expenseIds: getSelectedExpenseIds()) { [weak self] (result) in
+            switch(result) {
+            case .success(_):
+                self?.updateExpensesAfterDelete()
+                completionHandler(ManagerResponseToController.success())
+            case .error(let serviceError):
+                completionHandler(ManagerResponseToController.failure(code: serviceError.code, message: serviceError.message))
+            case .failure(let message):
+                completionHandler(ManagerResponseToController.failure(code: "", message: message)) // TODO: - Pass a general code
+            }
+        }
+    }
+    
+    /**
+     * Create a new expense.
+     */
     func createNewExpense(_ expense: Expense, complimentionHandler: (@escaping (Result<Expense>) -> Void)) {
         expenseService.create(expense: expense) { (expense) in
             log.debug(expense)
         }
+    }
+}
+
+/***********************************/
+// MARK: - Private Methods
+/***********************************/
+extension ExpenseListManager {
+    /**
+     * Update the list of expenses after the deletion is successful.
+     */
+    fileprivate func updateExpensesAfterDelete() {
+        expenses = expenses
+            .enumerated()
+            .filter { !selectedIndices.contains($0.offset) }
+            .map { $0.element }
+        refreshSelectedIndices()
     }
 }

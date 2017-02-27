@@ -33,14 +33,13 @@ class SignInViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let cancel = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelTapped))
-        
         navigationItem.leftBarButtonItems = [cancel]
     }
-    
-    /***********************************/
-    // MARK: - Helpers
-    /***********************************/
-    
+}
+/***********************************/
+// MARK: - Actions
+/***********************************/
+extension SignInViewController {
     /**
      Method to dismiss the controller when cancel is tapped.
      */
@@ -54,7 +53,7 @@ class SignInViewController: BaseViewController {
     @IBAction func signInTapped(_ sender: UIButton) {
         
         let validationResponse = manager.validateLoginParameters(organizationName: txtCompanyId.text!, userId: txtUserId.text!, password: txtPassword.text!)
-        
+        view.endEditing(true)
         switch validationResponse {
         case .failure(_ , let errorMessage):
             Utilities.showErrorAlert(withMessage: errorMessage, onController: self)
@@ -62,33 +61,35 @@ class SignInViewController: BaseViewController {
             callLoginService()
         }
     }
-    
+}
+/***********************************/
+// MARK: - Service
+/***********************************/
+extension SignInViewController {
     /**
      * Call the login service to authenticate the member.
      */
-    private func callLoginService() {
-        
-        // TODO: - Add the loading indicator.
+    fileprivate func callLoginService() {
+        showLoadingIndicator(disableUserInteraction: true)
         manager.login(withOrganizationName: txtCompanyId.text!, userId: txtUserId.text!, password: txtPassword.text!) { [weak self] (result) in
+            
             guard let `self` = self else {
                 log.error("self reference missing in closure.")
                 return
             }
             
+            self.hideLoadingIndicator(enableUserInteraction: true)
             switch(result) {
             case .success( _):
-                
                 // Inform the parent that the user logged in successfully, and the member that has logged in.
                 NotificationCenter.default.post(name: Notification.Name(Constants.Notifications.loginSuccessful), object: nil)
                 self.dismiss(animated: false, completion: nil)
-                
             case .failure(_ , let message):
                 Utilities.showErrorAlert(withMessage: message, onController: self)
             }
         }
     }
 }
-
 /***********************************/
 // MARK: - Keyboard event listeners
 /***********************************/

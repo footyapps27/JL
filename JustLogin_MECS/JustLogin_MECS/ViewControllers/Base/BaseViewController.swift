@@ -41,7 +41,30 @@ class BaseViewController: UIViewController {
     deinit {
         removeKeyboardNotificationListeners()
     }
+}
+/***********************************/
+// MARK: - Public Methods
+/***********************************/
+extension BaseViewController {
     
+    func showLoadingIndicator(disableUserInteraction: Bool) {
+        activityIndicator?.startAnimating()
+        if disableUserInteraction {
+            UIApplication.shared.beginIgnoringInteractionEvents()
+        }
+    }
+    
+    func hideLoadingIndicator(enableUserInteraction: Bool) {
+        activityIndicator?.stopAnimating()
+        if enableUserInteraction {
+            UIApplication.shared.endIgnoringInteractionEvents()
+        }
+    }
+}
+/***********************************/
+// MARK: - Notification Listeners
+/***********************************/
+extension BaseViewController {
     func keyboardWillShow(_ notification: Notification) {
         isKeyboardVisible = true
     }
@@ -49,13 +72,13 @@ class BaseViewController: UIViewController {
     func keyboardWillHide(_ notification: Notification) {
         isKeyboardVisible = false
     }
-    
-    /***********************************/
-    // MARK: - Private Methods
-    /***********************************/
-    
-    private func addKeyboardNotificationListeners() {
-        
+}
+/***********************************/
+// MARK: - Private Methods
+/***********************************/
+extension BaseViewController {
+
+    fileprivate func addKeyboardNotificationListeners() {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(self.keyboardWillShow(_:)),
@@ -70,24 +93,24 @@ class BaseViewController: UIViewController {
         )
     }
     
-    private func removeKeyboardNotificationListeners() {
+    fileprivate func removeKeyboardNotificationListeners() {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
-    private func addActivityIndicator() {
+    fileprivate func addActivityIndicator() {
         
         // TODO: - Put this value in constants.
-        let frame = CGRect(x: (UIScreen.main.bounds.size.width * 0.5) - 60,
-                           y: (UIScreen.main.bounds.size.height * 0.5) - 60,
-                           width: 60, height: 60)
+        let frame = CGRect(x: (UIScreen.main.bounds.size.width * 0.5) - CGFloat(Constants.UISize.activityIndicatorHeightWidth),
+                           y: (UIScreen.main.bounds.size.height * 0.5) - CGFloat(Constants.UISize.activityIndicatorHeightWidth),
+                           width: CGFloat(Constants.UISize.activityIndicatorHeightWidth),
+                           height: CGFloat(Constants.UISize.activityIndicatorHeightWidth))
         
-        activityIndicator =  NVActivityIndicatorView(frame: frame, type: NVActivityIndicatorType.ballClipRotate, color: UIColor.blue, padding: CGFloat(0))
+        activityIndicator =  NVActivityIndicatorView(frame: frame, type: NVActivityIndicatorType.ballSpinFadeLoader, color: UIColor.lightGray, padding: CGFloat(0))
         
         self.view.addSubview(activityIndicator!)
-        
-        // Autoresizing mask
         activityIndicator?.translatesAutoresizingMaskIntoConstraints = false
+        
         // Constraints
         self.view.addConstraint(NSLayoutConstraint(item: activityIndicator!, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0))
         self.view.addConstraint(NSLayoutConstraint(item: activityIndicator!, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0))

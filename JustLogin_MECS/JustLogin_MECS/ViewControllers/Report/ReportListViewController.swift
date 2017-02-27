@@ -16,7 +16,8 @@ class ReportListViewController: BaseViewControllerWithTableView {
     /***********************************/
     
     @IBOutlet weak var tableView: UITableView!
-    let searchController = UISearchController(searchResultsController: nil)
+    
+    let manager = ReportListManager()
     
     /***********************************/
     // MARK: - View Lifecycle
@@ -25,57 +26,119 @@ class ReportListViewController: BaseViewControllerWithTableView {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Add the search controller
-        searchController.searchResultsUpdater = self
-        searchController.dimsBackgroundDuringPresentation = false
-        definesPresentationContext = true
-        tableView.tableHeaderView = searchController.searchBar
-    }
-    
-    /***********************************/
-    // MARK: - Actions
-    /***********************************/
-    
-    
-    /***********************************/
-    // MARK: - Helpers
-    /***********************************/
-    func filterContentForSearchText(searchText: String, scope: String = "All") {
-        //        filteredCandies = candies.filter { candy in
-        //            return candy.name.lowercaseString.containsString(searchText.lowercaseString)
-        //        }
+        tableView.isHidden = true
         
-        tableView.reloadData()
+        addSearchController(toTableView: tableView, withSearchResultsUpdater: self)
+        
+        addRefreshControl(toTableView: tableView, withAction: #selector(refreshTableView(_:)))
+        
+        addBarButtonItems()
+        
+        fetchReports()
+    }
+}
+/***********************************/
+// MARK: - Actions
+/***********************************/
+extension ReportListViewController {
+    
+    func refreshTableView(_ refreshControl: UIRefreshControl) {
+        fetchReports()
     }
     
+    func rightBarButtonTapped(_ sender: UIBarButtonItem) {
+        navigateToAddReport()
+    }
 }
-
+/***********************************/
+// MARK: - Helpers
+/***********************************/
+extension ReportListViewController {
+    /**
+     * Method to add bar button items.
+     */
+    func addBarButtonItems() {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(rightBarButtonTapped(_:)))
+    }
+    
+    func navigateToAddReport() {
+        let addReportViewController = UIStoryboard(name: Constants.StoryboardIds.expenseStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.addReportViewController) as! BaseViewController
+        Utilities.pushControllerAndHideTabbar(fromController: self, toController: addReportViewController)
+    }
+    
+    func navigateToReportDetails(forReport report: Report) {
+        let reportDetailsViewController = UIStoryboard(name: Constants.StoryboardIds.expenseStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.reportDetailsViewController) as! ReportDetailsViewController
+        reportDetailsViewController.report = report
+        Utilities.pushControllerAndHideTabbar(fromController: self, toController: reportDetailsViewController)
+    }
+}
+/***********************************/
+// MARK: - Service Call
+/***********************************/
+extension ReportListViewController {
+    /**
+     * Method to fetch expenses that will be displayed in the tableview.
+     */
+    func fetchReports() {
+        
+        if !refreshControl.isRefreshing {
+            showLoadingIndicator(disableUserInteraction: false)
+        }
+        
+        manager.fetchReports { [weak self] (response) in
+            // TODO: - Add loading indicator
+            guard let `self` = self else {
+                log.error("Self reference missing in closure.")
+                return
+            }
+            
+            switch(response) {
+            case .success(_):
+                self.tableView.isHidden = false
+                self.tableView.reloadData()
+                self.refreshControl.isRefreshing ? self.refreshControl.endRefreshing() : self.hideLoadingIndicator(enableUserInteraction: true)
+            case .failure(_, let message):
+                // TODO: - Handle the empty table view screen.
+                Utilities.showErrorAlert(withMessage: message, onController: self)
+                self.refreshControl.isRefreshing ? self.refreshControl.endRefreshing() : self.hideLoadingIndicator(enableUserInteraction: true)
+            }
+        }
+    }
+}
+/***********************************/
+// MARK: - UITableViewDataSource
+/***********************************/
 extension ReportListViewController: UITableViewDataSource {
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // TODO: - Hardcoded data
-        return 10
+        return manager.getReports().count
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.reportListTableViewCellIdentifier, for: indexPath) as? ReportListTableViewCell {
-            cell.lblReportName.text = "Report Name"
-            cell.lblDate.text = "04/07/2016 to 29/07/2016"
-            cell.lblAmount.text = "$41.05"
-            cell.lblStatus.text = "Approved"
-            return cell
-        }
-        // TODO: - This has to be updated
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.reportListTableViewCellIdentifier, for: indexPath) as! ReportListTableViewCell
+        cell.lblReportName.text = manager.getReportTitle(forIndexPath: indexPath)
+        cell.lblDate.text = manager.getReportDuration(forIndexPath: indexPath)
+        cell.lblAmount.text = manager.getFormattedReportAmount(forIndexPath: indexPath)
+        cell.lblStatus.text = manager.getReportStatus(forIndexPath: indexPath)
+        return cell
     }
 }
-
+/***********************************/
+// MARK: - UITableViewDelegate
+/***********************************/
 extension ReportListViewController: UITableViewDelegate {
-    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return CGFloat(Constants.CellHeight.reportListCellHeight)
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        navigateToReportDetails(forReport: manager.getReports()[indexPath.row])
+    }
 }
-
+/***********************************/
+// MARK: - UISearchResultsUpdating
+/***********************************/
 extension ReportListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         //filterContentForSearchText(searchController.searchBar.text!)

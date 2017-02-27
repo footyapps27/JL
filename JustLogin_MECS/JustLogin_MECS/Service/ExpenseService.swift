@@ -29,16 +29,16 @@ protocol IExpenseService {
     /**
      * Delete an existing expense.
      */
-    func delete(expenseId: String, completionHandler:( @escaping (Result<Expense>) -> Void))
+    func delete(expenseIds: [String], completionHandler:( @escaping (Result<Void>) -> Void))
 }
 
+/***********************************/
+// MARK: - IExpenseService implementation
+/***********************************/
 struct ExpenseService : IExpenseService {
     
     var serviceAdapter: NetworkAdapter = AlamofireNetworkAdapter()
     
-    /***********************************/
-    // MARK: - IExpenseService implementation
-    /***********************************/
     func getAllExpenses(_ completionHandler:( @escaping (Result<[Expense]>) -> Void)) {
         serviceAdapter.post(destination: Constants.URLs.getAllExpenses, payload: [:], headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
             switch(response) {
@@ -98,14 +98,25 @@ struct ExpenseService : IExpenseService {
         }
     }
     
-    func delete(expenseId: String, completionHandler:( @escaping (Result<Expense>) -> Void)) {
-        let payload = getPayloadForDeleteExpense(expenseId)
+    func delete(expenseIds: [String], completionHandler:( @escaping (Result<Void>) -> Void)) {
+        let payload = getPayloadForDeleteExpense(expenseIds)
         serviceAdapter.post(destination: Constants.URLs.deleteExpense, payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
-            // TODO: - Need to handle the scenarios here.
+            switch(response) {
+            case .success(_ , _):
+                completionHandler(Result.success())
+            case .errors(let error):
+                let error = ServiceError(JSON(error))
+                completionHandler(Result.error(error))
+            case .failure(let description):
+                completionHandler(Result.failure(description))
+            }
         }
     }
 }
 
+/***********************************/
+// MARK: - Payload for services
+/***********************************/
 extension ExpenseService {
     
     /**
@@ -174,8 +185,7 @@ extension ExpenseService {
     /**
      * Method to format payload for delete expense.
      */
-    func getPayloadForDeleteExpense(_ expenseId: String) -> [String : Any] {
-        // TODO: - Need to handle the scenarios here.
-        return [:]
+    func getPayloadForDeleteExpense(_ expenseIds: [String]) -> [String : Any] {
+        return [Constants.RequestParameters.General.ids : expenseIds]
     }
 }

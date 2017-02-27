@@ -49,17 +49,15 @@ struct ReportService : IReportService {
             switch(response) {
                 case .success(let success, _ ):
                     var allReports: [Report] = []
-                    if let jsonReports = success[Constants.ResponseParameters.expenses] as? [Any] {
+                    if let jsonReports = success[Constants.ResponseParameters.reports] as? [Any] {
                         for report in jsonReports {
                             allReports.append(Report(withJSON: JSON(report)))
                         }
                     }
                     completionHandler(Result.success(allReports))
-                
             case .errors(let error):
                 let error = ServiceError(JSON(error))
                 completionHandler(Result.error(error))
-                
             case .failure(let description):
                 completionHandler(Result.failure(description))
             }

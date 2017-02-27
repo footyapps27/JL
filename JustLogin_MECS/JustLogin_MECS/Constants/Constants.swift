@@ -12,8 +12,13 @@ struct Constants {
     
     struct General {
         static let emptyString = ""
-        static let ServerDateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        static let serverDateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         static let localDisplayDateFormat = "dd/MM/yyyy"
+        static let decimalFormat = "%.2f"
+    }
+    
+    struct UISize {
+        static let activityIndicatorHeightWidth = 50
     }
     
     struct Defaults {
@@ -43,8 +48,13 @@ struct Constants {
     
     struct StoryboardIds {
         static let dashboardStoryboard = "Dashboard"
+        static let expenseStoryboard = "Expense"
         static let approverAndAdminDashboard = "approverAndAdminDashboard"
         static let submitterDashboard = "submitterDashboard"
+        static let addExpenseViewController = "addExpenseViewController"
+        static let expenseDetailsViewController = "expenseDetailsViewController"
+        static let addReportViewController = "addReportViewController"
+        static let reportDetailsViewController = "reportDetailsViewController"
     }
     
     struct Notifications {
@@ -64,8 +74,8 @@ struct Constants {
         
         static let getAllExpenses = URLs.baseURL + "/expense/retrievebymember"
         static let createExpense = URLs.baseURL + "/expense/create"
-        static let updateExpense = URLs.baseURL + "/organization/details"
-        static let deleteExpense = URLs.baseURL + "/organization/details"
+        static let updateExpense = URLs.baseURL + "/expense/update"
+        static let deleteExpense = URLs.baseURL + "/expense/delete"
         
         static let getAllReports = URLs.baseURL + "/report/retrievebymember"
         static let createReport = URLs.baseURL + "/organization/details"
@@ -74,6 +84,10 @@ struct Constants {
     }
     
     struct RequestParameters {
+        struct General {
+            static let ids = "ids"
+        }
+        
         struct Login {
             static let organizationName = "organizationName"
             static let memberName = "memberName"

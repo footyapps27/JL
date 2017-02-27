@@ -17,7 +17,7 @@ class Utilities {
      */
     static func convertServerStringToDate(_ string: String) -> Date? {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = Constants.General.ServerDateFormat
+        dateFormatter.dateFormat = Constants.General.serverDateFormat
         return dateFormatter.date(from: string)
     }
     
@@ -40,6 +40,24 @@ class Utilities {
             alert.dismiss(animated: true, completion: nil)
         })
         controller.present(alert, animated: true)
+    }
+    
+    /**
+     * Method to show an action sheet.
+     */
+    static func showActionSheet(withTitle title: String?, message: String?, actions: [UIAlertAction], onController controller: UIViewController) {
+        let actionsheet = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+        
+        let actionCancel = UIAlertAction(title:"Cancel", style: .cancel) { void in
+            actionsheet.dismiss(animated: true, completion: nil)
+        }
+        actionsheet.addAction(actionCancel)
+        
+        for action in actions {
+            actionsheet.addAction(action)
+        }
+        
+        controller.present(actionsheet, animated: true, completion: nil)
     }
     
     /**
@@ -78,9 +96,18 @@ class Utilities {
         let keyboardFrame = value.cgRectValue
         let adjustmentHeight = (keyboardFrame.height + 20) * (show ? 1 : -1)
         
-        
         scrollView.contentInset.bottom += adjustmentHeight
         scrollView.scrollIndicatorInsets.bottom += adjustmentHeight
+    }
+    
+    /**
+     * Method to push a controller & hide the tab bar.
+     * When returning back the tab bar will again be shown.
+     */
+    static func pushControllerAndHideTabbar(fromController: UIViewController, toController: UIViewController) {
+        fromController.hidesBottomBarWhenPushed = true
+        fromController.navigationController?.pushViewController(toController, animated: true)
+        fromController.hidesBottomBarWhenPushed = false
     }
 }
     

@@ -9,7 +9,6 @@
 import UIKit
 
 class LaunchViewController: BaseViewController {
-    
     /***********************************/
     // MARK: - Properties
     /***********************************/
@@ -20,9 +19,6 @@ class LaunchViewController: BaseViewController {
     @IBOutlet weak var pageControl: UIPageControl!
     
     let manager = LaunchManager()
-    
-    // TODO: - Remove this reference
-    let expenseListManager = ExpenseListManager()
     
     /***********************************/
     // MARK: - View Lifecycle
@@ -47,11 +43,6 @@ class LaunchViewController: BaseViewController {
         NotificationCenter.default.removeObserver(self, name: Notification.Name(Constants.Notifications.loginSuccessful), object: nil)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     /***********************************/
     // MARK: - Helpers
     /***********************************/
@@ -72,15 +63,13 @@ class LaunchViewController: BaseViewController {
      Method to navigate to the dashboard after the user has logged in.
      */
     func navigateToDashboard() {
-        do {
-            let navigateToApprovalFlow = try manager.navigateToApprovalFlow()
-            if navigateToApprovalFlow {
-                navigateToAdminAndApproverDashboard()
-            } else {
-                navigateToSubmitterDashboard()
+        manager.navigateToApprovalFlow { (response) in
+            switch(response) {
+            case .success(let isApprover):
+                isApprover ? navigateToAdminAndApproverDashboard() : navigateToSubmitterDashboard()
+            case .failure(_ , let message):
+                Utilities.showErrorAlert(withMessage: message, onController: self)
             }
-        } catch {
-            
         }
     }
     
