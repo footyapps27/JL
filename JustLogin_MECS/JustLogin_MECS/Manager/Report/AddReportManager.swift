@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class AddReportManager {
     
@@ -39,7 +40,6 @@ class AddReportManager {
         fields.append(businessPurpose)
     }
 }
-
 /***********************************/
 // MARK: - Data tracking methods
 /***********************************/
@@ -49,6 +49,23 @@ extension AddReportManager {
      */
     func getReportFields() -> [ReportField] {
         return fields
+    }
+}
+/***********************************/
+// MARK: - UI updating
+/***********************************/
+extension AddReportManager {
+    /**
+     * Method to get all the expenses that need to be displayed.
+     */
+    func getTableViewCell(forIndexPath indexPath: IndexPath) -> UITableViewCell {
+        
+        // Create the strategy
+        // Pass the reportField object
+        
+        let reportField = fields[indexPath.row]
+        
+        return UITableViewCell()
     }
 }
 /***********************************/

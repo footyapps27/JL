@@ -59,7 +59,7 @@ extension AddReportViewController {
         var report = Report()
         report.title = "Test title from iOS"
         report.startDate = Date()
-        report.endDate = Date().addingTimeInterval(6000)
+        report.endDate = Date().addingTimeInterval(60000)
         report.businessPurpose = "iOS biz purpose"
         
         manager.addReport(report) { [weak self] (response) in
