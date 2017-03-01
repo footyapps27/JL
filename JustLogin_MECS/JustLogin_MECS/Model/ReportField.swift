@@ -18,6 +18,8 @@ struct ReportField {
     
     var fieldName: String = Constants.General.emptyString
     
+    var jsonParameter: String = Constants.General.emptyString
+    
     var fieldType: Int = Constants.Defaults.reportFieldType
     
     var isMandatory: Bool = false

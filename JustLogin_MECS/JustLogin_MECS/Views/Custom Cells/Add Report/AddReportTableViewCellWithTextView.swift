@@ -23,12 +23,16 @@ class AddReportTableViewCellWithTextView: AddReportBaseTableViewCell {
         txtView.becomeFirstResponder()
     }
     
-    override func validateInput(withReportField reportField: ReportField) -> (Bool, String) {
+    override func validateInput(withReportField reportField: ReportField) -> (success: Bool, errorMessage: String) {
         if reportField.isMandatory {
             if txtView.text!.isEmpty {
                 return (false, "Please make sure '\(reportField.fieldName.capitalized)' has been entered.")
             }
         }
         return(true, Constants.General.emptyString)
+    }
+    
+    override func getPayload(withReportField reportField: ReportField) -> [String:Any] {
+        return [reportField.jsonParameter : txtView.text!]
     }
 }

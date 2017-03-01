@@ -63,6 +63,7 @@
 		8CF3F6521E652B1E00A18D73 /* AddReportTableViewCellDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF3F6511E652B1E00A18D73 /* AddReportTableViewCellDuration.swift */; };
 		8CF3F6541E652B3400A18D73 /* AddReportTableViewCellWithTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF3F6531E652B3400A18D73 /* AddReportTableViewCellWithTextView.swift */; };
 		8CF3F6591E6671DA00A18D73 /* AddReportBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF3F6581E6671DA00A18D73 /* AddReportBaseTableViewCell.swift */; };
+		8CF3F65B1E66FF6100A18D73 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF3F65A1E66FF6000A18D73 /* Dictionary.swift */; };
 		8CF655C71E58387100D4FEF3 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655C61E58387100D4FEF3 /* LoginService.swift */; };
 		8CF655C91E58455A00D4FEF3 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655C81E58455A00D4FEF3 /* Member.swift */; };
 		8CF655CB1E585A8200D4FEF3 /* Role.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655CA1E585A8200D4FEF3 /* Role.swift */; };
@@ -160,6 +161,7 @@
 		8CF3F6511E652B1E00A18D73 /* AddReportTableViewCellDuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReportTableViewCellDuration.swift; sourceTree = "<group>"; };
 		8CF3F6531E652B3400A18D73 /* AddReportTableViewCellWithTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReportTableViewCellWithTextView.swift; sourceTree = "<group>"; };
 		8CF3F6581E6671DA00A18D73 /* AddReportBaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReportBaseTableViewCell.swift; sourceTree = "<group>"; };
+		8CF3F65A1E66FF6000A18D73 /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Dictionary.swift; path = "JustLogin_MECS/Views/Custom Cells/Add Report/Dictionary.swift"; sourceTree = SOURCE_ROOT; };
 		8CF655C61E58387100D4FEF3 /* LoginService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		8CF655C81E58455A00D4FEF3 /* Member.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		8CF655CA1E585A8200D4FEF3 /* Role.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Role.swift; sourceTree = "<group>"; };
@@ -384,6 +386,7 @@
 		8C8995D11E5FD48700482317 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				8CF3F65A1E66FF6000A18D73 /* Dictionary.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -959,6 +962,7 @@
 				8CF3F6591E6671DA00A18D73 /* AddReportBaseTableViewCell.swift in Sources */,
 				8CEAADBE1E55468100BDB5ED /* BaseService.swift in Sources */,
 				8CA4B6EF1E28A5A8007C3BE5 /* ApprovalListViewController.swift in Sources */,
+				8CF3F65B1E66FF6100A18D73 /* Dictionary.swift in Sources */,
 				8CB44AD21E5AC642005CC04D /* ExpenseListManager.swift in Sources */,
 				8CF3F64E1E652AA900A18D73 /* AddReportTableViewCellWithTextField.swift in Sources */,
 				8CE007231E28F3280089D159 /* SettingsTableProfileSectionHeaderView.swift in Sources */,

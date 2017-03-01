@@ -26,7 +26,7 @@ class AddReportTableViewCellDuration: AddReportBaseTableViewCell {
         txtFrom.tag = ReportFieldType.date.rawValue
     }
     
-    override func validateInput(withReportField reportField: ReportField) -> (Bool, String) {
+    override func validateInput(withReportField reportField: ReportField) -> (success: Bool, errorMessage: String) {
         // This cell is only used for Duration
         if txtFrom.text!.isEmpty {
             return (false, "Please make sure 'Report To' date has been entered.")
@@ -37,5 +37,24 @@ class AddReportTableViewCellDuration: AddReportBaseTableViewCell {
         }
         
         return(true, Constants.General.emptyString)
+    }
+    
+    override func getPayload(withReportField reportField: ReportField) -> [String:Any] {
+        return [
+            Constants.RequestParameters.Report.startDate : getFormattedDateFromText(txtFrom.text!),
+            Constants.RequestParameters.Report.endDate : getFormattedDateFromText(txtTo.text!)
+        ]
+    }
+    
+}
+
+extension AddReportTableViewCellDuration {
+    func getFormattedDateFromText(_ text: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = Constants.General.localDisplayDateFormat
+        
+        let formattedDate = dateFormatter.date(from: text)!
+        
+        return Utilities.convertDateToStringForServerCommunication(formattedDate)
     }
 }

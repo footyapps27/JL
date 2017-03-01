@@ -68,9 +68,14 @@ extension AddReportViewController {
 // MARK: - Actions
 /***********************************/
 extension AddReportViewController {
+    
     func rightBarButtonTapped(_ sender: UIBarButtonItem) {
-        // TODO: - Validate & call the service
-        addReport()
+        let validation = manager.validateInputs(forTableView: tableView)
+        if !validation.success {
+            Utilities.showErrorAlert(withMessage: validation.errorMessage, onController: self)
+        } else {
+            callAddReportService()
+        }
     }
     
     func dismissDatePicker(_ sender: UIBarButtonItem?) {
@@ -85,17 +90,11 @@ extension AddReportViewController {
     /**
      * Method to fetch expenses that will be displayed in the tableview.
      */
-    func addReport() {
+    func callAddReportService() {
         
         showLoadingIndicator(disableUserInteraction: true)
         
-        var report = Report()
-        report.title = "Test title from iOS"
-        report.startDate = Date()
-        report.endDate = Date().addingTimeInterval(60000)
-        report.businessPurpose = "iOS biz purpose"
-        
-        manager.addReport(report) { [weak self] (response) in
+        manager.addReportWithInputsFromTableView(tableView: tableView) { [weak self] (response) in
             guard let `self` = self else {
                 log.error("Self reference missing in closure.")
                 return
@@ -109,6 +108,7 @@ extension AddReportViewController {
                 Utilities.showErrorAlert(withMessage: message, onController: self)
                 self.hideLoadingIndicator(enableUserInteraction: true)
             }
+            
         }
     }
 }

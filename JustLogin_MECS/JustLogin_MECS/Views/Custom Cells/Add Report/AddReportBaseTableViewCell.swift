@@ -15,7 +15,11 @@ class AddReportBaseTableViewCell: BaseCustomTableViewCell {
     
     func makeFirstResponder() {}
     
-    func validateInput(withReportField reportField: ReportField) -> (Bool, String) {
+    func validateInput(withReportField reportField: ReportField) -> (success: Bool, errorMessage: String) {
         return (true, Constants.General.emptyString)
+    }
+    
+    func getPayload(withReportField reportField: ReportField) -> [String:Any] {
+        return [String:Any]()
     }
 }

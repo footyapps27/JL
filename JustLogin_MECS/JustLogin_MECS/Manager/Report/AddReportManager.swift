@@ -20,6 +20,7 @@ class AddReportManager {
     init() {
         var title = ReportField()
         title.fieldName = "Report Title"
+        title.jsonParameter = Constants.RequestParameters.Report.title
         title.fieldType = ReportFieldType.text.rawValue
         title.isMandatory = true
         title.isEnabled = true
@@ -32,6 +33,7 @@ class AddReportManager {
         
         var businessPurpose = ReportField()
         businessPurpose.fieldName = "Business Purpose"
+        businessPurpose.jsonParameter = Constants.RequestParameters.Report.businessPurpose
         businessPurpose.fieldType = ReportFieldType.textView.rawValue
         businessPurpose.isMandatory = false
         businessPurpose.isEnabled = true
@@ -51,11 +53,6 @@ extension AddReportManager {
     func getReportFields() -> [ReportField] {
         return fields
     }
-}
-/***********************************/
-// MARK: - UI updating
-/***********************************/
-extension AddReportManager {
     
     func getTableViewCellIdentifier(forIndexPath indexPath: IndexPath) -> String {
         let reportField = fields[indexPath.row]
@@ -73,18 +70,56 @@ extension AddReportManager {
         }
     }
     
+    func getPayload(fromTableView tableView: UITableView) -> [String: Any] {
+        var payload = [String:Any]()
+        
+        var indexPath = IndexPath(item: 0, section: 0)
+        
+        for index in 0..<fields.count {
+            indexPath.row = index
+            let cell = tableView.cellForRow(at: indexPath) as! AddReportBaseTableViewCell
+            payload = payload.merged(with: cell.getPayload(withReportField: fields[index]))
+        }
+        return payload
+    }
+}
+/***********************************/
+// MARK: - UI updating
+/***********************************/
+extension AddReportManager {
+    
     func formatCell(_ cell: AddReportBaseTableViewCell, forIndexPath indexPath: IndexPath) {
         let reportField = fields[indexPath.row]
         cell.selectionStyle = UITableViewCellSelectionStyle.none
         cell.updateView(withReportField: reportField)
     }
-    
+}
+/***********************************/
+// MARK: - Actions
+/***********************************/
+extension AddReportManager {
     func performActionForSelectedCell(_ cell: AddReportBaseTableViewCell, forIndexPath indexPath: IndexPath) {
         let reportField = getReportFields()[indexPath.row]
         if reportField.fieldType == ReportFieldType.text.rawValue ||
             reportField.fieldType == ReportFieldType.textView.rawValue {
             cell.makeFirstResponder()
         }
+    }
+    
+    func validateInputs(forTableView tableView: UITableView) -> (success: Bool, errorMessage: String) {
+        
+        var indexPath = IndexPath(item: 0, section: 0)
+        
+        for index in 0..<fields.count {
+            indexPath.row = index
+            let cell = tableView.cellForRow(at: indexPath) as! AddReportBaseTableViewCell
+            
+            let validation = cell.validateInput(withReportField: fields[index])
+            if !validation.success {
+                return validation
+            }
+        }
+        return (true, Constants.General.emptyString)
     }
 }
 /***********************************/
@@ -94,8 +129,10 @@ extension AddReportManager {
     /**
      * Method to get all the expenses that need to be displayed.
      */
-    func addReport(_ report: Report, completionHandler: (@escaping (ManagerResponseToController<Void>) -> Void)) {
-        reportService.create(report: report) { (result) in
+    func addReportWithInputsFromTableView( tableView: UITableView, completionHandler: (@escaping (ManagerResponseToController<Void>) -> Void)) {
+        let payload = getPayload(fromTableView: tableView)
+        
+        reportService.create(payload: payload) { (result) in
             switch(result) {
             case .success(_):
                 completionHandler(ManagerResponseToController.success())
