@@ -40,6 +40,7 @@ struct Constants {
         static let settingsListTableViewCellIdentifier = "settingsListTableViewCellIdentifier"
         static let reportListTableViewCellIdentifier = "reportListTableViewCellIdentifier"
         static let approvalListTableViewCellIdentifier = "approvalListTableViewCellIdentifier"
+        static let addReportTableViewCellWithTextField = "addReportTableViewCellWithTextField"
     }
     
     struct CellHeight {

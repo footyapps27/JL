@@ -11,11 +11,6 @@ import UIKit
 
 class ApprovalListViewController: BaseViewControllerWithTableView {
     
-    /***********************************/
-    // MARK: - Properties
-    /***********************************/
-    
-    @IBOutlet weak var tableView: UITableView!
     
     /***********************************/
     // MARK: - View Lifecycle

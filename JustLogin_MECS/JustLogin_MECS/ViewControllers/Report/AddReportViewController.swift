@@ -13,8 +13,6 @@ class AddReportViewController: BaseViewControllerWithTableView {
     /***********************************/
     // MARK: - Properties
     /***********************************/
-    @IBOutlet weak var tableView: UITableView!
-    
     let manager = AddReportManager()
     
     /***********************************/
@@ -23,6 +21,13 @@ class AddReportViewController: BaseViewControllerWithTableView {
     override func viewDidLoad() {
         super.viewDidLoad()
         addBarButtonItems()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        if let rect = self.navigationController?.navigationBar.frame {
+            let y = rect.size.height + rect.origin.y
+            self.tableView.contentInset = UIEdgeInsetsMake(y, 0, 0, 0)
+        }
     }
 }
 /***********************************/
@@ -88,12 +93,13 @@ extension AddReportViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.addReportTableViewCellWithTextField, for: indexPath) as! AddReportTableViewCellWithTextField
 //        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.reportListTableViewCellIdentifier, for: indexPath) as! ReportListTableViewCell
 //        cell.lblReportName.text = manager.getReportTitle(forIndexPath: indexPath)
 //        cell.lblDate.text = manager.getReportDuration(forIndexPath: indexPath)
 //        cell.lblAmount.text = manager.getFormattedReportAmount(forIndexPath: indexPath)
 //        cell.lblStatus.text = manager.getReportStatus(forIndexPath: indexPath)
-        return UITableViewCell()
+        return cell
     }
 }
 /***********************************/
@@ -105,6 +111,6 @@ extension AddReportViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: false)
     }
 }

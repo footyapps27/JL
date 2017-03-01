@@ -15,8 +15,6 @@ class ExpenseListViewController: BaseViewControllerWithTableView {
     // MARK: - Properties
     /***********************************/
     
-    @IBOutlet weak var tableView: UITableView!
-    
     let manager = ExpenseListManager()
     
     /***********************************/

@@ -22,12 +22,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="172" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="w1p-zp-2XH">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="172" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="w1p-zp-2XH">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="expenseListTableViewCellIdentifier" rowHeight="90" id="DgI-gg-4XU" customClass="ExpenseListTableViewCell" customModule="JustLogin_MECS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="56" width="375" height="90"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DgI-gg-4XU" id="ztm-Ye-GBc">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="89"/>

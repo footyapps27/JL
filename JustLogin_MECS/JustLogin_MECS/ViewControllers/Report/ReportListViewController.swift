@@ -15,8 +15,6 @@ class ReportListViewController: BaseViewControllerWithTableView {
     // MARK: - Properties
     /***********************************/
     
-    @IBOutlet weak var tableView: UITableView!
-    
     let manager = ReportListManager()
     
     /***********************************/

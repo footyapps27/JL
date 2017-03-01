@@ -15,7 +15,6 @@ class SettingsListViewController: BaseViewControllerWithTableView {
     // MARK: - Properties
     /***********************************/
     
-    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var imgVwProfile: UIImageView!
     @IBOutlet weak var lblRole: UILabel!
     @IBOutlet weak var lblOrganization: UILabel!

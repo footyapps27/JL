@@ -11,6 +11,8 @@ import UIKit
 
 class BaseViewControllerWithTableView: BaseViewController {
     
+    @IBOutlet weak var tableView: UITableView!
+    
     let refreshControl = UIRefreshControl()
     
     let searchController = UISearchController(searchResultsController: nil)
@@ -21,6 +23,7 @@ class BaseViewControllerWithTableView: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.tableFooterView = UIView()
         self.automaticallyAdjustsScrollViewInsets = false
     }
     
