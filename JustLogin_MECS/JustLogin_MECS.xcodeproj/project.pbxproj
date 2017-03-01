@@ -62,7 +62,7 @@
 		8CF3F6501E652B0100A18D73 /* AddReportTableViewCellWithMultipleSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF3F64F1E652B0100A18D73 /* AddReportTableViewCellWithMultipleSelection.swift */; };
 		8CF3F6521E652B1E00A18D73 /* AddReportTableViewCellDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF3F6511E652B1E00A18D73 /* AddReportTableViewCellDuration.swift */; };
 		8CF3F6541E652B3400A18D73 /* AddReportTableViewCellWithTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF3F6531E652B3400A18D73 /* AddReportTableViewCellWithTextView.swift */; };
-		8CF3F6571E654B8500A18D73 /* AddReportTableViewCellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF3F6561E654B8500A18D73 /* AddReportTableViewCellFactory.swift */; };
+		8CF3F6591E6671DA00A18D73 /* AddReportBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF3F6581E6671DA00A18D73 /* AddReportBaseTableViewCell.swift */; };
 		8CF655C71E58387100D4FEF3 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655C61E58387100D4FEF3 /* LoginService.swift */; };
 		8CF655C91E58455A00D4FEF3 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655C81E58455A00D4FEF3 /* Member.swift */; };
 		8CF655CB1E585A8200D4FEF3 /* Role.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655CA1E585A8200D4FEF3 /* Role.swift */; };
@@ -159,7 +159,7 @@
 		8CF3F64F1E652B0100A18D73 /* AddReportTableViewCellWithMultipleSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReportTableViewCellWithMultipleSelection.swift; sourceTree = "<group>"; };
 		8CF3F6511E652B1E00A18D73 /* AddReportTableViewCellDuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReportTableViewCellDuration.swift; sourceTree = "<group>"; };
 		8CF3F6531E652B3400A18D73 /* AddReportTableViewCellWithTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReportTableViewCellWithTextView.swift; sourceTree = "<group>"; };
-		8CF3F6561E654B8500A18D73 /* AddReportTableViewCellFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReportTableViewCellFactory.swift; sourceTree = "<group>"; };
+		8CF3F6581E6671DA00A18D73 /* AddReportBaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReportBaseTableViewCell.swift; sourceTree = "<group>"; };
 		8CF655C61E58387100D4FEF3 /* LoginService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		8CF655C81E58455A00D4FEF3 /* Member.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		8CF655CA1E585A8200D4FEF3 /* Role.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Role.swift; sourceTree = "<group>"; };
@@ -547,6 +547,7 @@
 				8CF3F64F1E652B0100A18D73 /* AddReportTableViewCellWithMultipleSelection.swift */,
 				8CF3F6511E652B1E00A18D73 /* AddReportTableViewCellDuration.swift */,
 				8CF3F6531E652B3400A18D73 /* AddReportTableViewCellWithTextView.swift */,
+				8CF3F6581E6671DA00A18D73 /* AddReportBaseTableViewCell.swift */,
 			);
 			path = "Add Report";
 			sourceTree = "<group>";
@@ -554,7 +555,6 @@
 		8CF3F6551E654B6F00A18D73 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				8CF3F6561E654B8500A18D73 /* AddReportTableViewCellFactory.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -939,7 +939,6 @@
 				8CF655D71E5875CF00D4FEF3 /* Singleton.swift in Sources */,
 				8CF3F6501E652B0100A18D73 /* AddReportTableViewCellWithMultipleSelection.swift in Sources */,
 				8CF342441E5D40E4008387BF /* BaseManager.swift in Sources */,
-				8CF3F6571E654B8500A18D73 /* AddReportTableViewCellFactory.swift in Sources */,
 				8C42DFD51E63DEA300A3B69A /* ReportDetailsViewController.swift in Sources */,
 				8CF655CD1E585ACE00D4FEF3 /* AccessPrivilege.swift in Sources */,
 				8CD333191E23BC7D00557B6F /* ExpenseListViewController.swift in Sources */,
@@ -957,6 +956,7 @@
 				8C9602141E1FDB9900EE66A3 /* HomeViewController.swift in Sources */,
 				8C42DFDD1E6436C900A3B69A /* ReportField.swift in Sources */,
 				8CF655DF1E58B07000D4FEF3 /* Report.swift in Sources */,
+				8CF3F6591E6671DA00A18D73 /* AddReportBaseTableViewCell.swift in Sources */,
 				8CEAADBE1E55468100BDB5ED /* BaseService.swift in Sources */,
 				8CA4B6EF1E28A5A8007C3BE5 /* ApprovalListViewController.swift in Sources */,
 				8CB44AD21E5AC642005CC04D /* ExpenseListManager.swift in Sources */,

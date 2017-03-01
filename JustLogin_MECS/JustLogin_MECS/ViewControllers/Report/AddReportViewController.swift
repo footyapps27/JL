@@ -21,6 +21,8 @@ class AddReportViewController: BaseViewControllerWithTableView {
     override func viewDidLoad() {
         super.viewDidLoad()
         addBarButtonItems()
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 44
     }
     
     override func viewDidLayoutSubviews() {
@@ -93,22 +95,21 @@ extension AddReportViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.addReportTableViewCellWithTextField, for: indexPath) as! AddReportTableViewCellWithTextField
-//        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.reportListTableViewCellIdentifier, for: indexPath) as! ReportListTableViewCell
-//        cell.lblReportName.text = manager.getReportTitle(forIndexPath: indexPath)
-//        cell.lblDate.text = manager.getReportDuration(forIndexPath: indexPath)
-//        cell.lblAmount.text = manager.getFormattedReportAmount(forIndexPath: indexPath)
-//        cell.lblStatus.text = manager.getReportStatus(forIndexPath: indexPath)
+        let identifier = manager.getTableViewCellIdentifier(forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! AddReportBaseTableViewCell
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
+        manager.formatCell(cell, forIndexPath: indexPath)
         return cell
     }
 }
 /***********************************/
-// MARK: - UITableViewDataSource
+// MARK: - UITableViewDelegate
 /***********************************/
 extension AddReportViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat(Constants.CellHeight.reportListCellHeight)
-    }
+    
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return UITableViewAutomaticDimension
+//    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)

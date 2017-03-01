@@ -9,9 +9,13 @@
 import Foundation
 import UIKit
 
-class AddReportTableViewCellWithTextView: BaseCustomTableViewCell {
+class AddReportTableViewCellWithTextView: AddReportBaseTableViewCell {
     
     @IBOutlet weak var lblFieldName: UILabel!
     
     @IBOutlet weak var txtView: UITextView!
+    
+    override func updateView(withReportField reportField: ReportField) {
+        lblFieldName.text = reportField.fieldName
+    }
 }

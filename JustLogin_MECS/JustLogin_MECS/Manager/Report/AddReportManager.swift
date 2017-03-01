@@ -16,6 +16,7 @@ class AddReportManager {
     var reportService: ReportService = ReportService()
     
     // TODO - This has been hardcoded for now. Needs to be read from server for v2.x
+    // Make sure that only enabled fields are filtered out & stored in the array.
     init() {
         var title = ReportField()
         title.fieldName = "Report Title"
@@ -55,17 +56,26 @@ extension AddReportManager {
 // MARK: - UI updating
 /***********************************/
 extension AddReportManager {
-    /**
-     * Method to get all the expenses that need to be displayed.
-     */
-    func getTableViewCell(forIndexPath indexPath: IndexPath) -> UITableViewCell {
-        
-        // Create the strategy
-        // Pass the reportField object
-        
+    
+    func getTableViewCellIdentifier(forIndexPath indexPath: IndexPath) -> String {
         let reportField = fields[indexPath.row]
-        
-        return UITableViewCell()
+        switch reportField.fieldType {
+        case ReportFieldType.text.rawValue:
+            return Constants.CellIdentifiers.addReportTableViewCellWithTextField
+        case ReportFieldType.doubleTextField.rawValue:
+            return Constants.CellIdentifiers.addReportTableViewCellDuration
+        case ReportFieldType.textView.rawValue:
+            return Constants.CellIdentifiers.addReportTableViewCellWithTextView
+        case ReportFieldType.dropdown.rawValue:
+            return Constants.CellIdentifiers.addReportTableViewCellWithMultipleSelection
+        default:
+            return Constants.CellIdentifiers.addReportTableViewCellWithTextField
+        }
+    }
+    
+    func formatCell(_ cell: AddReportBaseTableViewCell, forIndexPath indexPath: IndexPath) {
+        let reportField = fields[indexPath.row]
+        cell.updateView(withReportField: reportField)
     }
 }
 /***********************************/

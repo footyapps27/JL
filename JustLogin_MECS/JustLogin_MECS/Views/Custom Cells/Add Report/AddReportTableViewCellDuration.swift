@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class AddReportTableViewCellDuration: BaseCustomTableViewCell {
+class AddReportTableViewCellDuration: AddReportBaseTableViewCell {
     
     @IBOutlet weak var lblDuration: UILabel!
     
