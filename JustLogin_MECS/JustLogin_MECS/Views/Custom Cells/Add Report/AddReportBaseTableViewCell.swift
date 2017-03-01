@@ -12,4 +12,10 @@ import UIKit
 class AddReportBaseTableViewCell: BaseCustomTableViewCell {
     
     func updateView(withReportField reportField: ReportField) {}
+    
+    func makeFirstResponder() {}
+    
+    func validateInput(withReportField reportField: ReportField) -> (Bool, String) {
+        return (true, Constants.General.emptyString)
+    }
 }

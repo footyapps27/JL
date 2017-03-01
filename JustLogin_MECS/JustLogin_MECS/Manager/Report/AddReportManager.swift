@@ -75,7 +75,16 @@ extension AddReportManager {
     
     func formatCell(_ cell: AddReportBaseTableViewCell, forIndexPath indexPath: IndexPath) {
         let reportField = fields[indexPath.row]
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
         cell.updateView(withReportField: reportField)
+    }
+    
+    func performActionForSelectedCell(_ cell: AddReportBaseTableViewCell, forIndexPath indexPath: IndexPath) {
+        let reportField = getReportFields()[indexPath.row]
+        if reportField.fieldType == ReportFieldType.text.rawValue ||
+            reportField.fieldType == ReportFieldType.textView.rawValue {
+            cell.makeFirstResponder()
+        }
     }
 }
 /***********************************/

@@ -19,4 +19,17 @@ class AddReportTableViewCellWithTextField: AddReportBaseTableViewCell {
     override func updateView(withReportField reportField: ReportField) {
         lblFieldName.text = reportField.fieldName
     }
+    
+    override func makeFirstResponder() {
+        txtField.becomeFirstResponder()
+    }
+    
+    override func validateInput(withReportField reportField: ReportField) -> (Bool, String) {
+        if reportField.isMandatory {
+            if txtField.text!.isEmpty {
+                return (false, "Please make sure '\(reportField.fieldName.capitalized)' has been entered.")
+            }
+        }
+        return(true, Constants.General.emptyString)
+    }
 }

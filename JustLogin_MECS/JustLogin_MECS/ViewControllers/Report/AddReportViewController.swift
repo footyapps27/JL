@@ -13,6 +13,10 @@ class AddReportViewController: BaseViewControllerWithTableView {
     /***********************************/
     // MARK: - Properties
     /***********************************/
+    var datePicker: UIDatePicker?
+    var currentTextField: UITextField?
+    var toolbar: UIToolbar?
+    
     let manager = AddReportManager()
     
     /***********************************/
@@ -21,6 +25,7 @@ class AddReportViewController: BaseViewControllerWithTableView {
     override func viewDidLoad() {
         super.viewDidLoad()
         addBarButtonItems()
+        initializeDatePicker()
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 44
     }
@@ -42,6 +47,22 @@ extension AddReportViewController {
     func addBarButtonItems() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.save, target: self, action: #selector(rightBarButtonTapped(_:)))
     }
+    
+    func initializeDatePicker() {
+        toolbar = UIToolbar()
+        toolbar?.barStyle = .default
+        toolbar?.isTranslucent = true
+        toolbar?.sizeToFit()
+        
+        datePicker = UIDatePicker(frame: CGRect(x: 0, y: 40, width: self.view.frame.width, height: 200))
+        datePicker?.datePickerMode = UIDatePickerMode.date
+        datePicker?.backgroundColor = UIColor.white
+        
+        let space = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: nil)
+        let done = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(dismissDatePicker(_:)))
+        
+        toolbar?.setItems([space, done], animated: true)
+    }
 }
 /***********************************/
 // MARK: - Actions
@@ -50,6 +71,11 @@ extension AddReportViewController {
     func rightBarButtonTapped(_ sender: UIBarButtonItem) {
         // TODO: - Validate & call the service
         addReport()
+    }
+    
+    func dismissDatePicker(_ sender: UIBarButtonItem?) {
+        currentTextField?.text = Utilities.convertDateToStringForDisplay((datePicker?.date)!)
+        view.endEditing(true)
     }
 }
 /***********************************/
@@ -97,7 +123,6 @@ extension AddReportViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let identifier = manager.getTableViewCellIdentifier(forIndexPath: indexPath)
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! AddReportBaseTableViewCell
-        cell.selectionStyle = UITableViewCellSelectionStyle.none
         manager.formatCell(cell, forIndexPath: indexPath)
         return cell
     }
@@ -107,11 +132,38 @@ extension AddReportViewController: UITableViewDataSource {
 /***********************************/
 extension AddReportViewController: UITableViewDelegate {
     
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return UITableViewAutomaticDimension
-//    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: false)
+        // Cell selected
+        let cell = tableView.cellForRow(at: indexPath) as! AddReportBaseTableViewCell
+        manager.performActionForSelectedCell(cell, forIndexPath: indexPath)
     }
 }
+/***********************************/
+// MARK: - UITableViewDelegate
+/***********************************/
+extension AddReportViewController: UITextFieldDelegate {
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if textField.tag == ReportFieldType.date.rawValue {
+            currentTextField = textField
+            textField.inputView = datePicker
+            textField.inputAccessoryView = toolbar
+        }
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField.tag == ReportFieldType.date.rawValue {
+            dismissDatePicker(nil)
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField.tag == ReportFieldType.date.rawValue {
+            return false
+        }
+        textField.resignFirstResponder()
+        return true
+    }
+}
+

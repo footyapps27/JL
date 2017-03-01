@@ -20,4 +20,22 @@ class AddReportTableViewCellDuration: AddReportBaseTableViewCell {
     @IBOutlet weak var txtFrom: UITextField!
     
     @IBOutlet weak var txtTo: UITextField!
+    
+    override func updateView(withReportField reportField: ReportField) {
+        txtTo.tag = ReportFieldType.date.rawValue
+        txtFrom.tag = ReportFieldType.date.rawValue
+    }
+    
+    override func validateInput(withReportField reportField: ReportField) -> (Bool, String) {
+        // This cell is only used for Duration
+        if txtFrom.text!.isEmpty {
+            return (false, "Please make sure 'Report To' date has been entered.")
+        }
+        
+        if txtTo.text!.isEmpty {
+            return (false, "Please make sure 'Report To' date has been entered.")
+        }
+        
+        return(true, Constants.General.emptyString)
+    }
 }
