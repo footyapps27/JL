@@ -9,17 +9,16 @@
 import Foundation
 import UIKit
 
+/***********************************/
+// MARK: - Properties
+/***********************************/
 class ReportListViewController: BaseViewControllerWithTableView {
-    
-    /***********************************/
-    // MARK: - Properties
-    /***********************************/
-    
     let manager = ReportListManager()
-    
-    /***********************************/
-    // MARK: - View Lifecycle
-    /***********************************/
+}
+/***********************************/
+// MARK: - View Lifecycle
+/***********************************/
+extension ReportListViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,7 +59,8 @@ extension ReportListViewController {
     }
     
     func navigateToAddReport() {
-        let addReportViewController = UIStoryboard(name: Constants.StoryboardIds.reportStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.addReportViewController) as! BaseViewController
+        let addReportViewController = UIStoryboard(name: Constants.StoryboardIds.reportStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.addReportViewController) as! AddReportViewController
+        addReportViewController.delegate = self
         Utilities.pushControllerAndHideTabbar(fromController: self, toController: addReportViewController)
     }
     
@@ -140,5 +140,13 @@ extension ReportListViewController: UITableViewDelegate {
 extension ReportListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         //filterContentForSearchText(searchController.searchBar.text!)
+    }
+}
+/***********************************/
+// MARK: - AddReportDelegate
+/***********************************/
+extension ReportListViewController: AddReportDelegate {
+    func reportCreated() {
+        fetchReports()
     }
 }

@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+// TODO: - Make this class to an interface
 class AddReportBaseTableViewCell: BaseCustomTableViewCell {
     
     func updateView(withReportField reportField: ReportField) {}

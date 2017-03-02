@@ -9,19 +9,30 @@
 import Foundation
 import UIKit
 
+/***********************************/
+// MARK: - Protocol
+/***********************************/
+protocol AddReportDelegate: class {
+    func reportCreated()
+}
+/***********************************/
+// MARK: - Properties
+/***********************************/
 class AddReportViewController: BaseViewControllerWithTableView {
-    /***********************************/
-    // MARK: - Properties
-    /***********************************/
+    
     var datePicker: UIDatePicker?
     var currentTextField: UITextField?
     var toolbar: UIToolbar?
     
-    let manager = AddReportManager()
+    weak var delegate: AddReportDelegate?
     
-    /***********************************/
-    // MARK: - View Lifecycle
-    /***********************************/
+    let manager = AddReportManager()
+}
+/***********************************/
+// MARK: - View Lifecycle
+/***********************************/
+extension AddReportViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addBarButtonItems()
@@ -102,6 +113,7 @@ extension AddReportViewController {
             switch(response) {
             case .success(_):
                 self.hideLoadingIndicator(enableUserInteraction: true)
+                self.delegate?.reportCreated()
                 _ = self.navigationController?.popViewController(animated: true)
             case .failure(_, let message):
                 // TODO: - Handle the empty table view screen.
