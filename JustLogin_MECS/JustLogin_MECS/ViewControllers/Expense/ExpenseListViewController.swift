@@ -116,7 +116,7 @@ extension ExpenseListViewController {
     
     func navigateToExpenseDetails(forExpense expense: Expense) {
         let expenseDetailsViewController = UIStoryboard(name: Constants.StoryboardIds.expenseStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.expenseDetailsViewController) as! ExpenseDetailsViewController
-        expenseDetailsViewController.expense = expense
+        expenseDetailsViewController.expenseId = expense.id
         Utilities.pushControllerAndHideTabbar(fromController:self, toController: expenseDetailsViewController)
     }
 }

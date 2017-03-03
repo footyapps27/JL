@@ -80,6 +80,7 @@ struct Constants {
         static let organizationDetails = URLs.baseURL + "/organization/details"
         
         static let getAllExpenses = URLs.baseURL + "/expense/retrievebymember"
+        static let expenseDetails = URLs.baseURL + "/expense/retrieve"
         static let createExpense = URLs.baseURL + "/expense/create"
         static let updateExpense = URLs.baseURL + "/expense/update"
         static let deleteExpense = URLs.baseURL + "/expense/delete"
@@ -188,6 +189,8 @@ struct Constants {
         static let expenses = "expenses"
         static let expenseId = "expenseId"
         static let date = "date"
+        static let hasAttachment = "hasAttachment"
+        static let hasPolicyViolation = "hasPolicyViolation"
         static let amount = "amount"
         static let exchange = "exchange"
         static let location = "location"

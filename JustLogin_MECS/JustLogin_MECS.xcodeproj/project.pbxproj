@@ -17,6 +17,7 @@
 		8C00F6601E1E651A0007F29C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C00F6531E1E651A0007F29C /* AppDelegate.swift */; };
 		8C00F6611E1E651A0007F29C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C00F65B1E1E651A0007F29C /* Main.storyboard */; };
 		8C00F6651E1E870B0007F29C /* LaunchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C00F6641E1E870B0007F29C /* LaunchCollectionViewCell.swift */; };
+		8C299FF31E681EDA0077A730 /* ExpenseDetailsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C299FF21E681EDA0077A730 /* ExpenseDetailsHeaderView.swift */; };
 		8C42DFD31E63DE7D00A3B69A /* AddReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C42DFD21E63DE7D00A3B69A /* AddReportViewController.swift */; };
 		8C42DFD51E63DEA300A3B69A /* ReportDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C42DFD41E63DEA300A3B69A /* ReportDetailsViewController.swift */; };
 		8C42DFD71E63E03400A3B69A /* AddReportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C42DFD61E63E03400A3B69A /* AddReportManager.swift */; };
@@ -119,6 +120,7 @@
 		8C00F6531E1E651A0007F29C /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8C00F65B1E1E651A0007F29C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		8C00F6641E1E870B0007F29C /* LaunchCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchCollectionViewCell.swift; sourceTree = "<group>"; };
+		8C299FF21E681EDA0077A730 /* ExpenseDetailsHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseDetailsHeaderView.swift; sourceTree = "<group>"; };
 		8C42DFD21E63DE7D00A3B69A /* AddReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReportViewController.swift; sourceTree = "<group>"; };
 		8C42DFD41E63DEA300A3B69A /* ReportDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsViewController.swift; sourceTree = "<group>"; };
 		8C42DFD61E63E03400A3B69A /* AddReportManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReportManager.swift; sourceTree = "<group>"; };
@@ -466,6 +468,7 @@
 			isa = PBXGroup;
 			children = (
 				8CE007211E28F3280089D159 /* SettingsTableProfileSectionHeaderView.swift */,
+				8C299FF21E681EDA0077A730 /* ExpenseDetailsHeaderView.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -963,6 +966,7 @@
 				8CEAADBE1E55468100BDB5ED /* BaseService.swift in Sources */,
 				8CA4B6EF1E28A5A8007C3BE5 /* ApprovalListViewController.swift in Sources */,
 				8CF3F65B1E66FF6100A18D73 /* Dictionary.swift in Sources */,
+				8C299FF31E681EDA0077A730 /* ExpenseDetailsHeaderView.swift in Sources */,
 				8CB44AD21E5AC642005CC04D /* ExpenseListManager.swift in Sources */,
 				8CF3F64E1E652AA900A18D73 /* AddReportTableViewCellWithTextField.swift in Sources */,
 				8CE007231E28F3280089D159 /* SettingsTableProfileSectionHeaderView.swift in Sources */,

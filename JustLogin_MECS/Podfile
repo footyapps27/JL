@@ -8,6 +8,7 @@ target 'JustLogin_MECS' do
   pod 'SwiftyJSON'
   pod 'SwiftyBeaver'
   pod 'NVActivityIndicatorView'
+  pod 'SnapKit', '~> 3.2.0'
   # Pods for JustLogin_MECS
 
   target 'JustLogin_MECSTests' do

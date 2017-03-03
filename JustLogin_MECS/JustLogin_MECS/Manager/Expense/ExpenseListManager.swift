@@ -20,7 +20,6 @@ class ExpenseListManager {
     var selectedIndices = Set<Int>()
     
 }
-
 /***********************************/
 // MARK: - Data tracking methods
 /***********************************/
