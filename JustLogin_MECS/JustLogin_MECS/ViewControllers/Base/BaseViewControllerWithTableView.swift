@@ -11,9 +11,21 @@ import UIKit
 
 class BaseViewControllerWithTableView: BaseViewController {
     
+    @IBOutlet weak var tableView: UITableView!
+    
     let refreshControl = UIRefreshControl()
     
     let searchController = UISearchController(searchResultsController: nil)
+    
+    /***********************************/
+    // MARK: - Birth & Death
+    /***********************************/
+    deinit {
+        // Added, since we were getting an error when coming back to this screen. Bug with iOS framework?
+        // http://stackoverflow.com/questions/32282401/attempting-to-load-the-view-of-a-view-controller-while-it-is-deallocating-uis
+        
+        searchController.view.removeFromSuperview()
+    }
     
     /***********************************/
     // MARK: - View Lifecycle
@@ -21,6 +33,7 @@ class BaseViewControllerWithTableView: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.tableFooterView = UIView()
         self.automaticallyAdjustsScrollViewInsets = false
     }
     

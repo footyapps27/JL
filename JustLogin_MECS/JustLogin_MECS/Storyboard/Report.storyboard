@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -19,12 +20,241 @@
                     <view key="view" contentMode="scaleToFill" id="wIN-Xf-bPn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Bsw-ox-kWe">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addReportTableViewCellWithTextField" rowHeight="44" id="mS7-Ut-3wr" customClass="AddReportTableViewCellWithTextField" customModule="JustLogin_MECS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mS7-Ut-3wr" id="aHk-Mz-cWv">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Kdk-xq-3lz">
+                                                    <rect key="frame" x="20" y="0.0" width="335" height="43.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Report Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PFU-rx-fxt">
+                                                            <rect key="frame" x="0.0" y="0.0" width="165.5" height="43.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tap to enter" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jAy-3q-qJE">
+                                                            <rect key="frame" x="169.5" y="0.0" width="165.5" height="43.5"/>
+                                                            <nil key="textColor"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                                            <connections>
+                                                                <outlet property="delegate" destination="zfT-Mp-rtX" id="fKT-qm-P1p"/>
+                                                            </connections>
+                                                        </textField>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="44" id="QHL-od-Hod"/>
+                                                    </constraints>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="Kdk-xq-3lz" secondAttribute="trailing" constant="20" id="3og-gy-yYP"/>
+                                                <constraint firstAttribute="bottom" secondItem="Kdk-xq-3lz" secondAttribute="bottom" id="44r-7D-TnP"/>
+                                                <constraint firstItem="Kdk-xq-3lz" firstAttribute="leading" secondItem="aHk-Mz-cWv" secondAttribute="leading" constant="20" id="CtS-dk-3v3"/>
+                                                <constraint firstItem="Kdk-xq-3lz" firstAttribute="top" secondItem="aHk-Mz-cWv" secondAttribute="top" id="QuZ-LH-jjG"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="lblFieldName" destination="PFU-rx-fxt" id="TbH-is-jyd"/>
+                                            <outlet property="txtField" destination="jAy-3q-qJE" id="CrK-0Y-PHc"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addReportTableViewCellWithMultipleSelection" id="r7m-ln-Mqv" customClass="AddReportTableViewCellWithMultipleSelection" customModule="JustLogin_MECS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="r7m-ln-Mqv" id="489-NQ-FMK">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="jkc-hF-XqI">
+                                                    <rect key="frame" x="20" y="0.0" width="335" height="44"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customer Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="66w-Ls-ERP">
+                                                            <rect key="frame" x="0.0" y="0.0" width="167.5" height="44"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tap to select" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YXB-qT-x4t">
+                                                            <rect key="frame" x="167.5" y="0.0" width="167.5" height="44"/>
+                                                            <nil key="textColor"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits"/>
+                                                            <connections>
+                                                                <outlet property="delegate" destination="zfT-Mp-rtX" id="noD-C0-t62"/>
+                                                            </connections>
+                                                        </textField>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="44" id="5re-Bd-QsL"/>
+                                                    </constraints>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="jkc-hF-XqI" firstAttribute="leading" secondItem="489-NQ-FMK" secondAttribute="leading" constant="20" id="La6-K4-jqQ"/>
+                                                <constraint firstAttribute="bottom" secondItem="jkc-hF-XqI" secondAttribute="bottom" id="Pbt-6y-KfJ"/>
+                                                <constraint firstItem="jkc-hF-XqI" firstAttribute="top" secondItem="489-NQ-FMK" secondAttribute="top" id="bp6-Zi-gPa"/>
+                                                <constraint firstAttribute="trailing" secondItem="jkc-hF-XqI" secondAttribute="trailing" constant="20" id="htc-wB-FtD"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="lblFieldName" destination="66w-Ls-ERP" id="Fyd-my-5N1"/>
+                                            <outlet property="txtField" destination="YXB-qT-x4t" id="yEM-vF-yvd"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addReportTableViewCellWithTextView" rowHeight="70" id="rky-1d-rJ1" customClass="AddReportTableViewCellWithTextView" customModule="JustLogin_MECS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="116" width="375" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rky-1d-rJ1" id="gcX-Yz-u0u">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="69"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="URY-vA-MKo">
+                                                    <rect key="frame" x="20" y="0.0" width="335" height="70"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Business Purpose" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K82-1W-pG9">
+                                                            <rect key="frame" x="0.0" y="0.0" width="167.5" height="70"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="w5q-23-tUa">
+                                                            <rect key="frame" x="167.5" y="0.0" width="167.5" height="70"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                            <connections>
+                                                                <outlet property="delegate" destination="zfT-Mp-rtX" id="fKw-ER-Hoy"/>
+                                                            </connections>
+                                                        </textView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="70" id="mcJ-oa-kmq"/>
+                                                    </constraints>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="URY-vA-MKo" secondAttribute="trailing" constant="20" id="O5b-Vf-myM"/>
+                                                <constraint firstItem="URY-vA-MKo" firstAttribute="top" secondItem="gcX-Yz-u0u" secondAttribute="top" id="S1M-o7-p1R"/>
+                                                <constraint firstAttribute="bottom" secondItem="URY-vA-MKo" secondAttribute="bottom" id="bdR-VK-7RO"/>
+                                                <constraint firstItem="URY-vA-MKo" firstAttribute="leading" secondItem="gcX-Yz-u0u" secondAttribute="leading" constant="20" id="r6i-ZU-SmK"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="lblFieldName" destination="K82-1W-pG9" id="wc0-EO-U2p"/>
+                                            <outlet property="txtView" destination="w5q-23-tUa" id="7aa-1Y-qQk"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addReportTableViewCellDuration" rowHeight="90" id="EV7-kN-iTR" customClass="AddReportTableViewCellDuration" customModule="JustLogin_MECS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="186" width="375" height="90"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EV7-kN-iTR" id="dVy-Up-OJQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="89"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AxX-aq-tnC">
+                                                    <rect key="frame" x="20" y="8" width="335" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="U78-AU-1hB"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="nCj-5N-Z6Q">
+                                                    <rect key="frame" x="20" y="33" width="355" height="55"/>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="do7-J4-9xk">
+                                                            <rect key="frame" x="0.0" y="0.0" width="177.5" height="55"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="From" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r0n-pQ-RMI">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="177.5" height="27.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="yyyy-MM-dd" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gph-Qu-wt2">
+                                                                    <rect key="frame" x="0.0" y="27.5" width="177.5" height="27.5"/>
+                                                                    <nil key="textColor"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                    <textInputTraits key="textInputTraits"/>
+                                                                    <connections>
+                                                                        <outlet property="delegate" destination="zfT-Mp-rtX" id="7ho-4p-xO8"/>
+                                                                    </connections>
+                                                                </textField>
+                                                            </subviews>
+                                                        </stackView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="u69-qC-CQJ">
+                                                            <rect key="frame" x="177.5" y="0.0" width="177.5" height="55"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qua-O7-Tay">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="177.5" height="27.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="yyyy-MM-dd" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eER-jr-UVb">
+                                                                    <rect key="frame" x="0.0" y="27.5" width="177.5" height="27.5"/>
+                                                                    <nil key="textColor"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                    <textInputTraits key="textInputTraits"/>
+                                                                    <connections>
+                                                                        <outlet property="delegate" destination="zfT-Mp-rtX" id="sto-Lm-mKv"/>
+                                                                    </connections>
+                                                                </textField>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="55" id="Fmm-RR-JBE"/>
+                                                    </constraints>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="nCj-5N-Z6Q" secondAttribute="bottom" constant="2" id="0DX-8f-KN6"/>
+                                                <constraint firstItem="nCj-5N-Z6Q" firstAttribute="leading" secondItem="AxX-aq-tnC" secondAttribute="leading" id="Bqw-ai-GMz"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="AxX-aq-tnC" secondAttribute="trailing" constant="12" id="S2i-6N-Qqs"/>
+                                                <constraint firstItem="AxX-aq-tnC" firstAttribute="leading" secondItem="dVy-Up-OJQ" secondAttribute="leadingMargin" constant="12" id="SZq-xh-19A"/>
+                                                <constraint firstItem="nCj-5N-Z6Q" firstAttribute="top" secondItem="AxX-aq-tnC" secondAttribute="bottom" constant="4" id="ZjG-uc-tiq"/>
+                                                <constraint firstAttribute="trailing" secondItem="nCj-5N-Z6Q" secondAttribute="trailing" id="w7W-GO-YFL"/>
+                                                <constraint firstItem="AxX-aq-tnC" firstAttribute="top" secondItem="dVy-Up-OJQ" secondAttribute="topMargin" id="wKN-Uo-Lk5"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="lblDuration" destination="AxX-aq-tnC" id="WHh-Em-jN5"/>
+                                            <outlet property="lblFrom" destination="r0n-pQ-RMI" id="RN2-SI-2xd"/>
+                                            <outlet property="lblTo" destination="qua-O7-Tay" id="LRB-xR-JXE"/>
+                                            <outlet property="txtFrom" destination="gph-Qu-wt2" id="fer-NV-CBu"/>
+                                            <outlet property="txtTo" destination="eER-jr-UVb" id="aKe-IK-RTT"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="zfT-Mp-rtX" id="esV-Of-u9d"/>
+                                    <outlet property="delegate" destination="zfT-Mp-rtX" id="Aro-lO-FPa"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="Bsw-ox-kWe" id="pyF-jS-ZWa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SSW-65-o2j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-668" y="106"/>
+            <point key="canvasLocation" x="-937" y="106"/>
         </scene>
         <!--Report Details View Controller-->
         <scene sceneID="AMS-qr-c75">

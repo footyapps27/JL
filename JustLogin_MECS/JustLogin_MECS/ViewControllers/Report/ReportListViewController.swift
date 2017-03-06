@@ -9,19 +9,16 @@
 import Foundation
 import UIKit
 
+/***********************************/
+// MARK: - Properties
+/***********************************/
 class ReportListViewController: BaseViewControllerWithTableView {
-    
-    /***********************************/
-    // MARK: - Properties
-    /***********************************/
-    
-    @IBOutlet weak var tableView: UITableView!
-    
     let manager = ReportListManager()
-    
-    /***********************************/
-    // MARK: - View Lifecycle
-    /***********************************/
+}
+/***********************************/
+// MARK: - View Lifecycle
+/***********************************/
+extension ReportListViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,12 +59,13 @@ extension ReportListViewController {
     }
     
     func navigateToAddReport() {
-        let addReportViewController = UIStoryboard(name: Constants.StoryboardIds.expenseStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.addReportViewController) as! BaseViewController
+        let addReportViewController = UIStoryboard(name: Constants.StoryboardIds.reportStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.addReportViewController) as! AddReportViewController
+        addReportViewController.delegate = self
         Utilities.pushControllerAndHideTabbar(fromController: self, toController: addReportViewController)
     }
     
     func navigateToReportDetails(forReport report: Report) {
-        let reportDetailsViewController = UIStoryboard(name: Constants.StoryboardIds.expenseStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.reportDetailsViewController) as! ReportDetailsViewController
+        let reportDetailsViewController = UIStoryboard(name: Constants.StoryboardIds.reportStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.reportDetailsViewController) as! ReportDetailsViewController
         reportDetailsViewController.report = report
         Utilities.pushControllerAndHideTabbar(fromController: self, toController: reportDetailsViewController)
     }
@@ -142,5 +140,13 @@ extension ReportListViewController: UITableViewDelegate {
 extension ReportListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         //filterContentForSearchText(searchController.searchBar.text!)
+    }
+}
+/***********************************/
+// MARK: - AddReportDelegate
+/***********************************/
+extension ReportListViewController: AddReportDelegate {
+    func reportCreated() {
+        fetchReports()
     }
 }

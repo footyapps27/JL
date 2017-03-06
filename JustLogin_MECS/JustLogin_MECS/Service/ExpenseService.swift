@@ -17,6 +17,11 @@ protocol IExpenseService {
     func getAllExpenses(_ completionHandler:( @escaping (Result<[Expense]>) -> Void))
     
     /**
+     * Method to retrieve details of an expense.
+     */
+    func getExpenseDetails(expenseId: String, completionHandler:( @escaping (Result<Expense>) -> Void))
+    
+    /**
      * Create a new expense.
      */
     func create(expense: Expense, completionHandler:( @escaping (Result<Expense>) -> Void))
@@ -50,6 +55,25 @@ struct ExpenseService : IExpenseService {
                     }
                 }
                 completionHandler(Result.success(allExpenses))
+                
+            case .errors(let error):
+                let error = ServiceError(JSON(error))
+                completionHandler(Result.error(error))
+                
+            case .failure(let description):
+                completionHandler(Result.failure(description))
+            }
+        }
+    }
+    
+    func getExpenseDetails(expenseId: String, completionHandler:( @escaping (Result<Expense>) -> Void)) {
+        let payload = getPayloadForExpenseDetails(expenseId)
+        serviceAdapter.post(destination: Constants.URLs.expenseDetails
+        , payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
+            switch(response) {
+            case .success(let success, _ ):
+                let expense = Expense(withJSON: JSON(success))
+                completionHandler(Result.success(expense))
                 
             case .errors(let error):
                 let error = ServiceError(JSON(error))
@@ -132,7 +156,7 @@ extension ExpenseService {
         payload[Constants.RequestParameters.Expense.exchange] = expense.exchange
         
         if let date = expense.date {
-            payload[Constants.RequestParameters.Expense.date] = Utilities.convertDateToString(date)
+            payload[Constants.RequestParameters.Expense.date] = Utilities.convertDateToStringForServerCommunication(date)
         }
         
         if !expense.description.isEmpty {
@@ -180,6 +204,13 @@ extension ExpenseService {
             payload[Constants.RequestParameters.Expense.expenseId] = expense.id
         }
         return payload
+    }
+    
+    /**
+     * Method to format payload for expense details.
+     */
+    func getPayloadForExpenseDetails(_ expenseId: String) -> [String : Any] {
+        return [Constants.RequestParameters.General.ids : [expenseId]]
     }
     
     /**

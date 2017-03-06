@@ -1,21 +1,24 @@
 PODS:
-  - Alamofire (4.3.0)
-  - NVActivityIndicatorView (3.4)
-  - SwiftyBeaver (1.1.1)
+  - Alamofire (4.4.0)
+  - NVActivityIndicatorView (3.5.1)
+  - SnapKit (3.2.0)
+  - SwiftyBeaver (1.1.3)
   - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0)
   - NVActivityIndicatorView
+  - SnapKit (~> 3.2.0)
   - SwiftyBeaver
   - SwiftyJSON
 
 SPEC CHECKSUMS:
-  Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
-  NVActivityIndicatorView: 5754be63ceecd1df8af37d3c088d81872feeb8b8
-  SwiftyBeaver: 2b68694df862381235e32bcfc4ec991e26bf131d
+  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  NVActivityIndicatorView: 075563b3547445ebcff840e3297ce9dd4a23731f
+  SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
+  SwiftyBeaver: 949aa1439b8fa3667f68555cfef65de46a70ccde
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 4a37f357c665c9436d8b60bab39a77e762255f5b
+PODFILE CHECKSUM: 8aa9594eb6549d492ecf7749d7f752c3dc7a6ffb
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.0

@@ -14,7 +14,7 @@ enum Roles {
 
 enum ReportStatus : Int
 {
-    case draft = 0, submitted, rejected, approved, reimbursed, undoReimburse
+    case unsubmitted = 0, submitted, rejected, approved, reimbursed, undoReimburse
     
     var name: String {
         get { return String(describing: self) }
@@ -33,4 +33,20 @@ enum ExpenseStatus : Int {
     var name: String {
         get { return String(describing: self) }
     }
+}
+
+enum ReportFieldType: Int {
+    case text = 0,
+    email,
+    url,
+    phone,
+    number,
+    decimal,
+    amount,
+    percent,
+    date,
+    checkBox,
+    doubleTextField,
+    textView,
+    dropdown
 }

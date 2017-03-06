@@ -12,13 +12,21 @@ struct Constants {
     
     struct General {
         static let emptyString = ""
-        static let serverDateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        static let dateFormatReceivedFromServer = "yyyy-MM-dd'T'HH:mm:ss"
         static let localDisplayDateFormat = "dd/MM/yyyy"
+        static let dateFormatSentToServer = "yyyy-MM-dd"
         static let decimalFormat = "%.2f"
     }
     
     struct UISize {
         static let activityIndicatorHeightWidth = 50
+    }
+    
+    struct UIImageNames {
+        static let attachmentActive = "AttachmentActive"
+        static let attachmentDefault = "AttachmentDefault"
+        static let policyViolationActive = "PolicyViolationActive"
+        static let policyViolationDefault = "PolicyViolationDefault"
     }
     
     struct Defaults {
@@ -30,6 +38,7 @@ struct Constants {
         static let categoryLogo = 0
         static let accessPrivilegeApproveReports = 0
         static let exchangeRate = 1.0
+        static let reportFieldType = 0
     }
     
     struct CellIdentifiers {
@@ -38,6 +47,10 @@ struct Constants {
         static let settingsListTableViewCellIdentifier = "settingsListTableViewCellIdentifier"
         static let reportListTableViewCellIdentifier = "reportListTableViewCellIdentifier"
         static let approvalListTableViewCellIdentifier = "approvalListTableViewCellIdentifier"
+        static let addReportTableViewCellWithTextField = "addReportTableViewCellWithTextField"
+        static let addReportTableViewCellWithMultipleSelection = "addReportTableViewCellWithMultipleSelection"
+        static let addReportTableViewCellWithTextView = "addReportTableViewCellWithTextView"
+        static let addReportTableViewCellDuration = "addReportTableViewCellDuration"
     }
     
     struct CellHeight {
@@ -49,6 +62,7 @@ struct Constants {
     struct StoryboardIds {
         static let dashboardStoryboard = "Dashboard"
         static let expenseStoryboard = "Expense"
+        static let reportStoryboard = "Report"
         static let approverAndAdminDashboard = "approverAndAdminDashboard"
         static let submitterDashboard = "submitterDashboard"
         static let addExpenseViewController = "addExpenseViewController"
@@ -73,12 +87,13 @@ struct Constants {
         static let organizationDetails = URLs.baseURL + "/organization/details"
         
         static let getAllExpenses = URLs.baseURL + "/expense/retrievebymember"
+        static let expenseDetails = URLs.baseURL + "/expense/retrieve"
         static let createExpense = URLs.baseURL + "/expense/create"
         static let updateExpense = URLs.baseURL + "/expense/update"
         static let deleteExpense = URLs.baseURL + "/expense/delete"
         
         static let getAllReports = URLs.baseURL + "/report/retrievebymember"
-        static let createReport = URLs.baseURL + "/organization/details"
+        static let createReport = URLs.baseURL + "/report/create"
         static let updateReport = URLs.baseURL + "/organization/details"
         static let deleteReport = URLs.baseURL + "/organization/details"
     }
@@ -108,6 +123,14 @@ struct Constants {
             static let location = "location"
             static let referenceNumber = "referenceNumber"
             static let notes = "notes"
+        }
+        
+        struct Report {
+            static let reportId = "reportId"
+            static let businessPurpose = "businessPurpose"
+            static let title = "title"
+            static let startDate = "startDate"
+            static let endDate = "endDate"
         }
     }
     
@@ -173,6 +196,8 @@ struct Constants {
         static let expenses = "expenses"
         static let expenseId = "expenseId"
         static let date = "date"
+        static let hasAttachment = "hasAttachment"
+        static let hasPolicyViolation = "hasPolicyViolation"
         static let amount = "amount"
         static let exchange = "exchange"
         static let location = "location"

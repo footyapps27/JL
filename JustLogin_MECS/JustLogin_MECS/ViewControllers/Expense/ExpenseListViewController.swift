@@ -15,8 +15,6 @@ class ExpenseListViewController: BaseViewControllerWithTableView {
     // MARK: - Properties
     /***********************************/
     
-    @IBOutlet weak var tableView: UITableView!
-    
     let manager = ExpenseListManager()
     
     /***********************************/
@@ -118,7 +116,7 @@ extension ExpenseListViewController {
     
     func navigateToExpenseDetails(forExpense expense: Expense) {
         let expenseDetailsViewController = UIStoryboard(name: Constants.StoryboardIds.expenseStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.expenseDetailsViewController) as! ExpenseDetailsViewController
-        expenseDetailsViewController.expense = expense
+        expenseDetailsViewController.expenseId = expense.id
         Utilities.pushControllerAndHideTabbar(fromController:self, toController: expenseDetailsViewController)
     }
 }
@@ -169,8 +167,9 @@ extension ExpenseListViewController: UITableViewDataSource {
         cell.lblDateAndDescription.text = manager.getDateAndDescription(forIndexPath: indexPath)
         cell.lblAmount.text = manager.getFormattedAmount(forIndexPath: indexPath)
         cell.lblStatus.text = manager.getExpenseStatus(forIndexPath: indexPath)
+        cell.imgAttachment.image = UIImage(named: manager.getAttachmentImage(forIndexPath: indexPath))
+        cell.imgPolicyViolation.image = UIImage(named: manager.getPolicyViolationImage(forIndexPath: indexPath))
         
-        // TODO: - Wire up the icons
         return cell
     }
 }

@@ -10,26 +10,39 @@ import Foundation
 import UIKit
 import SystemConfiguration
 
+/***********************************/
+// MARK: - String to date conversion
+/***********************************/
 class Utilities {
-    
     /**
      * Method to convert server string to date.
      */
     static func convertServerStringToDate(_ string: String) -> Date? {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = Constants.General.serverDateFormat
+        dateFormatter.dateFormat = Constants.General.dateFormatReceivedFromServer
         return dateFormatter.date(from: string)
     }
     
     /**
      * Method to convert date to string.
      */
-    static func convertDateToString(_ date: Date) -> String {
+    static func convertDateToStringForDisplay(_ date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = Constants.General.localDisplayDateFormat
         return dateFormatter.string(from: date)
     }
     
+    static func convertDateToStringForServerCommunication(_ date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = Constants.General.dateFormatSentToServer
+        return dateFormatter.string(from: date)
+    }
+    
+}
+/***********************************/
+// MARK: - Show alerts
+/***********************************/
+extension Utilities {
     /**
      * Method to show an error alert.
      */
@@ -59,7 +72,11 @@ class Utilities {
         
         controller.present(actionsheet, animated: true, completion: nil)
     }
-    
+}
+/***********************************/
+// MARK: - Network
+/***********************************/
+extension Utilities {
     /**
      * Check if connection is available.
      */
@@ -87,7 +104,11 @@ class Utilities {
         
         return (isReachable && !needsConnection)
     }
-    
+}
+/***********************************/
+// MARK: - UI update
+/***********************************/
+extension Utilities {
     /**
      * Method to adjust the inset of a scroll view when the keyboard is displayed or hidden.
      */
@@ -110,4 +131,35 @@ class Utilities {
         fromController.hidesBottomBarWhenPushed = false
     }
 }
+/***********************************/
+// MARK: - Expense UI Format
+/***********************************/
+extension Utilities {
+    static func getCategoryName(forExpense expense: Expense) -> String {
+        if let category = Singleton.sharedInstance.organization?.categories[expense.categoryId] {
+            return category.name
+        }
+        log.error("Category not found")
+        return Constants.General.emptyString
+    }
     
+    static func getFormattedAmount(forExpense expense: Expense) -> String {
+        var currencyAndAmount = Constants.General.emptyString
+        
+        if let currency = Singleton.sharedInstance.organization?.currencies[expense.currencyId] {
+            currencyAndAmount = currency.symbol
+        }
+        
+        currencyAndAmount += " " + String(format: Constants.General.decimalFormat, expense.amount)
+        
+        return currencyAndAmount
+    }
+    
+    static func getStatus(forExpense expense: Expense) -> String {
+        if let status = ExpenseStatus(rawValue: expense.status) {
+            return status.name
+        }
+        log.error("Status of expense is invalid")
+        return Constants.General.emptyString
+    }
+}

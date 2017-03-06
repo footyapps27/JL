@@ -18,6 +18,10 @@ struct Expense {
     
     var date: Date?
     
+    var hasAttachment: Bool = false
+    
+    var hasPolicyViolation: Bool = false
+    
     var amount: Double = Constants.Defaults.amount
     
     var status: Int = Constants.Defaults.ExpenseStatus
@@ -41,6 +45,8 @@ struct Expense {
     var currencyId: String = Constants.General.emptyString
     
     var reportId: String = Constants.General.emptyString
+    
+    var customFields: [[String : Any]] = []
     /***********************************/
     // MARK: - Initializer
     /***********************************/
@@ -60,6 +66,10 @@ struct Expense {
         if let jsonDate = json[Constants.ResponseParameters.date].string {
             date = Utilities.convertServerStringToDate(jsonDate)
         }
+        
+        hasAttachment = json[Constants.ResponseParameters.hasAttachment].boolValue
+        
+        hasPolicyViolation = json[Constants.ResponseParameters.hasPolicyViolation].boolValue
         
         amount = json[Constants.ResponseParameters.amount].doubleValue
 
