@@ -45,6 +45,8 @@ struct Expense {
     var currencyId: String = Constants.General.emptyString
     
     var reportId: String = Constants.General.emptyString
+    
+    var customFields: [[String : Any]] = []
     /***********************************/
     // MARK: - Initializer
     /***********************************/

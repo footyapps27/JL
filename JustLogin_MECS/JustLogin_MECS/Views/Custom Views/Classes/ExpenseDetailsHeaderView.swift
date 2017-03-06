@@ -79,6 +79,7 @@ extension ExpenseDetailsHeaderView {
         lblAmount.text = manager.getFormattedAmount()
         lblStatus.text = manager.getExpenseStatus()
         lblDate.text = manager.getExpenseDate()
+        // TODO: - Call the dynamic view here based on the property
     }
     
     func getHeight() -> CGFloat {

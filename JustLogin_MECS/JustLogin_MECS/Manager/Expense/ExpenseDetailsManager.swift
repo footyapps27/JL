@@ -41,6 +41,13 @@ extension ExpenseDetailsManager {
         }
         return Constants.General.emptyString
     }
+    
+    func getFieldsToDisplay() -> [String : String] {
+        var fieldsToDisplay: [String : String] = [:]
+        if expense.exchange > 0 {
+            fieldsToDisplay[Constants.CellHeight]
+        }
+    }
 }
 /***********************************/
 // MARK: - Service Call
