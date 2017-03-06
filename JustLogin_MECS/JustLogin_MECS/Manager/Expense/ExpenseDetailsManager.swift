@@ -15,6 +15,19 @@ class ExpenseDetailsManager {
     var expenseService: IExpenseService = ExpenseService()
 }
 /***********************************/
+// MARK: - UI check value
+/***********************************/
+extension ExpenseDetailsManager {
+    
+    func isExpenseEditable() -> Bool {
+        if expense.status == ExpenseStatus.unreported.rawValue ||
+            expense.status == ExpenseStatus.unsubmitted.rawValue {
+            return true
+        }
+        return false
+    }
+}
+/***********************************/
 // MARK: - TableView Header UI update
 /***********************************/
 extension ExpenseDetailsManager {
@@ -45,8 +58,39 @@ extension ExpenseDetailsManager {
     func getFieldsToDisplay() -> [String : String] {
         var fieldsToDisplay: [String : String] = [:]
         if expense.exchange > 0 {
-            fieldsToDisplay[Constants.CellHeight]
+            fieldsToDisplay[LocalizedString.exchangeRate] = String(expense.exchange)
         }
+        
+        if !expense.description.isEmpty {
+            fieldsToDisplay[LocalizedString.description] = expense.description
+        }
+        
+        if !expense.location.isEmpty {
+            fieldsToDisplay[LocalizedString.description] = expense.location
+        }
+        
+        if !expense.referenceNumber.isEmpty {
+            fieldsToDisplay[LocalizedString.referenceNumber] = expense.referenceNumber
+        }
+        
+        if !expense.notes.isEmpty {
+            fieldsToDisplay[LocalizedString.notes] = expense.notes
+        }
+        
+        if !expense.merchantName.isEmpty {
+            fieldsToDisplay[LocalizedString.merchantName] = expense.merchantName
+        }
+        
+        if !expense.paymentMode.isEmpty {
+            fieldsToDisplay[LocalizedString.paymentMode] = expense.paymentMode
+        }
+        
+        for dict in expense.customFields {
+            // TODO: - Add the custom fields here
+            print(dict)
+        }
+        
+        return fieldsToDisplay
     }
 }
 /***********************************/

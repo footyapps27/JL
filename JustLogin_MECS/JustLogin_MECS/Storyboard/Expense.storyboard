@@ -111,9 +111,28 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PeR-Xx-hd8">
+                                                    <rect key="frame" x="335" y="128" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="WTf-zw-pVD"/>
+                                                        <constraint firstAttribute="height" constant="20" id="adT-ft-ReI"/>
+                                                    </constraints>
+                                                    <state key="normal" image="PolicyViolationDefault"/>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4B2-Lt-Ayp">
+                                                    <rect key="frame" x="294" y="128" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="Y5z-Fy-0Tb"/>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="YRt-EJ-hnr"/>
+                                                        <constraint firstAttribute="width" constant="20" id="dGU-Zt-hbg"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="s0I-tP-SsQ"/>
+                                                    </constraints>
+                                                    <state key="normal" image="AttachmentDefault"/>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
+                                                <constraint firstItem="PeR-Xx-hd8" firstAttribute="centerY" secondItem="CYF-Gb-7wW" secondAttribute="centerY" id="2IN-Bg-3lm"/>
                                                 <constraint firstItem="CYF-Gb-7wW" firstAttribute="centerY" secondItem="Nqs-SL-NxQ" secondAttribute="centerY" id="3QD-1Z-ESn"/>
                                                 <constraint firstItem="42d-dw-gN9" firstAttribute="leading" secondItem="i2K-eR-sFm" secondAttribute="leading" constant="8" id="5Ws-fC-97B"/>
                                                 <constraint firstAttribute="bottom" secondItem="Nqs-SL-NxQ" secondAttribute="bottom" constant="8" id="7gj-bO-pn5"/>
@@ -122,6 +141,10 @@
                                                 <constraint firstAttribute="trailing" secondItem="cke-Lt-HoZ" secondAttribute="trailing" constant="8" id="Fr3-Oc-suL"/>
                                                 <constraint firstItem="cke-Lt-HoZ" firstAttribute="top" secondItem="i2K-eR-sFm" secondAttribute="top" constant="20" id="IxH-qI-NBT"/>
                                                 <constraint firstItem="CYF-Gb-7wW" firstAttribute="leading" secondItem="Nqs-SL-NxQ" secondAttribute="trailing" constant="8" id="RCa-HU-6pi"/>
+                                                <constraint firstItem="PeR-Xx-hd8" firstAttribute="leading" secondItem="4B2-Lt-Ayp" secondAttribute="trailing" constant="21" id="f4e-6V-Hru"/>
+                                                <constraint firstAttribute="trailing" secondItem="4B2-Lt-Ayp" secondAttribute="trailing" priority="750" constant="20" id="hCO-8s-zTX"/>
+                                                <constraint firstItem="4B2-Lt-Ayp" firstAttribute="centerY" secondItem="CYF-Gb-7wW" secondAttribute="centerY" id="lqd-34-pB4"/>
+                                                <constraint firstAttribute="trailing" secondItem="PeR-Xx-hd8" secondAttribute="trailing" constant="20" id="o8u-0L-bxV"/>
                                                 <constraint firstAttribute="height" constant="160" id="puE-JJ-vU1"/>
                                                 <constraint firstItem="Nqs-SL-NxQ" firstAttribute="leading" secondItem="i2K-eR-sFm" secondAttribute="leading" constant="8" id="yDV-sh-FJp"/>
                                                 <constraint firstItem="cke-Lt-HoZ" firstAttribute="leading" secondItem="i2K-eR-sFm" secondAttribute="leading" constant="8" id="zfA-E8-ui2"/>
@@ -168,6 +191,8 @@
                                         <constraint firstItem="cGD-fc-olb" firstAttribute="top" secondItem="OwP-SS-n4q" secondAttribute="bottom" constant="16" id="vI3-Hk-5rv"/>
                                     </constraints>
                                     <connections>
+                                        <outlet property="btnAttachment" destination="4B2-Lt-Ayp" id="ZGy-T1-4bA"/>
+                                        <outlet property="btnPolicyViolation" destination="PeR-Xx-hd8" id="RcT-aw-Eqe"/>
                                         <outlet property="lblAmount" destination="42d-dw-gN9" id="8X5-lh-uB7"/>
                                         <outlet property="lblCategory" destination="cke-Lt-HoZ" id="ggl-bG-IU8"/>
                                         <outlet property="lblDate" destination="CYF-Gb-7wW" id="Th9-kH-ewx"/>
@@ -211,6 +236,7 @@
                         <outlet property="btnMoreOptions" destination="bF8-iG-ojV" id="qbE-Hl-8QB"/>
                         <outlet property="headerView" destination="9CJ-LC-hPQ" id="iXw-xa-g3X"/>
                         <outlet property="tableView" destination="baV-KW-QOp" id="jlC-qE-5w0"/>
+                        <outlet property="toolbar" destination="ojE-sZ-snC" id="xKg-08-Rzf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hPM-0q-alM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -218,4 +244,8 @@
             <point key="canvasLocation" x="253.59999999999999" y="-67.016491754122939"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="AttachmentDefault" width="16" height="16"/>
+        <image name="PolicyViolationDefault" width="16" height="16"/>
+    </resources>
 </document>
