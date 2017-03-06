@@ -167,8 +167,9 @@ extension ExpenseListViewController: UITableViewDataSource {
         cell.lblDateAndDescription.text = manager.getDateAndDescription(forIndexPath: indexPath)
         cell.lblAmount.text = manager.getFormattedAmount(forIndexPath: indexPath)
         cell.lblStatus.text = manager.getExpenseStatus(forIndexPath: indexPath)
+        cell.imgAttachment.image = UIImage(named: manager.getAttachmentImage(forIndexPath: indexPath))
+        cell.imgPolicyViolation.image = UIImage(named: manager.getPolicyViolationImage(forIndexPath: indexPath))
         
-        // TODO: - Wire up the icons
         return cell
     }
 }

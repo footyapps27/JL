@@ -22,6 +22,13 @@ struct Constants {
         static let activityIndicatorHeightWidth = 50
     }
     
+    struct UIImageNames {
+        static let attachmentActive = "AttachmentActive"
+        static let attachmentDefault = "AttachmentDefault"
+        static let policyViolationActive = "PolicyViolationActive"
+        static let policyViolationDefault = "PolicyViolationDefault"
+    }
+    
     struct Defaults {
         static let numberOfSections = 1
         static let decimalPlaces = 2

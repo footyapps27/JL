@@ -122,6 +122,16 @@ extension ExpenseListManager {
         log.error("Status of expense is invalid")
         return Constants.General.emptyString
     }
+    
+    func getAttachmentImage(forIndexPath indexPath: IndexPath) -> String {
+        let expense = expenses[indexPath.row]
+        return expense.hasAttachment ? Constants.UIImageNames.attachmentActive : Constants.UIImageNames.attachmentDefault
+    }
+    
+    func getPolicyViolationImage(forIndexPath indexPath: IndexPath) -> String {
+        let expense = expenses[indexPath.row]
+        return expense.hasPolicyViolation ? Constants.UIImageNames.policyViolationActive : Constants.UIImageNames.policyViolationDefault
+    }
 }
 
 /***********************************/
