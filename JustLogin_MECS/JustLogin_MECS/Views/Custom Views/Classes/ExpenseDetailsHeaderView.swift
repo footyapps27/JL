@@ -52,56 +52,42 @@ extension ExpenseDetailsHeaderView {
         
         // Create the dynamic view here.
         var frame = CGRect()
-        //frame.origin.x = CGFloat(0)
-        //frame.origin.y = 0
         frame.size.width =  CGFloat(320)
         frame.size.height =  CGFloat(50)
         
         
         let view1 = getDynamicView(withFieldName: "Test", andFieldValue: "TestValue")
-        //view1.backgroundColor = UIColor.red
         
         let view2 = getDynamicView(withFieldName: "Test", andFieldValue: "TestValue")
-        //view2.backgroundColor = UIColor.blue
         
         let view3 = getDynamicView(withFieldName: "Test", andFieldValue: "TestValue")
-        //view3.backgroundColor = UIColor.green
         
         let view4 = getDynamicView(withFieldName: "Test", andFieldValue: "TestValue")
-        //view4.backgroundColor = UIColor.yellow
         
         parentStackView.addArrangedSubview(view1)
         parentStackView.addArrangedSubview(view2)
         parentStackView.addArrangedSubview(view3)
         parentStackView.addArrangedSubview(view4)
-        
-        
-//        parentStackView.addSubview(ExpenseDetailsStackView())
-//        parentStackView.addSubview(ExpenseDetailsStackView())
-//        parentStackView.addSubview(ExpenseDetailsStackView())
-//        parentStackView.addSubview(ExpenseDetailsStackView())
-        
-//        let view = ExpenseDetailsStackView()
-//        view.backgroundColor
-//        view.heightAnchor.constraint(equalToConstant: CGFloat(50)).isActive = true
-//        view.widthAnchor.constraint(equalToConstant: CGFloat(320)).isActive = true
-//        parentStackView.addArrangedSubview(view)
-        //parentStackView.addSubview(view)
-        
-        
     }
-    
-    func updateView(withExpense expense: Expense) {
-        
+}
+/***********************************/
+// MARK: - UI update methods
+/***********************************/
+extension ExpenseDetailsHeaderView {
+    func updateView(withManager manager: ExpenseDetailsManager) {
+        lblCategory.text = manager.getCategoryName()
+        lblAmount.text = manager.getFormattedAmount()
+        lblStatus.text = manager.getExpenseStatus()
+        lblDate.text = manager.getExpenseDate()
     }
     
     func getHeight() -> CGFloat {
-        // Only return the additional height, since the header is already added to the storyboard.
         return CGFloat(50*4)
-        //return CGFloat(300 + (50*2))
     }
 }
-
+/***********************************/
+// MARK: - Private Methods
+/***********************************/
 extension ExpenseDetailsHeaderView {
     
     func getDynamicView(withFieldName fieldName: String, andFieldValue fieldValue: String) -> UIView {

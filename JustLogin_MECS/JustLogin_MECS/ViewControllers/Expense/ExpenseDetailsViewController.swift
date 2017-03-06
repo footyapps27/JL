@@ -36,6 +36,16 @@ extension ExpenseDetailsViewController {
     }
 }
 /***********************************/
+// MARK: - Helpers
+/***********************************/
+extension ExpenseDetailsViewController {
+    func updateUIAfterSuccessfulResponse() {
+        self.tableView.reloadData()
+        headerView.updateView(withManager: manager)
+        // TODO: - Update toolbar
+    }
+}
+/***********************************/
 // MARK: - Actions
 /***********************************/
 extension ExpenseDetailsViewController {
@@ -56,7 +66,8 @@ extension ExpenseDetailsViewController {
 /***********************************/
 extension ExpenseDetailsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10;
+        // TODO - Replace this with actual history details
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -99,6 +110,7 @@ extension ExpenseDetailsViewController {
             }
             switch(response) {
             case .success(_):
+                self.updateUIAfterSuccessfulResponse()
                 self.hideLoadingIndicator(enableUserInteraction: true)
             case .failure(_, _):
                 // TODO: - Handle the empty table view screen.

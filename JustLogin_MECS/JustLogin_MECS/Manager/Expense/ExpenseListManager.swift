@@ -18,7 +18,6 @@ class ExpenseListManager {
     var expenses: [Expense] = []
     
     var selectedIndices = Set<Int>()
-    
 }
 /***********************************/
 // MARK: - Data tracking methods
@@ -49,8 +48,6 @@ extension ExpenseListManager {
         return ids
     }
     
-    
-    
     /**
      * Remove all the indices that was earlier tracked.
      */
@@ -58,7 +55,6 @@ extension ExpenseListManager {
         selectedIndices.removeAll()
     }
 }
-
 /***********************************/
 // MARK: - TableView Cell helpers
 /***********************************/
@@ -68,11 +64,7 @@ extension ExpenseListManager {
      */
     func getCategoryName(forIndexPath indexPath: IndexPath) -> String {
         let expense = expenses[indexPath.row]
-        if let category = Singleton.sharedInstance.organization?.categories[expense.categoryId] {
-            return category.name
-        }
-        log.error("Category not found")
-        return Constants.General.emptyString
+        return Utilities.getCategoryName(forExpense: expense)
     }
     
     /**
@@ -100,15 +92,7 @@ extension ExpenseListManager {
      */
     func getFormattedAmount(forIndexPath indexPath: IndexPath) -> String {
         let expense = expenses[indexPath.row]
-        var currencyAndAmount = Constants.General.emptyString
-        
-        if let category = Singleton.sharedInstance.organization?.currencies[expense.currencyId] {
-            currencyAndAmount = category.symbol
-        }
-        
-        currencyAndAmount += " " + String(format: Constants.General.decimalFormat, expense.amount)
-        
-        return currencyAndAmount
+        return Utilities.getFormattedAmount(forExpense: expense)
     }
     
     /**
@@ -116,24 +100,25 @@ extension ExpenseListManager {
      */
     func getExpenseStatus(forIndexPath indexPath: IndexPath) -> String {
         let expense = expenses[indexPath.row]
-        if let status = ExpenseStatus(rawValue: expense.status) {
-            return status.name.capitalized
-        }
-        log.error("Status of expense is invalid")
-        return Constants.General.emptyString
+        return Utilities.getStatus(forExpense: expense).capitalized
     }
     
+    /**
+     * Method to get the attachment image
+     */
     func getAttachmentImage(forIndexPath indexPath: IndexPath) -> String {
         let expense = expenses[indexPath.row]
         return expense.hasAttachment ? Constants.UIImageNames.attachmentActive : Constants.UIImageNames.attachmentDefault
     }
     
+    /**
+     * Method to get the policy violation image
+     */
     func getPolicyViolationImage(forIndexPath indexPath: IndexPath) -> String {
         let expense = expenses[indexPath.row]
         return expense.hasPolicyViolation ? Constants.UIImageNames.policyViolationActive : Constants.UIImageNames.policyViolationDefault
     }
 }
-
 /***********************************/
 // MARK: - Service Calls
 /***********************************/
@@ -173,17 +158,7 @@ extension ExpenseListManager {
             }
         }
     }
-    
-    /**
-     * Create a new expense.
-     */
-    func createNewExpense(_ expense: Expense, complimentionHandler: (@escaping (Result<Expense>) -> Void)) {
-        expenseService.create(expense: expense) { (expense) in
-            log.debug(expense)
-        }
-    }
 }
-
 /***********************************/
 // MARK: - Private Methods
 /***********************************/

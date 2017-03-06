@@ -10,16 +10,44 @@ import Foundation
 
 class ExpenseDetailsManager {
     
-    var expense: Expense?
+    var expense: Expense = Expense()
     
     var expenseService: IExpenseService = ExpenseService()
+}
+/***********************************/
+// MARK: - TableView Header UI update
+/***********************************/
+extension ExpenseDetailsManager {
+    /**
+     * Method to get the category name for the expense
+     */
+    func getCategoryName() -> String {
+        return Utilities.getCategoryName(forExpense: expense)
+    }
+    
+    func getFormattedAmount() -> String {
+        return Utilities.getFormattedAmount(forExpense: expense)
+    }
+    
+    func getExpenseStatus() -> String {
+        return Utilities.getStatus(forExpense: expense).uppercased()
+    }
+    
+    func getExpenseDate() -> String {
+        if let date = expense.date {
+            return Utilities.convertDateToStringForDisplay(date)
+        } else {
+            log.error("Expense date is nil")
+        }
+        return Constants.General.emptyString
+    }
 }
 /***********************************/
 // MARK: - Service Call
 /***********************************/
 extension ExpenseDetailsManager {
     /**
-     * Method to fetch all expenses from the server.
+     * Method to fetch expense details from the server.
      */
     func fetchExpenseDetails(withExpenseId expenseId: String, completionHandler: (@escaping (ManagerResponseToController<Expense>) -> Void)) {
         expenseService.getExpenseDetails(expenseId: expenseId) { [weak self] (result) in
