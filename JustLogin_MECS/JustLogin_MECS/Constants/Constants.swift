@@ -38,7 +38,7 @@ struct Constants {
         static let categoryLogo = 0
         static let accessPrivilegeApproveReports = 0
         static let exchangeRate = 1.0
-        static let reportFieldType = 0
+        static let fieldType = 0
     }
     
     struct CellIdentifiers {
@@ -192,6 +192,14 @@ struct Constants {
         static let modifySettingsPaymentMode = "paymentMode"
         static let modifySettingsManageIntegrations = "manageIntegrations"
         static let modifySettingsBilling = "billing"
+        
+        static let datatype = "datatype"
+        static let fieldName = "fieldName"
+        static let isEnabled = "isEnabled"
+        static let isMandatory = "isMandatory"
+        static let expenseCustomFields = "expenseCustomFields"
+        static let reportCustomFields = "reportCustomFields"
+        
         
         static let expenses = "expenses"
         static let expenseId = "expenseId"

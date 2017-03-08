@@ -156,7 +156,7 @@ extension AddReportViewController: UITableViewDelegate {
 extension AddReportViewController: UITextFieldDelegate {
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        if textField.tag == ReportFieldType.date.rawValue {
+        if textField.tag == ExpenseAndReportFieldType.date.rawValue {
             currentTextField = textField
             textField.inputView = datePicker
             textField.inputAccessoryView = toolbar
@@ -165,13 +165,13 @@ extension AddReportViewController: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField.tag == ReportFieldType.date.rawValue {
+        if textField.tag == ExpenseAndReportFieldType.date.rawValue {
             dismissDatePicker(nil)
         }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField.tag == ReportFieldType.date.rawValue {
+        if textField.tag == ExpenseAndReportFieldType.date.rawValue {
             return false
         }
         textField.resignFirstResponder()

@@ -13,5 +13,10 @@ import UIKit
 // MARK: - Outlets
 /***********************************/
 class AddExpenseTableViewCellDate: AddExpenseBaseTableViewCell {
+    /***********************************/
+    // MARK: - Outlets
+    /***********************************/
+    @IBOutlet weak var lblDate: UILabel!
     
+    @IBOutlet weak var txtDate: UITextField!
 }

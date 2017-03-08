@@ -14,4 +14,10 @@ import UIKit
 /***********************************/
 class AddExpenseTableViewCellCategory: AddExpenseBaseTableViewCell {
     
+    /***********************************/
+    // MARK: - Outlets
+    /***********************************/
+    @IBOutlet weak var imgView: UIImageView!
+    
+    @IBOutlet weak var txtCategory: UITextField!
 }

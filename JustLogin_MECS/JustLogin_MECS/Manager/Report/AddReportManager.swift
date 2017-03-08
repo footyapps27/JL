@@ -11,30 +11,30 @@ import UIKit
 
 class AddReportManager {
     
-    var fields: [ReportField] = []
+    var fields: [ExpenseAndReportField] = []
     
     var reportService: ReportService = ReportService()
     
     // TODO - This has been hardcoded for now. Needs to be read from server for v2.x
     // Make sure that only enabled fields are filtered out & stored in the array.
     init() {
-        var title = ReportField()
-        title.fieldName = "Report Title"
+        var title = ExpenseAndReportField()
+        title.name = "Report Title"
         title.jsonParameter = Constants.RequestParameters.Report.title
-        title.fieldType = ReportFieldType.text.rawValue
+        title.fieldType = ExpenseAndReportFieldType.text.rawValue
         title.isMandatory = true
         title.isEnabled = true
         
-        var duration = ReportField()
-        duration.fieldName = "Duration"
-        duration.fieldType = ReportFieldType.doubleTextField.rawValue
+        var duration = ExpenseAndReportField()
+        duration.name = "Duration"
+        duration.fieldType = ExpenseAndReportFieldType.doubleTextField.rawValue
         duration.isMandatory = true
         duration.isEnabled = true
         
-        var businessPurpose = ReportField()
-        businessPurpose.fieldName = "Business Purpose"
+        var businessPurpose = ExpenseAndReportField()
+        businessPurpose.name = "Business Purpose"
         businessPurpose.jsonParameter = Constants.RequestParameters.Report.businessPurpose
-        businessPurpose.fieldType = ReportFieldType.textView.rawValue
+        businessPurpose.fieldType = ExpenseAndReportFieldType.textView.rawValue
         businessPurpose.isMandatory = false
         businessPurpose.isEnabled = true
         
@@ -50,20 +50,20 @@ extension AddReportManager {
     /**
      * Method to get all the expenses that need to be displayed.
      */
-    func getReportFields() -> [ReportField] {
+    func getReportFields() -> [ExpenseAndReportField] {
         return fields
     }
     
     func getTableViewCellIdentifier(forIndexPath indexPath: IndexPath) -> String {
         let reportField = fields[indexPath.row]
         switch reportField.fieldType {
-        case ReportFieldType.text.rawValue:
+        case ExpenseAndReportFieldType.text.rawValue:
             return Constants.CellIdentifiers.addReportTableViewCellWithTextField
-        case ReportFieldType.doubleTextField.rawValue:
+        case ExpenseAndReportFieldType.doubleTextField.rawValue:
             return Constants.CellIdentifiers.addReportTableViewCellDuration
-        case ReportFieldType.textView.rawValue:
+        case ExpenseAndReportFieldType.textView.rawValue:
             return Constants.CellIdentifiers.addReportTableViewCellWithTextView
-        case ReportFieldType.dropdown.rawValue:
+        case ExpenseAndReportFieldType.dropdown.rawValue:
             return Constants.CellIdentifiers.addReportTableViewCellWithMultipleSelection
         default:
             return Constants.CellIdentifiers.addReportTableViewCellWithTextField
@@ -78,7 +78,7 @@ extension AddReportManager {
         for index in 0..<fields.count {
             indexPath.row = index
             let cell = tableView.cellForRow(at: indexPath) as! AddReportBaseTableViewCell
-            payload = payload.merged(with: cell.getPayload(withReportField: fields[index]))
+            payload = payload.merged(with: cell.getPayload(withField: fields[index]))
         }
         return payload
     }
@@ -91,7 +91,7 @@ extension AddReportManager {
     func formatCell(_ cell: AddReportBaseTableViewCell, forIndexPath indexPath: IndexPath) {
         let reportField = fields[indexPath.row]
         cell.selectionStyle = UITableViewCellSelectionStyle.none
-        cell.updateView(withReportField: reportField)
+        cell.updateView(withField: reportField)
     }
 }
 /***********************************/
@@ -100,8 +100,8 @@ extension AddReportManager {
 extension AddReportManager {
     func performActionForSelectedCell(_ cell: AddReportBaseTableViewCell, forIndexPath indexPath: IndexPath) {
         let reportField = getReportFields()[indexPath.row]
-        if reportField.fieldType == ReportFieldType.text.rawValue ||
-            reportField.fieldType == ReportFieldType.textView.rawValue {
+        if reportField.fieldType == ExpenseAndReportFieldType.text.rawValue ||
+            reportField.fieldType == ExpenseAndReportFieldType.textView.rawValue {
             cell.makeFirstResponder()
         }
     }
@@ -114,7 +114,7 @@ extension AddReportManager {
             indexPath.row = index
             let cell = tableView.cellForRow(at: indexPath) as! AddReportBaseTableViewCell
             
-            let validation = cell.validateInput(withReportField: fields[index])
+            let validation = cell.validateInput(withField: fields[index])
             if !validation.success {
                 return validation
             }

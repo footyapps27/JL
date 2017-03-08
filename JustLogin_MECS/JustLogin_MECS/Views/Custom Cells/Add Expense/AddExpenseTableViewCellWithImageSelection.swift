@@ -13,5 +13,8 @@ import UIKit
 // MARK: - Outlets
 /***********************************/
 class AddExpenseTableViewCellWithImageSelection: AddExpenseBaseTableViewCell {
-    
+    /***********************************/
+    // MARK: - Outlets
+    /***********************************/
+    @IBOutlet weak var imgView: UIImageView!
 }

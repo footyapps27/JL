@@ -24,6 +24,9 @@ struct Organization {
     
     var categories: [String: Category] = [:]
     
+    var expenseFields: [String: ExpenseAndReportField] = [:] // The json parameter will be the key
+    
+    var reportFields: [String: ExpenseAndReportField] = [:] // The json parameter will be the key
     /***********************************/
     // MARK: - Initializer
     /***********************************/
@@ -41,11 +44,11 @@ struct Organization {
     init(withJSON json:JSON) {
         
         
-            id = json[Constants.ResponseParameters.organizationId].stringValue
+        id = json[Constants.ResponseParameters.organizationId].stringValue
         
-            name = json[Constants.ResponseParameters.name].stringValue
+        name = json[Constants.ResponseParameters.name].stringValue
         
-            baseCurrencyId = json[Constants.ResponseParameters.baseCurrencyId].stringValue
+        baseCurrencyId = json[Constants.ResponseParameters.baseCurrencyId].stringValue
         
         let jsonCurrencies = json[Constants.ResponseParameters.currencies].exists() ? json[Constants.ResponseParameters.currencies].arrayValue : []
         for jsonCurrency in jsonCurrencies {
@@ -57,6 +60,18 @@ struct Organization {
         for jsonCategory in jsonCategories {
             let category = Category(withJSON: jsonCategory)
             categories[category.id] = category
+        }
+        
+        let jsonExpenseFields = json[Constants.ResponseParameters.expenseCustomFields].exists() ? json[Constants.ResponseParameters.expenseCustomFields].arrayValue : []
+        for jsonExpenseField in jsonExpenseFields {
+            let expenseField = ExpenseAndReportField(withJSON: jsonExpenseField)
+            expenseFields[expenseField.jsonParameter] = expenseField
+        }
+        
+        let jsonReportFields = json[Constants.ResponseParameters.reportCustomFields].exists() ? json[Constants.ResponseParameters.reportCustomFields].arrayValue : []
+        for jsonReportField in jsonReportFields {
+            let reportField = ExpenseAndReportField(withJSON: jsonReportField)
+            reportFields[reportField.jsonParameter] = reportField
         }
     }
 }

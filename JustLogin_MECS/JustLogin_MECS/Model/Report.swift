@@ -46,18 +46,15 @@ struct Report {
      */
     init(withJSON json:JSON) {
         
+        id = json[Constants.ResponseParameters.reportId].stringValue
         
-            id = json[Constants.ResponseParameters.reportId].stringValue
+        amount = json[Constants.ResponseParameters.amount].doubleValue
         
+        businessPurpose = json[Constants.ResponseParameters.businessPurpose].stringValue
         
-            amount = json[Constants.ResponseParameters.amount].doubleValue
+        title = json[Constants.ResponseParameters.title].stringValue
         
-        
-            businessPurpose = json[Constants.ResponseParameters.businessPurpose].stringValue
-        
-            title = json[Constants.ResponseParameters.title].stringValue
-        
-            status = json[Constants.ResponseParameters.status].intValue
+        status = json[Constants.ResponseParameters.status].intValue
         
         if let jsonStartDate = json[Constants.ResponseParameters.startDate].string {
             startDate = Utilities.convertServerStringToDate(jsonStartDate)
@@ -66,7 +63,7 @@ struct Report {
         if let jsonEndDate = json[Constants.ResponseParameters.endDate].string {
             endDate = Utilities.convertServerStringToDate(jsonEndDate)
         }
-
+        
         let jsonExpenseIds = json[Constants.ResponseParameters.expenseIds].exists() ? json[Constants.ResponseParameters.expenseIds].arrayValue : []
         for expenseId in jsonExpenseIds {
             expenseIds.append(expenseId.stringValue)

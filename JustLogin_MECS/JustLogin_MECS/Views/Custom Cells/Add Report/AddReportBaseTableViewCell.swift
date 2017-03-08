@@ -15,7 +15,7 @@ class AddReportBaseTableViewCell: BaseCustomTableViewCell {
     /**
      * Update the view based on the report field parameters.
      */
-    func updateView(withReportField reportField: ReportField) {}
+    func updateView(withField reportField: ExpenseAndReportField) {}
     
     /**
      * Called when the cell is selected. 
@@ -26,14 +26,14 @@ class AddReportBaseTableViewCell: BaseCustomTableViewCell {
     /**
      * Validate inputs of the cell based on the report field.
      */
-    func validateInput(withReportField reportField: ReportField) -> (success: Bool, errorMessage: String) {
+    func validateInput(withField reportField: ExpenseAndReportField) -> (success: Bool, errorMessage: String) {
         return (true, Constants.General.emptyString)
     }
     
     /**
      * Return the payload based on the report field & input value.
      */
-    func getPayload(withReportField reportField: ReportField) -> [String:Any] {
+    func getPayload(withField reportField: ExpenseAndReportField) -> [String:Any] {
         return [String:Any]()
     }
 }

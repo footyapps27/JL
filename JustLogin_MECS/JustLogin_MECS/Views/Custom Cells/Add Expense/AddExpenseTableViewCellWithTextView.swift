@@ -13,5 +13,10 @@ import UIKit
 // MARK: - Outlets
 /***********************************/
 class AddExpenseTableViewCellWithTextView: AddExpenseBaseTableViewCell {
+    /***********************************/
+    // MARK: - Outlets
+    /***********************************/
+    @IBOutlet weak var lblFieldName: UILabel!
     
+    @IBOutlet weak var txtView: UITextView!
 }
