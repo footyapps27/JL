@@ -23,12 +23,12 @@ enum ReportStatus : Int
 
 enum ExpenseStatus : Int {
     
-    case unreported = 0,
-    unsubmitted = 1,
-    submitted = 2,
-    rejected = 3,
-    approved = 4,
-    reimbursed = 6 // The enums are mapped to the backend, thus 5 is missing since front end is not displaying this.
+    case unreported = -1,
+    unsubmitted,
+    submitted,
+    rejected,
+    approved,
+    reimbursed
     
     var name: String {
         get { return String(describing: self) }
