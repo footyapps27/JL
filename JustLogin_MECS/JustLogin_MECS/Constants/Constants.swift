@@ -200,6 +200,8 @@ struct Constants {
         static let expenseCustomFields = "expenseCustomFields"
         static let reportCustomFields = "reportCustomFields"
         
+        static let project = "project"
+        static let customer = "customer"
         
         static let expenses = "expenses"
         static let expenseId = "expenseId"

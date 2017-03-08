@@ -13,7 +13,7 @@ class AddReportManager {
     
     var fields: [ExpenseAndReportField] = []
     
-    var reportService: ReportService = ReportService()
+    var reportService = ReportService()
     
     init() {
         updateFields()
