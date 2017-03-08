@@ -48,5 +48,8 @@ enum ExpenseAndReportFieldType: Int {
     checkBox,
     doubleTextField,
     textView,
-    dropdown
+    dropdown,
+    category,
+    currencyAndAmount,
+    imageSelection
 }

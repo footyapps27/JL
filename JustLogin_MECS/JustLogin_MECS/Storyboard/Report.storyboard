@@ -52,9 +52,6 @@
                                                             </connections>
                                                         </textField>
                                                     </subviews>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="44" id="QHL-od-Hod"/>
-                                                    </constraints>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
@@ -69,7 +66,7 @@
                                             <outlet property="txtField" destination="jAy-3q-qJE" id="CrK-0Y-PHc"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addReportTableViewCellWithMultipleSelection" id="r7m-ln-Mqv" customClass="AddReportTableViewCellWithMultipleSelection" customModule="JustLogin_MECS" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addReportTableViewCellWithMultipleSelection" rowHeight="44" id="r7m-ln-Mqv" customClass="AddReportTableViewCellWithMultipleSelection" customModule="JustLogin_MECS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="r7m-ln-Mqv" id="489-NQ-FMK">
@@ -95,9 +92,6 @@
                                                             </connections>
                                                         </textField>
                                                     </subviews>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="44" id="5re-Bd-QsL"/>
-                                                    </constraints>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
@@ -138,9 +132,6 @@
                                                             </connections>
                                                         </textView>
                                                     </subviews>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="70" id="mcJ-oa-kmq"/>
-                                                    </constraints>
                                                 </stackView>
                                             </subviews>
                                             <constraints>

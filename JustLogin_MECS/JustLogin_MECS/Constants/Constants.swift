@@ -47,10 +47,19 @@ struct Constants {
         static let settingsListTableViewCellIdentifier = "settingsListTableViewCellIdentifier"
         static let reportListTableViewCellIdentifier = "reportListTableViewCellIdentifier"
         static let approvalListTableViewCellIdentifier = "approvalListTableViewCellIdentifier"
+        
         static let addReportTableViewCellWithTextField = "addReportTableViewCellWithTextField"
         static let addReportTableViewCellWithMultipleSelection = "addReportTableViewCellWithMultipleSelection"
         static let addReportTableViewCellWithTextView = "addReportTableViewCellWithTextView"
         static let addReportTableViewCellDuration = "addReportTableViewCellDuration"
+        
+        static let addExpenseTableViewCellCategory = "addExpenseTableViewCellCategory"
+        static let addExpenseTableViewCellDate = "addExpenseTableViewCellDate"
+        static let addExpenseTableViewCellCurrencyAndAmount = "addExpenseTableViewCellCurrencyAndAmount"
+        static let addExpenseTableViewCellWithMultipleSelection = "addExpenseTableViewCellWithMultipleSelection"
+        static let addExpenseTableViewCellWithTextField = "addExpenseTableViewCellWithTextField"
+        static let addExpenseTableViewCellWithTextView = "addExpenseTableViewCellWithTextView"
+        static let addExpenseTableViewCellWithImageSelection = "addExpenseTableViewCellWithImageSelection"
     }
     
     struct CellHeight {

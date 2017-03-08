@@ -120,7 +120,6 @@ extension AddReportViewController {
                 Utilities.showErrorAlert(withMessage: message, onController: self)
                 self.hideLoadingIndicator(enableUserInteraction: true)
             }
-            
         }
     }
 }
