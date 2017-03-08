@@ -12,10 +12,16 @@ import UIKit
 
 class AddReportTableViewCellWithTextField: AddReportBaseTableViewCell {
     
+    /***********************************/
+    // MARK: - Outlets
+    /***********************************/
     @IBOutlet weak var lblFieldName: UILabel!
     
     @IBOutlet weak var txtField: UITextField!
     
+    /***********************************/
+    // MARK: - Override parent class
+    /***********************************/
     override func updateView(withReportField reportField: ReportField) {
         lblFieldName.text = reportField.fieldName
     }

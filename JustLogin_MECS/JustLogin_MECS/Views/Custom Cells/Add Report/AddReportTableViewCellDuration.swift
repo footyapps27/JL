@@ -11,6 +11,9 @@ import UIKit
 
 class AddReportTableViewCellDuration: AddReportBaseTableViewCell {
     
+    /***********************************/
+    // MARK: - Outlets
+    /***********************************/
     @IBOutlet weak var lblDuration: UILabel!
     
     @IBOutlet weak var lblFrom: UILabel!
@@ -21,6 +24,9 @@ class AddReportTableViewCellDuration: AddReportBaseTableViewCell {
     
     @IBOutlet weak var txtTo: UITextField!
     
+    /***********************************/
+    // MARK: - Parent class override
+    /***********************************/
     override func updateView(withReportField reportField: ReportField) {
         txtTo.tag = ReportFieldType.date.rawValue
         txtFrom.tag = ReportFieldType.date.rawValue

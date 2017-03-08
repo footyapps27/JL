@@ -11,10 +11,16 @@ import UIKit
 
 class AddReportTableViewCellWithMultipleSelection: AddReportBaseTableViewCell {
     
+    /***********************************/
+    // MARK: - Outlets
+    /***********************************/
     @IBOutlet weak var lblFieldName: UILabel!
     
     @IBOutlet weak var txtField: UITextField!
     
+    /***********************************/
+    // MARK: - Parent class override methods
+    /***********************************/
     override func validateInput(withReportField reportField: ReportField) -> (success: Bool, errorMessage: String) {
         if reportField.isMandatory {
             if txtField.text!.isEmpty {
