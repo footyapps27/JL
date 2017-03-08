@@ -17,6 +17,14 @@
 		8C00F6601E1E651A0007F29C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C00F6531E1E651A0007F29C /* AppDelegate.swift */; };
 		8C00F6611E1E651A0007F29C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C00F65B1E1E651A0007F29C /* Main.storyboard */; };
 		8C00F6651E1E870B0007F29C /* LaunchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C00F6641E1E870B0007F29C /* LaunchCollectionViewCell.swift */; };
+		8C07A5631E6E87390015D419 /* AddExpenseTableViewCellCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C07A5621E6E87390015D419 /* AddExpenseTableViewCellCategory.swift */; };
+		8C07A5651E6E87570015D419 /* AddExpenseTableViewCellDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C07A5641E6E87570015D419 /* AddExpenseTableViewCellDate.swift */; };
+		8C07A5671E6E87840015D419 /* AddExpenseTableViewCellCurrencyAndAmount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C07A5661E6E87840015D419 /* AddExpenseTableViewCellCurrencyAndAmount.swift */; };
+		8C07A5691E6E88DE0015D419 /* AddExpenseTableViewCellWithTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C07A5681E6E88DE0015D419 /* AddExpenseTableViewCellWithTextField.swift */; };
+		8C07A56B1E6E88F00015D419 /* AddExpenseTableViewCellWithMultipleSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C07A56A1E6E88F00015D419 /* AddExpenseTableViewCellWithMultipleSelection.swift */; };
+		8C07A56D1E6E89EE0015D419 /* AddExpenseTableViewCellWithImageSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C07A56C1E6E89EE0015D419 /* AddExpenseTableViewCellWithImageSelection.swift */; };
+		8C07A56F1E6E8BB30015D419 /* AddExpenseTableViewCellWithTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C07A56E1E6E8BB30015D419 /* AddExpenseTableViewCellWithTextView.swift */; };
+		8C07A5711E6E8BDF0015D419 /* AddExpenseBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C07A5701E6E8BDF0015D419 /* AddExpenseBaseTableViewCell.swift */; };
 		8C299FF31E681EDA0077A730 /* ExpenseDetailsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C299FF21E681EDA0077A730 /* ExpenseDetailsHeaderView.swift */; };
 		8C42DFD31E63DE7D00A3B69A /* AddReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C42DFD21E63DE7D00A3B69A /* AddReportViewController.swift */; };
 		8C42DFD51E63DEA300A3B69A /* ReportDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C42DFD41E63DEA300A3B69A /* ReportDetailsViewController.swift */; };
@@ -121,6 +129,14 @@
 		8C00F6531E1E651A0007F29C /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8C00F65B1E1E651A0007F29C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		8C00F6641E1E870B0007F29C /* LaunchCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchCollectionViewCell.swift; sourceTree = "<group>"; };
+		8C07A5621E6E87390015D419 /* AddExpenseTableViewCellCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddExpenseTableViewCellCategory.swift; sourceTree = "<group>"; };
+		8C07A5641E6E87570015D419 /* AddExpenseTableViewCellDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddExpenseTableViewCellDate.swift; sourceTree = "<group>"; };
+		8C07A5661E6E87840015D419 /* AddExpenseTableViewCellCurrencyAndAmount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddExpenseTableViewCellCurrencyAndAmount.swift; sourceTree = "<group>"; };
+		8C07A5681E6E88DE0015D419 /* AddExpenseTableViewCellWithTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddExpenseTableViewCellWithTextField.swift; sourceTree = "<group>"; };
+		8C07A56A1E6E88F00015D419 /* AddExpenseTableViewCellWithMultipleSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddExpenseTableViewCellWithMultipleSelection.swift; sourceTree = "<group>"; };
+		8C07A56C1E6E89EE0015D419 /* AddExpenseTableViewCellWithImageSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddExpenseTableViewCellWithImageSelection.swift; sourceTree = "<group>"; };
+		8C07A56E1E6E8BB30015D419 /* AddExpenseTableViewCellWithTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddExpenseTableViewCellWithTextView.swift; sourceTree = "<group>"; };
+		8C07A5701E6E8BDF0015D419 /* AddExpenseBaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddExpenseBaseTableViewCell.swift; sourceTree = "<group>"; };
 		8C299FF21E681EDA0077A730 /* ExpenseDetailsHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseDetailsHeaderView.swift; sourceTree = "<group>"; };
 		8C42DFD21E63DE7D00A3B69A /* AddReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReportViewController.swift; sourceTree = "<group>"; };
 		8C42DFD41E63DEA300A3B69A /* ReportDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsViewController.swift; sourceTree = "<group>"; };
@@ -360,6 +376,7 @@
 		8C00F6631E1E86DD0007F29C /* Custom Cells */ = {
 			isa = PBXGroup;
 			children = (
+				8C07A5611E6E825E0015D419 /* Add Expense */,
 				8CF3F64C1E652A9D00A18D73 /* Add Report */,
 				8C5141341E1F5F2F003AD3B1 /* Base */,
 				8C00F6641E1E870B0007F29C /* LaunchCollectionViewCell.swift */,
@@ -368,6 +385,21 @@
 				8CE007141E28D7C90089D159 /* ApprovalListTableViewCell.swift */,
 			);
 			path = "Custom Cells";
+			sourceTree = "<group>";
+		};
+		8C07A5611E6E825E0015D419 /* Add Expense */ = {
+			isa = PBXGroup;
+			children = (
+				8C07A5621E6E87390015D419 /* AddExpenseTableViewCellCategory.swift */,
+				8C07A5641E6E87570015D419 /* AddExpenseTableViewCellDate.swift */,
+				8C07A5661E6E87840015D419 /* AddExpenseTableViewCellCurrencyAndAmount.swift */,
+				8C07A5681E6E88DE0015D419 /* AddExpenseTableViewCellWithTextField.swift */,
+				8C07A56A1E6E88F00015D419 /* AddExpenseTableViewCellWithMultipleSelection.swift */,
+				8C07A56C1E6E89EE0015D419 /* AddExpenseTableViewCellWithImageSelection.swift */,
+				8C07A56E1E6E8BB30015D419 /* AddExpenseTableViewCellWithTextView.swift */,
+				8C07A5701E6E8BDF0015D419 /* AddExpenseBaseTableViewCell.swift */,
+			);
+			path = "Add Expense";
 			sourceTree = "<group>";
 		};
 		8C5141341E1F5F2F003AD3B1 /* Base */ = {
@@ -953,9 +985,12 @@
 				8CD333191E23BC7D00557B6F /* ExpenseListViewController.swift in Sources */,
 				8CF655D31E58694E00D4FEF3 /* Currency.swift in Sources */,
 				8CA4B6F71E28C3A6007C3BE5 /* ExpenseListTableViewCell.swift in Sources */,
+				8C07A5651E6E87570015D419 /* AddExpenseTableViewCellDate.swift in Sources */,
+				8C07A56D1E6E89EE0015D419 /* AddExpenseTableViewCellWithImageSelection.swift in Sources */,
 				8C00F6651E1E870B0007F29C /* LaunchCollectionViewCell.swift in Sources */,
 				8C96020A1E1FDB7F00EE66A3 /* LaunchViewController.swift in Sources */,
 				8CF655D51E586CF900D4FEF3 /* OrganizationDetailsService.swift in Sources */,
+				8C07A5691E6E88DE0015D419 /* AddExpenseTableViewCellWithTextField.swift in Sources */,
 				8CF655C91E58455A00D4FEF3 /* Member.swift in Sources */,
 				8CF655DD1E58B06300D4FEF3 /* Expense.swift in Sources */,
 				8C42DFD31E63DE7D00A3B69A /* AddReportViewController.swift in Sources */,
@@ -964,6 +999,8 @@
 				8C9602101E1FDB7F00EE66A3 /* SignUpViewController.swift in Sources */,
 				8C9602141E1FDB9900EE66A3 /* HomeViewController.swift in Sources */,
 				8C42DFDD1E6436C900A3B69A /* ReportField.swift in Sources */,
+				8C07A5671E6E87840015D419 /* AddExpenseTableViewCellCurrencyAndAmount.swift in Sources */,
+				8C07A56B1E6E88F00015D419 /* AddExpenseTableViewCellWithMultipleSelection.swift in Sources */,
 				8CF655DF1E58B07000D4FEF3 /* Report.swift in Sources */,
 				8CF3F6591E6671DA00A18D73 /* AddReportBaseTableViewCell.swift in Sources */,
 				8CEAADBE1E55468100BDB5ED /* BaseService.swift in Sources */,
@@ -971,11 +1008,14 @@
 				8CF3F65B1E66FF6100A18D73 /* Dictionary.swift in Sources */,
 				8C299FF31E681EDA0077A730 /* ExpenseDetailsHeaderView.swift in Sources */,
 				8CB44AD21E5AC642005CC04D /* ExpenseListManager.swift in Sources */,
+				8C07A5711E6E8BDF0015D419 /* AddExpenseBaseTableViewCell.swift in Sources */,
 				8CF3F64E1E652AA900A18D73 /* AddReportTableViewCellWithTextField.swift in Sources */,
 				8CE007231E28F3280089D159 /* SettingsTableProfileSectionHeaderView.swift in Sources */,
 				8CF655C71E58387100D4FEF3 /* LoginService.swift in Sources */,
 				8CF3F6521E652B1E00A18D73 /* AddReportTableViewCellDuration.swift in Sources */,
 				8C42DFD71E63E03400A3B69A /* AddReportManager.swift in Sources */,
+				8C07A56F1E6E8BB30015D419 /* AddExpenseTableViewCellWithTextView.swift in Sources */,
+				8C07A5631E6E87390015D419 /* AddExpenseTableViewCellCategory.swift in Sources */,
 				8CD333211E23C4E500557B6F /* BaseViewControllerWithTableView.swift in Sources */,
 				8C5141291E1E98EC003AD3B1 /* Constants.swift in Sources */,
 				8C51413B1E1F5F95003AD3B1 /* BaseCustomCollectionViewCell.swift in Sources */,
