@@ -15,32 +15,8 @@ class AddReportManager {
     
     var reportService: ReportService = ReportService()
     
-    // TODO - This has been hardcoded for now. Needs to be read from server for v2.x
-    // Make sure that only enabled fields are filtered out & stored in the array.
     init() {
-        var title = ExpenseAndReportField()
-        title.name = "Report Title"
-        title.jsonParameter = Constants.RequestParameters.Report.title
-        title.fieldType = ExpenseAndReportFieldType.text.rawValue
-        title.isMandatory = true
-        title.isEnabled = true
-        
-        var duration = ExpenseAndReportField()
-        duration.name = "Duration"
-        duration.fieldType = ExpenseAndReportFieldType.doubleTextField.rawValue
-        duration.isMandatory = true
-        duration.isEnabled = true
-        
-        var businessPurpose = ExpenseAndReportField()
-        businessPurpose.name = "Business Purpose"
-        businessPurpose.jsonParameter = Constants.RequestParameters.Report.businessPurpose
-        businessPurpose.fieldType = ExpenseAndReportFieldType.textView.rawValue
-        businessPurpose.isMandatory = false
-        businessPurpose.isEnabled = true
-        
-        fields.append(title)
-        fields.append(duration)
-        fields.append(businessPurpose)
+        updateFields()
     }
 }
 /***********************************/
@@ -140,6 +116,58 @@ extension AddReportManager {
                 completionHandler(ManagerResponseToController.failure(code: serviceError.code, message: serviceError.message))
             case .failure(let message):
                 completionHandler(ManagerResponseToController.failure(code: "", message: message))
+            }
+        }
+    }
+}
+/***********************************/
+// MARK: - Data manipulation
+/***********************************/
+extension AddReportManager {
+    func updateFields() {
+        var title = ExpenseAndReportField()
+        title.name = "Report Title"
+        title.jsonParameter = Constants.RequestParameters.Report.title
+        title.fieldType = ExpenseAndReportFieldType.text.rawValue
+        title.isMandatory = true
+        title.isEnabled = true
+        
+        var duration = ExpenseAndReportField()
+        duration.name = "Duration"
+        duration.fieldType = ExpenseAndReportFieldType.doubleTextField.rawValue
+        duration.isMandatory = true
+        duration.isEnabled = true
+        
+        // First the title is added
+        fields.append(title)
+        
+        if let customerField = Singleton.sharedInstance.organization?.reportFields["customer"], customerField.isEnabled {
+                fields.append(customerField)
+        }
+        
+        if let projectField = Singleton.sharedInstance.organization?.reportFields["project"], projectField.isEnabled {
+                fields.append(projectField)
+        }
+        
+        // Add the duration in between
+        fields.append(duration)
+        
+        if let businessPurposeField = Singleton.sharedInstance.organization?.reportFields["businessPurpose"], businessPurposeField.isEnabled {
+                fields.append(businessPurposeField)
+        }
+        
+        // Now add all the other fields
+        guard let allReportFields = Singleton.sharedInstance.organization?.reportFields.values else {
+            return
+        }
+        
+        for reportField in allReportFields {
+            // Since the three fields have been added, negate them & add field only if they are enabled.
+            if  reportField.jsonParameter != "customer" &&
+                reportField.jsonParameter != "project" &&
+                reportField.jsonParameter != "businessPurpose" &&
+                reportField.isEnabled {
+                    fields.append(reportField)
             }
         }
     }

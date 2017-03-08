@@ -193,7 +193,7 @@ struct Constants {
         static let modifySettingsManageIntegrations = "manageIntegrations"
         static let modifySettingsBilling = "billing"
         
-        static let datatype = "datatype"
+        static let dataType = "dataType"
         static let fieldName = "fieldName"
         static let isEnabled = "isEnabled"
         static let isMandatory = "isMandatory"

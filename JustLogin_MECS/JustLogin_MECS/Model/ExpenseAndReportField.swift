@@ -45,10 +45,10 @@ struct ExpenseAndReportField {
         
         jsonParameter = json[Constants.ResponseParameters.fieldName].stringValue
         
-        fieldType = json[Constants.ResponseParameters.datatype].intValue
+        fieldType = json[Constants.ResponseParameters.dataType].intValue
         
         isEnabled = json[Constants.ResponseParameters.isEnabled].boolValue
         
-        isMandatory = json[Constants.ResponseParameters.isEnabled].boolValue
+        isMandatory = json[Constants.ResponseParameters.isMandatory].boolValue
     }
 }
