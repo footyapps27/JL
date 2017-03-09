@@ -237,5 +237,10 @@ struct Constants {
         static let endDate = "endDate"
         static let title = "title"
         static let expenseIds = "expenseIds"
+        
+        static let reason = "reason"
+        static let createdDate = "createdDate"
+        static let createdBy = "createdBy"
+        static let history = "history"
     }
 }
