@@ -53,3 +53,21 @@ enum ExpenseAndReportFieldType: Int {
     currencyAndAmount,
     imageSelection
 }
+
+enum SettingsOptions: String {
+    case organizationProfile = "Organization Profile"
+    case users = "Users"
+    case expenseCategories = "Expense Categories"
+    case currencies = "Currencies"
+    case expensePreferences = "Expense Preferences"
+    case perDiemPreferences = "Per Diem Preferences"
+    case reportPreferences = "Report Preferences"
+    case mileagePreferences = "Mileage Preferences"
+    case applicationPreferences = "Application Preferences"
+    case tipCalculator = "Tip Calculator"
+    case currencyConverter = "Currency Converter"
+    case rateOurApp = "Rate our app"
+    case submitFeedback = "Submit Feedback"
+    case aboutUs = "About Us"
+    case upgradeOrganization = "Upgrade Organization"
+}

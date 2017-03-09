@@ -13,8 +13,6 @@ import Foundation
 class SettingsListManager {
     
     var authenticationService: IAuthenticationService = AuthenticationService()
-    
-    var reports: [Report] = []
 }
 /***********************************/
 // MARK: - Data tracking methods
@@ -23,8 +21,23 @@ extension SettingsListManager {
     /**
      * Method to get all the expenses that need to be displayed.
      */
-    func getReports() -> [Report] {
-        return reports
+    func getFields() -> [[SettingsOptions]] {
+        // TODO: - Check the role here before sending
+        return getFieldsForAdmin()
+    }
+    
+    func getOrganizationName() -> String {
+        if let name = Singleton.sharedInstance.organization?.name {
+            return name
+        }
+        return Constants.General.emptyString
+    }
+    
+    func getRole() -> String {
+        if let role = Singleton.sharedInstance.member?.role?.name {
+            return role
+        }
+        return Constants.General.emptyString
     }
 }
 /***********************************/
@@ -54,10 +67,22 @@ extension SettingsListManager {
 /***********************************/
 extension SettingsListManager {
     
-    func updateFieldsForAdmin() {
+    func getFieldsForAdmin() -> [[SettingsOptions]] {
+        return [
+            [SettingsOptions.organizationProfile,SettingsOptions.users],
+            [SettingsOptions.expenseCategories, SettingsOptions.currencies, SettingsOptions.expensePreferences, SettingsOptions.perDiemPreferences, SettingsOptions.reportPreferences, SettingsOptions.mileagePreferences, SettingsOptions.applicationPreferences],
+            [SettingsOptions.tipCalculator, SettingsOptions.currencyConverter],
+            [SettingsOptions.rateOurApp, SettingsOptions.submitFeedback, SettingsOptions.aboutUs],
+            [SettingsOptions.upgradeOrganization]
+        ]
     }
     
-    func updateFieldsForSubmitter() {
-        
+    func getFieldsForSubmitter() -> [[SettingsOptions]] {
+        return [
+            [SettingsOptions.applicationPreferences],
+            [SettingsOptions.tipCalculator, SettingsOptions.currencyConverter],
+            [SettingsOptions.rateOurApp, SettingsOptions.submitFeedback, SettingsOptions.aboutUs],
+            [SettingsOptions.upgradeOrganization]
+        ]
     }
 }

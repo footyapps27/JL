@@ -27,7 +27,7 @@ extension SettingsListViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        updateLabels()
     }
 }
 /***********************************/
@@ -57,6 +57,11 @@ extension SettingsListViewController {
 // MARK: - Helpers
 /***********************************/
 extension SettingsListViewController {
+    func updateLabels() {
+        lblOrganization.text = manager.getOrganizationName()
+        lblRole.text = manager.getRole()
+    }
+    
     func navigateToLaunchController() {
         let mainNavigtionController = UIStoryboard(name: Constants.StoryboardIds.mainStoryboard, bundle: nil).instantiateInitialViewController()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -68,19 +73,17 @@ extension SettingsListViewController {
 /***********************************/
 extension SettingsListViewController: UITableViewDataSource {
     
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // TODO: - Hardcoded data
-        return 3
+    public func numberOfSections(in tableView: UITableView) -> Int {
+        return manager.getFields().count
     }
     
-    public func numberOfSections(in tableView: UITableView) -> Int {
-        // TODO: - Hardcoded data
-        return 2
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return manager.getFields()[section].count
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.settingsListTableViewCellIdentifier, for: indexPath)
-        cell.textLabel?.text = "Settings \(indexPath.row)"
+        cell.textLabel?.text = manager.getFields()[indexPath.section][indexPath.row].rawValue
         cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         return cell
     }
@@ -89,4 +92,5 @@ extension SettingsListViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 /***********************************/
 extension SettingsListViewController: UITableViewDelegate {
+    
 }
