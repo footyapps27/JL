@@ -9,16 +9,11 @@
 import Foundation
 import UIKit
 
-/***********************************/
-// MARK: - Outlets
-/***********************************/
 class AddExpenseTableViewCellCurrencyAndAmount: AddExpenseBaseTableViewCell {
     /***********************************/
     // MARK: - Outlets
     /***********************************/
     @IBOutlet weak var btnCurrency: UIButton!
-    
-    @IBOutlet weak var imgViewCurrencyIndicator: UIImageView!
     
     @IBOutlet weak var txtAmount: UITextField!
 }

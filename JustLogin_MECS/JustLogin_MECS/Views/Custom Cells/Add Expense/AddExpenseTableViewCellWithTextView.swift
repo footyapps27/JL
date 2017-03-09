@@ -19,4 +19,11 @@ class AddExpenseTableViewCellWithTextView: AddExpenseBaseTableViewCell {
     @IBOutlet weak var lblFieldName: UILabel!
     
     @IBOutlet weak var txtView: UITextView!
+    
+    /***********************************/
+    // MARK: - Parent method override
+    /***********************************/
+    override func updateView(withField expenseField: ExpenseAndReportField) {
+        lblFieldName.text = expenseField.name
+    }
 }

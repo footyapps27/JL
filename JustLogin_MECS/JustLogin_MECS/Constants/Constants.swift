@@ -72,12 +72,16 @@ struct Constants {
         static let dashboardStoryboard = "Dashboard"
         static let expenseStoryboard = "Expense"
         static let reportStoryboard = "Report"
+        static let mainStoryboard = "Main"
+        
         static let approverAndAdminDashboard = "approverAndAdminDashboard"
         static let submitterDashboard = "submitterDashboard"
+        
         static let addExpenseViewController = "addExpenseViewController"
         static let expenseDetailsViewController = "expenseDetailsViewController"
         static let addReportViewController = "addReportViewController"
         static let reportDetailsViewController = "reportDetailsViewController"
+        static let launchViewController = "launchViewController"
     }
     
     struct Notifications {

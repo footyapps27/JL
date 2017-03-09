@@ -132,7 +132,7 @@ extension AddExpenseViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let identifier = manager.getTableViewCellIdentifier(forIndexPath: indexPath)
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! AddExpenseBaseTableViewCell
-        //manager.formatCell(cell, forIndexPath: indexPath)
+        manager.formatCell(cell, forIndexPath: indexPath)
         return cell
     }
 }

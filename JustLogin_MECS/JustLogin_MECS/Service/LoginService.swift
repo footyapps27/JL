@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-protocol ILoginService {
+protocol IAuthenticationService {
     
     /**
      * Login user
@@ -19,10 +19,10 @@ protocol ILoginService {
     /**
      * Logout
      */
-    func logoutUser()
+    func logoutUser(_ completionHandler:( @escaping (Result<Void>) -> Void))
 }
 
-struct LoginService: ILoginService {
+struct AuthenticationService: IAuthenticationService {
     
     var serviceAdapter: NetworkAdapter = AlamofireNetworkAdapter()
     
@@ -57,14 +57,24 @@ struct LoginService: ILoginService {
     }
     
     
-    func logoutUser() {
+    func logoutUser(_ completionHandler:( @escaping (Result<Void>) -> Void)) {
         serviceAdapter.post(destination: Constants.URLs.logout, payload: [:], headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
-            
+            switch(response) {
+            case .success(_,_):
+                completionHandler(Result.success())
+                
+            case .errors(let error):
+                let error = ServiceError(JSON(error))
+                completionHandler(Result.error(error))
+                
+            case .failure(let description):
+                completionHandler(Result.failure(description))
+            }
         }
     }
 }
 
-extension LoginService {
+extension AuthenticationService {
     /**
      * Method to get payload from the company Id, user Id & password.
      */

@@ -9,9 +9,6 @@
 import Foundation
 import UIKit
 
-/***********************************/
-// MARK: - Outlets
-/***********************************/
 class AddExpenseTableViewCellDate: AddExpenseBaseTableViewCell {
     /***********************************/
     // MARK: - Outlets
@@ -19,4 +16,27 @@ class AddExpenseTableViewCellDate: AddExpenseBaseTableViewCell {
     @IBOutlet weak var lblDate: UILabel!
     
     @IBOutlet weak var txtDate: UITextField!
+    
+    /***********************************/
+    // MARK: - Parent method override
+    /***********************************/
+    override func updateView(withField expenseField: ExpenseAndReportField) {
+        lblDate.text = expenseField.name
+        txtDate.tag = ExpenseAndReportFieldType.date.rawValue
+    }
+    
+    override func validateInput(withField reportField: ExpenseAndReportField) -> (success: Bool, errorMessage: String) {
+        if txtDate.text!.isEmpty {
+            return (false, "Please make sure 'Date' has been entered.")
+        }
+        return(true, Constants.General.emptyString)
+    }
+}
+/***********************************/
+// MARK: - View lifecylce
+/***********************************/
+extension AddExpenseTableViewCellDate {
+    override func awakeFromNib() {
+        txtDate.text = Utilities.convertDateToStringForDisplay(Date())
+    }
 }

@@ -9,9 +9,6 @@
 import Foundation
 import UIKit
 
-/***********************************/
-// MARK: - Outlets
-/***********************************/
 class AddExpenseTableViewCellWithMultipleSelection: AddExpenseBaseTableViewCell {
     /***********************************/
     // MARK: - Outlets
@@ -19,4 +16,11 @@ class AddExpenseTableViewCellWithMultipleSelection: AddExpenseBaseTableViewCell 
     @IBOutlet weak var lblFieldName: UILabel!
     
     @IBOutlet weak var txtField: UITextField!
+    
+    /***********************************/
+    // MARK: - Parent method override
+    /***********************************/
+    override func updateView(withField expenseField: ExpenseAndReportField) {
+        lblFieldName.text = expenseField.name
+    }
 }

@@ -9,9 +9,6 @@
 import Foundation
 import UIKit
 
-/***********************************/
-// MARK: - Outlets
-/***********************************/
 class AddExpenseTableViewCellWithImageSelection: AddExpenseBaseTableViewCell {
     /***********************************/
     // MARK: - Outlets

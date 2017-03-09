@@ -125,8 +125,9 @@ extension ExpenseDetailsViewController {
                 self.updateUIAfterSuccessfulResponse()
                 self.hideLoadingIndicator(enableUserInteraction: true)
             case .failure(_, _):
-                // TODO: - Handle the empty table view screen.
                 self.hideLoadingIndicator(enableUserInteraction: true)
+                // TODO: - Need to kick the user out of this screen & send to the expense list.
+                Utilities.showErrorAlert(withMessage: "Something went wrong. Please try again.", onController: self)// TODO: - Hard coded message. Move to constants or use the server error.
             }
         }
     }
