@@ -11,7 +11,7 @@ import UIKit
 
 class AddExpenseManager {
     
-    var fields: [ExpenseAndReportField] = []
+    var fields: [[ExpenseAndReportField]] = []
     
     var expenseService = ExpenseService()
     
@@ -26,12 +26,13 @@ extension AddExpenseManager {
     /**
      * Method to get all the expenses that need to be displayed.
      */
-    func getExpenseFields() -> [ExpenseAndReportField] {
+    func getExpenseFields() -> [[ExpenseAndReportField]] {
         return fields
     }
     
     func getTableViewCellIdentifier(forIndexPath indexPath: IndexPath) -> String {
-        let expenseField = fields[indexPath.row]
+        //let expenseField = fields[indexPath.section]
+        let expenseField = (fields[indexPath.section])[indexPath.row]
         switch expenseField.fieldType {
         case ExpenseAndReportFieldType.category.rawValue:
             return Constants.CellIdentifiers.addExpenseTableViewCellCategory
@@ -60,7 +61,7 @@ extension AddExpenseManager {
         for index in 0..<fields.count {
             indexPath.row = index
             let cell = tableView.cellForRow(at: indexPath) as! AddReportBaseTableViewCell
-            payload = payload.merged(with: cell.getPayload(withField: fields[index]))
+            //payload = payload.merged(with: cell.getPayload(withField: fields[index]))
         }
         return payload
     }
@@ -71,8 +72,8 @@ extension AddExpenseManager {
 extension AddExpenseManager {
     
     func formatCell(_ cell: AddExpenseBaseTableViewCell, forIndexPath indexPath: IndexPath) {
-        let reportField = fields[indexPath.row]
-        cell.selectionStyle = UITableViewCellSelectionStyle.none
+        //let reportField = fields[indexPath.row]
+        //cell.selectionStyle = UITableViewCellSelectionStyle.none
         //cell.updateView(withField: reportField)
     }
 }
@@ -82,10 +83,10 @@ extension AddExpenseManager {
 extension AddExpenseManager {
     func performActionForSelectedCell(_ cell: AddExpenseBaseTableViewCell, forIndexPath indexPath: IndexPath) {
         let reportField = getExpenseFields()[indexPath.row]
-        if reportField.fieldType == ExpenseAndReportFieldType.text.rawValue ||
-            reportField.fieldType == ExpenseAndReportFieldType.textView.rawValue {
-            //cell.makeFirstResponder()
-        }
+//        if reportField.fieldType == ExpenseAndReportFieldType.text.rawValue ||
+//            reportField.fieldType == ExpenseAndReportFieldType.textView.rawValue {
+//            //cell.makeFirstResponder()
+//        }
     }
     
     func validateInputs(forTableView tableView: UITableView) -> (success: Bool, errorMessage: String) {
@@ -110,6 +111,7 @@ extension AddExpenseManager {
 extension AddExpenseManager {
     
     func updateFields() {
+        // Mandatory fields
         var category = ExpenseAndReportField()
         category.name = "Category"
         category.fieldType = ExpenseAndReportFieldType.category.rawValue
@@ -129,8 +131,65 @@ extension AddExpenseManager {
         currencyAndAmount.isMandatory = true
         currencyAndAmount.isEnabled = true
         
-        fields.append(category)
-        fields.append(date)
-        fields.append(currencyAndAmount)
+        fields.append([category, date, currencyAndAmount])
+        
+        // Custom fields
+        if let paymentModeField = Singleton.sharedInstance.organization?.expenseFields["paymentMode"], paymentModeField.isEnabled {
+            fields.append([paymentModeField])
+        }
+        
+        var sectionThree: [ExpenseAndReportField] = []
+        if let merchantNameField = Singleton.sharedInstance.organization?.expenseFields["merchant"], merchantNameField.isEnabled {
+            sectionThree.append(merchantNameField)
+        }
+        
+        if let referenceNumberField = Singleton.sharedInstance.organization?.expenseFields["reference"], referenceNumberField.isEnabled {
+            sectionThree.append(referenceNumberField)
+        }
+        
+        if let locationField = Singleton.sharedInstance.organization?.expenseFields["location"], locationField.isEnabled {
+            sectionThree.append(locationField)
+        }
+        
+        if let descriptionField = Singleton.sharedInstance.organization?.expenseFields["description"], descriptionField.isEnabled {
+            sectionThree.append(descriptionField)
+        }
+        
+        fields.append(sectionThree)
+        
+        // Section 4
+        var sectionFour: [ExpenseAndReportField] = []
+        if let isBillableField = Singleton.sharedInstance.organization?.expenseFields["isBillable"], isBillableField.isEnabled {
+            sectionFour.append(isBillableField)
+        }
+        
+        if let customerField = Singleton.sharedInstance.organization?.expenseFields["customer"], customerField.isEnabled {
+            sectionFour.append(customerField)
+        }
+        
+        if let projectField = Singleton.sharedInstance.organization?.expenseFields["project"], projectField.isEnabled {
+            sectionFour.append(projectField)
+        }
+        
+        var addToReport = ExpenseAndReportField()
+        addToReport.name = "Add to Report"
+        addToReport.fieldType = ExpenseAndReportFieldType.dropdown.rawValue
+        addToReport.isMandatory = false
+        addToReport.isEnabled = true
+        
+        sectionFour.append(addToReport)
+        
+        // Add the section 4 elements to the complete fields
+        fields.append(sectionFour)
+        
+        // TODO - Add the custom fields
+        
+        // Finally add the image block
+        var attachImage = ExpenseAndReportField()
+        attachImage.fieldType = ExpenseAndReportFieldType.imageSelection.rawValue
+        attachImage.isMandatory = true
+        attachImage.isEnabled = true
+        
+        fields.append([attachImage])
     }
 }

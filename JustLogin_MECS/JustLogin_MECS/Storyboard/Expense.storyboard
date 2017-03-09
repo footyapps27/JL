@@ -33,17 +33,17 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="fUa-6n-ZHZ">
-                                                    <rect key="frame" x="8" y="2.5" width="326" height="17"/>
+                                                    <rect key="frame" x="8" y="4" width="326" height="17"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Category1" translatesAutoresizingMaskIntoConstraints="NO" id="90o-a1-ut2">
-                                                            <rect key="frame" x="0.0" y="0.0" width="48" height="17"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="44" height="17"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="48" id="5bA-Gz-9IO"/>
-                                                                <constraint firstAttribute="height" constant="48" id="Uqk-Uu-zkN"/>
+                                                                <constraint firstAttribute="width" constant="44" id="5bA-Gz-9IO"/>
+                                                                <constraint firstAttribute="height" constant="44" id="Uqk-Uu-zkN"/>
                                                             </constraints>
                                                         </imageView>
                                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Category" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ct6-CR-oE7">
-                                                            <rect key="frame" x="68" y="0.0" width="258" height="17"/>
+                                                            <rect key="frame" x="64" y="0.0" width="262" height="17"/>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
@@ -52,10 +52,10 @@
                                                 </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="fUa-6n-ZHZ" firstAttribute="top" secondItem="m8U-ks-A2M" secondAttribute="top" constant="2" id="i6m-Ax-NQ8"/>
+                                                <constraint firstItem="fUa-6n-ZHZ" firstAttribute="top" secondItem="m8U-ks-A2M" secondAttribute="top" constant="4" id="i6m-Ax-NQ8"/>
                                                 <constraint firstAttribute="trailing" secondItem="fUa-6n-ZHZ" secondAttribute="trailing" constant="8" id="mWv-ZT-bRX"/>
                                                 <constraint firstItem="fUa-6n-ZHZ" firstAttribute="leading" secondItem="m8U-ks-A2M" secondAttribute="leading" constant="8" id="r0J-vm-2D4"/>
-                                                <constraint firstAttribute="bottom" secondItem="fUa-6n-ZHZ" secondAttribute="bottom" constant="2" id="wzv-Uj-wBY"/>
+                                                <constraint firstAttribute="bottom" secondItem="fUa-6n-ZHZ" secondAttribute="bottom" constant="4" id="wzv-Uj-wBY"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -276,6 +276,9 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="s3z-J1-mi3">
                                                     <rect key="frame" x="16" y="16" width="343" height="136"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="136" id="ZIe-9Z-6G2"/>
+                                                    </constraints>
                                                 </imageView>
                                             </subviews>
                                             <constraints>

@@ -40,13 +40,6 @@ extension AddExpenseViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 44
     }
-    
-//    override func viewDidLayoutSubviews() {
-//        if let rect = self.navigationController?.navigationBar.frame {
-//            let y = rect.size.height + rect.origin.y
-//            self.tableView.contentInset = UIEdgeInsetsMake(y, 0, 0, 0)
-//        }
-//    }
 }
 /***********************************/
 // MARK: - Helpers
@@ -129,12 +122,11 @@ extension AddExpenseViewController {
 /***********************************/
 extension AddExpenseViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        // TODO: - Hardcoded value, replace with actual content
-        return 5
+        return manager.getExpenseFields().count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return manager.getExpenseFields().count
+        return manager.getExpenseFields()[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
