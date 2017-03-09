@@ -253,7 +253,7 @@
                             <constraint firstItem="KAU-kb-669" firstAttribute="top" secondItem="Bsw-ox-kWe" secondAttribute="bottom" id="zPz-Zm-TI3"/>
                         </constraints>
                     </view>
-                    <nil key="simulatedTopBarMetrics"/>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <connections>
                         <outlet property="tableView" destination="Bsw-ox-kWe" id="pyF-jS-ZWa"/>
                     </connections>
