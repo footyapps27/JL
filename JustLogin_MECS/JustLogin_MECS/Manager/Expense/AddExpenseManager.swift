@@ -13,7 +13,7 @@ class AddExpenseManager {
     
     var fields: [ExpenseAndReportField] = []
     
-    var expenseService = ReportService()
+    var expenseService = ExpenseService()
     
     init() {
         updateFields()
@@ -108,6 +108,7 @@ extension AddExpenseManager {
 // MARK: - Data manipulation
 /***********************************/
 extension AddExpenseManager {
+    
     func updateFields() {
         var category = ExpenseAndReportField()
         category.name = "Category"
@@ -123,10 +124,10 @@ extension AddExpenseManager {
         date.isEnabled = true
         
         // By default choose the base currency id
-        let currencyAndAmount = ExpenseAndReportField()
-        date.fieldType = ExpenseAndReportFieldType.currencyAndAmount.rawValue
-        date.isMandatory = true
-        date.isEnabled = true
+        var currencyAndAmount = ExpenseAndReportField()
+        currencyAndAmount.fieldType = ExpenseAndReportFieldType.currencyAndAmount.rawValue
+        currencyAndAmount.isMandatory = true
+        currencyAndAmount.isEnabled = true
         
         fields.append(category)
         fields.append(date)

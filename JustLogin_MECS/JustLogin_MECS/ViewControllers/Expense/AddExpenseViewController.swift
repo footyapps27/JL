@@ -41,12 +41,12 @@ extension AddExpenseViewController {
         tableView.estimatedRowHeight = 44
     }
     
-    override func viewDidLayoutSubviews() {
-        if let rect = self.navigationController?.navigationBar.frame {
-            let y = rect.size.height + rect.origin.y
-            self.tableView.contentInset = UIEdgeInsetsMake(y, 0, 0, 0)
-        }
-    }
+//    override func viewDidLayoutSubviews() {
+//        if let rect = self.navigationController?.navigationBar.frame {
+//            let y = rect.size.height + rect.origin.y
+//            self.tableView.contentInset = UIEdgeInsetsMake(y, 0, 0, 0)
+//        }
+//    }
 }
 /***********************************/
 // MARK: - Helpers
@@ -128,6 +128,11 @@ extension AddExpenseViewController {
 // MARK: - UITableViewDataSource
 /***********************************/
 extension AddExpenseViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        // TODO: - Hardcoded value, replace with actual content
+        return 5
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return manager.getExpenseFields().count
     }
@@ -143,6 +148,13 @@ extension AddExpenseViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 /***********************************/
 extension AddExpenseViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return CGFloat.leastNormalMagnitude
+        }
+        return 10
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Cell selected
