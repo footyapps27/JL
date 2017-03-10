@@ -25,4 +25,13 @@ final class Singleton {
     var organization: Organization?
     
     var member: Member?
+    
+    /***********************************/
+    // MARK: - Public Methods
+    /***********************************/
+    func flushSharedInstance() {
+        accessTokenHeader = [:]
+        organization = nil
+        member = nil
+    }
 }

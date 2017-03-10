@@ -14,6 +14,7 @@ struct Constants {
         static let emptyString = ""
         static let dateFormatReceivedFromServer = "yyyy-MM-dd'T'HH:mm:ss"
         static let localDisplayDateFormat = "dd/MM/yyyy"
+        static let auditHistoryDisplayDateFormat = "dd/MM/yyyy hh:mm tt"
         static let dateFormatSentToServer = "yyyy-MM-dd"
         static let decimalFormat = "%.2f"
     }
@@ -38,7 +39,7 @@ struct Constants {
         static let categoryLogo = 0
         static let accessPrivilegeApproveReports = 0
         static let exchangeRate = 1.0
-        static let reportFieldType = 0
+        static let fieldType = 0
     }
     
     struct CellIdentifiers {
@@ -47,10 +48,21 @@ struct Constants {
         static let settingsListTableViewCellIdentifier = "settingsListTableViewCellIdentifier"
         static let reportListTableViewCellIdentifier = "reportListTableViewCellIdentifier"
         static let approvalListTableViewCellIdentifier = "approvalListTableViewCellIdentifier"
+        
         static let addReportTableViewCellWithTextField = "addReportTableViewCellWithTextField"
         static let addReportTableViewCellWithMultipleSelection = "addReportTableViewCellWithMultipleSelection"
         static let addReportTableViewCellWithTextView = "addReportTableViewCellWithTextView"
         static let addReportTableViewCellDuration = "addReportTableViewCellDuration"
+        
+        static let addExpenseTableViewCellCategory = "addExpenseTableViewCellCategory"
+        static let addExpenseTableViewCellDate = "addExpenseTableViewCellDate"
+        static let addExpenseTableViewCellCurrencyAndAmount = "addExpenseTableViewCellCurrencyAndAmount"
+        static let addExpenseTableViewCellWithMultipleSelection = "addExpenseTableViewCellWithMultipleSelection"
+        static let addExpenseTableViewCellWithTextField = "addExpenseTableViewCellWithTextField"
+        static let addExpenseTableViewCellWithTextView = "addExpenseTableViewCellWithTextView"
+        static let addExpenseTableViewCellWithImageSelection = "addExpenseTableViewCellWithImageSelection"
+        
+        static let expenseDetailsAuditHistoryTableViewCellIdentifier = "expenseDetailsAuditHistoryTableViewCellIdentifier"
     }
     
     struct CellHeight {
@@ -63,12 +75,16 @@ struct Constants {
         static let dashboardStoryboard = "Dashboard"
         static let expenseStoryboard = "Expense"
         static let reportStoryboard = "Report"
+        static let mainStoryboard = "Main"
+        
         static let approverAndAdminDashboard = "approverAndAdminDashboard"
         static let submitterDashboard = "submitterDashboard"
+        
         static let addExpenseViewController = "addExpenseViewController"
         static let expenseDetailsViewController = "expenseDetailsViewController"
         static let addReportViewController = "addReportViewController"
         static let reportDetailsViewController = "reportDetailsViewController"
+        static let launchViewController = "launchViewController"
     }
     
     struct Notifications {
@@ -193,6 +209,16 @@ struct Constants {
         static let modifySettingsManageIntegrations = "manageIntegrations"
         static let modifySettingsBilling = "billing"
         
+        static let dataType = "dataType"
+        static let fieldName = "fieldName"
+        static let isEnabled = "isEnabled"
+        static let isMandatory = "isMandatory"
+        static let expenseCustomFields = "expenseCustomFields"
+        static let reportCustomFields = "reportCustomFields"
+        
+        static let project = "project"
+        static let customer = "customer"
+        
         static let expenses = "expenses"
         static let expenseId = "expenseId"
         static let date = "date"
@@ -214,5 +240,10 @@ struct Constants {
         static let endDate = "endDate"
         static let title = "title"
         static let expenseIds = "expenseIds"
+        
+        static let reason = "reason"
+        static let createdDate = "createdDate"
+        static let createdBy = "createdBy"
+        static let history = "history"
     }
 }

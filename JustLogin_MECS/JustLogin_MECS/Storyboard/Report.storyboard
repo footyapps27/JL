@@ -21,9 +21,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Bsw-ox-kWe">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Bsw-ox-kWe">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addReportTableViewCellWithTextField" rowHeight="44" id="mS7-Ut-3wr" customClass="AddReportTableViewCellWithTextField" customModule="JustLogin_MECS" customModuleProvider="target">
@@ -53,7 +52,7 @@
                                                         </textField>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="44" id="QHL-od-Hod"/>
+                                                        <constraint firstAttribute="height" constant="44" id="XFu-Ga-tLm"/>
                                                     </constraints>
                                                 </stackView>
                                             </subviews>
@@ -69,7 +68,7 @@
                                             <outlet property="txtField" destination="jAy-3q-qJE" id="CrK-0Y-PHc"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addReportTableViewCellWithMultipleSelection" id="r7m-ln-Mqv" customClass="AddReportTableViewCellWithMultipleSelection" customModule="JustLogin_MECS" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addReportTableViewCellWithMultipleSelection" rowHeight="44" id="r7m-ln-Mqv" customClass="AddReportTableViewCellWithMultipleSelection" customModule="JustLogin_MECS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="r7m-ln-Mqv" id="489-NQ-FMK">
@@ -96,7 +95,7 @@
                                                         </textField>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="44" id="5re-Bd-QsL"/>
+                                                        <constraint firstAttribute="height" constant="44" id="fFD-eu-GLA"/>
                                                     </constraints>
                                                 </stackView>
                                             </subviews>
@@ -139,7 +138,7 @@
                                                         </textView>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="70" id="mcJ-oa-kmq"/>
+                                                        <constraint firstAttribute="height" constant="70" id="MCc-xT-Izu"/>
                                                     </constraints>
                                                 </stackView>
                                             </subviews>
@@ -217,6 +216,7 @@
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="55" id="Fmm-RR-JBE"/>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="55" id="tyS-cN-TRc"/>
                                                     </constraints>
                                                 </stackView>
                                             </subviews>
@@ -246,8 +246,14 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Bsw-ox-kWe" firstAttribute="leading" secondItem="wIN-Xf-bPn" secondAttribute="leading" id="0IW-Ao-xOM"/>
+                            <constraint firstAttribute="trailing" secondItem="Bsw-ox-kWe" secondAttribute="trailing" id="cWo-Ic-0kU"/>
+                            <constraint firstItem="Bsw-ox-kWe" firstAttribute="top" secondItem="wIN-Xf-bPn" secondAttribute="top" id="eOC-er-LYw"/>
+                            <constraint firstItem="KAU-kb-669" firstAttribute="top" secondItem="Bsw-ox-kWe" secondAttribute="bottom" id="zPz-Zm-TI3"/>
+                        </constraints>
                     </view>
-                    <nil key="simulatedTopBarMetrics"/>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <connections>
                         <outlet property="tableView" destination="Bsw-ox-kWe" id="pyF-jS-ZWa"/>
                     </connections>

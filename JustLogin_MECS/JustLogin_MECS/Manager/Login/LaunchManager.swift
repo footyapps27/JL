@@ -13,7 +13,7 @@ import Foundation
  */
 class LaunchManager {
     
-    var loginService: ILoginService = LoginService()
+    var authenticationService:IAuthenticationService = AuthenticationService()
     var organizationDetailsService: IOrganizationDetailsService = OrganizationDetailsService()
     
     struct LaunchContent {

@@ -12,28 +12,34 @@ import UIKit
 
 class AddReportTableViewCellWithTextField: AddReportBaseTableViewCell {
     
+    /***********************************/
+    // MARK: - Outlets
+    /***********************************/
     @IBOutlet weak var lblFieldName: UILabel!
     
     @IBOutlet weak var txtField: UITextField!
     
-    override func updateView(withReportField reportField: ReportField) {
-        lblFieldName.text = reportField.fieldName
+    /***********************************/
+    // MARK: - Override parent class
+    /***********************************/
+    override func updateView(withField reportField: ExpenseAndReportField) {
+        lblFieldName.text = reportField.name
     }
     
     override func makeFirstResponder() {
         txtField.becomeFirstResponder()
     }
     
-    override func validateInput(withReportField reportField: ReportField) -> (success: Bool, errorMessage: String) {
+    override func validateInput(withField reportField: ExpenseAndReportField) -> (success: Bool, errorMessage: String) {
         if reportField.isMandatory {
             if txtField.text!.isEmpty {
-                return (false, "Please make sure '\(reportField.fieldName.capitalized)' has been entered.")
+                return (false, "Please make sure '\(reportField.name.capitalized)' has been entered.")
             }
         }
         return(true, Constants.General.emptyString)
     }
     
-    override func getPayload(withReportField reportField: ReportField) -> [String:Any] {
+    override func getPayload(withField reportField: ExpenseAndReportField) -> [String:Any] {
         return [reportField.jsonParameter : txtField.text!]
     }
 }

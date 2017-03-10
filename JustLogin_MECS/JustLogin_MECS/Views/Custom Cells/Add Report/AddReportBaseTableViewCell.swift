@@ -9,18 +9,31 @@
 import Foundation
 import UIKit
 
-// TODO: - Make this class to an interface
+
 class AddReportBaseTableViewCell: BaseCustomTableViewCell {
     
-    func updateView(withReportField reportField: ReportField) {}
+    /**
+     * Update the view based on the report field parameters.
+     */
+    func updateView(withField reportField: ExpenseAndReportField) {}
     
+    /**
+     * Called when the cell is selected. 
+     * The cell decides which component to make the first responder.
+     */
     func makeFirstResponder() {}
     
-    func validateInput(withReportField reportField: ReportField) -> (success: Bool, errorMessage: String) {
+    /**
+     * Validate inputs of the cell based on the report field.
+     */
+    func validateInput(withField reportField: ExpenseAndReportField) -> (success: Bool, errorMessage: String) {
         return (true, Constants.General.emptyString)
     }
     
-    func getPayload(withReportField reportField: ReportField) -> [String:Any] {
+    /**
+     * Return the payload based on the report field & input value.
+     */
+    func getPayload(withField reportField: ExpenseAndReportField) -> [String:Any] {
         return [String:Any]()
     }
 }

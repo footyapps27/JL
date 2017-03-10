@@ -23,19 +23,19 @@ enum ReportStatus : Int
 
 enum ExpenseStatus : Int {
     
-    case unreported = 0,
-    unsubmitted = 1,
-    submitted = 2,
-    rejected = 3,
-    approved = 4,
-    reimbursed = 6 // The enums are mapped to the backend, thus 5 is missing since front end is not displaying this.
+    case unreported = -1,
+    unsubmitted,
+    submitted,
+    rejected,
+    approved,
+    reimbursed
     
     var name: String {
         get { return String(describing: self) }
     }
 }
 
-enum ReportFieldType: Int {
+enum ExpenseAndReportFieldType: Int {
     case text = 0,
     email,
     url,
@@ -48,5 +48,26 @@ enum ReportFieldType: Int {
     checkBox,
     doubleTextField,
     textView,
-    dropdown
+    dropdown,
+    category,
+    currencyAndAmount,
+    imageSelection
+}
+
+enum SettingsOptions: String {
+    case organizationProfile = "Organization Profile"
+    case users = "Users"
+    case expenseCategories = "Expense Categories"
+    case currencies = "Currencies"
+    case expensePreferences = "Expense Preferences"
+    case perDiemPreferences = "Per Diem Preferences"
+    case reportPreferences = "Report Preferences"
+    case mileagePreferences = "Mileage Preferences"
+    case applicationPreferences = "Application Preferences"
+    case tipCalculator = "Tip Calculator"
+    case currencyConverter = "Currency Converter"
+    case rateOurApp = "Rate our app"
+    case submitFeedback = "Submit Feedback"
+    case aboutUs = "About Us"
+    case upgradeOrganization = "Upgrade Organization"
 }

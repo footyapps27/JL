@@ -11,6 +11,9 @@ import UIKit
 
 class AddReportTableViewCellDuration: AddReportBaseTableViewCell {
     
+    /***********************************/
+    // MARK: - Outlets
+    /***********************************/
     @IBOutlet weak var lblDuration: UILabel!
     
     @IBOutlet weak var lblFrom: UILabel!
@@ -21,12 +24,15 @@ class AddReportTableViewCellDuration: AddReportBaseTableViewCell {
     
     @IBOutlet weak var txtTo: UITextField!
     
-    override func updateView(withReportField reportField: ReportField) {
-        txtTo.tag = ReportFieldType.date.rawValue
-        txtFrom.tag = ReportFieldType.date.rawValue
+    /***********************************/
+    // MARK: - Parent class override
+    /***********************************/
+    override func updateView(withField reportField: ExpenseAndReportField) {
+        txtTo.tag = ExpenseAndReportFieldType.date.rawValue
+        txtFrom.tag = ExpenseAndReportFieldType.date.rawValue
     }
     
-    override func validateInput(withReportField reportField: ReportField) -> (success: Bool, errorMessage: String) {
+    override func validateInput(withField reportField: ExpenseAndReportField) -> (success: Bool, errorMessage: String) {
         // This cell is only used for Duration
         if txtFrom.text!.isEmpty {
             return (false, "Please make sure 'Report To' date has been entered.")
@@ -39,7 +45,7 @@ class AddReportTableViewCellDuration: AddReportBaseTableViewCell {
         return(true, Constants.General.emptyString)
     }
     
-    override func getPayload(withReportField reportField: ReportField) -> [String:Any] {
+    override func getPayload(withField reportField: ExpenseAndReportField) -> [String:Any] {
         return [
             Constants.RequestParameters.Report.startDate : getFormattedDateFromText(txtFrom.text!),
             Constants.RequestParameters.Report.endDate : getFormattedDateFromText(txtTo.text!)

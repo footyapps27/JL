@@ -17,6 +17,8 @@ class ExpenseDetailsViewController: BaseViewControllerWithTableView {
     
     var expenseId: String?
     
+    @IBOutlet weak var toolbar: UIToolbar!
+    
     @IBOutlet weak var headerView: ExpenseDetailsHeaderView!
     
     @IBOutlet weak var btnEdit: UIBarButtonItem!
@@ -32,6 +34,7 @@ extension ExpenseDetailsViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        headerView.delegate = self
         fetchExpenseDetails()
     }
 }
@@ -40,9 +43,17 @@ extension ExpenseDetailsViewController {
 /***********************************/
 extension ExpenseDetailsViewController {
     func updateUIAfterSuccessfulResponse() {
-        self.tableView.reloadData()
         headerView.updateView(withManager: manager)
+        self.tableView.reloadData()
+        updateToolbarItems()
         // TODO: - Update toolbar
+    }
+    
+    func updateToolbarItems() {
+        if !manager.isExpenseEditable() {
+            let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: nil)
+            toolbar.items = [flexibleSpace, btnClone, flexibleSpace]
+        }
     }
 }
 /***********************************/
@@ -66,20 +77,16 @@ extension ExpenseDetailsViewController {
 /***********************************/
 extension ExpenseDetailsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // TODO - Replace this with actual history details
-        return 1
+        return manager.getAuditHistories().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.expenseListTableViewCellIdentifier, for: indexPath) as! ExpenseListTableViewCell
-//        
-//        cell.lblExpenseName.text = manager.getCategoryName(forIndexPath: indexPath)
-//        cell.lblDateAndDescription.text = manager.getDateAndDescription(forIndexPath: indexPath)
-//        cell.lblAmount.text = manager.getFormattedAmount(forIndexPath: indexPath)
-//        cell.lblStatus.text = manager.getExpenseStatus(forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.expenseDetailsAuditHistoryTableViewCellIdentifier, for: indexPath) as! ExpenseDetailsAuditHistoryTableViewCell
         
-        // TODO: - Wire up the icons
-        return UITableViewCell()
+        cell.lblDescription.text = manager.getAuditHistoryDescription(forIndexPath: indexPath)
+        cell.lblUserAndDate.text = manager.getAuditHistoryDetails(forIndexPath: indexPath)
+        
+        return cell
     }
 }
 /***********************************/
@@ -92,6 +99,18 @@ extension ExpenseDetailsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return headerView.getHeight()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView .deselectRow(at: indexPath, animated: false)
+    }
+}
+/***********************************/
+// MARK: - ExpenseDetailsHeaderViewDelegate
+/***********************************/
+extension ExpenseDetailsViewController: ExpenseDetailsHeaderViewDelegate {
+    func attachmentButtonTapped() {
+        // TODO: - Handle the action related stuff here.
     }
 }
 /***********************************/
@@ -113,8 +132,9 @@ extension ExpenseDetailsViewController {
                 self.updateUIAfterSuccessfulResponse()
                 self.hideLoadingIndicator(enableUserInteraction: true)
             case .failure(_, _):
-                // TODO: - Handle the empty table view screen.
                 self.hideLoadingIndicator(enableUserInteraction: true)
+                // TODO: - Need to kick the user out of this screen & send to the expense list.
+                Utilities.showErrorAlert(withMessage: "Something went wrong. Please try again.", onController: self)// TODO: - Hard coded message. Move to constants or use the server error.
             }
         }
     }

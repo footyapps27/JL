@@ -14,7 +14,7 @@ class SignInManager {
     // MARK: - Properties
     /***********************************/
     
-    var loginService: ILoginService = LoginService()
+    var authenticationService: IAuthenticationService = AuthenticationService()
     var organizationDetailsService: IOrganizationDetailsService = OrganizationDetailsService()
     
     /***********************************/
@@ -28,7 +28,7 @@ class SignInManager {
      */
     func login(withOrganizationName organizationName: String, userId: String, password: String, completionHandler:( @escaping (ManagerResponseToController<Member>) -> Void)) {
         
-        loginService.loginUser(withOrganizationName: organizationName, userId: userId, password: password) { (result) in
+        authenticationService.loginUser(withOrganizationName: organizationName, userId: userId, password: password) { (result) in
             
             switch(result) {
             case .success(let member):

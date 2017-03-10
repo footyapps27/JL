@@ -40,13 +40,6 @@ extension AddReportViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 44
     }
-    
-    override func viewDidLayoutSubviews() {
-        if let rect = self.navigationController?.navigationBar.frame {
-            let y = rect.size.height + rect.origin.y
-            self.tableView.contentInset = UIEdgeInsetsMake(y, 0, 0, 0)
-        }
-    }
 }
 /***********************************/
 // MARK: - Helpers
@@ -120,7 +113,6 @@ extension AddReportViewController {
                 Utilities.showErrorAlert(withMessage: message, onController: self)
                 self.hideLoadingIndicator(enableUserInteraction: true)
             }
-            
         }
     }
 }
@@ -156,7 +148,7 @@ extension AddReportViewController: UITableViewDelegate {
 extension AddReportViewController: UITextFieldDelegate {
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        if textField.tag == ReportFieldType.date.rawValue {
+        if textField.tag == ExpenseAndReportFieldType.date.rawValue {
             currentTextField = textField
             textField.inputView = datePicker
             textField.inputAccessoryView = toolbar
@@ -165,13 +157,13 @@ extension AddReportViewController: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField.tag == ReportFieldType.date.rawValue {
+        if textField.tag == ExpenseAndReportFieldType.date.rawValue {
             dismissDatePicker(nil)
         }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField.tag == ReportFieldType.date.rawValue {
+        if textField.tag == ExpenseAndReportFieldType.date.rawValue {
             return false
         }
         textField.resignFirstResponder()

@@ -9,11 +9,10 @@
 import Foundation
 import SwiftyJSON
 
+/***********************************/
+// MARK: - Properties
+/***********************************/
 struct Expense {
-    
-    /***********************************/
-    // MARK: - Properties
-    /***********************************/
     var id: String = Constants.General.emptyString
     
     var date: Date?
@@ -47,15 +46,18 @@ struct Expense {
     var reportId: String = Constants.General.emptyString
     
     var customFields: [[String : Any]] = []
-    /***********************************/
-    // MARK: - Initializer
-    /***********************************/
+    
+    var auditHistory: [ExpenseAuditHistory] = []
     
     /**
      * Default initializer
      */
     init() { }
-    
+}
+/***********************************/
+// MARK: - Initializer
+/***********************************/
+extension Expense {
     /**
      * Initialize using the JSON object received from the server.
      */
@@ -94,5 +96,11 @@ struct Expense {
         currencyId = json[Constants.ResponseParameters.currencyId].stringValue
         
         reportId = json[Constants.ResponseParameters.reportId].stringValue
+        
+        let jsonHistories = json[Constants.ResponseParameters.history].exists() ? json[Constants.ResponseParameters.history].arrayValue : []
+        for jsonHistory in jsonHistories {
+            let history = ExpenseAuditHistory(withJSON: jsonHistory)
+            auditHistory.append(history)
+        }
     }
 }

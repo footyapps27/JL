@@ -13,7 +13,8 @@ import SnapKit
 /***********************************/
 // MARK: - Protocol Declaration
 /***********************************/
-protocol ExpenseDetailsHeaderViewDelegate {
+protocol ExpenseDetailsHeaderViewDelegate: class {
+    
     func attachmentButtonTapped()
 }
 /***********************************/
@@ -40,6 +41,8 @@ class ExpenseDetailsHeaderView: UIView {
     @IBOutlet weak var parentStackView: UIStackView!
     
     @IBOutlet weak var parentStackViewHeight: NSLayoutConstraint!
+    
+    weak var delegate: ExpenseDetailsHeaderViewDelegate?
 }
 /***********************************/
 // MARK: - UI update methods
@@ -48,26 +51,6 @@ extension ExpenseDetailsHeaderView {
     
     override func awakeFromNib() {
         
-        parentStackViewHeight.constant = CGFloat(50*4)
-        
-        // Create the dynamic view here.
-        var frame = CGRect()
-        frame.size.width =  CGFloat(320)
-        frame.size.height =  CGFloat(50)
-        
-        
-        let view1 = getDynamicView(withFieldName: "Test", andFieldValue: "TestValue")
-        
-        let view2 = getDynamicView(withFieldName: "Test", andFieldValue: "TestValue")
-        
-        let view3 = getDynamicView(withFieldName: "Test", andFieldValue: "TestValue")
-        
-        let view4 = getDynamicView(withFieldName: "Test", andFieldValue: "TestValue")
-        
-        parentStackView.addArrangedSubview(view1)
-        parentStackView.addArrangedSubview(view2)
-        parentStackView.addArrangedSubview(view3)
-        parentStackView.addArrangedSubview(view4)
     }
 }
 /***********************************/
@@ -79,11 +62,32 @@ extension ExpenseDetailsHeaderView {
         lblAmount.text = manager.getFormattedAmount()
         lblStatus.text = manager.getExpenseStatus()
         lblDate.text = manager.getExpenseDate()
-        // TODO: - Call the dynamic view here based on the property
+        
+        if !manager.expense.hasPolicyViolation {
+            btnPolicyViolation.removeFromSuperview()
+        }
+        
+        for dict in manager.getFieldsToDisplay() {
+            let view = getDynamicView(withFieldName: dict.key, andFieldValue: dict.value)
+            parentStackView.addArrangedSubview(view)
+            parentStackViewHeight.constant += CGFloat(50)
+        }
     }
     
     func getHeight() -> CGFloat {
-        return CGFloat(50*4)
+        return parentStackViewHeight.constant
+    }
+}
+/***********************************/
+// MARK: - Action
+/***********************************/
+extension ExpenseDetailsHeaderView {
+    @IBAction func attachmentTapped(_ sender: UIButton) {
+        delegate?.attachmentButtonTapped()
+    }
+    
+    @IBAction func policyViolationTapped(_ sender: UIButton) {
+        // TODO: - Handle the view update here
     }
 }
 /***********************************/
@@ -96,6 +100,7 @@ extension ExpenseDetailsHeaderView {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         
+        // TODO: - Put the values in constant
         let lblFieldName = UILabel()
         lblFieldName.text = fieldName
         lblFieldName.font = UIFont.systemFont(ofSize: 14)

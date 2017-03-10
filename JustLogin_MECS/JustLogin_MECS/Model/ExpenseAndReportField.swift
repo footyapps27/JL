@@ -9,18 +9,16 @@
 import Foundation
 import SwiftyJSON
 
-struct ReportField {
+struct ExpenseAndReportField {
     
     /***********************************/
     // MARK: - Properties
     /***********************************/
-    var id: String = Constants.General.emptyString
-    
-    var fieldName: String = Constants.General.emptyString
+    var name: String = Constants.General.emptyString
     
     var jsonParameter: String = Constants.General.emptyString
     
-    var fieldType: Int = Constants.Defaults.reportFieldType
+    var fieldType: Int = Constants.Defaults.fieldType
     
     var isMandatory: Bool = false
     
@@ -43,6 +41,14 @@ struct ReportField {
      * Initialize using the JSON object received from the server.
      */
     init(withJSON json:JSON) {
+        name = json[Constants.ResponseParameters.name].stringValue
         
+        jsonParameter = json[Constants.ResponseParameters.fieldName].stringValue
+        
+        fieldType = json[Constants.ResponseParameters.dataType].intValue
+        
+        isEnabled = json[Constants.ResponseParameters.isEnabled].boolValue
+        
+        isMandatory = json[Constants.ResponseParameters.isMandatory].boolValue
     }
 }
