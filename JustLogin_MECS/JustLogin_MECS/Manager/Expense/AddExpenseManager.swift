@@ -31,7 +31,6 @@ extension AddExpenseManager {
     }
     
     func getTableViewCellIdentifier(forIndexPath indexPath: IndexPath) -> String {
-        //let expenseField = fields[indexPath.section]
         let expenseField = (fields[indexPath.section])[indexPath.row]
         switch expenseField.fieldType {
         case ExpenseAndReportFieldType.category.rawValue:
@@ -72,9 +71,9 @@ extension AddExpenseManager {
 extension AddExpenseManager {
     
     func formatCell(_ cell: AddExpenseBaseTableViewCell, forIndexPath indexPath: IndexPath) {
-        //let reportField = fields[indexPath.row]
-        //cell.selectionStyle = UITableViewCellSelectionStyle.none
-        //cell.updateView(withField: reportField)
+        let expenseField = (fields[indexPath.section])[indexPath.row]
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
+        cell.updateView(withField: expenseField)
     }
 }
 /***********************************/
