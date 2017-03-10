@@ -232,11 +232,11 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addExpenseTableViewCellWithTextView" rowHeight="108" id="PLd-5M-XNn" customClass="AddExpenseTableViewCellWithTextView" customModule="JustLogin_MECS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="286" width="375" height="108"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PLd-5M-XNn" id="yR1-La-Pk9">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="PLd-5M-XNn" id="yR1-La-Pk9">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="107"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jc2-td-YMM">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jc2-td-YMM">
                                                     <rect key="frame" x="8" y="8" width="100" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="Ftd-gc-Q6h"/>
@@ -246,7 +246,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="oWx-Yt-mNE">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="oWx-Yt-mNE">
                                                     <rect key="frame" x="128" y="0.0" width="247" height="108"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -273,11 +273,11 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addExpenseTableViewCellWithImageSelection" rowHeight="168" id="yir-WL-EnM" customClass="AddExpenseTableViewCellWithImageSelection" customModule="JustLogin_MECS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="394" width="375" height="168"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yir-WL-EnM" id="Rty-cV-WAP">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="yir-WL-EnM" id="Rty-cV-WAP">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="167"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="s3z-J1-mi3">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s3z-J1-mi3">
                                                     <rect key="frame" x="16" y="16" width="343" height="136"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="136" id="ZIe-9Z-6G2"/>
@@ -496,13 +496,52 @@
                                     </connections>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="wJb-hy-6dC">
-                                        <rect key="frame" x="0.0" y="278" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="expenseDetailsAuditHistoryTableViewCellIdentifier" rowHeight="56" id="wJb-hy-6dC" customClass="ExpenseDetailsAuditHistoryTableViewCell" customModule="JustLogin_MECS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="278" width="375" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wJb-hy-6dC" id="kEh-fN-Bfo">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AuditHistory" translatesAutoresizingMaskIntoConstraints="NO" id="Sj5-2G-PCJ">
+                                                    <rect key="frame" x="8" y="17" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="8Y9-Sa-mb4"/>
+                                                        <constraint firstAttribute="height" constant="20" id="vqb-gg-tLb"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expense Updated." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uBb-cO-3wx">
+                                                    <rect key="frame" x="48" y="8" width="311" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="xw0-5e-fF9"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Doe | 03/03/2110 04:06 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="whX-wM-z7s">
+                                                    <rect key="frame" x="48" y="31" width="311" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="uBb-cO-3wx" firstAttribute="top" secondItem="kEh-fN-Bfo" secondAttribute="topMargin" id="3mS-d8-x2l"/>
+                                                <constraint firstItem="whX-wM-z7s" firstAttribute="height" secondItem="uBb-cO-3wx" secondAttribute="height" id="PWM-Hp-ZhU"/>
+                                                <constraint firstItem="uBb-cO-3wx" firstAttribute="leading" secondItem="Sj5-2G-PCJ" secondAttribute="trailing" constant="20" id="Pu8-vw-wqc"/>
+                                                <constraint firstItem="Sj5-2G-PCJ" firstAttribute="centerY" secondItem="kEh-fN-Bfo" secondAttribute="centerY" id="TN2-zE-Y7M"/>
+                                                <constraint firstItem="whX-wM-z7s" firstAttribute="leading" secondItem="uBb-cO-3wx" secondAttribute="leading" id="Ty7-Il-pF6"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="uBb-cO-3wx" secondAttribute="trailing" constant="8" id="gI2-Xb-tuR"/>
+                                                <constraint firstItem="whX-wM-z7s" firstAttribute="top" secondItem="uBb-cO-3wx" secondAttribute="bottom" constant="2" id="gy3-cU-tWO"/>
+                                                <constraint firstItem="Sj5-2G-PCJ" firstAttribute="leading" secondItem="kEh-fN-Bfo" secondAttribute="leading" constant="8" id="hGU-Pf-bu8"/>
+                                                <constraint firstItem="whX-wM-z7s" firstAttribute="width" secondItem="uBb-cO-3wx" secondAttribute="width" id="ubW-Vp-H14"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="lblDescription" destination="uBb-cO-3wx" id="8nc-8J-KwQ"/>
+                                            <outlet property="lblUserAndDate" destination="whX-wM-z7s" id="HiN-uV-dZ9"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -538,6 +577,7 @@
     </scenes>
     <resources>
         <image name="AttachmentDefault" width="16" height="16"/>
+        <image name="AuditHistory" width="16" height="16"/>
         <image name="Category1" width="16" height="16"/>
         <image name="PolicyViolationDefault" width="16" height="16"/>
     </resources>

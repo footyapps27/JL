@@ -14,6 +14,7 @@ struct Constants {
         static let emptyString = ""
         static let dateFormatReceivedFromServer = "yyyy-MM-dd'T'HH:mm:ss"
         static let localDisplayDateFormat = "dd/MM/yyyy"
+        static let auditHistoryDisplayDateFormat = "dd/MM/yyyy hh:mm tt"
         static let dateFormatSentToServer = "yyyy-MM-dd"
         static let decimalFormat = "%.2f"
     }
@@ -60,6 +61,8 @@ struct Constants {
         static let addExpenseTableViewCellWithTextField = "addExpenseTableViewCellWithTextField"
         static let addExpenseTableViewCellWithTextView = "addExpenseTableViewCellWithTextView"
         static let addExpenseTableViewCellWithImageSelection = "addExpenseTableViewCellWithImageSelection"
+        
+        static let expenseDetailsAuditHistoryTableViewCellIdentifier = "expenseDetailsAuditHistoryTableViewCellIdentifier"
     }
     
     struct CellHeight {

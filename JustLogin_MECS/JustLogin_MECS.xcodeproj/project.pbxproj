@@ -68,6 +68,7 @@
 		8CEB70B71E6D3C3500411ECB /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEB70B61E6D3C3500411ECB /* Strings.swift */; };
 		8CF2FBD31E7156A3001C008E /* SettingsListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF2FBD21E7156A3001C008E /* SettingsListManager.swift */; };
 		8CF2FBD51E71A26D001C008E /* ExpenseAuditHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF2FBD41E71A26D001C008E /* ExpenseAuditHistory.swift */; };
+		8CF2FBD71E726E56001C008E /* ExpenseDetailsAuditHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF2FBD61E726E56001C008E /* ExpenseDetailsAuditHistoryTableViewCell.swift */; };
 		8CF342411E5D3941008387BF /* SignInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF342401E5D3941008387BF /* SignInManager.swift */; };
 		8CF342441E5D40E4008387BF /* BaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF342431E5D40E4008387BF /* BaseManager.swift */; };
 		8CF3F64E1E652AA900A18D73 /* AddReportTableViewCellWithTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF3F64D1E652AA900A18D73 /* AddReportTableViewCellWithTextField.swift */; };
@@ -178,6 +179,7 @@
 		8CEB70B61E6D3C3500411ECB /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		8CF2FBD21E7156A3001C008E /* SettingsListManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsListManager.swift; path = JustLogin_MECS/Model/SettingsListManager.swift; sourceTree = SOURCE_ROOT; };
 		8CF2FBD41E71A26D001C008E /* ExpenseAuditHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseAuditHistory.swift; sourceTree = "<group>"; };
+		8CF2FBD61E726E56001C008E /* ExpenseDetailsAuditHistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseDetailsAuditHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		8CF342401E5D3941008387BF /* SignInManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInManager.swift; sourceTree = "<group>"; };
 		8CF342431E5D40E4008387BF /* BaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseManager.swift; sourceTree = "<group>"; };
 		8CF3F64D1E652AA900A18D73 /* AddReportTableViewCellWithTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReportTableViewCellWithTextField.swift; sourceTree = "<group>"; };
@@ -388,6 +390,7 @@
 				8CA4B6F21E28ACA6007C3BE5 /* ReportListTableViewCell.swift */,
 				8CA4B6F61E28C3A6007C3BE5 /* ExpenseListTableViewCell.swift */,
 				8CE007141E28D7C90089D159 /* ApprovalListTableViewCell.swift */,
+				8CF2FBD61E726E56001C008E /* ExpenseDetailsAuditHistoryTableViewCell.swift */,
 			);
 			path = "Custom Cells";
 			sourceTree = "<group>";
@@ -1028,6 +1031,7 @@
 				8C51413B1E1F5F95003AD3B1 /* BaseCustomCollectionViewCell.swift in Sources */,
 				8C8995D51E60821200482317 /* AddExpenseViewController.swift in Sources */,
 				8CF342411E5D3941008387BF /* SignInManager.swift in Sources */,
+				8CF2FBD71E726E56001C008E /* ExpenseDetailsAuditHistoryTableViewCell.swift in Sources */,
 				8CF3F6541E652B3400A18D73 /* AddReportTableViewCellWithTextView.swift in Sources */,
 				8C51413F1E1F5FDB003AD3B1 /* BaseCustomTableViewCell.swift in Sources */,
 				8CF2FBD51E71A26D001C008E /* ExpenseAuditHistory.swift in Sources */,

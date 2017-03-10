@@ -67,19 +67,23 @@ extension SettingsListManager {
 /***********************************/
 extension SettingsListManager {
     
-    func getFieldsForAdmin() -> [[SettingsOptions]] {
-        return [
+    fileprivate func getFieldsForAdmin() -> [[SettingsOptions]] {
+        var fields = [
             [SettingsOptions.organizationProfile,SettingsOptions.users],
-            [SettingsOptions.expenseCategories, SettingsOptions.currencies, SettingsOptions.expensePreferences, SettingsOptions.perDiemPreferences, SettingsOptions.reportPreferences, SettingsOptions.mileagePreferences, SettingsOptions.applicationPreferences],
-            [SettingsOptions.tipCalculator, SettingsOptions.currencyConverter],
-            [SettingsOptions.rateOurApp, SettingsOptions.submitFeedback, SettingsOptions.aboutUs],
-            [SettingsOptions.upgradeOrganization]
+            [SettingsOptions.expenseCategories, SettingsOptions.currencies, SettingsOptions.expensePreferences, SettingsOptions.perDiemPreferences, SettingsOptions.reportPreferences, SettingsOptions.mileagePreferences, SettingsOptions.applicationPreferences]
         ]
+        fields += getCommonFields()
+        return fields
     }
     
-    func getFieldsForSubmitter() -> [[SettingsOptions]] {
+    fileprivate func getFieldsForSubmitter() -> [[SettingsOptions]] {
+        var fields =  [[SettingsOptions.applicationPreferences]]
+        fields += getCommonFields()
+        return fields
+    }
+    
+    fileprivate func getCommonFields() -> [[SettingsOptions]] {
         return [
-            [SettingsOptions.applicationPreferences],
             [SettingsOptions.tipCalculator, SettingsOptions.currencyConverter],
             [SettingsOptions.rateOurApp, SettingsOptions.submitFeedback, SettingsOptions.aboutUs],
             [SettingsOptions.upgradeOrganization]

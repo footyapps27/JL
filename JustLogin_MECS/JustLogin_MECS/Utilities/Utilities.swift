@@ -32,6 +32,12 @@ class Utilities {
         return dateFormatter.string(from: date)
     }
     
+    static func convertDateToStringForAuditHistoryDisplay(_ date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = Constants.General.auditHistoryDisplayDateFormat
+        return dateFormatter.string(from: date)
+    }
+    
     static func convertDateToStringForServerCommunication(_ date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = Constants.General.dateFormatSentToServer

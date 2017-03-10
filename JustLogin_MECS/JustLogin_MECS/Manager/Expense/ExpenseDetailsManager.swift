@@ -94,6 +94,30 @@ extension ExpenseDetailsManager {
     }
 }
 /***********************************/
+// MARK: - TableView Audit history
+/***********************************/
+extension ExpenseDetailsManager {
+    func getAuditHistories() -> [ExpenseAuditHistory] {
+        return expense.auditHistory
+    }
+}
+/***********************************/
+// MARK: - TableView UI update
+/***********************************/
+extension ExpenseDetailsManager {
+    func getAuditHistoryDescription(forIndexPath indexPath: IndexPath) -> String {
+        return expense.auditHistory[indexPath.row].description
+    }
+    
+    func getAuditHistoryDetails(forIndexPath indexPath: IndexPath) -> String {
+        let history = expense.auditHistory[indexPath.row]
+        if let date = history.date {
+            return history.createdBy + " | " + Utilities.convertDateToStringForAuditHistoryDisplay(date)
+        }
+        return history.createdBy
+    }
+}
+/***********************************/
 // MARK: - Service Call
 /***********************************/
 extension ExpenseDetailsManager {
