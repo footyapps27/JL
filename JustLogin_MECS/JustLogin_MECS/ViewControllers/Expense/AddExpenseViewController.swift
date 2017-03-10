@@ -150,8 +150,14 @@ extension AddExpenseViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Cell selected
-        let cell = tableView.cellForRow(at: indexPath) as! AddExpenseBaseTableViewCell
-        manager.performActionForSelectedCell(cell, forIndexPath: indexPath)
+        if manager.checkIfNavigationIsRequired(forIndexPath: indexPath) {
+            // TODO: - Navigate to the details view
+            let controller = manager.getDetailsNavigationController(forIndexPath: indexPath)
+            self.navigationController?.pushViewController(controller, animated: true)
+        } else {
+            let cell = tableView.cellForRow(at: indexPath) as! AddExpenseBaseTableViewCell
+            manager.performActionForSelectedCell(cell, forIndexPath: indexPath)
+        }
     }
 }
 /***********************************/
@@ -160,6 +166,7 @@ extension AddExpenseViewController: UITableViewDelegate {
 extension AddExpenseViewController: UITextFieldDelegate {
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        
         if textField.tag == ExpenseAndReportFieldType.date.rawValue {
             currentTextField = textField
             textField.inputView = datePicker

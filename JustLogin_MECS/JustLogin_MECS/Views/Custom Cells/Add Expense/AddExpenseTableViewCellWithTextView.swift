@@ -26,4 +26,8 @@ class AddExpenseTableViewCellWithTextView: AddExpenseBaseTableViewCell {
     override func updateView(withField expenseField: ExpenseAndReportField) {
         lblFieldName.text = expenseField.name
     }
+    
+    override func makeFirstResponder() {
+        txtView.becomeFirstResponder()
+    }
 }

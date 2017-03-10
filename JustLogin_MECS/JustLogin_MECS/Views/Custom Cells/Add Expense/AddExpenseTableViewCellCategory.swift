@@ -37,6 +37,6 @@ class AddExpenseTableViewCellCategory: AddExpenseBaseTableViewCell {
 /***********************************/
 extension AddExpenseTableViewCellCategory {
     override func awakeFromNib() {
-        imgView.image = UIImage(named: "Category8")
+        imgView.image = UIImage(named: "Category8")// TODO - Move to Constants
     }
 }

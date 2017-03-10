@@ -15,6 +15,8 @@ class AddExpenseManager {
     
     var expenseService = ExpenseService()
     
+    var lastSelectedCell: AddExpenseBaseTableViewCell = AddExpenseBaseTableViewCell()
+    
     init() {
         updateFields()
     }
@@ -80,12 +82,59 @@ extension AddExpenseManager {
 // MARK: - Actions
 /***********************************/
 extension AddExpenseManager {
+    /**
+     * This will return true if we have to navigate to details screen for choosing a particular value.
+     * Else return false.
+     */
+    func checkIfNavigationIsRequired(forIndexPath indexPath: IndexPath) -> Bool {
+        let reportField = getExpenseFields()[indexPath.section][indexPath.row]
+        
+        // The below checks are done on the field TYPE.
+        if reportField.fieldType == ExpenseAndReportFieldType.category.rawValue ||
+           reportField.fieldType == ExpenseAndReportFieldType.currencyAndAmount.rawValue ||
+           reportField.fieldType == ExpenseAndReportFieldType.dropdown.rawValue {
+            return true
+        }
+        
+        // The below checks are done on the JSON PARAMETER of the field.
+        if reportField.jsonParameter == Constants.RequestParameters.Expense.paymentMode ||
+            reportField.jsonParameter == Constants.RequestParameters.Expense.reportId {
+            return true
+        }
+        
+        return false
+    }
+    
+    func getDetailsNavigationController(forIndexPath indexPath: IndexPath) -> UIViewController {
+        let reportField = getExpenseFields()[indexPath.section][indexPath.row]
+        
+        if reportField.fieldType == ExpenseAndReportFieldType.category.rawValue {
+            // TODO: - Return the review select controller of category here
+            return UIViewController()
+        }
+        
+        if reportField.fieldType == ExpenseAndReportFieldType.currencyAndAmount.rawValue {
+            // TODO: - Return the review select controller of category here
+            return UIViewController()
+        }
+        
+        if reportField.jsonParameter == Constants.RequestParameters.Expense.paymentMode {
+            // TODO: - Return the review select controller of category here
+            return UIViewController()
+        }
+        
+        if reportField.jsonParameter == Constants.RequestParameters.Expense.reportId {
+            // TODO: - Return the review select controller of category here
+            return UIViewController()
+        }
+        
+        return UIViewController()
+    }
+    /**
+     * Sing the other cells are already being checked at the controller, 
+     */
     func performActionForSelectedCell(_ cell: AddExpenseBaseTableViewCell, forIndexPath indexPath: IndexPath) {
-        let reportField = getExpenseFields()[indexPath.row]
-//        if reportField.fieldType == ExpenseAndReportFieldType.text.rawValue ||
-//            reportField.fieldType == ExpenseAndReportFieldType.textView.rawValue {
-//            //cell.makeFirstResponder()
-//        }
+        cell.makeFirstResponder()
     }
     
     func validateInputs(forTableView tableView: UITableView) -> (success: Bool, errorMessage: String) {
@@ -172,6 +221,7 @@ extension AddExpenseManager {
         
         var addToReport = ExpenseAndReportField()
         addToReport.name = "Add to Report"
+        addToReport.jsonParameter = Constants.RequestParameters.Expense.reportId
         addToReport.fieldType = ExpenseAndReportFieldType.dropdown.rawValue
         addToReport.isMandatory = false
         addToReport.isEnabled = true

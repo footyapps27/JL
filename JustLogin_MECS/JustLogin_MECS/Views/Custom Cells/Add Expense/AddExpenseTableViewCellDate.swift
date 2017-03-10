@@ -31,6 +31,10 @@ class AddExpenseTableViewCellDate: AddExpenseBaseTableViewCell {
         }
         return(true, Constants.General.emptyString)
     }
+    
+    override func makeFirstResponder() {
+        txtDate.becomeFirstResponder()
+    }
 }
 /***********************************/
 // MARK: - View lifecylce
