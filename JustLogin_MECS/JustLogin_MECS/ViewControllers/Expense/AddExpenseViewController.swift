@@ -152,8 +152,8 @@ extension AddExpenseViewController: UITableViewDelegate {
         // Cell selected
         if manager.checkIfNavigationIsRequired(forIndexPath: indexPath) {
             // TODO: - Navigate to the details view
-            let controller = manager.getDetailsNavigationController(forIndexPath: indexPath)
-            self.navigationController?.pushViewController(controller, animated: true)
+            let controller = manager.getDetailsNavigationController(forIndexPath: indexPath, withDelegate: self)
+            Utilities.pushControllerAndHideTabbar(fromController: self, toController: controller)
         } else {
             let cell = tableView.cellForRow(at: indexPath) as! AddExpenseBaseTableViewCell
             manager.performActionForSelectedCell(cell, forIndexPath: indexPath)
@@ -187,5 +187,13 @@ extension AddExpenseViewController: UITextFieldDelegate {
         }
         textField.resignFirstResponder()
         return true
+    }
+}
+/***********************************/
+// MARK: - ReviewSelectCategoryViewControllerDelegate
+/***********************************/
+extension AddExpenseViewController: ReviewSelectCategoryViewControllerDelegate {
+    func categorySelected(_ category: Category) {
+        print(category)
     }
 }

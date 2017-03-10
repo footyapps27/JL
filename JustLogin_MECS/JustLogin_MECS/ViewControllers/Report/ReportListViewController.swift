@@ -13,6 +13,7 @@ import UIKit
 // MARK: - Properties
 /***********************************/
 class ReportListViewController: BaseViewControllerWithTableView {
+    
     let manager = ReportListManager()
 }
 /***********************************/

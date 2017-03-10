@@ -63,6 +63,8 @@ struct Constants {
         static let addExpenseTableViewCellWithImageSelection = "addExpenseTableViewCellWithImageSelection"
         
         static let expenseDetailsAuditHistoryTableViewCellIdentifier = "expenseDetailsAuditHistoryTableViewCellIdentifier"
+        
+        static let reviewSelectCategoryTableViewCellIdentifier = "reviewSelectCategoryTableViewCellIdentifier"
     }
     
     struct CellHeight {
@@ -76,6 +78,7 @@ struct Constants {
         static let expenseStoryboard = "Expense"
         static let reportStoryboard = "Report"
         static let mainStoryboard = "Main"
+        static let categoryStoryboard = "Category"
         
         static let approverAndAdminDashboard = "approverAndAdminDashboard"
         static let submitterDashboard = "submitterDashboard"
@@ -85,6 +88,8 @@ struct Constants {
         static let addReportViewController = "addReportViewController"
         static let reportDetailsViewController = "reportDetailsViewController"
         static let launchViewController = "launchViewController"
+        
+        static let reviewSelectCategoryViewController = "reviewSelectCategoryViewController"
     }
     
     struct Notifications {
@@ -112,6 +117,11 @@ struct Constants {
         static let createReport = URLs.baseURL + "/report/create"
         static let updateReport = URLs.baseURL + "/organization/details"
         static let deleteReport = URLs.baseURL + "/organization/details"
+        
+        static let getAllCategories = URLs.baseURL + "/category/retrievebyorganization"
+        static let createCategory = URLs.baseURL + "/category/create"
+        static let updateCategory = URLs.baseURL + "/category/update"
+        static let deleteCategory = URLs.baseURL + "/category/delete"
     }
     
     struct RequestParameters {

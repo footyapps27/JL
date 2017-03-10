@@ -69,6 +69,11 @@
 		8CF2FBD31E7156A3001C008E /* SettingsListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF2FBD21E7156A3001C008E /* SettingsListManager.swift */; };
 		8CF2FBD51E71A26D001C008E /* ExpenseAuditHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF2FBD41E71A26D001C008E /* ExpenseAuditHistory.swift */; };
 		8CF2FBD71E726E56001C008E /* ExpenseDetailsAuditHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF2FBD61E726E56001C008E /* ExpenseDetailsAuditHistoryTableViewCell.swift */; };
+		8CF2FBDC1E72C6A4001C008E /* Category.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CF2FBDB1E72C6A4001C008E /* Category.storyboard */; };
+		8CF2FBDF1E72C73C001C008E /* ReviewSelectCategoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF2FBDE1E72C73C001C008E /* ReviewSelectCategoryManager.swift */; };
+		8CF2FBE11E72C76E001C008E /* CategoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF2FBE01E72C76E001C008E /* CategoryService.swift */; };
+		8CF2FBE41E72CE00001C008E /* ReviewSelectCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF2FBE31E72CE00001C008E /* ReviewSelectCategoryTableViewCell.swift */; };
+		8CF2FBE71E72D61B001C008E /* ReviewSelectCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF2FBE61E72D61B001C008E /* ReviewSelectCategoryViewController.swift */; };
 		8CF342411E5D3941008387BF /* SignInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF342401E5D3941008387BF /* SignInManager.swift */; };
 		8CF342441E5D40E4008387BF /* BaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF342431E5D40E4008387BF /* BaseManager.swift */; };
 		8CF3F64E1E652AA900A18D73 /* AddReportTableViewCellWithTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF3F64D1E652AA900A18D73 /* AddReportTableViewCellWithTextField.swift */; };
@@ -180,6 +185,11 @@
 		8CF2FBD21E7156A3001C008E /* SettingsListManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsListManager.swift; path = JustLogin_MECS/Model/SettingsListManager.swift; sourceTree = SOURCE_ROOT; };
 		8CF2FBD41E71A26D001C008E /* ExpenseAuditHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseAuditHistory.swift; sourceTree = "<group>"; };
 		8CF2FBD61E726E56001C008E /* ExpenseDetailsAuditHistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseDetailsAuditHistoryTableViewCell.swift; sourceTree = "<group>"; };
+		8CF2FBDB1E72C6A4001C008E /* Category.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Category.storyboard; sourceTree = "<group>"; };
+		8CF2FBDE1E72C73C001C008E /* ReviewSelectCategoryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewSelectCategoryManager.swift; sourceTree = "<group>"; };
+		8CF2FBE01E72C76E001C008E /* CategoryService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryService.swift; sourceTree = "<group>"; };
+		8CF2FBE31E72CE00001C008E /* ReviewSelectCategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewSelectCategoryTableViewCell.swift; sourceTree = "<group>"; };
+		8CF2FBE61E72D61B001C008E /* ReviewSelectCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewSelectCategoryViewController.swift; sourceTree = "<group>"; };
 		8CF342401E5D3941008387BF /* SignInManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInManager.swift; sourceTree = "<group>"; };
 		8CF342431E5D40E4008387BF /* BaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseManager.swift; sourceTree = "<group>"; };
 		8CF3F64D1E652AA900A18D73 /* AddReportTableViewCellWithTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReportTableViewCellWithTextField.swift; sourceTree = "<group>"; };
@@ -353,6 +363,7 @@
 				8C9601FE1E1FAE8C00EE66A3 /* Dashboard.storyboard */,
 				8C8995DC1E6085D900482317 /* Expense.storyboard */,
 				8C42DFDA1E63E1AA00A3B69A /* Report.storyboard */,
+				8CF2FBDB1E72C6A4001C008E /* Category.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -362,6 +373,7 @@
 			children = (
 				8CA4B6ED1E28A58D007C3BE5 /* Approval */,
 				8C5141351E1F5F3D003AD3B1 /* Base */,
+				8CF2FBE51E72D61B001C008E /* Category */,
 				8C9602021E1FDB7F00EE66A3 /* Dashboard */,
 				8C9602041E1FDB7F00EE66A3 /* Login */,
 				8CD333151E23BC4D00557B6F /* Expense */,
@@ -386,6 +398,7 @@
 				8C07A5611E6E825E0015D419 /* Add Expense */,
 				8CF3F64C1E652A9D00A18D73 /* Add Report */,
 				8C5141341E1F5F2F003AD3B1 /* Base */,
+				8CF2FBE21E72CDEA001C008E /* Category */,
 				8C00F6641E1E870B0007F29C /* LaunchCollectionViewCell.swift */,
 				8CA4B6F21E28ACA6007C3BE5 /* ReportListTableViewCell.swift */,
 				8CA4B6F61E28C3A6007C3BE5 /* ExpenseListTableViewCell.swift */,
@@ -535,6 +548,7 @@
 			isa = PBXGroup;
 			children = (
 				8CF655E01E58B55600D4FEF3 /* Approval */,
+				8CF2FBDD1E72C729001C008E /* Category */,
 				8CF342421E5D40D7008387BF /* Base */,
 				8CF655E11E58B55600D4FEF3 /* Dashboard */,
 				8CF655E21E58B55600D4FEF3 /* Expense */,
@@ -553,6 +567,7 @@
 				8CF655D41E586CF900D4FEF3 /* OrganizationDetailsService.swift */,
 				8CF655D81E589EB700D4FEF3 /* ExpenseService.swift */,
 				8CF655DA1E589F1B00D4FEF3 /* ReportService.swift */,
+				8CF2FBE01E72C76E001C008E /* CategoryService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -579,6 +594,30 @@
 				8CEAADBD1E55468100BDB5ED /* BaseService.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		8CF2FBDD1E72C729001C008E /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				8CF2FBDE1E72C73C001C008E /* ReviewSelectCategoryManager.swift */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		8CF2FBE21E72CDEA001C008E /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				8CF2FBE31E72CE00001C008E /* ReviewSelectCategoryTableViewCell.swift */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		8CF2FBE51E72D61B001C008E /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				8CF2FBE61E72D61B001C008E /* ReviewSelectCategoryViewController.swift */,
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 		8CF342421E5D40D7008387BF /* Base */ = {
@@ -810,6 +849,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CF2FBDC1E72C6A4001C008E /* Category.storyboard in Resources */,
 				8C00F6611E1E651A0007F29C /* Main.storyboard in Resources */,
 				8C42DFDB1E63E1AA00A3B69A /* Report.storyboard in Resources */,
 				8CE007271E28F3420089D159 /* SettingsTableProfileSectionHeaderView.xib in Resources */,
@@ -996,10 +1036,12 @@
 				8CA4B6F71E28C3A6007C3BE5 /* ExpenseListTableViewCell.swift in Sources */,
 				8C07A5651E6E87570015D419 /* AddExpenseTableViewCellDate.swift in Sources */,
 				8C07A56D1E6E89EE0015D419 /* AddExpenseTableViewCellWithImageSelection.swift in Sources */,
+				8CF2FBE41E72CE00001C008E /* ReviewSelectCategoryTableViewCell.swift in Sources */,
 				8C00F6651E1E870B0007F29C /* LaunchCollectionViewCell.swift in Sources */,
 				8C96020A1E1FDB7F00EE66A3 /* LaunchViewController.swift in Sources */,
 				8CF655D51E586CF900D4FEF3 /* OrganizationDetailsService.swift in Sources */,
 				8C07A5691E6E88DE0015D419 /* AddExpenseTableViewCellWithTextField.swift in Sources */,
+				8CF2FBE71E72D61B001C008E /* ReviewSelectCategoryViewController.swift in Sources */,
 				8CF655C91E58455A00D4FEF3 /* Member.swift in Sources */,
 				8CF655DD1E58B06300D4FEF3 /* Expense.swift in Sources */,
 				8C42DFD31E63DE7D00A3B69A /* AddReportViewController.swift in Sources */,
@@ -1025,6 +1067,7 @@
 				8CF3F6521E652B1E00A18D73 /* AddReportTableViewCellDuration.swift in Sources */,
 				8C42DFD71E63E03400A3B69A /* AddReportManager.swift in Sources */,
 				8C07A56F1E6E8BB30015D419 /* AddExpenseTableViewCellWithTextView.swift in Sources */,
+				8CF2FBE11E72C76E001C008E /* CategoryService.swift in Sources */,
 				8C07A5631E6E87390015D419 /* AddExpenseTableViewCellCategory.swift in Sources */,
 				8CD333211E23C4E500557B6F /* BaseViewControllerWithTableView.swift in Sources */,
 				8C5141291E1E98EC003AD3B1 /* Constants.swift in Sources */,
@@ -1051,6 +1094,7 @@
 				8CF655E71E58B59B00D4FEF3 /* LaunchManager.swift in Sources */,
 				8CF655CB1E585A8200D4FEF3 /* Role.swift in Sources */,
 				8CF655D11E58694400D4FEF3 /* Category.swift in Sources */,
+				8CF2FBDF1E72C73C001C008E /* ReviewSelectCategoryManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

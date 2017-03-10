@@ -11,7 +11,6 @@ import UIKit
 
 class ApprovalListViewController: BaseViewControllerWithTableView {
     
-    
     /***********************************/
     // MARK: - View Lifecycle
     /***********************************/

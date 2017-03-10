@@ -105,12 +105,13 @@ extension AddExpenseManager {
         return false
     }
     
-    func getDetailsNavigationController(forIndexPath indexPath: IndexPath) -> UIViewController {
+    func getDetailsNavigationController(forIndexPath indexPath: IndexPath, withDelegate delegate: AddExpenseViewController) -> UIViewController {
         let reportField = getExpenseFields()[indexPath.section][indexPath.row]
         
         if reportField.fieldType == ExpenseAndReportFieldType.category.rawValue {
-            // TODO: - Return the review select controller of category here
-            return UIViewController()
+            let controller = UIStoryboard(name: Constants.StoryboardIds.categoryStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.reviewSelectCategoryViewController) as! ReviewSelectCategoryViewController
+            controller.delegate = delegate
+            return controller
         }
         
         if reportField.fieldType == ExpenseAndReportFieldType.currencyAndAmount.rawValue {
