@@ -97,7 +97,7 @@ extension AddExpenseViewController {
      * Method to fetch expenses that will be displayed in the tableview.
      */
     func callAddExpenseService() {
-        /*
+        
         showLoadingIndicator(disableUserInteraction: true)
         
         manager.addExpenseWithInputsFromTableView(tableView: tableView) { [weak self] (response) in
@@ -108,14 +108,14 @@ extension AddExpenseViewController {
             switch(response) {
             case .success(_):
                 self.hideLoadingIndicator(enableUserInteraction: true)
-                self.delegate?.reportCreated()
+                self.delegate?.expenseCreated()
                 _ = self.navigationController?.popViewController(animated: true)
             case .failure(_, let message):
-                // TODO: - Handle the empty table view screen.
+                 //TODO: - Handle the empty table view screen.
                 Utilities.showErrorAlert(withMessage: message, onController: self)
                 self.hideLoadingIndicator(enableUserInteraction: true)
             }
-        }*/
+        }
     }
 }
 /***********************************/

@@ -110,7 +110,8 @@ extension ExpenseListViewController {
     }
     
     func navigateToAddExpense() {
-        let addExpenseViewController = UIStoryboard(name: Constants.StoryboardIds.expenseStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.addExpenseViewController) as! BaseViewController
+        let addExpenseViewController = UIStoryboard(name: Constants.StoryboardIds.expenseStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.addExpenseViewController) as! AddExpenseViewController
+        addExpenseViewController.delegate = self
         Utilities.pushControllerAndHideTabbar(fromController:self, toController: addExpenseViewController)
     }
     
@@ -196,5 +197,14 @@ extension ExpenseListViewController: UITableViewDelegate {
 extension ExpenseListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         // TODO: - Implementation missing
+    }
+}
+/***********************************/
+// MARK: - AddExpenseDelegate
+/***********************************/
+extension ExpenseListViewController: AddExpenseDelegate {
+    func expenseCreated() {
+        // Refresh the list once an expense is created.
+        fetchExpenses()
     }
 }

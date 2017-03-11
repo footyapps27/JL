@@ -26,8 +26,8 @@ class AddExpenseTableViewCellCurrencyAndAmount: AddExpenseBaseTableViewCell {
         
     }
     
-    override func validateInput(withField reportField: ExpenseAndReportField) -> (success: Bool, errorMessage: String) {
-        if txtAmount.text!.isEmpty {
+    override func validateInput(withField expenseField: ExpenseAndReportField) -> (success: Bool, errorMessage: String) {
+        if expenseField.isMandatory && txtAmount.text!.isEmpty {
             return (false, "Please make sure 'Amount' has been entered.")
         }
         

@@ -27,7 +27,20 @@ class AddExpenseTableViewCellWithTextView: AddExpenseBaseTableViewCell {
         lblFieldName.text = expenseField.name
     }
     
+    override func validateInput(withField expenseField: ExpenseAndReportField) -> (success: Bool, errorMessage: String) {
+        if expenseField.isMandatory && txtView.text!.isEmpty {
+            return (false, "Please make sure '\(expenseField.name)' has been entered.")
+        }
+        return(true, Constants.General.emptyString)
+    }
+    
     override func makeFirstResponder() {
         txtView.becomeFirstResponder()
+    }
+    
+    override func getPayload(withField expenseField: ExpenseAndReportField) -> [String : Any] {
+        return [
+            expenseField.jsonParameter : txtView.text!
+        ]
     }
 }

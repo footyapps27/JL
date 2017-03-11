@@ -27,8 +27,8 @@ class AddExpenseTableViewCellCategory: AddExpenseBaseTableViewCell {
         
     }
     
-    override func validateInput(withField reportField: ExpenseAndReportField) -> (success: Bool, errorMessage: String) {
-        if txtCategory.text!.isEmpty {
+    override func validateInput(withField expenseField: ExpenseAndReportField) -> (success: Bool, errorMessage: String) {
+        if expenseField.isMandatory && txtCategory.text!.isEmpty {
             return (false, "Please make sure 'Category' has been selected.")
         }
         return(true, Constants.General.emptyString)
@@ -40,7 +40,7 @@ class AddExpenseTableViewCellCategory: AddExpenseBaseTableViewCell {
         imgView.image = UIImage(named: Utilities.getCategoryImageName(forId: id))
     }
     
-    override func getPayload(withField reportField: ExpenseAndReportField) -> [String : Any] {
+    override func getPayload(withField expenseField: ExpenseAndReportField) -> [String : Any] {
         if selectedCategoryId != nil {
             return [
                 Constants.RequestParameters.Expense.categoryId : selectedCategoryId!

@@ -13,7 +13,7 @@ class AddExpenseManager {
     
     var fields: [[ExpenseAndReportField]] = []
     
-    var expenseService = ExpenseService()
+    var expenseService: IExpenseService = ExpenseService()
     
     var lastSelectedNavigationIndex: IndexPath?
     
@@ -56,13 +56,13 @@ extension AddExpenseManager {
     
     func getPayload(fromTableView tableView: UITableView) -> [String: Any] {
         var payload = [String:Any]()
-        
-        var indexPath = IndexPath(item: 0, section: 0)
-        
-        for index in 0..<fields.count {
-            indexPath.row = index
-            let cell = tableView.cellForRow(at: indexPath) as! AddReportBaseTableViewCell
-            //payload = payload.merged(with: cell.getPayload(withField: fields[index]))
+        // O(n2) complexity since all the cells need to be confirmed
+        for section in 0..<fields.count {
+            for row in 0..<fields[section].count {
+                let indexPath = IndexPath(row: row, section: section)
+                let cell = tableView.cellForRow(at: indexPath) as! AddExpenseBaseTableViewCell
+                payload = payload.merged(with: cell.getPayload(withField: fields[section][row]))
+            }
         }
         return payload
     }
@@ -76,6 +76,28 @@ extension AddExpenseManager {
         let expenseField = (fields[indexPath.section])[indexPath.row]
         cell.selectionStyle = UITableViewCellSelectionStyle.none
         cell.updateView(withField: expenseField)
+    }
+}
+/***********************************/
+// MARK: - Services
+/***********************************/
+extension AddExpenseManager {
+    /**
+     * Method to get all the expenses that need to be displayed.
+     */
+    func addExpenseWithInputsFromTableView( tableView: UITableView, completionHandler: (@escaping (ManagerResponseToController<Void>) -> Void)) {
+        let payload = getPayload(fromTableView: tableView)
+        
+        expenseService.create(payload: payload) { (result) in
+            switch(result) {
+            case .success(_):
+                completionHandler(ManagerResponseToController.success())
+            case .error(let serviceError):
+                completionHandler(ManagerResponseToController.failure(code: serviceError.code, message: serviceError.message))
+            case .failure(let message):
+                completionHandler(ManagerResponseToController.failure(code: "", message: message))
+            }
+        }
     }
 }
 /***********************************/
@@ -97,8 +119,7 @@ extension AddExpenseManager {
         }
         
         // The below checks are done on the JSON PARAMETER of the field.
-        if expenseField.jsonParameter == Constants.RequestParameters.Expense.paymentMode ||
-            expenseField.jsonParameter == Constants.RequestParameters.Expense.reportId {
+        if expenseField.jsonParameter == Constants.RequestParameters.Expense.reportId {
             return true
         }
         
@@ -119,15 +140,11 @@ extension AddExpenseManager {
             return getReviewSelectCurrencyController(forIndexPath: indexPath, withDelegate: delegate)
         }
         
-        if expenseField.jsonParameter == Constants.RequestParameters.Expense.paymentMode {
-            // TODO: - Return the review select controller of category here
-            return UIViewController()
-        }
-        
         if expenseField.jsonParameter == Constants.RequestParameters.Expense.reportId {
             return getReviewSelectReportController(forIndexPath: indexPath, withDelegate: delegate)
         }
         
+        // TODO - Need to handle multiple choice for dropdown report fields
         return UIViewController()
     }
     /**
@@ -138,17 +155,16 @@ extension AddExpenseManager {
     }
     
     func validateInputs(forTableView tableView: UITableView) -> (success: Bool, errorMessage: String) {
-        
-        var indexPath = IndexPath(item: 0, section: 0)
-        
-        for index in 0..<fields.count {
-            indexPath.row = index
-            let cell = tableView.cellForRow(at: indexPath) as! AddExpenseBaseTableViewCell
-            print(cell)
-            //            let validation = cell.validateInput(withField: fields[index])
-            //            if !validation.success {
-            //                return validation
-            //            }
+        // O(n2) complexity since all the cells need to be confirmed
+        for section in 0..<fields.count {
+            for row in 0..<fields[section].count {
+                let indexPath = IndexPath(row: row, section: section)
+                let cell = tableView.cellForRow(at: indexPath) as! AddExpenseBaseTableViewCell
+                let validation = cell.validateInput(withField: fields[section][row])
+                if !validation.success {
+                    return validation
+                }
+            }
         }
         return (true, Constants.General.emptyString)
     }

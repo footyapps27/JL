@@ -28,16 +28,16 @@ class AddExpenseBaseTableViewCell: BaseCustomTableViewCell {
     func makeFirstResponder() {}
     
     /**
-     * Validate inputs of the cell based on the report field.
+     * Validate inputs of the cell based on the expense field.
      */
-    func validateInput(withField reportField: ExpenseAndReportField) -> (success: Bool, errorMessage: String) {
+    func validateInput(withField expenseField: ExpenseAndReportField) -> (success: Bool, errorMessage: String) {
         return (true, Constants.General.emptyString)
     }
     
     /**
-     * Return the payload based on the report field & input value.
+     * Return the payload based on the expense field & input value.
      */
-    func getPayload(withField reportField: ExpenseAndReportField) -> [String:Any] {
+    func getPayload(withField expenseField: ExpenseAndReportField) -> [String:Any] {
         return [String:Any]()
     }
 }

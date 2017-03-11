@@ -25,9 +25,9 @@ class AddExpenseTableViewCellWithMultipleSelection: AddExpenseBaseTableViewCell 
         lblFieldName.text = expenseField.name
     }
     
-    override func validateInput(withField reportField: ExpenseAndReportField) -> (success: Bool, errorMessage: String) {
-        if reportField.isMandatory && txtField.text!.isEmpty {
-            return (false, "Please make sure \(reportField.name) has been entered.")
+    override func validateInput(withField expenseField: ExpenseAndReportField) -> (success: Bool, errorMessage: String) {
+        if expenseField.isMandatory && txtField.text!.isEmpty {
+            return (false, "Please make sure \(expenseField.name) has been entered.")
         }
         
         return(true, Constants.General.emptyString)
