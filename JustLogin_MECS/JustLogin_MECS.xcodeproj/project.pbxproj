@@ -104,6 +104,7 @@
 		8CFD02111E73D2FA00526962 /* ReviewSelectReportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFD02101E73D2FA00526962 /* ReviewSelectReportTableViewCell.swift */; };
 		8CFD02131E73D35D00526962 /* ReviewSelectReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFD02121E73D35D00526962 /* ReviewSelectReportViewController.swift */; };
 		8CFD02151E73D39800526962 /* ReviewSelectReportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFD02141E73D39800526962 /* ReviewSelectReportManager.swift */; };
+		8CFD02171E74335B00526962 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFD02161E74335B00526962 /* Double.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -227,6 +228,7 @@
 		8CFD02101E73D2FA00526962 /* ReviewSelectReportTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewSelectReportTableViewCell.swift; sourceTree = "<group>"; };
 		8CFD02121E73D35D00526962 /* ReviewSelectReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewSelectReportViewController.swift; sourceTree = "<group>"; };
 		8CFD02141E73D39800526962 /* ReviewSelectReportManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewSelectReportManager.swift; sourceTree = "<group>"; };
+		8CFD02161E74335B00526962 /* Double.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Double.swift; path = JustLogin_MECS/Manager/Report/Double.swift; sourceTree = SOURCE_ROOT; };
 		C1E5D39D743F2AA54C3A1C46 /* Pods-JustLogin_MECS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JustLogin_MECS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JustLogin_MECS/Pods-JustLogin_MECS.debug.xcconfig"; sourceTree = "<group>"; };
 		CF3885E556538396244297B4 /* Pods-JustLogin_MECSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JustLogin_MECSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-JustLogin_MECSTests/Pods-JustLogin_MECSTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -462,6 +464,7 @@
 			isa = PBXGroup;
 			children = (
 				8CF3F65A1E66FF6000A18D73 /* Dictionary.swift */,
+				8CFD02161E74335B00526962 /* Double.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1099,6 +1102,7 @@
 				8CF3F65B1E66FF6100A18D73 /* Dictionary.swift in Sources */,
 				8CFD020F1E73AAE800526962 /* CurrencyService.swift in Sources */,
 				8C299FF31E681EDA0077A730 /* ExpenseDetailsHeaderView.swift in Sources */,
+				8CFD02171E74335B00526962 /* Double.swift in Sources */,
 				8CB44AD21E5AC642005CC04D /* ExpenseListManager.swift in Sources */,
 				8C07A5711E6E8BDF0015D419 /* AddExpenseBaseTableViewCell.swift in Sources */,
 				8CFD020D1E73A93C00526962 /* ReviewSelectCurrencyManager.swift in Sources */,

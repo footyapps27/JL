@@ -58,6 +58,7 @@ class AddExpenseTableViewCellCurrencyAndAmount: AddExpenseBaseTableViewCell {
 /***********************************/
 extension AddExpenseTableViewCellCurrencyAndAmount {
     override func awakeFromNib() {
+        txtAmount.tag = ExpenseAndReportFieldType.currencyAndAmount.rawValue
         if let organization = Singleton.sharedInstance.organization {
             selectedCurrencyId = organization.baseCurrencyId
             lblCurrency.text = Utilities.getCurrencyCode(forId: organization.baseCurrencyId)

@@ -53,19 +53,6 @@ extension AddExpenseManager {
             return Constants.CellIdentifiers.addReportTableViewCellWithTextField
         }
     }
-    
-    func getPayload(fromTableView tableView: UITableView) -> [String: Any] {
-        var payload = [String:Any]()
-        // O(n2) complexity since all the cells need to be confirmed
-        for section in 0..<fields.count {
-            for row in 0..<fields[section].count {
-                let indexPath = IndexPath(row: row, section: section)
-                let cell = tableView.cellForRow(at: indexPath) as! AddExpenseBaseTableViewCell
-                payload = payload.merged(with: cell.getPayload(withField: fields[section][row]))
-            }
-        }
-        return payload
-    }
 }
 /***********************************/
 // MARK: - UI updating
@@ -85,8 +72,8 @@ extension AddExpenseManager {
     /**
      * Method to get all the expenses that need to be displayed.
      */
-    func addExpenseWithInputsFromTableView( tableView: UITableView, completionHandler: (@escaping (ManagerResponseToController<Void>) -> Void)) {
-        let payload = getPayload(fromTableView: tableView)
+    func addExpenseWithInput(fromTableViewCells cells: [IndexPath:AddExpenseBaseTableViewCell], completionHandler: (@escaping (ManagerResponseToController<Void>) -> Void)) {
+        let payload = getPayload(forTableViewCells: cells)
         
         expenseService.create(payload: payload) { (result) in
             switch(result) {
@@ -126,22 +113,22 @@ extension AddExpenseManager {
         return false
     }
     
-    func getDetailsNavigationController(forIndexPath indexPath: IndexPath, withDelegate delegate: AddExpenseViewController) -> UIViewController {
+    func getDetailsNavigationController(forIndexPath indexPath: IndexPath, cells: [IndexPath:AddExpenseBaseTableViewCell], withDelegate delegate: AddExpenseViewController) -> UIViewController {
         let expenseField = getExpenseFields()[indexPath.section][indexPath.row]
         
         // This will be used when setting the selected value.
         lastSelectedNavigationIndex = indexPath
         
         if expenseField.fieldType == ExpenseAndReportFieldType.category.rawValue {
-            return getReviewSelectCategoryController(forIndexPath: indexPath, withDelegate: delegate)
+            return getReviewSelectCategoryController(forIndexPath: indexPath, cells: cells, withDelegate: delegate)
         }
         
         if expenseField.fieldType == ExpenseAndReportFieldType.currencyAndAmount.rawValue {
-            return getReviewSelectCurrencyController(forIndexPath: indexPath, withDelegate: delegate)
+            return getReviewSelectCurrencyController(forIndexPath: indexPath, cells: cells, withDelegate: delegate)
         }
         
         if expenseField.jsonParameter == Constants.RequestParameters.Expense.reportId {
-            return getReviewSelectReportController(forIndexPath: indexPath, withDelegate: delegate)
+            return getReviewSelectReportController(forIndexPath: indexPath, cells: cells, withDelegate: delegate)
         }
         
         // TODO - Need to handle multiple choice for dropdown report fields
@@ -154,25 +141,20 @@ extension AddExpenseManager {
         cell.makeFirstResponder()
     }
     
-    func validateInputs(forTableView tableView: UITableView) -> (success: Bool, errorMessage: String) {
-        // O(n2) complexity since all the cells need to be confirmed
-        for section in 0..<fields.count {
-            for row in 0..<fields[section].count {
-                let indexPath = IndexPath(row: row, section: section)
-                let cell = tableView.cellForRow(at: indexPath) as! AddExpenseBaseTableViewCell
-                let validation = cell.validateInput(withField: fields[section][row])
-                if !validation.success {
-                    return validation
-                }
+    func validateInputs(forTableViewCells cells: [IndexPath : AddExpenseBaseTableViewCell]) -> (success: Bool, errorMessage: String) {
+        for (indexPath, cell) in cells {
+            let validation = cell.validateInput(withField: fields[indexPath.section][indexPath.row])
+            if !validation.success {
+                return validation
             }
         }
         return (true, Constants.General.emptyString)
     }
     
-    func updateCellBasedAtLastSelectedIndex(forTableView tableView: UITableView, withId id: String, value: String) {
+    func updateCellBasedAtLastSelectedIndex(fromCells cells: [IndexPath:AddExpenseBaseTableViewCell], withId id: String, value: String) {
         if lastSelectedNavigationIndex != nil {
-            let cell = tableView.cellForRow(at: lastSelectedNavigationIndex!) as! AddExpenseBaseTableViewCell
-            cell.updateView(withId: id, value: value)
+            let cell = cells[lastSelectedNavigationIndex!]
+            cell?.updateView(withId: id, value: value)
         }
     }
 }
@@ -270,12 +252,13 @@ extension AddExpenseManager {
 /***********************************/
 extension AddExpenseManager {
     
-    func getReviewSelectCategoryController(forIndexPath indexPath: IndexPath, withDelegate delegate: AddExpenseViewController) -> ReviewSelectCategoryViewController {
+    func getReviewSelectCategoryController(forIndexPath indexPath: IndexPath, cells: [IndexPath:AddExpenseBaseTableViewCell], withDelegate delegate: AddExpenseViewController) -> ReviewSelectCategoryViewController {
         let controller = UIStoryboard(name: Constants.StoryboardIds.categoryStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.reviewSelectCategoryViewController) as! ReviewSelectCategoryViewController
         controller.delegate = delegate
         
         // Now check if it already has a preSelected value
-        let cell = delegate.tableView.cellForRow(at: indexPath) as! AddExpenseBaseTableViewCell
+        let cell = cells[indexPath]!
+        
         let expenseField = getExpenseFields()[indexPath.section][indexPath.row]
         if cell.validateInput(withField: expenseField).success {
             let payload = cell.getPayload(withField: expenseField)
@@ -287,12 +270,12 @@ extension AddExpenseManager {
         return controller
     }
     
-    func getReviewSelectCurrencyController(forIndexPath indexPath: IndexPath, withDelegate delegate: AddExpenseViewController) -> ReviewSelectCurrencyViewController {
+    func getReviewSelectCurrencyController(forIndexPath indexPath: IndexPath, cells: [IndexPath:AddExpenseBaseTableViewCell], withDelegate delegate: AddExpenseViewController) -> ReviewSelectCurrencyViewController {
         let controller = UIStoryboard(name: Constants.StoryboardIds.currencyStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.reviewSelectCurrencyViewController) as! ReviewSelectCurrencyViewController
         controller.delegate = delegate
         
         // Now check if it already has a preSelected value
-        let cell = delegate.tableView.cellForRow(at: indexPath) as! AddExpenseBaseTableViewCell
+        let cell = cells[indexPath]!
         
         let expenseField = getExpenseFields()[indexPath.section][indexPath.row]
         let payload = cell.getPayload(withField: expenseField)
@@ -304,12 +287,12 @@ extension AddExpenseManager {
         return controller
     }
     
-    func getReviewSelectReportController(forIndexPath indexPath: IndexPath, withDelegate delegate: AddExpenseViewController) -> ReviewSelectReportViewController {
+    func getReviewSelectReportController(forIndexPath indexPath: IndexPath, cells: [IndexPath:AddExpenseBaseTableViewCell], withDelegate delegate: AddExpenseViewController) -> ReviewSelectReportViewController {
         let controller = UIStoryboard(name: Constants.StoryboardIds.reportStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.reviewSelectReportViewController) as! ReviewSelectReportViewController
         controller.delegate = delegate
         
         // Now check if it already has a preSelected value
-        let cell = delegate.tableView.cellForRow(at: indexPath) as! AddExpenseBaseTableViewCell
+        let cell = cells[indexPath]!
         
         let expenseField = getExpenseFields()[indexPath.section][indexPath.row]
         
@@ -320,5 +303,16 @@ extension AddExpenseManager {
             }
         }
         return controller
+    }
+    
+    /**
+     * Get payload from all the cells of the table.
+     */
+    func getPayload(forTableViewCells cells: [IndexPath : AddExpenseBaseTableViewCell]) -> [String: Any] {
+        var payload = [String:Any]()
+        for (indexPath, cell) in cells {
+            payload = payload.merged(with: cell.getPayload(withField: fields[indexPath.section][indexPath.row]))
+        }
+        return payload
     }
 }

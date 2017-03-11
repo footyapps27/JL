@@ -26,6 +26,8 @@ class AddExpenseViewController: BaseViewControllerWithTableView {
     
     weak var delegate: AddExpenseDelegate?
     
+    var dictCells: [IndexPath:AddExpenseBaseTableViewCell] = [:]
+    
     let manager = AddExpenseManager()
 }
 /***********************************/
@@ -40,6 +42,8 @@ extension AddExpenseViewController {
         initializeDatePicker()
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 44
+        
+        dictCells = getCellsFromTableView()
     }
 }
 /***********************************/
@@ -68,6 +72,22 @@ extension AddExpenseViewController {
         
         toolbar?.setItems([space, done], animated: true)
     }
+    
+    /**
+     * Method to get all cells from the tableview.
+     * This is done since all the cells are required for various validation excersies.
+     */
+    func getCellsFromTableView() -> [IndexPath : AddExpenseBaseTableViewCell] {
+        var allCells: [IndexPath : AddExpenseBaseTableViewCell] = [:]
+        for section in 0..<manager.getExpenseFields().count {
+            for row in 0..<manager.getExpenseFields()[section].count {
+                let indexPath = IndexPath(row: row, section: section)
+                let cell = tableView(tableView, cellForRowAt: indexPath) as! AddExpenseBaseTableViewCell
+                allCells[indexPath] = cell
+            }
+        }
+        return allCells
+    }
 }
 /***********************************/
 // MARK: - Actions
@@ -75,7 +95,7 @@ extension AddExpenseViewController {
 extension AddExpenseViewController {
     
     func rightBarButtonTapped(_ sender: UIBarButtonItem) {
-        let validation = manager.validateInputs(forTableView: tableView)
+        let validation = manager.validateInputs(forTableViewCells: dictCells)
         if !validation.success {
             Utilities.showErrorAlert(withMessage: validation.errorMessage, onController: self)
         } else {
@@ -100,7 +120,7 @@ extension AddExpenseViewController {
         
         showLoadingIndicator(disableUserInteraction: true)
         
-        manager.addExpenseWithInputsFromTableView(tableView: tableView) { [weak self] (response) in
+        manager.addExpenseWithInput(fromTableViewCells:dictCells) { [weak self] (response) in
             guard let `self` = self else {
                 log.error("Self reference missing in closure.")
                 return
@@ -131,6 +151,12 @@ extension AddExpenseViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // If the cell is already cached, then just return it from the cache.
+        if let cell = dictCells[indexPath] {
+            return cell
+        }
+        
+        // If it is not available in cache, then create or reuse the cell
         let identifier = manager.getTableViewCellIdentifier(forIndexPath: indexPath)
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! AddExpenseBaseTableViewCell
         manager.formatCell(cell, forIndexPath: indexPath)
@@ -153,7 +179,7 @@ extension AddExpenseViewController: UITableViewDelegate {
         // Cell selected
         if manager.checkIfNavigationIsRequired(forIndexPath: indexPath) {
             self.view .endEditing(true)
-            let controller = manager.getDetailsNavigationController(forIndexPath: indexPath, withDelegate: self)
+            let controller = manager.getDetailsNavigationController(forIndexPath: indexPath, cells: dictCells, withDelegate: self)
             Utilities.pushControllerAndHideTabbar(fromController: self, toController: controller)
         } else {
             let cell = tableView.cellForRow(at: indexPath) as! AddExpenseBaseTableViewCell
@@ -180,6 +206,13 @@ extension AddExpenseViewController: UITextFieldDelegate {
         if textField.tag == ExpenseAndReportFieldType.date.rawValue {
             dismissDatePicker(nil)
         }
+        
+        // For the amount, round it to 2 decimal places
+        if textField.tag == ExpenseAndReportFieldType.currencyAndAmount.rawValue {
+            if let amount = Double(textField.text!) {
+                textField.text = String(amount.roundTo(places: 2))
+            }
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -195,7 +228,7 @@ extension AddExpenseViewController: UITextFieldDelegate {
 /***********************************/
 extension AddExpenseViewController: ReviewSelectCategoryViewControllerDelegate {
     func categorySelected(_ category: Category) {
-        manager.updateCellBasedAtLastSelectedIndex(forTableView: tableView, withId: category.id, value: category.name)
+        manager.updateCellBasedAtLastSelectedIndex(fromCells: dictCells, withId: category.id, value: category.name)
     }
 }
 /***********************************/
@@ -203,7 +236,7 @@ extension AddExpenseViewController: ReviewSelectCategoryViewControllerDelegate {
 /***********************************/
 extension AddExpenseViewController: ReviewSelectCurrencyViewControllerDelegate {
     func currencySelected(_ currency: Currency) {
-        manager.updateCellBasedAtLastSelectedIndex(forTableView: tableView, withId: currency.id, value: currency.code)
+        manager.updateCellBasedAtLastSelectedIndex(fromCells: dictCells, withId: currency.id, value: currency.code)
     }
 }
 /***********************************/
@@ -211,6 +244,6 @@ extension AddExpenseViewController: ReviewSelectCurrencyViewControllerDelegate {
 /***********************************/
 extension AddExpenseViewController: ReviewSelectReportViewControllerDelegate {
     func reportSelected(_ report: Report) {
-        manager.updateCellBasedAtLastSelectedIndex(forTableView: tableView, withId: report.id, value: report.title)
+        manager.updateCellBasedAtLastSelectedIndex(fromCells: dictCells, withId: report.id, value: report.title)
     }
 }
