@@ -13,7 +13,54 @@ class AddExpenseTableViewCellCurrencyAndAmount: AddExpenseBaseTableViewCell {
     /***********************************/
     // MARK: - Outlets
     /***********************************/
-    @IBOutlet weak var btnCurrency: UIButton!
+    @IBOutlet weak var lblCurrency: UILabel!
     
     @IBOutlet weak var txtAmount: UITextField!
+    
+    var selectedCurrencyId: String?
+    
+    /***********************************/
+    // MARK: - Parent method override
+    /***********************************/
+    override func updateView(withField expenseField: ExpenseAndReportField) {
+        
+    }
+    
+    override func validateInput(withField reportField: ExpenseAndReportField) -> (success: Bool, errorMessage: String) {
+        if txtAmount.text!.isEmpty {
+            return (false, "Please make sure 'Amount' has been entered.")
+        }
+        
+        guard (Double(txtAmount.text!) != nil) else {
+            return (false, "Please enter a valid amount. Only decimals allowed")
+        }
+        
+        return(true, Constants.General.emptyString)
+    }
+    
+    override func updateView(withId id: String, value: String) {
+        selectedCurrencyId = id
+        lblCurrency.text = value
+    }
+    
+    override func getPayload(withField reportField: ExpenseAndReportField) -> [String : Any] {
+        if selectedCurrencyId != nil {
+            return [
+                Constants.RequestParameters.Expense.currencyId : selectedCurrencyId!,
+                Constants.RequestParameters.Expense.amount : (Double(txtAmount.text!) ?? 0.00)
+            ]
+        }
+        return [:]
+    }
+}
+/***********************************/
+// MARK: - View Lifecycle
+/***********************************/
+extension AddExpenseTableViewCellCurrencyAndAmount {
+    override func awakeFromNib() {
+        if let organization = Singleton.sharedInstance.organization {
+            selectedCurrencyId = organization.baseCurrencyId
+            lblCurrency.text = Utilities.getCurrencyCode(forId: organization.baseCurrencyId)
+        }
+    }
 }

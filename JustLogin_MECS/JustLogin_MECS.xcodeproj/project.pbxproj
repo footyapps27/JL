@@ -97,6 +97,10 @@
 		8CF655DF1E58B07000D4FEF3 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655DE1E58B07000D4FEF3 /* Report.swift */; };
 		8CF655E71E58B59B00D4FEF3 /* LaunchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655E61E58B59B00D4FEF3 /* LaunchManager.swift */; };
 		8CF655EC1E58BE2E00D4FEF3 /* LoginServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655EB1E58BE2E00D4FEF3 /* LoginServiceTests.swift */; };
+		8CFD02071E73A83C00526962 /* Currency.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CFD02061E73A83C00526962 /* Currency.storyboard */; };
+		8CFD020A1E73A8B200526962 /* ReviewSelectCurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFD02091E73A8B200526962 /* ReviewSelectCurrencyViewController.swift */; };
+		8CFD020D1E73A93C00526962 /* ReviewSelectCurrencyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFD020C1E73A93C00526962 /* ReviewSelectCurrencyManager.swift */; };
+		8CFD020F1E73AAE800526962 /* CurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFD020E1E73AAE800526962 /* CurrencyService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -213,6 +217,10 @@
 		8CF655DE1E58B07000D4FEF3 /* Report.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		8CF655E61E58B59B00D4FEF3 /* LaunchManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchManager.swift; sourceTree = "<group>"; };
 		8CF655EB1E58BE2E00D4FEF3 /* LoginServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginServiceTests.swift; sourceTree = "<group>"; };
+		8CFD02061E73A83C00526962 /* Currency.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Currency.storyboard; sourceTree = "<group>"; };
+		8CFD02091E73A8B200526962 /* ReviewSelectCurrencyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewSelectCurrencyViewController.swift; sourceTree = "<group>"; };
+		8CFD020C1E73A93C00526962 /* ReviewSelectCurrencyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewSelectCurrencyManager.swift; sourceTree = "<group>"; };
+		8CFD020E1E73AAE800526962 /* CurrencyService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyService.swift; sourceTree = "<group>"; };
 		C1E5D39D743F2AA54C3A1C46 /* Pods-JustLogin_MECS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JustLogin_MECS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JustLogin_MECS/Pods-JustLogin_MECS.debug.xcconfig"; sourceTree = "<group>"; };
 		CF3885E556538396244297B4 /* Pods-JustLogin_MECSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JustLogin_MECSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-JustLogin_MECSTests/Pods-JustLogin_MECSTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -364,6 +372,7 @@
 				8C8995DC1E6085D900482317 /* Expense.storyboard */,
 				8C42DFDA1E63E1AA00A3B69A /* Report.storyboard */,
 				8CF2FBDB1E72C6A4001C008E /* Category.storyboard */,
+				8CFD02061E73A83C00526962 /* Currency.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -374,6 +383,7 @@
 				8CA4B6ED1E28A58D007C3BE5 /* Approval */,
 				8C5141351E1F5F3D003AD3B1 /* Base */,
 				8CF2FBE51E72D61B001C008E /* Category */,
+				8CFD02081E73A89400526962 /* Currency */,
 				8C9602021E1FDB7F00EE66A3 /* Dashboard */,
 				8C9602041E1FDB7F00EE66A3 /* Login */,
 				8CD333151E23BC4D00557B6F /* Expense */,
@@ -549,6 +559,7 @@
 			children = (
 				8CF655E01E58B55600D4FEF3 /* Approval */,
 				8CF2FBDD1E72C729001C008E /* Category */,
+				8CFD020B1E73A92E00526962 /* Currency */,
 				8CF342421E5D40D7008387BF /* Base */,
 				8CF655E11E58B55600D4FEF3 /* Dashboard */,
 				8CF655E21E58B55600D4FEF3 /* Expense */,
@@ -568,6 +579,7 @@
 				8CF655D81E589EB700D4FEF3 /* ExpenseService.swift */,
 				8CF655DA1E589F1B00D4FEF3 /* ReportService.swift */,
 				8CF2FBE01E72C76E001C008E /* CategoryService.swift */,
+				8CFD020E1E73AAE800526962 /* CurrencyService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -720,6 +732,22 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		8CFD02081E73A89400526962 /* Currency */ = {
+			isa = PBXGroup;
+			children = (
+				8CFD02091E73A8B200526962 /* ReviewSelectCurrencyViewController.swift */,
+			);
+			path = Currency;
+			sourceTree = "<group>";
+		};
+		8CFD020B1E73A92E00526962 /* Currency */ = {
+			isa = PBXGroup;
+			children = (
+				8CFD020C1E73A93C00526962 /* ReviewSelectCurrencyManager.swift */,
+			);
+			path = Currency;
+			sourceTree = "<group>";
+		};
 		C5CD3670715C6E149859CB9E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -853,6 +881,7 @@
 				8C00F6611E1E651A0007F29C /* Main.storyboard in Resources */,
 				8C42DFDB1E63E1AA00A3B69A /* Report.storyboard in Resources */,
 				8CE007271E28F3420089D159 /* SettingsTableProfileSectionHeaderView.xib in Resources */,
+				8CFD02071E73A83C00526962 /* Currency.storyboard in Resources */,
 				8C00F62E1E1E633B0007F29C /* LaunchScreen.storyboard in Resources */,
 				8C00F62B1E1E633B0007F29C /* Assets.xcassets in Resources */,
 				8C9601FF1E1FAE8C00EE66A3 /* Dashboard.storyboard in Resources */,
@@ -1058,10 +1087,13 @@
 				8CEAADBE1E55468100BDB5ED /* BaseService.swift in Sources */,
 				8CA4B6EF1E28A5A8007C3BE5 /* ApprovalListViewController.swift in Sources */,
 				8CF3F65B1E66FF6100A18D73 /* Dictionary.swift in Sources */,
+				8CFD020F1E73AAE800526962 /* CurrencyService.swift in Sources */,
 				8C299FF31E681EDA0077A730 /* ExpenseDetailsHeaderView.swift in Sources */,
 				8CB44AD21E5AC642005CC04D /* ExpenseListManager.swift in Sources */,
 				8C07A5711E6E8BDF0015D419 /* AddExpenseBaseTableViewCell.swift in Sources */,
+				8CFD020D1E73A93C00526962 /* ReviewSelectCurrencyManager.swift in Sources */,
 				8CF3F64E1E652AA900A18D73 /* AddReportTableViewCellWithTextField.swift in Sources */,
+				8CFD020A1E73A8B200526962 /* ReviewSelectCurrencyViewController.swift in Sources */,
 				8CE007231E28F3280089D159 /* SettingsTableProfileSectionHeaderView.swift in Sources */,
 				8CF655C71E58387100D4FEF3 /* LoginService.swift in Sources */,
 				8CF3F6521E652B1E00A18D73 /* AddReportTableViewCellDuration.swift in Sources */,

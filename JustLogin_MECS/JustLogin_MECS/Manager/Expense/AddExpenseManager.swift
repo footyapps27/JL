@@ -91,8 +91,8 @@ extension AddExpenseManager {
         
         // The below checks are done on the field TYPE.
         if expenseField.fieldType == ExpenseAndReportFieldType.category.rawValue ||
-           expenseField.fieldType == ExpenseAndReportFieldType.currencyAndAmount.rawValue ||
-           expenseField.fieldType == ExpenseAndReportFieldType.dropdown.rawValue {
+            expenseField.fieldType == ExpenseAndReportFieldType.currencyAndAmount.rawValue ||
+            expenseField.fieldType == ExpenseAndReportFieldType.dropdown.rawValue {
             return true
         }
         
@@ -116,8 +116,7 @@ extension AddExpenseManager {
         }
         
         if expenseField.fieldType == ExpenseAndReportFieldType.currencyAndAmount.rawValue {
-            // TODO: - Return the review select controller of category here
-            return UIViewController()
+            return getReviewSelectCurrencyController(forIndexPath: indexPath, withDelegate: delegate)
         }
         
         if expenseField.jsonParameter == Constants.RequestParameters.Expense.paymentMode {
@@ -133,7 +132,7 @@ extension AddExpenseManager {
         return UIViewController()
     }
     /**
-     * Sing the other cells are already being checked at the controller, 
+     * Sing the other cells are already being checked at the controller,
      */
     func performActionForSelectedCell(_ cell: AddExpenseBaseTableViewCell, forIndexPath indexPath: IndexPath) {
         cell.makeFirstResponder()
@@ -147,10 +146,10 @@ extension AddExpenseManager {
             indexPath.row = index
             let cell = tableView.cellForRow(at: indexPath) as! AddExpenseBaseTableViewCell
             print(cell)
-//            let validation = cell.validateInput(withField: fields[index])
-//            if !validation.success {
-//                return validation
-//            }
+            //            let validation = cell.validateInput(withField: fields[index])
+            //            if !validation.success {
+            //                return validation
+            //            }
         }
         return (true, Constants.General.emptyString)
     }
@@ -270,7 +269,23 @@ extension AddExpenseManager {
                 controller.preSelectedCategory = Singleton.sharedInstance.organization?.categories[preSelectedCategoryId]
             }
         }
+        return controller
+    }
+    
+    func getReviewSelectCurrencyController(forIndexPath indexPath: IndexPath, withDelegate delegate: AddExpenseViewController) -> ReviewSelectCurrencyViewController {
+        let controller = UIStoryboard(name: Constants.StoryboardIds.currencyStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.reviewSelectCurrencyViewController) as! ReviewSelectCurrencyViewController
+        controller.delegate = delegate
         
+        // Now check if it already has a preSelected value
+        let cell = delegate.tableView.cellForRow(at: indexPath) as! AddExpenseBaseTableViewCell
+        
+        let expenseField = getExpenseFields()[indexPath.section][indexPath.row]
+        let payload = cell.getPayload(withField: expenseField)
+        
+        if !payload.isEmpty {
+            let preSelectedCurrencyId = payload[Constants.RequestParameters.Expense.currencyId] as! String
+            controller.preSelectedCurrency = Singleton.sharedInstance.organization?.currencies[preSelectedCurrencyId]
+        }
         return controller
     }
 }

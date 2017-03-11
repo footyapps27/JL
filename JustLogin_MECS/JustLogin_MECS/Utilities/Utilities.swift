@@ -180,3 +180,14 @@ extension Utilities {
         return Constants.General.emptyString
     }
 }
+/***********************************/
+// MARK: - Category Image Name
+/***********************************/
+extension Utilities {
+    static func getCurrencyCode(forId id: String) -> String {
+        if let currency = Singleton.sharedInstance.organization?.currencies[id] {
+            return currency.code
+        }
+        return Constants.General.emptyString
+    }
+}

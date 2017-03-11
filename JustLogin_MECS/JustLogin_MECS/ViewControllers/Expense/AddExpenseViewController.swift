@@ -35,6 +35,7 @@ extension AddExpenseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = Constants.ViewControllerTitles.addExpense
         addBarButtonItems()
         initializeDatePicker()
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -195,5 +196,13 @@ extension AddExpenseViewController: UITextFieldDelegate {
 extension AddExpenseViewController: ReviewSelectCategoryViewControllerDelegate {
     func categorySelected(_ category: Category) {
         manager.updateCellBasedAtLastSelectedIndex(forTableView: tableView, withId: category.id, value: category.name)
+    }
+}
+/***********************************/
+// MARK: - ReviewSelectCurrencyViewControllerDelegate
+/***********************************/
+extension AddExpenseViewController: ReviewSelectCurrencyViewControllerDelegate {
+    func currencySelected(_ currency: Currency) {
+        manager.updateCellBasedAtLastSelectedIndex(forTableView: tableView, withId: currency.id, value: currency.code)
     }
 }

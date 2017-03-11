@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 /**
- * Manager for ExpenseListViewController
+ * Manager for ReviewSelectCategoryViewController
  */
 class ReviewSelectCategoryManager {
     

@@ -1,8 +1,8 @@
 //
-//  ReviewSelectCategoryViewController.swift
+//  ReviewSelectCurrencyViewController.swift
 //  JustLogin_MECS
 //
-//  Created by Samrat on 10/3/17.
+//  Created by Samrat on 11/3/17.
 //  Copyright © 2017 SMRT. All rights reserved.
 //
 
@@ -12,19 +12,19 @@ import UIKit
 /***********************************/
 // MARK: - Protocol
 /***********************************/
-protocol ReviewSelectCategoryViewControllerDelegate: class {
-    func categorySelected(_ category: Category)
+protocol ReviewSelectCurrencyViewControllerDelegate: class {
+    func currencySelected(_ currency: Currency)
 }
 /***********************************/
 // MARK: - Properties
 /***********************************/
-class ReviewSelectCategoryViewController: BaseViewControllerWithTableView {
+class ReviewSelectCurrencyViewController: BaseViewControllerWithTableView {
     
-    let manager = ReviewSelectCategoryManager()
+    let manager = ReviewSelectCurrencyManager()
     
-    var preSelectedCategory: Category?
+    var preSelectedCurrency: Currency?
     
-    weak var delegate: ReviewSelectCategoryViewControllerDelegate?
+    weak var delegate: ReviewSelectCurrencyViewControllerDelegate?
     /***********************************/
     // MARK: - View Lifecycle
     /***********************************/
@@ -32,30 +32,17 @@ class ReviewSelectCategoryViewController: BaseViewControllerWithTableView {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = Constants.ViewControllerTitles.reviewSelectCategory
+        title = Constants.ViewControllerTitles.reviewSelectCurrency
         addRefreshControl(toTableView: tableView, withAction: #selector(refreshTableView(_:)))
-        
-        addBarButtonItems()
-    }
-}
-
-/***********************************/
-// MARK: - Helpers
-/***********************************/
-extension ReviewSelectCategoryViewController {
-    
-    func addBarButtonItems() {
-        // TODO: - Check if the button should be enabled based on role.
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(rightBarButtonTapped(_:)))
     }
 }
 /***********************************/
 // MARK: - Actions
 /***********************************/
-extension ReviewSelectCategoryViewController {
+extension ReviewSelectCurrencyViewController {
     
     func refreshTableView(_ refreshControl: UIRefreshControl) {
-        fetchCategories()
+        fetchCurrencies()
     }
     
     func rightBarButtonTapped(_ sender: UIBarButtonItem) {
@@ -65,13 +52,13 @@ extension ReviewSelectCategoryViewController {
 /***********************************/
 // MARK: - Service Call
 /***********************************/
-extension ReviewSelectCategoryViewController {
+extension ReviewSelectCurrencyViewController {
     /**
-     * Method to fetch categories that will be displayed in the tableview.
+     * Method to fetch currencies that will be displayed in the tableview.
      */
-    func fetchCategories() {
+    func fetchCurrencies() {
         
-        manager.fetchCategories { [weak self] (response) in
+        manager.fetchCurrencies { [weak self] (response) in
             guard let `self` = self else {
                 log.error("Self reference missing in closure.")
                 return
@@ -80,7 +67,7 @@ extension ReviewSelectCategoryViewController {
             case .success(_):
                 self.tableView.reloadData()
                 if self.refreshControl.isRefreshing {
-                   self.refreshControl.endRefreshing()
+                    self.refreshControl.endRefreshing()
                 }
             case .failure(_, let message):
                 // TODO: - Handle the empty table view screen.
@@ -95,30 +82,33 @@ extension ReviewSelectCategoryViewController {
 /***********************************/
 // MARK: - UITableViewDataSource
 /***********************************/
-extension ReviewSelectCategoryViewController: UITableViewDataSource {
+extension ReviewSelectCurrencyViewController: UITableViewDataSource {
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return manager.getCategories().count
+        return manager.getCurrencies().count
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // TODO - Show the checkmark if preSelectedCategory is present.
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.reviewSelectCategoryTableViewCellIdentifier, for: indexPath) as! ReviewSelectCategoryTableViewCell
+        var cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.defaultTableViewCellIdentifier)
         
-        cell.lblCategoryName.text = manager.getCategoryName(forIndexPath: indexPath)
-        cell.imgView.image = UIImage(named: manager.getCategoryImageName(forIndexPath: indexPath))
-        cell.accessoryType = manager.getCellAccessoryType(forIndexPath: indexPath, preSelectedCategory: preSelectedCategory)
-        return cell
+        if cell == nil {
+            cell = UITableViewCell(style: .default, reuseIdentifier: Constants.CellIdentifiers.defaultTableViewCellIdentifier)
+        }
+        
+        cell?.textLabel?.text = manager.getCurrencyCode(forIndexPath: indexPath)
+        cell?.accessoryType = manager.getCellAccessoryType(forIndexPath: indexPath, preSelectedCurrency: preSelectedCurrency)
+        return cell!
     }
 }
 /***********************************/
 // MARK: - UITableViewDelegate
 /***********************************/
-extension ReviewSelectCategoryViewController: UITableViewDelegate {
+extension ReviewSelectCurrencyViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView .deselectRow(at: indexPath, animated: false)
-        delegate?.categorySelected(manager.getCategories()[indexPath.row])
+        delegate?.currencySelected(manager.getCurrencies()[indexPath.row])
         _ = self.navigationController?.popViewController(animated: true)
     }
 }

@@ -23,6 +23,12 @@ struct Constants {
         static let activityIndicatorHeightWidth = 50
     }
     
+    struct ViewControllerTitles {
+        static let reviewSelectCategory = "Select a Category"
+        static let reviewSelectCurrency = "Select a Currency"
+        static let addExpense = "Add Expense"
+    }
+    
     struct UIImageNames {
         static let attachmentActive = "AttachmentActive"
         static let attachmentDefault = "AttachmentDefault"
@@ -44,6 +50,8 @@ struct Constants {
     }
     
     struct CellIdentifiers {
+        static let defaultTableViewCellIdentifier = "defaultTableViewCellIdentifier"
+        
         static let launchCollectionViewCellIdentifier = "launchCollectionCellIdentifier"
         static let expenseListTableViewCellIdentifier = "expenseListTableViewCellIdentifier"
         static let settingsListTableViewCellIdentifier = "settingsListTableViewCellIdentifier"
@@ -80,6 +88,7 @@ struct Constants {
         static let reportStoryboard = "Report"
         static let mainStoryboard = "Main"
         static let categoryStoryboard = "Category"
+        static let currencyStoryboard = "Currency"
         
         static let approverAndAdminDashboard = "approverAndAdminDashboard"
         static let submitterDashboard = "submitterDashboard"
@@ -91,6 +100,7 @@ struct Constants {
         static let launchViewController = "launchViewController"
         
         static let reviewSelectCategoryViewController = "reviewSelectCategoryViewController"
+        static let reviewSelectCurrencyViewController = "reviewSelectCurrencyViewController"
     }
     
     struct Notifications {
@@ -123,6 +133,11 @@ struct Constants {
         static let createCategory = URLs.baseURL + "/category/create"
         static let updateCategory = URLs.baseURL + "/category/update"
         static let deleteCategory = URLs.baseURL + "/category/delete"
+        
+        static let getAllCurrencies = URLs.baseURL + "/currency/retrievebyorganization"
+        static let createCurrency = URLs.baseURL + "/currency/create"
+        static let updateCurrency = URLs.baseURL + "/currency/update"
+        static let deleteCurrency = URLs.baseURL + "/currency/delete"
     }
     
     struct RequestParameters {

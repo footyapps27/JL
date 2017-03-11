@@ -117,13 +117,15 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="9EY-Ds-pQP">
                                                     <rect key="frame" x="8" y="2" width="359" height="50.5"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C9p-2R-fer">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MOU-eA-9WE">
                                                             <rect key="frame" x="0.0" y="0.0" width="38" height="50.5"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="38" id="m7a-o1-H1W"/>
+                                                                <constraint firstAttribute="width" constant="38" id="kPj-pj-W0B"/>
                                                             </constraints>
-                                                            <state key="normal" title="USD"/>
-                                                        </button>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IqI-X3-eJK">
                                                             <rect key="frame" x="48" y="0.0" width="1" height="50.5"/>
                                                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -136,7 +138,7 @@
                                                             <rect key="frame" x="59" y="0.0" width="300" height="50.5"/>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <textInputTraits key="textInputTraits"/>
+                                                            <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                         </textField>
                                                     </subviews>
                                                 </stackView>
@@ -148,6 +150,10 @@
                                                 <constraint firstItem="9EY-Ds-pQP" firstAttribute="leading" secondItem="Ggd-4b-GCl" secondAttribute="leading" constant="8" id="fYI-fh-P52"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="lblCurrency" destination="MOU-eA-9WE" id="1Hp-Yf-EPm"/>
+                                            <outlet property="txtAmount" destination="HX5-Zj-PHa" id="c8N-t8-tq8"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addExpenseTableViewCellWithMultipleSelection" rowHeight="44" id="XKF-A5-60C" customClass="AddExpenseTableViewCellWithMultipleSelection" customModule="JustLogin_MECS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="198" width="375" height="44"/>
