@@ -40,6 +40,7 @@ struct Constants {
         static let accessPrivilegeApproveReports = 0
         static let exchangeRate = 1.0
         static let fieldType = 0
+        static let categoryImage = "Category8"
     }
     
     struct CellIdentifiers {

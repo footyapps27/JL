@@ -17,6 +17,11 @@ class AddExpenseBaseTableViewCell: BaseCustomTableViewCell {
     func updateView(withField expenseField: ExpenseAndReportField) {}
     
     /**
+     * Update view based on the value selected by the user from the multiple selection table.
+     */
+    func updateView(withId id: String, value: String) {}
+    
+    /**
      * Called when the cell is selected.
      * The cell decides which component to make the first responder.
      */

@@ -169,3 +169,14 @@ extension Utilities {
         return Constants.General.emptyString
     }
 }
+/***********************************/
+// MARK: - Category Image Name
+/***********************************/
+extension Utilities {
+    static func getCategoryImageName(forId id: String) -> String {
+        if let category = Singleton.sharedInstance.organization?.categories[id] {
+            return "Category" + String(category.logo)
+        }
+        return Constants.General.emptyString
+    }
+}

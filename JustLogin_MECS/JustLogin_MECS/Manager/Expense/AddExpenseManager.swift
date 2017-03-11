@@ -15,7 +15,7 @@ class AddExpenseManager {
     
     var expenseService = ExpenseService()
     
-    var lastSelectedCell: AddExpenseBaseTableViewCell = AddExpenseBaseTableViewCell()
+    var lastSelectedNavigationIndex: IndexPath?
     
     init() {
         updateFields()
@@ -87,18 +87,18 @@ extension AddExpenseManager {
      * Else return false.
      */
     func checkIfNavigationIsRequired(forIndexPath indexPath: IndexPath) -> Bool {
-        let reportField = getExpenseFields()[indexPath.section][indexPath.row]
+        let expenseField = getExpenseFields()[indexPath.section][indexPath.row]
         
         // The below checks are done on the field TYPE.
-        if reportField.fieldType == ExpenseAndReportFieldType.category.rawValue ||
-           reportField.fieldType == ExpenseAndReportFieldType.currencyAndAmount.rawValue ||
-           reportField.fieldType == ExpenseAndReportFieldType.dropdown.rawValue {
+        if expenseField.fieldType == ExpenseAndReportFieldType.category.rawValue ||
+           expenseField.fieldType == ExpenseAndReportFieldType.currencyAndAmount.rawValue ||
+           expenseField.fieldType == ExpenseAndReportFieldType.dropdown.rawValue {
             return true
         }
         
         // The below checks are done on the JSON PARAMETER of the field.
-        if reportField.jsonParameter == Constants.RequestParameters.Expense.paymentMode ||
-            reportField.jsonParameter == Constants.RequestParameters.Expense.reportId {
+        if expenseField.jsonParameter == Constants.RequestParameters.Expense.paymentMode ||
+            expenseField.jsonParameter == Constants.RequestParameters.Expense.reportId {
             return true
         }
         
@@ -106,25 +106,26 @@ extension AddExpenseManager {
     }
     
     func getDetailsNavigationController(forIndexPath indexPath: IndexPath, withDelegate delegate: AddExpenseViewController) -> UIViewController {
-        let reportField = getExpenseFields()[indexPath.section][indexPath.row]
+        let expenseField = getExpenseFields()[indexPath.section][indexPath.row]
         
-        if reportField.fieldType == ExpenseAndReportFieldType.category.rawValue {
-            let controller = UIStoryboard(name: Constants.StoryboardIds.categoryStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.reviewSelectCategoryViewController) as! ReviewSelectCategoryViewController
-            controller.delegate = delegate
-            return controller
+        // This will be used when setting the selected value.
+        lastSelectedNavigationIndex = indexPath
+        
+        if expenseField.fieldType == ExpenseAndReportFieldType.category.rawValue {
+            return getReviewSelectCategoryController(forIndexPath: indexPath, withDelegate: delegate)
         }
         
-        if reportField.fieldType == ExpenseAndReportFieldType.currencyAndAmount.rawValue {
+        if expenseField.fieldType == ExpenseAndReportFieldType.currencyAndAmount.rawValue {
             // TODO: - Return the review select controller of category here
             return UIViewController()
         }
         
-        if reportField.jsonParameter == Constants.RequestParameters.Expense.paymentMode {
+        if expenseField.jsonParameter == Constants.RequestParameters.Expense.paymentMode {
             // TODO: - Return the review select controller of category here
             return UIViewController()
         }
         
-        if reportField.jsonParameter == Constants.RequestParameters.Expense.reportId {
+        if expenseField.jsonParameter == Constants.RequestParameters.Expense.reportId {
             // TODO: - Return the review select controller of category here
             return UIViewController()
         }
@@ -152,6 +153,13 @@ extension AddExpenseManager {
 //            }
         }
         return (true, Constants.General.emptyString)
+    }
+    
+    func updateCellBasedAtLastSelectedIndex(forTableView tableView: UITableView, withId id: String, value: String) {
+        if lastSelectedNavigationIndex != nil {
+            let cell = tableView.cellForRow(at: lastSelectedNavigationIndex!) as! AddExpenseBaseTableViewCell
+            cell.updateView(withId: id, value: value)
+        }
     }
 }
 /***********************************/
@@ -241,5 +249,28 @@ extension AddExpenseManager {
         attachImage.isEnabled = true
         
         fields.append([attachImage])
+    }
+}
+/***********************************/
+// MARK: - Helpers
+/***********************************/
+extension AddExpenseManager {
+    
+    func getReviewSelectCategoryController(forIndexPath indexPath: IndexPath, withDelegate delegate: AddExpenseViewController) -> ReviewSelectCategoryViewController {
+        let controller = UIStoryboard(name: Constants.StoryboardIds.categoryStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.reviewSelectCategoryViewController) as! ReviewSelectCategoryViewController
+        controller.delegate = delegate
+        
+        // Now check if it already has a preSelected value
+        let cell = delegate.tableView.cellForRow(at: indexPath) as! AddExpenseBaseTableViewCell
+        let expenseField = getExpenseFields()[indexPath.section][indexPath.row]
+        if cell.validateInput(withField: expenseField).success {
+            let payload = cell.getPayload(withField: expenseField)
+            if !payload.isEmpty {
+                let preSelectedCategoryId = payload[Constants.RequestParameters.Expense.categoryId] as! String
+                controller.preSelectedCategory = Singleton.sharedInstance.organization?.categories[preSelectedCategoryId]
+            }
+        }
+        
+        return controller
     }
 }

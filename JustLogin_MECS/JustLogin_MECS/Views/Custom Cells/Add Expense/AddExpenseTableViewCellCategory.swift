@@ -18,6 +18,8 @@ class AddExpenseTableViewCellCategory: AddExpenseBaseTableViewCell {
     
     @IBOutlet weak var txtCategory: UITextField!
     
+    var selectedCategoryId: String?
+    
     /***********************************/
     // MARK: - Parent method override
     /***********************************/
@@ -31,12 +33,27 @@ class AddExpenseTableViewCellCategory: AddExpenseBaseTableViewCell {
         }
         return(true, Constants.General.emptyString)
     }
+    
+    override func updateView(withId id: String, value: String) {
+        selectedCategoryId = id
+        txtCategory.text = value
+        imgView.image = UIImage(named: Utilities.getCategoryImageName(forId: id))
+    }
+    
+    override func getPayload(withField reportField: ExpenseAndReportField) -> [String : Any] {
+        if selectedCategoryId != nil {
+            return [
+                Constants.RequestParameters.Expense.categoryId : selectedCategoryId!
+            ]
+        }
+        return [:]
+    }
 }
 /***********************************/
 // MARK: - View lifecylce
 /***********************************/
 extension AddExpenseTableViewCellCategory {
     override func awakeFromNib() {
-        imgView.image = UIImage(named: "Category8")// TODO - Move to Constants
+        imgView.image = UIImage(named: Constants.Defaults.categoryImage)
     }
 }

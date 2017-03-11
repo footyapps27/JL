@@ -106,7 +106,7 @@ extension ReviewSelectCategoryViewController: UITableViewDataSource {
         
         cell.lblCategoryName.text = manager.getCategoryName(forIndexPath: indexPath)
         cell.imgView.image = UIImage(named: manager.getCategoryImageName(forIndexPath: indexPath))
-        
+        cell.accessoryType = manager.getCellAccessoryType(forIndexPath: indexPath, preSelectedCategory: preSelectedCategory)
         return cell
     }
 }

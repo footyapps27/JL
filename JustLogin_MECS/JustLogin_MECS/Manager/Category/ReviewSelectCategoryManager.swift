@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 /**
  * Manager for ExpenseListViewController
  */
@@ -20,6 +20,7 @@ class ReviewSelectCategoryManager {
     init() {
         if let existingCategories = Singleton.sharedInstance.organization?.categories {
             categories = Array(existingCategories.values)
+            sortCategoryListByName()
         }
     }
 }
@@ -41,8 +42,16 @@ extension ReviewSelectCategoryManager {
     }
     
     func getCategoryImageName(forIndexPath indexPath: IndexPath) -> String {
-        let logo = categories[indexPath.row].logo
-        return "Category" + String(logo)
+        let category = categories[indexPath.row]
+        return Utilities.getCategoryImageName(forId: category.id)
+    }
+    
+    func getCellAccessoryType(forIndexPath indexPath: IndexPath, preSelectedCategory: Category?) -> UITableViewCellAccessoryType {
+        let category = categories[indexPath.row]
+        if preSelectedCategory?.id == category.id {
+            return UITableViewCellAccessoryType.checkmark
+        }
+        return UITableViewCellAccessoryType.none
     }
 }
 /***********************************/
@@ -58,6 +67,7 @@ extension ReviewSelectCategoryManager {
             case .success(let categoryList):
                 // Store this list in the Singleton & update the category list
                 self?.categories = categoryList
+                self?.sortCategoryListByName()
                 
                 Singleton.sharedInstance.organization?.categories = [:]
                 
@@ -72,5 +82,13 @@ extension ReviewSelectCategoryManager {
                 completionHandler(ManagerResponseToController.failure(code: "", message: message)) // TODO: - Pass a general code
             }
         })
+    }
+}
+/***********************************/
+// MARK: - Helpers
+/***********************************/
+extension ReviewSelectCategoryManager {
+    func sortCategoryListByName() {
+        categories = categories.sorted(by: { $0.name.localizedCaseInsensitiveCompare($1.name) == ComparisonResult.orderedAscending })
     }
 }

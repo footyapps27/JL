@@ -194,6 +194,6 @@ extension AddExpenseViewController: UITextFieldDelegate {
 /***********************************/
 extension AddExpenseViewController: ReviewSelectCategoryViewControllerDelegate {
     func categorySelected(_ category: Category) {
-        print(category)
+        manager.updateCellBasedAtLastSelectedIndex(forTableView: tableView, withId: category.id, value: category.name)
     }
 }
