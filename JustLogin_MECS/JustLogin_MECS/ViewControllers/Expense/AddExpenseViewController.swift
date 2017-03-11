@@ -152,7 +152,7 @@ extension AddExpenseViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Cell selected
         if manager.checkIfNavigationIsRequired(forIndexPath: indexPath) {
-            // TODO: - Navigate to the details view
+            self.view .endEditing(true)
             let controller = manager.getDetailsNavigationController(forIndexPath: indexPath, withDelegate: self)
             Utilities.pushControllerAndHideTabbar(fromController: self, toController: controller)
         } else {
@@ -204,5 +204,13 @@ extension AddExpenseViewController: ReviewSelectCategoryViewControllerDelegate {
 extension AddExpenseViewController: ReviewSelectCurrencyViewControllerDelegate {
     func currencySelected(_ currency: Currency) {
         manager.updateCellBasedAtLastSelectedIndex(forTableView: tableView, withId: currency.id, value: currency.code)
+    }
+}
+/***********************************/
+// MARK: - ReviewSelectCurrencyViewControllerDelegate
+/***********************************/
+extension AddExpenseViewController: ReviewSelectReportViewControllerDelegate {
+    func reportSelected(_ report: Report) {
+        manager.updateCellBasedAtLastSelectedIndex(forTableView: tableView, withId: report.id, value: report.title)
     }
 }

@@ -26,6 +26,7 @@ struct Constants {
     struct ViewControllerTitles {
         static let reviewSelectCategory = "Select a Category"
         static let reviewSelectCurrency = "Select a Currency"
+        static let reviewSelectReport = "Select a Report"
         static let addExpense = "Add Expense"
     }
     
@@ -74,6 +75,8 @@ struct Constants {
         static let expenseDetailsAuditHistoryTableViewCellIdentifier = "expenseDetailsAuditHistoryTableViewCellIdentifier"
         
         static let reviewSelectCategoryTableViewCellIdentifier = "reviewSelectCategoryTableViewCellIdentifier"
+        static let reviewSelectReportTableViewCellIdentifier = "reviewSelectReportTableViewCellIdentifier"
+        
     }
     
     struct CellHeight {
@@ -101,6 +104,7 @@ struct Constants {
         
         static let reviewSelectCategoryViewController = "reviewSelectCategoryViewController"
         static let reviewSelectCurrencyViewController = "reviewSelectCurrencyViewController"
+        static let reviewSelectReportViewController = "reviewSelectReportViewController"
     }
     
     struct Notifications {

@@ -125,8 +125,7 @@ extension AddExpenseManager {
         }
         
         if expenseField.jsonParameter == Constants.RequestParameters.Expense.reportId {
-            // TODO: - Return the review select controller of category here
-            return UIViewController()
+            return getReviewSelectReportController(forIndexPath: indexPath, withDelegate: delegate)
         }
         
         return UIViewController()
@@ -285,6 +284,24 @@ extension AddExpenseManager {
         if !payload.isEmpty {
             let preSelectedCurrencyId = payload[Constants.RequestParameters.Expense.currencyId] as! String
             controller.preSelectedCurrency = Singleton.sharedInstance.organization?.currencies[preSelectedCurrencyId]
+        }
+        return controller
+    }
+    
+    func getReviewSelectReportController(forIndexPath indexPath: IndexPath, withDelegate delegate: AddExpenseViewController) -> ReviewSelectReportViewController {
+        let controller = UIStoryboard(name: Constants.StoryboardIds.reportStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.reviewSelectReportViewController) as! ReviewSelectReportViewController
+        controller.delegate = delegate
+        
+        // Now check if it already has a preSelected value
+        let cell = delegate.tableView.cellForRow(at: indexPath) as! AddExpenseBaseTableViewCell
+        
+        let expenseField = getExpenseFields()[indexPath.section][indexPath.row]
+        
+        if cell.validateInput(withField: expenseField).success {
+            let payload = cell.getPayload(withField: expenseField)
+            if !payload.isEmpty {
+                controller.preSelectedReportId = payload[Constants.RequestParameters.Expense.reportId] as? String
+            }
         }
         return controller
     }

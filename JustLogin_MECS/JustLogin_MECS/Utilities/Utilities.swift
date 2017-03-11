@@ -170,18 +170,39 @@ extension Utilities {
     }
 }
 /***********************************/
+// MARK: - Report UI Format
+/***********************************/
+extension Utilities {
+    static func getFormattedAmount(forReport report: Report) -> String {
+        var currencyAndAmount = Constants.General.emptyString
+        
+        guard let baseCurrencyId = Singleton.sharedInstance.organization?.baseCurrencyId else {
+            return String(report.amount)
+        }
+        
+        if let currency = Singleton.sharedInstance.organization?.currencies[baseCurrencyId] {
+            currencyAndAmount = currency.symbol
+        }
+        
+        currencyAndAmount += " " + String(format: Constants.General.decimalFormat, report.amount)
+        
+        return currencyAndAmount
+    }
+}
+/***********************************/
 // MARK: - Category Image Name
 /***********************************/
 extension Utilities {
     static func getCategoryImageName(forId id: String) -> String {
         if let category = Singleton.sharedInstance.organization?.categories[id] {
+            // TODO: - Move to constants
             return "Category" + String(category.logo)
         }
         return Constants.General.emptyString
     }
 }
 /***********************************/
-// MARK: - Category Image Name
+// MARK: - Currency
 /***********************************/
 extension Utilities {
     static func getCurrencyCode(forId id: String) -> String {
