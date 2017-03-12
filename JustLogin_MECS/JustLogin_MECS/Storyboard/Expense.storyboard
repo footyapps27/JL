@@ -505,44 +505,44 @@
                                     </connections>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="expenseDetailsAuditHistoryTableViewCellIdentifier" rowHeight="56" id="wJb-hy-6dC" customClass="ExpenseDetailsAuditHistoryTableViewCell" customModule="JustLogin_MECS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="278" width="375" height="56"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="expenseDetailsAuditHistoryTableViewCellIdentifier" rowHeight="47" id="wJb-hy-6dC" customClass="ExpenseDetailsAuditHistoryTableViewCell" customModule="JustLogin_MECS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="278" width="375" height="47"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wJb-hy-6dC" id="kEh-fN-Bfo">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="46"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AuditHistory" translatesAutoresizingMaskIntoConstraints="NO" id="Sj5-2G-PCJ">
-                                                    <rect key="frame" x="8" y="17" width="20" height="20"/>
+                                                    <rect key="frame" x="8" y="13.5" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="20" id="8Y9-Sa-mb4"/>
                                                         <constraint firstAttribute="height" constant="20" id="vqb-gg-tLb"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expense Updated." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uBb-cO-3wx">
-                                                    <rect key="frame" x="48" y="8" width="311" height="21"/>
+                                                    <rect key="frame" x="48" y="2" width="311" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="xw0-5e-fF9"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Doe | 03/03/2110 04:06 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="whX-wM-z7s">
-                                                    <rect key="frame" x="48" y="31" width="311" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="48" y="23" width="311" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="uBb-cO-3wx" firstAttribute="top" secondItem="kEh-fN-Bfo" secondAttribute="topMargin" id="3mS-d8-x2l"/>
+                                                <constraint firstItem="whX-wM-z7s" firstAttribute="top" secondItem="uBb-cO-3wx" secondAttribute="bottom" id="KtH-8k-cJf"/>
+                                                <constraint firstItem="uBb-cO-3wx" firstAttribute="top" secondItem="kEh-fN-Bfo" secondAttribute="top" constant="2" id="MWv-xu-8Q0"/>
                                                 <constraint firstItem="whX-wM-z7s" firstAttribute="height" secondItem="uBb-cO-3wx" secondAttribute="height" id="PWM-Hp-ZhU"/>
                                                 <constraint firstItem="uBb-cO-3wx" firstAttribute="leading" secondItem="Sj5-2G-PCJ" secondAttribute="trailing" constant="20" id="Pu8-vw-wqc"/>
                                                 <constraint firstItem="Sj5-2G-PCJ" firstAttribute="centerY" secondItem="kEh-fN-Bfo" secondAttribute="centerY" id="TN2-zE-Y7M"/>
                                                 <constraint firstItem="whX-wM-z7s" firstAttribute="leading" secondItem="uBb-cO-3wx" secondAttribute="leading" id="Ty7-Il-pF6"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="uBb-cO-3wx" secondAttribute="trailing" constant="8" id="gI2-Xb-tuR"/>
-                                                <constraint firstItem="whX-wM-z7s" firstAttribute="top" secondItem="uBb-cO-3wx" secondAttribute="bottom" constant="2" id="gy3-cU-tWO"/>
                                                 <constraint firstItem="Sj5-2G-PCJ" firstAttribute="leading" secondItem="kEh-fN-Bfo" secondAttribute="leading" constant="8" id="hGU-Pf-bu8"/>
                                                 <constraint firstItem="whX-wM-z7s" firstAttribute="width" secondItem="uBb-cO-3wx" secondAttribute="width" id="ubW-Vp-H14"/>
                                             </constraints>

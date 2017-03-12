@@ -44,13 +44,23 @@ class AddExpenseTableViewCellCurrencyAndAmount: AddExpenseBaseTableViewCell {
     }
     
     override func getPayload(withField reportField: ExpenseAndReportField) -> [String : Any] {
+        var payload: [String : Any] = [:]
         if selectedCurrencyId != nil {
-            return [
-                Constants.RequestParameters.Expense.currencyId : selectedCurrencyId!,
-                Constants.RequestParameters.Expense.amount : (Double(txtAmount.text!) ?? 0.00)
-            ]
+            payload[Constants.RequestParameters.Expense.currencyId] = selectedCurrencyId!
+            payload[Constants.RequestParameters.Expense.amount] = (Double(txtAmount.text!) ?? 0.00)
+            
+            /* This check will be enabled in Phase 2
+            // If it is the base currency, then we send the exchange rate as 1.00 by default
+            if selectedCurrencyId == Singleton.sharedInstance.organization?.baseCurrencyId {
+                payload[Constants.RequestParameters.Expense.exchange] = Constants.Defaults.exchangeRate
+            }
+             
+             */
+            
+            // Remove this once the above is enabled.
+            payload[Constants.RequestParameters.Expense.exchange] = Constants.Defaults.exchangeRate
         }
-        return [:]
+        return payload
     }
 }
 /***********************************/

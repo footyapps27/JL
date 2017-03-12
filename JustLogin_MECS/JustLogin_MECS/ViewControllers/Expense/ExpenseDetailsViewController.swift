@@ -36,6 +36,7 @@ extension ExpenseDetailsViewController {
         super.viewDidLoad()
         headerView.delegate = self
         fetchExpenseDetails()
+        tableView.allowsSelection = false
     }
 }
 /***********************************/
@@ -101,8 +102,8 @@ extension ExpenseDetailsViewController: UITableViewDelegate {
         return headerView.getHeight()
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView .deselectRow(at: indexPath, animated: false)
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 47
     }
 }
 /***********************************/
