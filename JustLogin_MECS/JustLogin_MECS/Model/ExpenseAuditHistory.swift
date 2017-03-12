@@ -33,8 +33,8 @@ struct ExpenseAuditHistory {
         
         createdBy = json[Constants.ResponseParameters.createdBy].stringValue
         
-        if let jsonDate = json[Constants.ResponseParameters.date].string {
-            date = Utilities.convertServerStringToDate(jsonDate)
+        if let jsonDate = json[Constants.ResponseParameters.createdDate].string {
+            date = Utilities.convertAuditHistoryServerStringToDate(jsonDate)
         }
     }
 }

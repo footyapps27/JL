@@ -103,7 +103,7 @@ extension ExpenseDetailsViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 47
+        return CGFloat(Constants.CellHeight.expenseAuditHistoryCellHeight)
     }
 }
 /***********************************/

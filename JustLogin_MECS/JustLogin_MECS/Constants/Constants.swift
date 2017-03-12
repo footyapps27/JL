@@ -13,8 +13,9 @@ struct Constants {
     struct General {
         static let emptyString = ""
         static let dateFormatReceivedFromServer = "yyyy-MM-dd'T'HH:mm:ss"
+        static let dateFormatReceivedFromServerForAuditHistory = "yyyy-MM-dd'T'HH:mm:ss.SSS"
         static let localDisplayDateFormat = "dd/MM/yyyy"
-        static let auditHistoryDisplayDateFormat = "dd/MM/yyyy hh:mm tt"
+        static let auditHistoryDisplayDateFormat = "dd/MM/yyyy hh:mm a"
         static let dateFormatSentToServer = "yyyy-MM-dd"
         static let decimalFormat = "%.2f"
     }
@@ -83,6 +84,7 @@ struct Constants {
         static let reportListCellHeight = 68
         static let approvalListCellHeight = 68
         static let expenseListCellHeight = 90
+        static let expenseAuditHistoryCellHeight = 47
     }
     
     struct StoryboardIds {

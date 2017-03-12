@@ -24,6 +24,15 @@ class Utilities {
     }
     
     /**
+     * Method to convert server string to date for history.
+     */
+    static func convertAuditHistoryServerStringToDate(_ string: String) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = Constants.General.dateFormatReceivedFromServerForAuditHistory
+        return dateFormatter.date(from: string)
+    }
+    
+    /**
      * Method to convert date to string.
      */
     static func convertDateToStringForDisplay(_ date: Date) -> String {
