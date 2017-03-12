@@ -15,6 +15,8 @@ class AddReportManager {
     
     var reportService = ReportService()
     
+    var dictCells: [IndexPath:AddReportBaseTableViewCell] = [:]
+    
     init() {
         updateFields()
     }
@@ -24,10 +26,28 @@ class AddReportManager {
 /***********************************/
 extension AddReportManager {
     /**
+     * Populate the cells from the table view.
+     */
+    func populateCells(fromController controller: AddReportViewController) {
+            for row in 0..<fields.count {
+                let indexPath = IndexPath(row: row, section: 0)
+                let cell = controller.tableView(controller.tableView, cellForRowAt: indexPath) as! AddReportBaseTableViewCell
+                dictCells[indexPath] = cell
+            }
+    }
+    
+    /**
      * Method to get all the expenses that need to be displayed.
      */
     func getReportFields() -> [ExpenseAndReportField] {
         return fields
+    }
+    
+    /**
+     * Get the existing cells that have already been populated before.
+     */
+    func getExistingCells() -> [IndexPath:AddReportBaseTableViewCell] {
+        return dictCells
     }
     
     func getTableViewCellIdentifier(forIndexPath indexPath: IndexPath) -> String {
@@ -46,16 +66,13 @@ extension AddReportManager {
         }
     }
     
-    func getPayload(fromTableView tableView: UITableView) -> [String: Any] {
+    func getPayload() -> [String: Any] {
         var payload = [String:Any]()
         
-        var indexPath = IndexPath(item: 0, section: 0)
-        
-        for index in 0..<fields.count {
-            indexPath.row = index
-            let cell = tableView.cellForRow(at: indexPath) as! AddReportBaseTableViewCell
-            payload = payload.merged(with: cell.getPayload(withField: fields[index]))
+        for (indexPath,cell) in dictCells {
+            payload = payload.merged(with: cell.getPayload(withField: fields[indexPath.row]))
         }
+        
         return payload
     }
 }
@@ -82,15 +99,9 @@ extension AddReportManager {
         }
     }
     
-    func validateInputs(forTableView tableView: UITableView) -> (success: Bool, errorMessage: String) {
-        
-        var indexPath = IndexPath(item: 0, section: 0)
-        
-        for index in 0..<fields.count {
-            indexPath.row = index
-            let cell = tableView.cellForRow(at: indexPath) as! AddReportBaseTableViewCell
-            
-            let validation = cell.validateInput(withField: fields[index])
+    func validateInputs() -> (success: Bool, errorMessage: String) {
+        for (indexPath, cell) in dictCells {
+            let validation = cell.validateInput(withField: fields[indexPath.row])
             if !validation.success {
                 return validation
             }
@@ -106,7 +117,7 @@ extension AddReportManager {
      * Method to get all the expenses that need to be displayed.
      */
     func addReportWithInputsFromTableView( tableView: UITableView, completionHandler: (@escaping (ManagerResponseToController<Void>) -> Void)) {
-        let payload = getPayload(fromTableView: tableView)
+        let payload = getPayload()
         
         reportService.create(payload: payload) { (result) in
             switch(result) {

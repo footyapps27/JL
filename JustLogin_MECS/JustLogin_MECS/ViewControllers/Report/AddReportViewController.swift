@@ -39,6 +39,8 @@ extension AddReportViewController {
         initializeDatePicker()
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 44
+        
+        manager.populateCells(fromController: self)
     }
 }
 /***********************************/
@@ -74,7 +76,7 @@ extension AddReportViewController {
 extension AddReportViewController {
     
     func rightBarButtonTapped(_ sender: UIBarButtonItem) {
-        let validation = manager.validateInputs(forTableView: tableView)
+        let validation = manager.validateInputs()
         if !validation.success {
             Utilities.showErrorAlert(withMessage: validation.errorMessage, onController: self)
         } else {
@@ -125,6 +127,11 @@ extension AddReportViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // If the cell is already cached, then just return it from the cache.
+        if let cell = manager.getExistingCells()[indexPath] {
+            return cell
+        }
+        
         let identifier = manager.getTableViewCellIdentifier(forIndexPath: indexPath)
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! AddReportBaseTableViewCell
         manager.formatCell(cell, forIndexPath: indexPath)
