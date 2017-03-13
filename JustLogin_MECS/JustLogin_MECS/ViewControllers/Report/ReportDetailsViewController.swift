@@ -16,7 +16,9 @@ class ReportDetailsViewController: BaseViewControllerWithTableView {
     /***********************************/
     let manager = ReportDetailsManager()
     
-    var reportId: String?
+    var report: Report?
+    
+    @IBOutlet weak var headerView: ReportDetailsHeaderView!
     
     @IBOutlet weak var toolbar: UIToolbar!
     
@@ -31,6 +33,11 @@ class ReportDetailsViewController: BaseViewControllerWithTableView {
     /***********************************/
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // This will help the header update faster
+        manager.report = report!
+        headerView.updateView(withManager: manager)
+        
         fetchReportDetails()
     }
 }
@@ -39,6 +46,7 @@ class ReportDetailsViewController: BaseViewControllerWithTableView {
 /***********************************/
 extension ReportDetailsViewController {
     func updateUIAfterSuccessfulResponse() {
+        headerView.updateView(withManager: manager)
         tableView.reloadData()
         updateToolbarItems()
     }
@@ -65,7 +73,7 @@ extension ReportDetailsViewController {
         
     }
     
-    @IBAction func cloneButtonTapped(_ sender: UIBarButtonItem) {
+    @IBAction func submitButtonTapped(_ sender: UIBarButtonItem) {
         
     }
     
@@ -107,7 +115,7 @@ extension ReportDetailsViewController {
      */
     func fetchReportDetails() {
         showLoadingIndicator(disableUserInteraction: false)
-        manager.fetchReportDetails(withReportId: reportId!) { [weak self] (response) in
+        manager.fetchReportDetails(withReportId: report!.id) { [weak self] (response) in
             guard let `self` = self else {
                 log.error("Self reference missing in closure.")
                 return

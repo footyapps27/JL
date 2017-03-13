@@ -371,11 +371,23 @@
                                     <constraint firstAttribute="height" constant="44" id="Tju-Vg-dfM"/>
                                 </constraints>
                                 <items>
-                                    <barButtonItem title="Submit" style="plain" id="Duj-6P-dCB"/>
+                                    <barButtonItem title="Submit" style="plain" id="Duj-6P-dCB">
+                                        <connections>
+                                            <action selector="submitButtonTapped:" destination="Vm7-WK-z8x" id="h9l-VN-5Mb"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Vbj-sz-qZk"/>
-                                    <barButtonItem title="Edit" style="plain" id="tdr-bG-Yhw"/>
+                                    <barButtonItem title="Edit" style="plain" id="tdr-bG-Yhw">
+                                        <connections>
+                                            <action selector="editButtonTapped:" destination="Vm7-WK-z8x" id="97M-JS-l2r"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="9BT-qJ-gQp"/>
-                                    <barButtonItem title="More Options" style="plain" id="lbH-Iv-ZEg"/>
+                                    <barButtonItem title="More Options" style="plain" id="lbH-Iv-ZEg">
+                                        <connections>
+                                            <action selector="moreOptionsButtonTapped:" destination="Vm7-WK-z8x" id="BIX-dn-651"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -391,6 +403,10 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btnEdit" destination="tdr-bG-Yhw" id="iYX-At-mcT"/>
+                        <outlet property="btnMoreOptions" destination="lbH-Iv-ZEg" id="b6f-iO-fo6"/>
+                        <outlet property="btnSubmit" destination="Duj-6P-dCB" id="8f7-oJ-5lZ"/>
+                        <outlet property="headerView" destination="GXl-Wy-Dqm" id="O9q-O1-vwG"/>
                         <outlet property="tableView" destination="VeZ-vW-qDQ" id="aJu-rn-uWB"/>
                         <outlet property="toolbar" destination="u0j-vl-YvL" id="IeD-C6-Z2j"/>
                     </connections>

@@ -29,6 +29,9 @@ class ReportDetailsHeaderView: UIView {
 /***********************************/
 extension ReportDetailsHeaderView {
     func updateView(withManager manager: ReportDetailsManager) {
-        // TODO: - Wire up the values
+        lblReportTitle.text = manager.getReportTitle()
+        lblAmount.text = manager.getReportAmount()
+        lblReportStartAndEndDate.text = manager.getReportDuration()
+        lblStatus.text = manager.getReportStatus()
     }
 }

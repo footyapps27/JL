@@ -197,6 +197,14 @@ extension Utilities {
         
         return currencyAndAmount
     }
+    
+    static func getStatus(forReport report: Report) -> String {
+        if let status = ReportStatus(rawValue: report.status) {
+            return status.name
+        }
+        log.error("Status of expense is invalid")
+        return Constants.General.emptyString
+    }
 }
 /***********************************/
 // MARK: - Category Image Name

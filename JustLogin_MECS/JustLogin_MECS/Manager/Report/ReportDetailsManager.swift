@@ -27,6 +27,41 @@ extension ReportDetailsManager {
     }
 }
 /***********************************/
+// MARK: - Tableview Header
+/***********************************/
+extension ReportDetailsManager {
+    
+    func getReportTitle() -> String {
+        return report.title
+    }
+    
+    func getReportAmount() -> String {
+        return Utilities.getFormattedAmount(forReport: report)
+    }
+    
+    func getReportStatus() -> String {
+        return Utilities.getStatus(forReport: report).uppercased()
+    }
+    
+    func getReportDuration() -> String {
+        var duration = Constants.General.emptyString
+        
+        if let date = report.startDate {
+            duration = Utilities.convertDateToStringForDisplay(date)
+        } else {
+            log.error("Report Start date is nil")
+        }
+        
+        if let date = report.endDate {
+            duration += " - " + Utilities.convertDateToStringForDisplay(date)
+        } else {
+            log.error("Report end date is nil")
+        }
+        
+        return duration
+    }
+}
+/***********************************/
 // MARK: - TableView Audit history
 /***********************************/
 extension ReportDetailsManager {
