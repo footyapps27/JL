@@ -136,7 +136,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="btnAttachment" destination="XMn-dg-PT3" id="jbP-VQ-gzT"/>
-                <outlet property="btnPolicyViolation" destination="j28-tw-x5z" id="f2e-dJ-JtP"/>
+                <outlet property="btnPolicyViolation" destination="j28-tw-x5z" id="Euw-XQ-CHl"/>
                 <outlet property="lblAmount" destination="PdG-AQ-iEu" id="Xyn-28-bo6"/>
                 <outlet property="lblCategory" destination="09d-Ug-nuN" id="PB2-wO-zTq"/>
                 <outlet property="lblDate" destination="XOo-ES-Ew9" id="qBD-Co-Nec"/>

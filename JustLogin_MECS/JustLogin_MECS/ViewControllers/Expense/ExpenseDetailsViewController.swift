@@ -15,7 +15,7 @@ class ExpenseDetailsViewController: BaseViewControllerWithTableView {
     /***********************************/
     let manager = ExpenseDetailsManager()
     
-    var expenseId: String?
+    var expense: Expense?
     
     @IBOutlet weak var toolbar: UIToolbar!
     
@@ -34,8 +34,18 @@ extension ExpenseDetailsViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Set this, since we need to set the headers. 
+        // Will improve performance
+        manager.expense = expense!
+        
         fetchExpenseDetails()
         tableView.allowsSelection = false
+        
+        headerView = ExpenseDetailsHeaderView.instanceFromNib()
+        headerView?.delegate = self
+        
+        updateTableHeaderView()
     }
 }
 /***********************************/
@@ -43,11 +53,7 @@ extension ExpenseDetailsViewController {
 /***********************************/
 extension ExpenseDetailsViewController {
     func updateUIAfterSuccessfulResponse() {
-        headerView = ExpenseDetailsHeaderView.instanceFromNib()
-        headerView?.delegate = self
-        headerView!.updateView(withManager: manager)
-        headerView!.frame = CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: headerView!.getHeight())
-        tableView.tableHeaderView = headerView
+        updateTableHeaderView()
         self.tableView.reloadData()
         updateToolbarItems()
     }
@@ -57,6 +63,12 @@ extension ExpenseDetailsViewController {
             let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: nil)
             toolbar.items = [flexibleSpace, btnClone, flexibleSpace]
         }
+    }
+    
+    func updateTableHeaderView() {
+        headerView!.updateView(withManager: manager)
+        headerView!.frame = CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: headerView!.getHeight())
+        tableView.tableHeaderView = headerView
     }
 }
 /***********************************/
@@ -117,7 +129,7 @@ extension ExpenseDetailsViewController {
      */
     func fetchExpenseDetails() {
         showLoadingIndicator(disableUserInteraction: false)
-        manager.fetchExpenseDetails(withExpenseId: expenseId!) { [weak self] (response) in
+        manager.fetchExpenseDetails(withExpenseId: expense!.id) { [weak self] (response) in
             guard let `self` = self else {
                 log.error("Self reference missing in closure.")
                 return

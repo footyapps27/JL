@@ -66,7 +66,12 @@ extension ExpenseDetailsHeaderView {
         lblDate.text = manager.getExpenseDate()
         
         if !manager.expense.hasPolicyViolation {
-            btnPolicyViolation.removeFromSuperview()
+            // Since this method is called more than once, it is important to check if we have a reference to this object or not.
+            // The moment the btnPolicyViolation is removed from superView, the reference is lost.
+            // TODO - Use stackView for both the buttons.
+            if btnPolicyViolation != nil {
+                btnPolicyViolation.removeFromSuperview()
+            }
         }
         
         for dict in manager.getFieldsToDisplay() {
