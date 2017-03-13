@@ -499,6 +499,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bP3-nm-IT6">
                                         <rect key="frame" x="0.0" y="40" width="111.5" height="30"/>
                                         <state key="normal" title="Add expense"/>
+                                        <connections>
+                                            <action selector="addExpenseTapped:" destination="Stg-By-vba" eventType="touchUpInside" id="lVY-Il-kF4"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JK4-Qs-ZMA">
                                         <rect key="frame" x="111.5" y="40" width="112" height="30"/>
@@ -507,6 +510,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yyg-fj-I6K">
                                         <rect key="frame" x="223.5" y="40" width="111.5" height="30"/>
                                         <state key="normal" title="Add report"/>
+                                        <connections>
+                                            <action selector="addReportTapped:" destination="Stg-By-vba" eventType="touchUpInside" id="5Cg-Mn-UgL"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -537,6 +543,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Vdg-tC-KNv"/>
+                    <connections>
+                        <outlet property="lblMemberName" destination="vh7-48-nqC" id="4FU-3f-QOI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yj1-Zy-ZaH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

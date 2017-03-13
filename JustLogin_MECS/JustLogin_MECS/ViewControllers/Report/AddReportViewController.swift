@@ -52,6 +52,13 @@ extension AddReportViewController {
      */
     func addBarButtonItems() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.save, target: self, action: #selector(rightBarButtonTapped(_:)))
+        
+        /*  If this is the only view controller, then we need to put a dismiss button.
+         Since then this controller is being presented from dashboard.
+         */
+        if navigationController?.viewControllers.count == 1 {
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.cancel, target: self, action: #selector(leftBarButtonTapped(_:)))
+        }
     }
     
     func initializeDatePicker() {
@@ -69,19 +76,44 @@ extension AddReportViewController {
         
         toolbar?.setItems([space, done], animated: true)
     }
+    
+    /**
+     * Since this controller is called as modal controller or navigation controller, we need to move out accordingly.
+     */
+    func navigateOutAfterReportCreation() {
+        if navigationController?.viewControllers.count == 1 {
+            // Navigate to the expense list.
+            self.dismiss(animated: true, completion:nil)
+        } else {
+            _ = self.navigationController?.popViewController(animated: true)
+        }
+    }
 }
 /***********************************/
 // MARK: - Actions
 /***********************************/
 extension AddReportViewController {
-    
+    /**
+     * Action for Save button.
+     * Do the validations before saving.
+     */
     func rightBarButtonTapped(_ sender: UIBarButtonItem) {
+        view.endEditing(true)
         let validation = manager.validateInputs()
         if !validation.success {
             Utilities.showErrorAlert(withMessage: validation.errorMessage, onController: self)
         } else {
             callAddReportService()
         }
+    }
+    
+    /**
+     * Action for Cancel button.
+     * Dismiss the controller.
+     */
+    func leftBarButtonTapped(_ sender: UIBarButtonItem) {
+        view.endEditing(true)
+        self.dismiss(animated: true, completion: nil)
     }
     
     func dismissDatePicker(_ sender: UIBarButtonItem?) {
@@ -109,7 +141,7 @@ extension AddReportViewController {
             case .success(_):
                 self.hideLoadingIndicator(enableUserInteraction: true)
                 self.delegate?.reportCreated()
-                _ = self.navigationController?.popViewController(animated: true)
+                self.navigateOutAfterReportCreation()
             case .failure(_, let message):
                 // TODO: - Handle the empty table view screen.
                 Utilities.showErrorAlert(withMessage: message, onController: self)

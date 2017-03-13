@@ -105,6 +105,8 @@
 		8CFD02131E73D35D00526962 /* ReviewSelectReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFD02121E73D35D00526962 /* ReviewSelectReportViewController.swift */; };
 		8CFD02151E73D39800526962 /* ReviewSelectReportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFD02141E73D39800526962 /* ReviewSelectReportManager.swift */; };
 		8CFD02171E74335B00526962 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFD02161E74335B00526962 /* Double.swift */; };
+		8CFD02191E753DD800526962 /* ExpenseDetailsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CFD02181E753DD800526962 /* ExpenseDetailsHeaderView.xib */; };
+		8CFD021B1E762EEC00526962 /* HomeScreenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFD021A1E762EEC00526962 /* HomeScreenManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -229,6 +231,8 @@
 		8CFD02121E73D35D00526962 /* ReviewSelectReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewSelectReportViewController.swift; sourceTree = "<group>"; };
 		8CFD02141E73D39800526962 /* ReviewSelectReportManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewSelectReportManager.swift; sourceTree = "<group>"; };
 		8CFD02161E74335B00526962 /* Double.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Double.swift; path = JustLogin_MECS/Manager/Report/Double.swift; sourceTree = SOURCE_ROOT; };
+		8CFD02181E753DD800526962 /* ExpenseDetailsHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpenseDetailsHeaderView.xib; sourceTree = "<group>"; };
+		8CFD021A1E762EEC00526962 /* HomeScreenManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeScreenManager.swift; path = "JustLogin_MECS/Views/Custom Views/Xib/HomeScreenManager.swift"; sourceTree = SOURCE_ROOT; };
 		C1E5D39D743F2AA54C3A1C46 /* Pods-JustLogin_MECS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JustLogin_MECS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JustLogin_MECS/Pods-JustLogin_MECS.debug.xcconfig"; sourceTree = "<group>"; };
 		CF3885E556538396244297B4 /* Pods-JustLogin_MECSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JustLogin_MECSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-JustLogin_MECSTests/Pods-JustLogin_MECSTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -554,6 +558,7 @@
 			isa = PBXGroup;
 			children = (
 				8CE007261E28F3420089D159 /* SettingsTableProfileSectionHeaderView.xib */,
+				8CFD02181E753DD800526962 /* ExpenseDetailsHeaderView.xib */,
 			);
 			path = Xib;
 			sourceTree = "<group>";
@@ -680,6 +685,7 @@
 		8CF655E11E58B55600D4FEF3 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				8CFD021A1E762EEC00526962 /* HomeScreenManager.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -890,6 +896,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CF2FBDC1E72C6A4001C008E /* Category.storyboard in Resources */,
+				8CFD02191E753DD800526962 /* ExpenseDetailsHeaderView.xib in Resources */,
 				8C00F6611E1E651A0007F29C /* Main.storyboard in Resources */,
 				8C42DFDB1E63E1AA00A3B69A /* Report.storyboard in Resources */,
 				8CE007271E28F3420089D159 /* SettingsTableProfileSectionHeaderView.xib in Resources */,
@@ -1068,6 +1075,7 @@
 				8CD3331D1E23C48000557B6F /* SettingsListViewController.swift in Sources */,
 				8C96020D1E1FDB7F00EE66A3 /* SignInViewController.swift in Sources */,
 				8CF655D71E5875CF00D4FEF3 /* Singleton.swift in Sources */,
+				8CFD021B1E762EEC00526962 /* HomeScreenManager.swift in Sources */,
 				8CF3F6501E652B0100A18D73 /* AddReportTableViewCellWithMultipleSelection.swift in Sources */,
 				8CF342441E5D40E4008387BF /* BaseManager.swift in Sources */,
 				8C42DFD51E63DEA300A3B69A /* ReportDetailsViewController.swift in Sources */,
