@@ -11,7 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="z4b-ba-sss" userLabel="Header" customClass="ExpenseDetailsHeaderView" customModule="JustLogin_MECS" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="at4-LD-xU3">
@@ -133,6 +133,7 @@
                 <constraint firstAttribute="trailing" secondItem="Zuf-hI-2eY" secondAttribute="trailing" constant="8" id="kCr-on-Jm1"/>
                 <constraint firstItem="k4J-kc-uAt" firstAttribute="top" secondItem="at4-LD-xU3" secondAttribute="bottom" constant="8" id="u2X-Ly-r09"/>
             </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="btnAttachment" destination="XMn-dg-PT3" id="jbP-VQ-gzT"/>
                 <outlet property="btnPolicyViolation" destination="j28-tw-x5z" id="f2e-dJ-JtP"/>
@@ -145,7 +146,7 @@
                 <outlet property="parentStackView" destination="BQo-y5-p0m" id="T0z-AI-cem"/>
                 <outlet property="parentStackViewHeight" destination="g8G-1q-Y8g" id="cfr-TG-dyN"/>
             </connections>
-            <point key="canvasLocation" x="-195" y="-715"/>
+            <point key="canvasLocation" x="-213" y="-918"/>
         </view>
     </objects>
     <resources>

@@ -43,6 +43,13 @@ class ExpenseDetailsHeaderView: UIView {
     @IBOutlet weak var parentStackViewHeight: NSLayoutConstraint!
     
     weak var delegate: ExpenseDetailsHeaderViewDelegate?
+    
+    /***********************************/
+    // MARK: - Initializer
+    /***********************************/
+    class func instanceFromNib() -> ExpenseDetailsHeaderView {
+        return UINib(nibName: String(describing: ExpenseDetailsHeaderView.self), bundle: nil).instantiate(withOwner: nil, options: nil)[0] as? UIView as! ExpenseDetailsHeaderView
+    }
 }
 /***********************************/
 // MARK: - UI update methods
@@ -74,8 +81,11 @@ extension ExpenseDetailsHeaderView {
         }
     }
     
+    /**
+     * The height of the view after the stack view has been dynamically populated.
+     */
     func getHeight() -> CGFloat {
-        return parentStackViewHeight.constant
+        return CGFloat(Constants.UISize.expenseHeaderViewIntialHeight) + parentStackViewHeight.constant
     }
 }
 /***********************************/

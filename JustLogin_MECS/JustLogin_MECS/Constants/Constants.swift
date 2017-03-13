@@ -22,6 +22,7 @@ struct Constants {
     
     struct UISize {
         static let activityIndicatorHeightWidth = 50
+        static let expenseHeaderViewIntialHeight = 250
     }
     
     struct ViewControllerTitles {

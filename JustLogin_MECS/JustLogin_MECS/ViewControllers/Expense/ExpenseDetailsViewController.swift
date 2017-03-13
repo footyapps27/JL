@@ -19,13 +19,13 @@ class ExpenseDetailsViewController: BaseViewControllerWithTableView {
     
     @IBOutlet weak var toolbar: UIToolbar!
     
-    @IBOutlet weak var headerView: ExpenseDetailsHeaderView!
-    
     @IBOutlet weak var btnEdit: UIBarButtonItem!
     
     @IBOutlet weak var btnClone: UIBarButtonItem!
     
     @IBOutlet weak var btnMoreOptions: UIBarButtonItem!
+    
+    var headerView: ExpenseDetailsHeaderView?
 }
 /***********************************/
 // MARK: - View Lifecycle
@@ -34,7 +34,6 @@ extension ExpenseDetailsViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        headerView.delegate = self
         fetchExpenseDetails()
         tableView.allowsSelection = false
     }
@@ -44,10 +43,13 @@ extension ExpenseDetailsViewController {
 /***********************************/
 extension ExpenseDetailsViewController {
     func updateUIAfterSuccessfulResponse() {
-        headerView.updateView(withManager: manager)
+        headerView = ExpenseDetailsHeaderView.instanceFromNib()
+        headerView?.delegate = self
+        headerView!.updateView(withManager: manager)
+        headerView!.frame = CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: headerView!.getHeight())
+        tableView.tableHeaderView = headerView
         self.tableView.reloadData()
         updateToolbarItems()
-        // TODO: - Update toolbar
     }
     
     func updateToolbarItems() {
@@ -94,14 +96,6 @@ extension ExpenseDetailsViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 /***********************************/
 extension ExpenseDetailsViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return headerView
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return headerView.getHeight()
-    }
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return CGFloat(Constants.CellHeight.expenseAuditHistoryCellHeight)
     }
