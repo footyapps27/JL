@@ -74,7 +74,7 @@ struct Constants {
         static let addExpenseTableViewCellWithTextView = "addExpenseTableViewCellWithTextView"
         static let addExpenseTableViewCellWithImageSelection = "addExpenseTableViewCellWithImageSelection"
         
-        static let expenseDetailsAuditHistoryTableViewCellIdentifier = "expenseDetailsAuditHistoryTableViewCellIdentifier"
+        static let auditHistoryTableViewCellIdentifier = "auditHistoryTableViewCellIdentifier"
         
         static let reviewSelectCategoryTableViewCellIdentifier = "reviewSelectCategoryTableViewCellIdentifier"
         static let reviewSelectReportTableViewCellIdentifier = "reviewSelectReportTableViewCellIdentifier"

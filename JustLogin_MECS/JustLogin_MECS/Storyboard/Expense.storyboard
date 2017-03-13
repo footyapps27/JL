@@ -369,7 +369,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="expenseDetailsAuditHistoryTableViewCellIdentifier" rowHeight="47" id="wJb-hy-6dC" customClass="ExpenseDetailsAuditHistoryTableViewCell" customModule="JustLogin_MECS" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="auditHistoryTableViewCellIdentifier" rowHeight="47" id="wJb-hy-6dC" customClass="AuditHistoryTableViewCell" customModule="JustLogin_MECS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="47"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wJb-hy-6dC" id="kEh-fN-Bfo">

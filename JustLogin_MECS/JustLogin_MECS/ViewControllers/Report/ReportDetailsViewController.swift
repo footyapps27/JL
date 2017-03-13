@@ -28,6 +28,8 @@ class ReportDetailsViewController: BaseViewControllerWithTableView {
     
     @IBOutlet weak var btnMoreOptions: UIBarButtonItem!
     
+    var segmentedControl: UISegmentedControl?
+    
     /***********************************/
     // MARK: - View Lifecycle
     /***********************************/
@@ -64,6 +66,26 @@ extension ReportDetailsViewController {
             toolbar.items = [flexibleSpace, btnArchive, flexibleSpace, btnViewAsPDF, flexibleSpace]
         }
     }
+    
+    func getHeaderViewWithSegmentedControl() -> UIView {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 60)) // TODO - Move to constants
+        view.translatesAutoresizingMaskIntoConstraints = false
+        if segmentedControl == nil {
+            segmentedControl = UISegmentedControl(frame: CGRect(x: 20, y: 10, width: view.frame.width - 80, height: 40))
+            segmentedControl?.insertSegment(withTitle: "Expenses", at: 0, animated: true)
+            segmentedControl?.insertSegment(withTitle: "Details", at: 1, animated: true)
+            segmentedControl?.insertSegment(withTitle: "History", at: 2, animated: true)
+            segmentedControl?.selectedSegmentIndex = 0
+            segmentedControl?.backgroundColor = .red
+            view.addSubview(segmentedControl!)
+            view.bringSubview(toFront: segmentedControl!)
+        }
+//        let subView = UIView(frame: CGRect(x: 40, y: 10, width: tableView.frame.width - 80, height: 28))
+//        subView.backgroundColor = .blue
+//        view.addSubview(subView)
+        view.backgroundColor = .yellow
+        return view
+    }
 }
 /***********************************/
 // MARK: - Actions
@@ -85,12 +107,16 @@ extension ReportDetailsViewController {
 // MARK: - UITableViewDataSource
 /***********************************/
 extension ReportDetailsViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return manager.getAuditHistories().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.expenseDetailsAuditHistoryTableViewCellIdentifier, for: indexPath) as! ExpenseDetailsAuditHistoryTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.auditHistoryTableViewCellIdentifier, for: indexPath) as! AuditHistoryTableViewCell
         
         cell.lblDescription.text = manager.getAuditHistoryDescription(forIndexPath: indexPath)
         cell.lblUserAndDate.text = manager.getAuditHistoryDetails(forIndexPath: indexPath)
@@ -102,6 +128,14 @@ extension ReportDetailsViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 /***********************************/
 extension ReportDetailsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return getHeaderViewWithSegmentedControl()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return getHeaderViewWithSegmentedControl().frame.height
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return CGFloat(Constants.CellHeight.expenseAuditHistoryCellHeight)
     }

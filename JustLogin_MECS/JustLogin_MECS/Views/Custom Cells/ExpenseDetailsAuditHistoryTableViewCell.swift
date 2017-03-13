@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ExpenseDetailsAuditHistoryTableViewCell: BaseCustomTableViewCell {
+class AuditHistoryTableViewCell: BaseCustomTableViewCell {
     @IBOutlet weak var lblDescription: UILabel!
     
     @IBOutlet weak var lblUserAndDate: UILabel!

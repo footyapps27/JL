@@ -96,7 +96,7 @@ extension ExpenseDetailsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.expenseDetailsAuditHistoryTableViewCellIdentifier, for: indexPath) as! ExpenseDetailsAuditHistoryTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.auditHistoryTableViewCellIdentifier, for: indexPath) as! AuditHistoryTableViewCell
         
         cell.lblDescription.text = manager.getAuditHistoryDescription(forIndexPath: indexPath)
         cell.lblUserAndDate.text = manager.getAuditHistoryDetails(forIndexPath: indexPath)

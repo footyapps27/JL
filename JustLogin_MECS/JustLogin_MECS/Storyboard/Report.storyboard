@@ -363,7 +363,58 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="auditHistoryTableViewCellIdentifier" rowHeight="47" id="qXO-ec-3xm" customClass="AuditHistoryTableViewCell" customModule="JustLogin_MECS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="232" width="375" height="47"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qXO-ec-3xm" id="gpX-dd-coD">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="46"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AuditHistory" translatesAutoresizingMaskIntoConstraints="NO" id="11g-Az-lUP">
+                                                    <rect key="frame" x="8" y="13.5" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="G8n-t4-Fyd"/>
+                                                        <constraint firstAttribute="height" constant="20" id="N8h-zw-CIL"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expense Updated." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ch-Au-Y88">
+                                                    <rect key="frame" x="48" y="2" width="311" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="Y0h-Sz-ggL"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Doe | 03/03/2110 04:06 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BWK-eo-WYh">
+                                                    <rect key="frame" x="48" y="23" width="311" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="BWK-eo-WYh" firstAttribute="width" secondItem="6Ch-Au-Y88" secondAttribute="width" id="5aH-Li-EU2"/>
+                                                <constraint firstItem="BWK-eo-WYh" firstAttribute="height" secondItem="6Ch-Au-Y88" secondAttribute="height" id="AkT-KS-kct"/>
+                                                <constraint firstItem="11g-Az-lUP" firstAttribute="centerY" secondItem="gpX-dd-coD" secondAttribute="centerY" id="Alk-Uc-3zg"/>
+                                                <constraint firstItem="6Ch-Au-Y88" firstAttribute="leading" secondItem="11g-Az-lUP" secondAttribute="trailing" constant="20" id="QkS-ZC-vLC"/>
+                                                <constraint firstItem="BWK-eo-WYh" firstAttribute="top" secondItem="6Ch-Au-Y88" secondAttribute="bottom" id="TVV-9m-hup"/>
+                                                <constraint firstItem="6Ch-Au-Y88" firstAttribute="top" secondItem="gpX-dd-coD" secondAttribute="top" constant="2" id="Z3I-7B-Xsj"/>
+                                                <constraint firstItem="BWK-eo-WYh" firstAttribute="leading" secondItem="6Ch-Au-Y88" secondAttribute="leading" id="abh-Km-FTH"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="6Ch-Au-Y88" secondAttribute="trailing" constant="8" id="iM2-iq-WP8"/>
+                                                <constraint firstItem="11g-Az-lUP" firstAttribute="leading" secondItem="gpX-dd-coD" secondAttribute="leading" constant="8" id="zMu-ka-WLn"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="lblDescription" destination="6Ch-Au-Y88" id="9PZ-dM-sPb"/>
+                                            <outlet property="lblUserAndDate" destination="BWK-eo-WYh" id="3oo-Tv-kwe"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Vm7-WK-z8x" id="QZ8-YZ-A6k"/>
+                                    <outlet property="delegate" destination="Vm7-WK-z8x" id="b4B-dq-8Fm"/>
+                                </connections>
                             </tableView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u0j-vl-YvL">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
@@ -495,4 +546,7 @@
             <point key="canvasLocation" x="862" y="106"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="AuditHistory" width="16" height="16"/>
+    </resources>
 </document>
