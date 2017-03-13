@@ -20,6 +20,10 @@ protocol ExpenseDetailsHeaderViewDelegate: class {
 /***********************************/
 // MARK: - Properties
 /***********************************/
+
+/**
+ * For expense since the header view is dynamically changed based on the properties present in the expense, the decision to go ahead with a separate file was taken.
+ */
 class ExpenseDetailsHeaderView: UIView {
     
     @IBOutlet weak var lblCategory: UILabel!
@@ -49,15 +53,6 @@ class ExpenseDetailsHeaderView: UIView {
     /***********************************/
     class func instanceFromNib() -> ExpenseDetailsHeaderView {
         return UINib(nibName: String(describing: ExpenseDetailsHeaderView.self), bundle: nil).instantiate(withOwner: nil, options: nil)[0] as? UIView as! ExpenseDetailsHeaderView
-    }
-}
-/***********************************/
-// MARK: - UI update methods
-/***********************************/
-extension ExpenseDetailsHeaderView {
-    
-    override func awakeFromNib() {
-        
     }
 }
 /***********************************/

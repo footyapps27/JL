@@ -17,6 +17,11 @@ protocol IReportService {
     func getAllReports(_ completionHandler:( @escaping (Result<[Report]>) -> Void))
     
     /**
+     * Method to retrieve details of an expense.
+     */
+    func getReportDetails(reportId: String, completionHandler:( @escaping (Result<Report>) -> Void))
+    
+    /**
      * Create a new report.
      */
     func create(payload: [String : Any], completionHandler:( @escaping (Result<Report>) -> Void))
@@ -58,6 +63,25 @@ struct ReportService : IReportService {
             case .errors(let error):
                 let error = ServiceError(JSON(error))
                 completionHandler(Result.error(error))
+            case .failure(let description):
+                completionHandler(Result.failure(description))
+            }
+        }
+    }
+    
+    func getReportDetails(reportId: String, completionHandler:( @escaping (Result<Report>) -> Void)) {
+        let payload = getPayloadForReportDetails(reportId)
+        serviceAdapter.post(destination: Constants.URLs.reportDetails
+        , payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
+            switch(response) {
+            case .success(let success, _ ):
+                let report = Report(withJSON: JSON(success))
+                completionHandler(Result.success(report))
+                
+            case .errors(let error):
+                let error = ServiceError(JSON(error))
+                completionHandler(Result.error(error))
+                
             case .failure(let description):
                 completionHandler(Result.failure(description))
             }
@@ -106,30 +130,12 @@ struct ReportService : IReportService {
 
 extension ReportService {
     
-//    /**
-//     * Method to format payload for create report.
-//     */
-//    func getPayloadForCreateReport(_ report: Report) -> [String : Any] {
-//        var payload: [String : Any] = [:]
-//        
-//        if !report.businessPurpose.isEmpty {
-//            payload[Constants.RequestParameters.Report.businessPurpose] = report.businessPurpose
-//        }
-//        
-//        if !report.title.isEmpty {
-//            payload[Constants.RequestParameters.Report.title] = report.title
-//        }
-//        
-//        if let startDate = report.startDate {
-//            payload[Constants.RequestParameters.Report.startDate] = Utilities.convertDateToStringForServerCommunication(startDate)
-//        }
-//        
-//        if let endDate = report.endDate {
-//            payload[Constants.RequestParameters.Report.endDate] = Utilities.convertDateToStringForServerCommunication(endDate)
-//        }
-//        
-//        return payload
-//    }
+    /**
+     * Method to format payload for expense details.
+     */
+    func getPayloadForReportDetails(_ reportId: String) -> [String : Any] {
+        return [Constants.RequestParameters.General.ids : [reportId]]
+    }
     
     /**
      * Method to format payload for update report.

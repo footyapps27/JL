@@ -67,7 +67,7 @@ extension ReportListViewController {
     
     func navigateToReportDetails(forReport report: Report) {
         let reportDetailsViewController = UIStoryboard(name: Constants.StoryboardIds.reportStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.reportDetailsViewController) as! ReportDetailsViewController
-        reportDetailsViewController.report = report
+        reportDetailsViewController.reportId = report.id
         Utilities.pushControllerAndHideTabbar(fromController: self, toController: reportDetailsViewController)
     }
 }

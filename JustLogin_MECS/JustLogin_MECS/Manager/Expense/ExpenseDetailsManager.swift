@@ -97,7 +97,7 @@ extension ExpenseDetailsManager {
 // MARK: - TableView Audit history
 /***********************************/
 extension ExpenseDetailsManager {
-    func getAuditHistories() -> [ExpenseAuditHistory] {
+    func getAuditHistories() -> [AuditHistory] {
         return expense.auditHistory
     }
 }

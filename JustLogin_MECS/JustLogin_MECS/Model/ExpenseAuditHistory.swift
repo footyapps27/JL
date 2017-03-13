@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-struct ExpenseAuditHistory {
+struct AuditHistory {
     
     /***********************************/
     // MARK: - Properties

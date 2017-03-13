@@ -30,6 +30,8 @@ struct Report {
     
     var expenseIds: [String] = []
     
+    var auditHistory: [AuditHistory] = []
+    
     /***********************************/
     // MARK: - Initializer
     /***********************************/
@@ -67,6 +69,12 @@ struct Report {
         let jsonExpenseIds = json[Constants.ResponseParameters.expenseIds].exists() ? json[Constants.ResponseParameters.expenseIds].arrayValue : []
         for expenseId in jsonExpenseIds {
             expenseIds.append(expenseId.stringValue)
+        }
+        
+        let jsonHistories = json[Constants.ResponseParameters.history].exists() ? json[Constants.ResponseParameters.history].arrayValue : []
+        for jsonHistory in jsonHistories {
+            let history = AuditHistory(withJSON: jsonHistory)
+            auditHistory.append(history)
         }
     }
 }

@@ -132,6 +132,7 @@ struct Constants {
         static let deleteExpense = URLs.baseURL + "/expense/delete"
         
         static let getAllReports = URLs.baseURL + "/report/retrievebymember"
+        static let reportDetails = URLs.baseURL + "/report/retrieve"
         static let createReport = URLs.baseURL + "/report/create"
         static let updateReport = URLs.baseURL + "/organization/details"
         static let deleteReport = URLs.baseURL + "/organization/details"
