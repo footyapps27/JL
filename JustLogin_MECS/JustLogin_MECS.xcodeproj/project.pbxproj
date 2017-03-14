@@ -25,6 +25,15 @@
 		8C07A56D1E6E89EE0015D419 /* AddExpenseTableViewCellWithImageSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C07A56C1E6E89EE0015D419 /* AddExpenseTableViewCellWithImageSelection.swift */; };
 		8C07A56F1E6E8BB30015D419 /* AddExpenseTableViewCellWithTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C07A56E1E6E8BB30015D419 /* AddExpenseTableViewCellWithTextView.swift */; };
 		8C07A5711E6E8BDF0015D419 /* AddExpenseBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C07A5701E6E8BDF0015D419 /* AddExpenseBaseTableViewCell.swift */; };
+		8C0A01CA1E77B29600A96867 /* ReportDetailsFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C0A01C91E77B29600A96867 /* ReportDetailsFooterView.xib */; };
+		8C0A01CC1E77BBD300A96867 /* ReportDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A01CB1E77BBD300A96867 /* ReportDetailsTableViewCell.swift */; };
+		8C0A01D01E77C38100A96867 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A01CE1E77C38100A96867 /* Dictionary.swift */; };
+		8C0A01D11E77C38100A96867 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A01CF1E77C38100A96867 /* Double.swift */; };
+		8C0A01D41E77C3C900A96867 /* ReportDetailsStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A01D31E77C3C900A96867 /* ReportDetailsStrategy.swift */; };
+		8C0A01D61E77C4AE00A96867 /* ReportDetailsExpenseStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A01D51E77C4AE00A96867 /* ReportDetailsExpenseStrategy.swift */; };
+		8C0A01D81E77C4C600A96867 /* ReportDetailsAuditHistoryStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A01D71E77C4C600A96867 /* ReportDetailsAuditHistoryStrategy.swift */; };
+		8C0A01DA1E77C4E000A96867 /* ReportDetailsMoreDetailStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A01D91E77C4E000A96867 /* ReportDetailsMoreDetailStrategy.swift */; };
+		8C26DDB91E779DE400FC0E13 /* ReportDetailsFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C26DDB81E779DE400FC0E13 /* ReportDetailsFooterView.swift */; };
 		8C299FF31E681EDA0077A730 /* ExpenseDetailsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C299FF21E681EDA0077A730 /* ExpenseDetailsHeaderView.swift */; };
 		8C42DFD31E63DE7D00A3B69A /* AddReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C42DFD21E63DE7D00A3B69A /* AddReportViewController.swift */; };
 		8C42DFD51E63DEA300A3B69A /* ReportDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C42DFD41E63DEA300A3B69A /* ReportDetailsViewController.swift */; };
@@ -81,7 +90,6 @@
 		8CF3F6521E652B1E00A18D73 /* AddReportTableViewCellDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF3F6511E652B1E00A18D73 /* AddReportTableViewCellDuration.swift */; };
 		8CF3F6541E652B3400A18D73 /* AddReportTableViewCellWithTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF3F6531E652B3400A18D73 /* AddReportTableViewCellWithTextView.swift */; };
 		8CF3F6591E6671DA00A18D73 /* AddReportBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF3F6581E6671DA00A18D73 /* AddReportBaseTableViewCell.swift */; };
-		8CF3F65B1E66FF6100A18D73 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF3F65A1E66FF6000A18D73 /* Dictionary.swift */; };
 		8CF655C71E58387100D4FEF3 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655C61E58387100D4FEF3 /* LoginService.swift */; };
 		8CF655C91E58455A00D4FEF3 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655C81E58455A00D4FEF3 /* Member.swift */; };
 		8CF655CB1E585A8200D4FEF3 /* Role.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655CA1E585A8200D4FEF3 /* Role.swift */; };
@@ -104,7 +112,6 @@
 		8CFD02111E73D2FA00526962 /* ReviewSelectReportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFD02101E73D2FA00526962 /* ReviewSelectReportTableViewCell.swift */; };
 		8CFD02131E73D35D00526962 /* ReviewSelectReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFD02121E73D35D00526962 /* ReviewSelectReportViewController.swift */; };
 		8CFD02151E73D39800526962 /* ReviewSelectReportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFD02141E73D39800526962 /* ReviewSelectReportManager.swift */; };
-		8CFD02171E74335B00526962 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFD02161E74335B00526962 /* Double.swift */; };
 		8CFD02191E753DD800526962 /* ExpenseDetailsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CFD02181E753DD800526962 /* ExpenseDetailsHeaderView.xib */; };
 		8CFD021B1E762EEC00526962 /* HomeScreenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFD021A1E762EEC00526962 /* HomeScreenManager.swift */; };
 		8CFD02211E7650EF00526962 /* ReportDetailsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFD02201E7650EF00526962 /* ReportDetailsHeaderView.swift */; };
@@ -156,6 +163,15 @@
 		8C07A56C1E6E89EE0015D419 /* AddExpenseTableViewCellWithImageSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddExpenseTableViewCellWithImageSelection.swift; sourceTree = "<group>"; };
 		8C07A56E1E6E8BB30015D419 /* AddExpenseTableViewCellWithTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddExpenseTableViewCellWithTextView.swift; sourceTree = "<group>"; };
 		8C07A5701E6E8BDF0015D419 /* AddExpenseBaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddExpenseBaseTableViewCell.swift; sourceTree = "<group>"; };
+		8C0A01C91E77B29600A96867 /* ReportDetailsFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReportDetailsFooterView.xib; sourceTree = "<group>"; };
+		8C0A01CB1E77BBD300A96867 /* ReportDetailsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsTableViewCell.swift; sourceTree = "<group>"; };
+		8C0A01CE1E77C38100A96867 /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
+		8C0A01CF1E77C38100A96867 /* Double.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
+		8C0A01D31E77C3C900A96867 /* ReportDetailsStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsStrategy.swift; sourceTree = "<group>"; };
+		8C0A01D51E77C4AE00A96867 /* ReportDetailsExpenseStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsExpenseStrategy.swift; sourceTree = "<group>"; };
+		8C0A01D71E77C4C600A96867 /* ReportDetailsAuditHistoryStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsAuditHistoryStrategy.swift; sourceTree = "<group>"; };
+		8C0A01D91E77C4E000A96867 /* ReportDetailsMoreDetailStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsMoreDetailStrategy.swift; sourceTree = "<group>"; };
+		8C26DDB81E779DE400FC0E13 /* ReportDetailsFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsFooterView.swift; sourceTree = "<group>"; };
 		8C299FF21E681EDA0077A730 /* ExpenseDetailsHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseDetailsHeaderView.swift; sourceTree = "<group>"; };
 		8C42DFD21E63DE7D00A3B69A /* AddReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReportViewController.swift; sourceTree = "<group>"; };
 		8C42DFD41E63DEA300A3B69A /* ReportDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsViewController.swift; sourceTree = "<group>"; };
@@ -208,7 +224,6 @@
 		8CF3F6511E652B1E00A18D73 /* AddReportTableViewCellDuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReportTableViewCellDuration.swift; sourceTree = "<group>"; };
 		8CF3F6531E652B3400A18D73 /* AddReportTableViewCellWithTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReportTableViewCellWithTextView.swift; sourceTree = "<group>"; };
 		8CF3F6581E6671DA00A18D73 /* AddReportBaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReportBaseTableViewCell.swift; sourceTree = "<group>"; };
-		8CF3F65A1E66FF6000A18D73 /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Dictionary.swift; path = "JustLogin_MECS/Views/Custom Cells/Add Report/Dictionary.swift"; sourceTree = SOURCE_ROOT; };
 		8CF655C61E58387100D4FEF3 /* LoginService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		8CF655C81E58455A00D4FEF3 /* Member.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		8CF655CA1E585A8200D4FEF3 /* Role.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Role.swift; sourceTree = "<group>"; };
@@ -231,7 +246,6 @@
 		8CFD02101E73D2FA00526962 /* ReviewSelectReportTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewSelectReportTableViewCell.swift; sourceTree = "<group>"; };
 		8CFD02121E73D35D00526962 /* ReviewSelectReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewSelectReportViewController.swift; sourceTree = "<group>"; };
 		8CFD02141E73D39800526962 /* ReviewSelectReportManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewSelectReportManager.swift; sourceTree = "<group>"; };
-		8CFD02161E74335B00526962 /* Double.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Double.swift; path = JustLogin_MECS/Manager/Report/Double.swift; sourceTree = SOURCE_ROOT; };
 		8CFD02181E753DD800526962 /* ExpenseDetailsHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpenseDetailsHeaderView.xib; sourceTree = "<group>"; };
 		8CFD021A1E762EEC00526962 /* HomeScreenManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeScreenManager.swift; path = "JustLogin_MECS/Views/Custom Views/Xib/HomeScreenManager.swift"; sourceTree = SOURCE_ROOT; };
 		8CFD02201E7650EF00526962 /* ReportDetailsHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsHeaderView.swift; sourceTree = "<group>"; };
@@ -306,8 +320,8 @@
 				8C00F6521E1E651A0007F29C /* App Delegate */,
 				8C00F6541E1E651A0007F29C /* Constants */,
 				8C96021B1E1FE13100EE66A3 /* Enums */,
+				8C0A01CD1E77C38100A96867 /* Extensions */,
 				8CF3F6551E654B6F00A18D73 /* Helpers */,
-				8C8995D11E5FD48700482317 /* Extensions */,
 				8CEAADB81E55409400BDB5ED /* Manager */,
 				8C00F6571E1E651A0007F29C /* Model */,
 				8CEAADB91E5540A500BDB5ED /* Service */,
@@ -429,6 +443,7 @@
 				8CE007141E28D7C90089D159 /* ApprovalListTableViewCell.swift */,
 				8CF2FBD61E726E56001C008E /* ExpenseDetailsAuditHistoryTableViewCell.swift */,
 				8CFD02101E73D2FA00526962 /* ReviewSelectReportTableViewCell.swift */,
+				8C0A01CB1E77BBD300A96867 /* ReportDetailsTableViewCell.swift */,
 			);
 			path = "Custom Cells";
 			sourceTree = "<group>";
@@ -448,6 +463,26 @@
 			path = "Add Expense";
 			sourceTree = "<group>";
 		};
+		8C0A01CD1E77C38100A96867 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8C0A01CE1E77C38100A96867 /* Dictionary.swift */,
+				8C0A01CF1E77C38100A96867 /* Double.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8C0A01D21E77C3A500A96867 /* ReportDetailStrategy */ = {
+			isa = PBXGroup;
+			children = (
+				8C0A01D31E77C3C900A96867 /* ReportDetailsStrategy.swift */,
+				8C0A01D51E77C4AE00A96867 /* ReportDetailsExpenseStrategy.swift */,
+				8C0A01D71E77C4C600A96867 /* ReportDetailsAuditHistoryStrategy.swift */,
+				8C0A01D91E77C4E000A96867 /* ReportDetailsMoreDetailStrategy.swift */,
+			);
+			path = ReportDetailStrategy;
+			sourceTree = "<group>";
+		};
 		8C5141341E1F5F2F003AD3B1 /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -464,15 +499,6 @@
 				8CD333201E23C4E500557B6F /* BaseViewControllerWithTableView.swift */,
 			);
 			path = Base;
-			sourceTree = "<group>";
-		};
-		8C8995D11E5FD48700482317 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				8CF3F65A1E66FF6000A18D73 /* Dictionary.swift */,
-				8CFD02161E74335B00526962 /* Double.swift */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		8C9602021E1FDB7F00EE66A3 /* Dashboard */ = {
@@ -553,6 +579,7 @@
 				8CE007211E28F3280089D159 /* SettingsTableProfileSectionHeaderView.swift */,
 				8C299FF21E681EDA0077A730 /* ExpenseDetailsHeaderView.swift */,
 				8CFD02201E7650EF00526962 /* ReportDetailsHeaderView.swift */,
+				8C26DDB81E779DE400FC0E13 /* ReportDetailsFooterView.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -562,6 +589,7 @@
 			children = (
 				8CE007261E28F3420089D159 /* SettingsTableProfileSectionHeaderView.xib */,
 				8CFD02181E753DD800526962 /* ExpenseDetailsHeaderView.xib */,
+				8C0A01C91E77B29600A96867 /* ReportDetailsFooterView.xib */,
 			);
 			path = Xib;
 			sourceTree = "<group>";
@@ -718,6 +746,7 @@
 				8CB44AD31E5B0380005CC04D /* ReportListManager.swift */,
 				8C42DFD61E63E03400A3B69A /* AddReportManager.swift */,
 				8C42DFD81E63E05100A3B69A /* ReportDetailsManager.swift */,
+				8C0A01D21E77C3A500A96867 /* ReportDetailStrategy */,
 				8CFD02141E73D39800526962 /* ReviewSelectReportManager.swift */,
 			);
 			path = Report;
@@ -903,6 +932,7 @@
 				8C00F6611E1E651A0007F29C /* Main.storyboard in Resources */,
 				8C42DFDB1E63E1AA00A3B69A /* Report.storyboard in Resources */,
 				8CE007271E28F3420089D159 /* SettingsTableProfileSectionHeaderView.xib in Resources */,
+				8C0A01CA1E77B29600A96867 /* ReportDetailsFooterView.xib in Resources */,
 				8CFD02071E73A83C00526962 /* Currency.storyboard in Resources */,
 				8C00F62E1E1E633B0007F29C /* LaunchScreen.storyboard in Resources */,
 				8C00F62B1E1E633B0007F29C /* Assets.xcassets in Resources */,
@@ -1105,16 +1135,16 @@
 				8C9602141E1FDB9900EE66A3 /* HomeViewController.swift in Sources */,
 				8C42DFDD1E6436C900A3B69A /* ExpenseAndReportField.swift in Sources */,
 				8C07A5671E6E87840015D419 /* AddExpenseTableViewCellCurrencyAndAmount.swift in Sources */,
+				8C0A01D11E77C38100A96867 /* Double.swift in Sources */,
 				8C07A56B1E6E88F00015D419 /* AddExpenseTableViewCellWithMultipleSelection.swift in Sources */,
 				8CF655DF1E58B07000D4FEF3 /* Report.swift in Sources */,
 				8CF2FBD31E7156A3001C008E /* SettingsListManager.swift in Sources */,
+				8C0A01DA1E77C4E000A96867 /* ReportDetailsMoreDetailStrategy.swift in Sources */,
 				8CF3F6591E6671DA00A18D73 /* AddReportBaseTableViewCell.swift in Sources */,
 				8CEAADBE1E55468100BDB5ED /* BaseService.swift in Sources */,
 				8CA4B6EF1E28A5A8007C3BE5 /* ApprovalListViewController.swift in Sources */,
-				8CF3F65B1E66FF6100A18D73 /* Dictionary.swift in Sources */,
 				8CFD020F1E73AAE800526962 /* CurrencyService.swift in Sources */,
 				8C299FF31E681EDA0077A730 /* ExpenseDetailsHeaderView.swift in Sources */,
-				8CFD02171E74335B00526962 /* Double.swift in Sources */,
 				8CB44AD21E5AC642005CC04D /* ExpenseListManager.swift in Sources */,
 				8C07A5711E6E8BDF0015D419 /* AddExpenseBaseTableViewCell.swift in Sources */,
 				8CFD020D1E73A93C00526962 /* ReviewSelectCurrencyManager.swift in Sources */,
@@ -1125,7 +1155,9 @@
 				8CF655C71E58387100D4FEF3 /* LoginService.swift in Sources */,
 				8CF3F6521E652B1E00A18D73 /* AddReportTableViewCellDuration.swift in Sources */,
 				8C42DFD71E63E03400A3B69A /* AddReportManager.swift in Sources */,
+				8C0A01D01E77C38100A96867 /* Dictionary.swift in Sources */,
 				8CFD02131E73D35D00526962 /* ReviewSelectReportViewController.swift in Sources */,
+				8C0A01CC1E77BBD300A96867 /* ReportDetailsTableViewCell.swift in Sources */,
 				8C07A56F1E6E8BB30015D419 /* AddExpenseTableViewCellWithTextView.swift in Sources */,
 				8CF2FBE11E72C76E001C008E /* CategoryService.swift in Sources */,
 				8C07A5631E6E87390015D419 /* AddExpenseTableViewCellCategory.swift in Sources */,
@@ -1147,14 +1179,18 @@
 				8C8995D91E60836C00482317 /* AddExpenseManager.swift in Sources */,
 				8C96021D1E1FE14A00EE66A3 /* Enums.swift in Sources */,
 				8CF655DB1E589F1B00D4FEF3 /* ReportService.swift in Sources */,
+				8C0A01D81E77C4C600A96867 /* ReportDetailsAuditHistoryStrategy.swift in Sources */,
 				8CE007151E28D7C90089D159 /* ApprovalListTableViewCell.swift in Sources */,
+				8C0A01D61E77C4AE00A96867 /* ReportDetailsExpenseStrategy.swift in Sources */,
 				8CA4B6F31E28ACA6007C3BE5 /* ReportListTableViewCell.swift in Sources */,
 				8C8995DB1E60839400482317 /* ExpenseDetailsManager.swift in Sources */,
 				8CF655CF1E58693500D4FEF3 /* Organization.swift in Sources */,
 				8CF655E71E58B59B00D4FEF3 /* LaunchManager.swift in Sources */,
 				8CF655CB1E585A8200D4FEF3 /* Role.swift in Sources */,
 				8CF655D11E58694400D4FEF3 /* Category.swift in Sources */,
+				8C26DDB91E779DE400FC0E13 /* ReportDetailsFooterView.swift in Sources */,
 				8CF2FBDF1E72C73C001C008E /* ReviewSelectCategoryManager.swift in Sources */,
+				8C0A01D41E77C3C900A96867 /* ReportDetailsStrategy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

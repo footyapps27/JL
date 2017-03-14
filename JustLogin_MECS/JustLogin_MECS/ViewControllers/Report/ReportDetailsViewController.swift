@@ -28,7 +28,9 @@ class ReportDetailsViewController: BaseViewControllerWithTableView {
     
     @IBOutlet weak var btnMoreOptions: UIBarButtonItem!
     
-    var segmentedControl: UISegmentedControl?
+    var footerView: ReportDetailsFooterView = ReportDetailsFooterView.instanceFromNib()
+    
+    let segmentedControl = UISegmentedControl(items: ["Expenses", "More Details", "History"]) // TODO - Move to constants
     
     /***********************************/
     // MARK: - View Lifecycle
@@ -38,8 +40,10 @@ class ReportDetailsViewController: BaseViewControllerWithTableView {
         
         // This will help the header update faster
         manager.report = report!
-        headerView.updateView(withManager: manager)
         
+        tableView.tableFooterView = footerView
+        
+        updateTableHeaderAndFooter()
         fetchReportDetails()
     }
 }
@@ -48,19 +52,19 @@ class ReportDetailsViewController: BaseViewControllerWithTableView {
 /***********************************/
 extension ReportDetailsViewController {
     func updateUIAfterSuccessfulResponse() {
-        headerView.updateView(withManager: manager)
-        tableView.reloadData()
+        updateTableHeaderAndFooter()
         updateToolbarItems()
+        tableView.reloadData()
     }
     
     func updateToolbarItems() {
         if !manager.isReportEditable() {
             let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: nil)
             
-            let btnArchive = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.action, target: self, action: nil)
+            let btnArchive = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.edit, target: self, action: nil)
             btnArchive.title = "Archive"
             
-            let btnViewAsPDF = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.action, target: self, action: nil)
+            let btnViewAsPDF = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.edit, target: self, action: nil)
             btnViewAsPDF.title = "View As PDF"
             
             toolbar.items = [flexibleSpace, btnArchive, flexibleSpace, btnViewAsPDF, flexibleSpace]
@@ -68,23 +72,21 @@ extension ReportDetailsViewController {
     }
     
     func getHeaderViewWithSegmentedControl() -> UIView {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 60)) // TODO - Move to constants
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 48)) // TODO - Move to constants
+        view.backgroundColor = .white
         view.translatesAutoresizingMaskIntoConstraints = false
-        if segmentedControl == nil {
-            segmentedControl = UISegmentedControl(frame: CGRect(x: 20, y: 10, width: view.frame.width - 80, height: 40))
-            segmentedControl?.insertSegment(withTitle: "Expenses", at: 0, animated: true)
-            segmentedControl?.insertSegment(withTitle: "Details", at: 1, animated: true)
-            segmentedControl?.insertSegment(withTitle: "History", at: 2, animated: true)
-            segmentedControl?.selectedSegmentIndex = 0
-            segmentedControl?.backgroundColor = .red
-            view.addSubview(segmentedControl!)
-            view.bringSubview(toFront: segmentedControl!)
-        }
-//        let subView = UIView(frame: CGRect(x: 40, y: 10, width: tableView.frame.width - 80, height: 28))
-//        subView.backgroundColor = .blue
-//        view.addSubview(subView)
-        view.backgroundColor = .yellow
+        
+        segmentedControl.frame = CGRect(x: 20, y: 10, width: view.frame.width - 40, height: 28)
+        segmentedControl.selectedSegmentIndex = manager.getSelectedSegmentedControlIndex()
+        segmentedControl.addTarget(self, action: #selector(segmentedControlValueChange(_:)), for: .valueChanged)
+        view.addSubview(segmentedControl)
+        
         return view
+    }
+    
+    func updateTableHeaderAndFooter() {
+        headerView.updateView(withManager: manager)
+        footerView.updateView(withManager: manager)
     }
 }
 /***********************************/
@@ -102,26 +104,30 @@ extension ReportDetailsViewController {
     @IBAction func moreOptionsButtonTapped(_ sender: UIBarButtonItem) {
         
     }
+    
+    func segmentedControlValueChange(_ sender: UISegmentedControl) {
+        manager.setSelectedSegmentedControlIndex(sender.selectedSegmentIndex)
+        
+        if manager.shouldDisplayFooter() {
+            tableView.tableFooterView = footerView
+        } else {
+            tableView.tableFooterView = nil
+        }
+        
+        tableView.reloadData()
+    }
 }
 /***********************************/
 // MARK: - UITableViewDataSource
 /***********************************/
 extension ReportDetailsViewController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return manager.getAuditHistories().count
+        return manager.getNumberOfRows()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.auditHistoryTableViewCellIdentifier, for: indexPath) as! AuditHistoryTableViewCell
-        
-        cell.lblDescription.text = manager.getAuditHistoryDescription(forIndexPath: indexPath)
-        cell.lblUserAndDate.text = manager.getAuditHistoryDetails(forIndexPath: indexPath)
-        
-        return cell
+        return manager.getCell(withTableView: tableView, atIndexPath: indexPath)
     }
 }
 /***********************************/
@@ -137,7 +143,7 @@ extension ReportDetailsViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat(Constants.CellHeight.expenseAuditHistoryCellHeight)
+        return manager.getHeightForRowAt(withTableView: tableView, atIndexPath: indexPath)
     }
 }
 /***********************************/

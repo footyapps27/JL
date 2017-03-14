@@ -79,6 +79,7 @@ struct Constants {
         static let reviewSelectCategoryTableViewCellIdentifier = "reviewSelectCategoryTableViewCellIdentifier"
         static let reviewSelectReportTableViewCellIdentifier = "reviewSelectReportTableViewCellIdentifier"
         
+        static let reportDetailsTableViewCellIdentifier = "reportDetailsTableViewCellIdentifier"
     }
     
     struct CellHeight {

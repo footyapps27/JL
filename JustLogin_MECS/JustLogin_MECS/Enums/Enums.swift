@@ -71,3 +71,9 @@ enum SettingsOptions: String {
     case aboutUs = "About Us"
     case upgradeOrganization = "Upgrade Organization"
 }
+
+enum ReportDetailSegmentedControl: Int {
+    case expenses = 0,
+    moreDetails,
+    history
+}

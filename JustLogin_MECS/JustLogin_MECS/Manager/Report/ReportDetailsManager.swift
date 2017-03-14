@@ -7,11 +7,27 @@
 //
 
 import Foundation
+import UIKit
 
 class ReportDetailsManager {
     var report: Report = Report()
     
     var reportService: IReportService = ReportService()
+    
+    var segmentedControlSelectedIndex: Int = ReportDetailSegmentedControl.expenses.rawValue
+}
+/***********************************/
+// MARK: - Data tracking
+/***********************************/
+extension ReportDetailsManager {
+    
+    func getSelectedSegmentedControlIndex() -> Int {
+        return segmentedControlSelectedIndex
+    }
+    
+    func setSelectedSegmentedControlIndex(_ index: Int) {
+        segmentedControlSelectedIndex = index
+    }
 }
 /***********************************/
 // MARK: - UI check value
@@ -25,9 +41,32 @@ extension ReportDetailsManager {
         }
         return false
     }
+    
+    func shouldDisplayFooter() -> Bool {
+         return segmentedControlSelectedIndex == ReportDetailSegmentedControl.expenses.rawValue
+    }
 }
 /***********************************/
-// MARK: - Tableview Header
+// MARK: - TableView Datasource
+/***********************************/
+extension ReportDetailsManager {
+    func getCell(withTableView tableView: UITableView, atIndexPath indexPath: IndexPath) -> UITableViewCell {
+        let strategy = getStrategy(forSelectedSegmentIndex: segmentedControlSelectedIndex)
+        return strategy.getCell(withTableView: tableView, atIndexPath: indexPath, forReport: report)
+    }
+    
+    func getHeightForRowAt(withTableView tableView: UITableView, atIndexPath indexPath: IndexPath) -> CGFloat {
+        let strategy = getStrategy(forSelectedSegmentIndex: segmentedControlSelectedIndex)
+        return strategy.getCellHeight(withTableView: tableView, atIndexPath: indexPath, forReport: report)
+    }
+    
+    func getNumberOfRows() -> Int {
+        let strategy = getStrategy(forSelectedSegmentIndex: segmentedControlSelectedIndex)
+        return strategy.getNumberOfRows(forReport: report)
+    }
+}
+/***********************************/
+// MARK: - Tableview Header & Footer
 /***********************************/
 extension ReportDetailsManager {
     
@@ -70,22 +109,6 @@ extension ReportDetailsManager {
     }
 }
 /***********************************/
-// MARK: - TableView UI update
-/***********************************/
-extension ReportDetailsManager {
-    func getAuditHistoryDescription(forIndexPath indexPath: IndexPath) -> String {
-        return report.auditHistory[indexPath.row].description
-    }
-    
-    func getAuditHistoryDetails(forIndexPath indexPath: IndexPath) -> String {
-        let history = report.auditHistory[indexPath.row]
-        if let date = history.date {
-            return history.createdBy + " | " + Utilities.convertDateToStringForAuditHistoryDisplay(date)
-        }
-        return history.createdBy
-    }
-}
-/***********************************/
 // MARK: - Service Call
 /***********************************/
 extension ReportDetailsManager {
@@ -103,6 +126,23 @@ extension ReportDetailsManager {
             case .failure(let message):
                 completionHandler(ManagerResponseToController.failure(code: "", message: message)) // TODO: - Pass a general code
             }
+        }
+    }
+}
+/***********************************/
+// MARK: - Strategy Selector
+/***********************************/
+extension ReportDetailsManager {
+    func getStrategy(forSelectedSegmentIndex selectedIndex: Int) -> ReportDetailsStrategy {
+        switch selectedIndex {
+        case ReportDetailSegmentedControl.expenses.rawValue:
+            return ReportDetailsExpenseStrategy()
+        case ReportDetailSegmentedControl.moreDetails.rawValue:
+            return ReportDetailsMoreDetailStrategy()
+        case ReportDetailSegmentedControl.history.rawValue:
+            fallthrough
+        default:
+            return ReportDetailsAuditHistoryStrategy()
         }
     }
 }

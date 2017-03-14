@@ -30,6 +30,10 @@ struct Report {
     
     var expenseIds: [String] = []
     
+    var expenses: [Expense] = []
+    
+    var customFields: [[String : Any]] = []
+    
     var auditHistory: [AuditHistory] = []
     
     /***********************************/
@@ -69,6 +73,12 @@ struct Report {
         let jsonExpenseIds = json[Constants.ResponseParameters.expenseIds].exists() ? json[Constants.ResponseParameters.expenseIds].arrayValue : []
         for expenseId in jsonExpenseIds {
             expenseIds.append(expenseId.stringValue)
+        }
+        
+        let jsonExpenses = json[Constants.ResponseParameters.expenses].exists() ? json[Constants.ResponseParameters.expenses].arrayValue : []
+        for jsonExpense in jsonExpenses {
+            let expense = Expense(withJSON: jsonExpense)
+            expenses.append(expense)
         }
         
         let jsonHistories = json[Constants.ResponseParameters.history].exists() ? json[Constants.ResponseParameters.history].arrayValue : []

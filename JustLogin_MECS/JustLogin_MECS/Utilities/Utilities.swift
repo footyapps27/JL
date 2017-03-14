@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import SystemConfiguration
+import SnapKit
 
 /***********************************/
 // MARK: - String to date conversion
@@ -118,6 +119,43 @@ extension Utilities {
         let needsConnection = flags.contains(.connectionRequired)
         
         return (isReachable && !needsConnection)
+    }
+}
+/***********************************/
+// MARK: - Dynamic UI creation
+/***********************************/
+extension Utilities {
+    static func getDynamicView(withFieldName fieldName: String, andFieldValue fieldValue: String) -> UIView {
+        
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        // TODO: - Put the values in constant
+        let lblFieldName = UILabel()
+        lblFieldName.text = fieldName
+        lblFieldName.font = UIFont.systemFont(ofSize: 14)
+        
+        let lblFieldValue = UILabel()
+        lblFieldValue.text = fieldValue
+        lblFieldValue.font = UIFont.systemFont(ofSize: 16)
+        
+        view.addSubview(lblFieldName)
+        view.addSubview(lblFieldValue)
+        
+        lblFieldName.snp.makeConstraints { (make) in
+            make.top.equalTo(view)
+            make.left.equalTo(view)
+            make.right.equalTo(view).offset(-8)
+            make.height.equalTo(25)
+        }
+        
+        lblFieldValue.snp.makeConstraints { (make) in
+            make.top.equalTo(lblFieldName.snp.bottom).offset(-2)
+            make.left.equalTo(view)
+            make.right.equalTo(view).offset(-8)
+            make.height.equalTo(25)
+        }
+        return view
     }
 }
 /***********************************/
