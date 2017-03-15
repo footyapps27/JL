@@ -40,7 +40,7 @@ struct CurrencyService : ICurrencyService {
     // MARK: - IExpenseService implementation
     /***********************************/
     func getAllCurrencies(_ completionHandler:( @escaping (Result<[Currency]>) -> Void)) {
-        serviceAdapter.post(destination: Constants.URLs.getAllCurrencies, payload: [:], headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
+        serviceAdapter.post(destination: Constants.URLs.Currency.getAllCurrencies, payload: [:], headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
             switch(response) {
             case .success(let success, _ ):
                 var allCurrencies: [Currency] = []

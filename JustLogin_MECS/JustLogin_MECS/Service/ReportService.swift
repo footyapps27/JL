@@ -36,6 +36,10 @@ protocol IReportService {
      */
     func delete(reportId: String, completionHandler:( @escaping (Result<Report>) -> Void))
     
+    /**
+     * This will deal with submission/rejection of the report.
+     */
+    func processReport(payload: [String : Any], completionHandler:( @escaping (Result<Report>) -> Void))
 }
 
 struct ReportService : IReportService {
@@ -50,7 +54,7 @@ struct ReportService : IReportService {
      * Method to retrieve all reports.
      */
     func getAllReports(_ completionHandler:( @escaping (Result<[Report]>) -> Void)) {
-        serviceAdapter.post(destination: Constants.URLs.getAllReports, payload: [:], headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
+        serviceAdapter.post(destination: Constants.URLs.Report.getAllReports, payload: [:], headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
             switch(response) {
                 case .success(let success, _ ):
                     var allReports: [Report] = []
@@ -71,7 +75,7 @@ struct ReportService : IReportService {
     
     func getReportDetails(reportId: String, completionHandler:( @escaping (Result<Report>) -> Void)) {
         let payload = getPayloadForReportDetails(reportId)
-        serviceAdapter.post(destination: Constants.URLs.reportDetails
+        serviceAdapter.post(destination: Constants.URLs.Report.reportDetails
         , payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
             switch(response) {
             case .success(let success, _ ):
@@ -92,7 +96,7 @@ struct ReportService : IReportService {
      * Create a new report.
      */
     func create(payload: [String : Any], completionHandler:( @escaping (Result<Report>) -> Void)) {
-        serviceAdapter.post(destination: Constants.URLs.createReport, payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
+        serviceAdapter.post(destination: Constants.URLs.Report.createReport, payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
             switch(response) {
             case .success(let success, _ ):
                 let report = Report(withJSON: JSON(success))
@@ -111,7 +115,7 @@ struct ReportService : IReportService {
      */
     func update(report: Report, completionHandler:( @escaping (Result<Report>) -> Void)) {
         let payload = getPayloadForUpdateReport(report)
-        serviceAdapter.post(destination: Constants.URLs.createExpense, payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
+        serviceAdapter.post(destination: Constants.URLs.Report.updateReport, payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
             // TODO: - Need to handle the scenarios here.
         }
     }
@@ -121,11 +125,25 @@ struct ReportService : IReportService {
      */
     func delete(reportId: String, completionHandler:( @escaping (Result<Report>) -> Void)) {
         let payload = getPayloadForDeleteReport(reportId)
-        serviceAdapter.post(destination: Constants.URLs.createExpense, payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
+        serviceAdapter.post(destination: Constants.URLs.Report.deleteReport, payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
             // TODO: - Need to handle the scenarios here.
         }
     }
-
+    
+    func processReport(payload: [String : Any], completionHandler:( @escaping (Result<Report>) -> Void)) {
+        serviceAdapter.post(destination: Constants.URLs.Approval.reportApproval, payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
+            switch(response) {
+            case .success(let success, _ ):
+                let report = Report(withJSON: JSON(success))
+                completionHandler(Result.success(report))
+            case .errors(let error):
+                let error = ServiceError(JSON(error))
+                completionHandler(Result.error(error))
+            case .failure(let description):
+                completionHandler(Result.failure(description))
+            }
+        }
+    }
 }
 
 extension ReportService {

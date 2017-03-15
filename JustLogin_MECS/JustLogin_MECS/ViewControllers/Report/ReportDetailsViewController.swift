@@ -88,6 +88,12 @@ extension ReportDetailsViewController {
         headerView.updateView(withManager: manager)
         footerView.updateView(withManager: manager)
     }
+    
+    func navigateToApproversList() {
+        let approversListViewController = UIStoryboard(name: Constants.StoryboardIds.reportStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.approversListViewController) as! ApproversListViewController
+        self.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(approversListViewController, animated: true)
+    }
 }
 /***********************************/
 // MARK: - Actions
@@ -98,11 +104,11 @@ extension ReportDetailsViewController {
     }
     
     @IBAction func submitButtonTapped(_ sender: UIBarButtonItem) {
-        
+        navigateToApproversList()
     }
     
     @IBAction func moreOptionsButtonTapped(_ sender: UIBarButtonItem) {
-        
+        // TODO: - Display the action sheet here
     }
     
     func segmentedControlValueChange(_ sender: UISegmentedControl) {

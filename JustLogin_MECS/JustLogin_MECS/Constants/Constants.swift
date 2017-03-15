@@ -80,6 +80,7 @@ struct Constants {
         static let reviewSelectReportTableViewCellIdentifier = "reviewSelectReportTableViewCellIdentifier"
         
         static let reportDetailsTableViewCellIdentifier = "reportDetailsTableViewCellIdentifier"
+        static let approversListTableViewCellIdentifier = "approversListTableViewCellIdentifier"
     }
     
     struct CellHeight {
@@ -103,6 +104,7 @@ struct Constants {
         static let addExpenseViewController = "addExpenseViewController"
         static let expenseDetailsViewController = "expenseDetailsViewController"
         static let addReportViewController = "addReportViewController"
+        static let approversListViewController = "approversListViewController"
         static let reportDetailsViewController = "reportDetailsViewController"
         static let launchViewController = "launchViewController"
         
@@ -118,37 +120,64 @@ struct Constants {
     /***********************************/
     // MARK: - Web service related constants
     /***********************************/
+    
+    /***********************************/
+    // MARK: - URLs
+    /***********************************/
     struct URLs {
         static let baseURL = "http://52.220.239.178/api"
         
-        static let login = URLs.baseURL + "/authentication/login"
-        static let logout = URLs.baseURL + "/authentication/logout"
+        struct Authentication {
+            static let login = URLs.baseURL + "/authentication/login"
+            static let logout = URLs.baseURL + "/authentication/logout"
+        }
         
-        static let organizationDetails = URLs.baseURL + "/organization/details"
+        struct Organization {
+            static let organizationDetails = URLs.baseURL + "/organization/details"
+        }
         
-        static let getAllExpenses = URLs.baseURL + "/expense/retrievebymember"
-        static let expenseDetails = URLs.baseURL + "/expense/retrieve"
-        static let createExpense = URLs.baseURL + "/expense/create"
-        static let updateExpense = URLs.baseURL + "/expense/update"
-        static let deleteExpense = URLs.baseURL + "/expense/delete"
+        struct Expense {
+            static let getAllExpenses = URLs.baseURL + "/expense/retrievebymember"
+            static let expenseDetails = URLs.baseURL + "/expense/retrieve"
+            static let createExpense = URLs.baseURL + "/expense/create"
+            static let updateExpense = URLs.baseURL + "/expense/update"
+            static let deleteExpense = URLs.baseURL + "/expense/delete"
+        }
         
-        static let getAllReports = URLs.baseURL + "/report/retrievebymember"
-        static let reportDetails = URLs.baseURL + "/report/retrieve"
-        static let createReport = URLs.baseURL + "/report/create"
-        static let updateReport = URLs.baseURL + "/organization/details"
-        static let deleteReport = URLs.baseURL + "/organization/details"
+        struct Report {
+            static let getAllReports = URLs.baseURL + "/report/retrievebymember"
+            static let reportDetails = URLs.baseURL + "/report/retrieve"
+            static let createReport = URLs.baseURL + "/report/create"
+            static let updateReport = URLs.baseURL + "/report/update"
+            static let deleteReport = URLs.baseURL + "/report/delete"
+        }
         
-        static let getAllCategories = URLs.baseURL + "/category/retrievebyorganization"
-        static let createCategory = URLs.baseURL + "/category/create"
-        static let updateCategory = URLs.baseURL + "/category/update"
-        static let deleteCategory = URLs.baseURL + "/category/delete"
+        struct Category {
+            static let getAllCategories = URLs.baseURL + "/category/retrievebyorganization"
+            static let createCategory = URLs.baseURL + "/category/create"
+            static let updateCategory = URLs.baseURL + "/category/update"
+            static let deleteCategory = URLs.baseURL + "/category/delete"
+        }
         
-        static let getAllCurrencies = URLs.baseURL + "/currency/retrievebyorganization"
-        static let createCurrency = URLs.baseURL + "/currency/create"
-        static let updateCurrency = URLs.baseURL + "/currency/update"
-        static let deleteCurrency = URLs.baseURL + "/currency/delete"
+        struct Currency {
+            static let getAllCurrencies = URLs.baseURL + "/currency/retrievebyorganization"
+            static let createCurrency = URLs.baseURL + "/currency/create"
+            static let updateCurrency = URLs.baseURL + "/currency/update"
+            static let deleteCurrency = URLs.baseURL + "/currency/delete"
+        }
+        
+        struct Approval { // TODO - rename this
+            static let reportApproval = URLs.baseURL + "/approval/process"
+        }
+        
+        struct Member {
+            static let getApprovers = URLs.baseURL + "/member/retrieveallapprovers"
+        }
     }
     
+    /***********************************/
+    // MARK: - Request Parameters
+    /***********************************/
     struct RequestParameters {
         struct General {
             static let ids = "ids"
@@ -185,6 +214,9 @@ struct Constants {
         }
     }
     
+    /***********************************/
+    // MARK: - Response Parameters
+    /***********************************/
     struct ResponseParameters {
         static let accessToken = "AccessToken"
         
@@ -280,5 +312,7 @@ struct Constants {
         static let createdDate = "createdDate"
         static let createdBy = "createdBy"
         static let history = "history"
+        
+        static let members = "members"
     }
 }

@@ -40,7 +40,7 @@ struct CategoryService : ICategoryService {
     // MARK: - IExpenseService implementation
     /***********************************/
     func getAllCategories(_ completionHandler:( @escaping (Result<[Category]>) -> Void)) {
-        serviceAdapter.post(destination: Constants.URLs.getAllCategories, payload: [:], headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
+        serviceAdapter.post(destination: Constants.URLs.Category.getAllCategories, payload: [:], headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
             switch(response) {
             case .success(let success, _ ):
                 var allCategories: [Category] = []

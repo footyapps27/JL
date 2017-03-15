@@ -27,7 +27,7 @@ struct OrganizationDetailsService: IOrganizationDetailsService {
     
     func getOrganizationDetails(_ completionHandler: @escaping ((Result<Organization>) -> Void)) {
         
-        serviceAdapter.post(destination: Constants.URLs.organizationDetails, payload: [:], headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
+        serviceAdapter.post(destination: Constants.URLs.Organization.organizationDetails, payload: [:], headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
             switch(response) {
             case .success(let success, _ ):
                 let organization = Organization(withJSON: JSON(success))
