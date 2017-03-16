@@ -115,6 +115,8 @@ struct Constants {
     
     struct Notifications {
         static let loginSuccessful = "loginSuccessful"
+        static let refreshReportList = "refreshReportList"
+        static let refreshExpenseList = "refreshExpenseList"
     }
     
     /***********************************/

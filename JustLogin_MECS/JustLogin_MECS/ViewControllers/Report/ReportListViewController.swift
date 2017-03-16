@@ -9,20 +9,22 @@
 import Foundation
 import UIKit
 
-/***********************************/
-// MARK: - Properties
-/***********************************/
+
 class ReportListViewController: BaseViewControllerWithTableView {
     
+    /***********************************/
+    // MARK: - Properties
+    /***********************************/
     let manager = ReportListManager()
-}
-/***********************************/
-// MARK: - View Lifecycle
-/***********************************/
-extension ReportListViewController {
     
+    /***********************************/
+    // MARK: - View Lifecycle
+    /***********************************/
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Register for notification
+        NotificationCenter.default.addObserver(self, selector: #selector(ReportListViewController.fetchReports), name: Notification.Name(Constants.Notifications.refreshReportList), object: nil)
         
         tableView.isHidden = true
         
@@ -33,6 +35,10 @@ extension ReportListViewController {
         addBarButtonItems()
         
         fetchReports()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name(Constants.Notifications.refreshReportList), object: nil)
     }
 }
 /***********************************/

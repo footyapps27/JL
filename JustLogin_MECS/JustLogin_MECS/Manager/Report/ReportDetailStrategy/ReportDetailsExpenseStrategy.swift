@@ -33,7 +33,7 @@ extension ReportDetailsExpenseStrategy: ReportDetailsStrategy {
     }
     
     func getCellHeight(withTableView tableView: UITableView, atIndexPath indexPath: IndexPath, forReport report: Report) -> CGFloat {
-        return CGFloat(Constants.CellHeight.expenseAuditHistoryCellHeight)
+        return CGFloat(Constants.CellHeight.expenseListCellHeight)
     }
     
     func getNumberOfRows(forReport report: Report) -> Int {

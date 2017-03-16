@@ -165,6 +165,9 @@ extension ReportDetailsViewController: UITableViewDelegate {
 extension ReportDetailsViewController:ApproversListDelegate {
     func reportSubmitted() {
         fetchReportDetails()
+        // Also inform the report and expense list to refresh itself with new data.
+        NotificationCenter.default.post(name: Notification.Name(Constants.Notifications.refreshReportList), object: nil)
+        NotificationCenter.default.post(name: Notification.Name(Constants.Notifications.refreshExpenseList), object: nil)
     }
 }
 /***********************************/

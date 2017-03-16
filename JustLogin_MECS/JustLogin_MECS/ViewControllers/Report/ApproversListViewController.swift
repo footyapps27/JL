@@ -81,7 +81,7 @@ extension ApproversListViewController {
         let alert = UIAlertController(title: "Success", message: "Report successfully submitted.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default) { action in
             alert.dismiss(animated: true, completion: nil)
-            self.navigationController?.popViewController(animated: true)
+            _ = self.navigationController?.popViewController(animated: true)
         })
         self.present(alert, animated: true)
     }

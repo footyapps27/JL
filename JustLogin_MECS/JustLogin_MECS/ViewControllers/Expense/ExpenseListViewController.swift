@@ -24,6 +24,9 @@ class ExpenseListViewController: BaseViewControllerWithTableView {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Register for notification
+        NotificationCenter.default.addObserver(self, selector: #selector(ExpenseListViewController.fetchExpenses), name: Notification.Name(Constants.Notifications.refreshExpenseList), object: nil)
+        
         tableView.isHidden = true
         tableView.allowsMultipleSelectionDuringEditing = true
         
@@ -36,6 +39,9 @@ class ExpenseListViewController: BaseViewControllerWithTableView {
         fetchExpenses()
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name(Constants.Notifications.refreshExpenseList), object: nil)
+    }
 }
 /***********************************/
 // MARK: - Actions
