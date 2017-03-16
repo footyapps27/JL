@@ -63,7 +63,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="launchCollectionCellIdentifier" id="8NI-Pd-VMF" customClass="LaunchCollectionViewCell" customModule="JustLogin_MECS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="-4" width="373" height="495"/>
+                                        <rect key="frame" x="0.0" y="-3.5" width="373" height="495"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="373" height="495"/>
@@ -209,12 +209,21 @@
                                                     <constraint firstAttribute="height" constant="200" id="BdY-Er-CkI"/>
                                                 </constraints>
                                             </stackView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CompanyLogo" translatesAutoresizingMaskIntoConstraints="NO" id="Q7s-SN-9BV">
+                                                <rect key="frame" x="77" y="60" width="220" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="eeQ-uW-ruP"/>
+                                                    <constraint firstAttribute="width" constant="220" id="nf5-6T-NDh"/>
+                                                </constraints>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstItem="Q7s-SN-9BV" firstAttribute="centerX" secondItem="771-e6-vET" secondAttribute="centerX" id="FQT-2L-tSa"/>
                                             <constraint firstItem="O9h-5Z-KgP" firstAttribute="centerY" secondItem="771-e6-vET" secondAttribute="centerY" id="LXY-nD-Eup"/>
                                             <constraint firstAttribute="trailing" secondItem="O9h-5Z-KgP" secondAttribute="trailing" constant="20" id="TBs-X9-1a4"/>
                                             <constraint firstItem="O9h-5Z-KgP" firstAttribute="leading" secondItem="771-e6-vET" secondAttribute="leading" constant="20" id="hhG-jm-7Yu"/>
+                                            <constraint firstItem="Q7s-SN-9BV" firstAttribute="top" secondItem="771-e6-vET" secondAttribute="top" constant="60" id="reT-U7-aC8"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -342,4 +351,7 @@
             <point key="canvasLocation" x="-530.39999999999998" y="120.98950524737631"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="CompanyLogo" width="16" height="16"/>
+    </resources>
 </document>
