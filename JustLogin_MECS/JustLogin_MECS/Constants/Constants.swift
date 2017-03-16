@@ -211,6 +211,8 @@ struct Constants {
             static let title = "title"
             static let startDate = "startDate"
             static let endDate = "endDate"
+            static let statusType = "statusType"
+            static let submittedToId = "submittedToId"
         }
     }
     

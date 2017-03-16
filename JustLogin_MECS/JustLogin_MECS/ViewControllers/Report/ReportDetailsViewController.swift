@@ -90,9 +90,16 @@ extension ReportDetailsViewController {
     }
     
     func navigateToApproversList() {
-        let approversListViewController = UIStoryboard(name: Constants.StoryboardIds.reportStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.approversListViewController) as! ApproversListViewController
-        self.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(approversListViewController, animated: true)
+        if report != nil {
+            let approversListViewController = UIStoryboard(name: Constants.StoryboardIds.reportStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.approversListViewController) as! ApproversListViewController
+            approversListViewController.report = report!
+            approversListViewController.delegate = self
+            // TODO - Create a utility function for this
+            self.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(approversListViewController, animated: true)
+        } else {
+            log.error("Report found nil while unwrapping in report details")
+        }
     }
 }
 /***********************************/
@@ -153,6 +160,14 @@ extension ReportDetailsViewController: UITableViewDelegate {
     }
 }
 /***********************************/
+// MARK: - UITableViewDelegate
+/***********************************/
+extension ReportDetailsViewController:ApproversListDelegate {
+    func reportSubmitted() {
+        fetchReportDetails()
+    }
+}
+/***********************************/
 // MARK: - Service Call
 /***********************************/
 extension ReportDetailsViewController {
@@ -167,7 +182,8 @@ extension ReportDetailsViewController {
                 return
             }
             switch(response) {
-            case .success(_):
+            case .success(let report):
+                self.report = report
                 self.updateUIAfterSuccessfulResponse()
                 self.hideLoadingIndicator(enableUserInteraction: true)
             case .failure(_, _):

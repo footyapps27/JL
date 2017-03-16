@@ -55,7 +55,7 @@ extension ApproversListManager {
 extension ApproversListManager {
     
     /**
-     * Method to fetch all reports from the server.
+     * Method to fetch all approvers from the server.
      */
     func fetchApprovers(completionHandler: (@escaping (ManagerResponseToController<[Member]>) -> Void)) {
         memberService.getApproversForCurrentUser({ [weak self] (result) in
@@ -69,5 +69,41 @@ extension ApproversListManager {
                 completionHandler(ManagerResponseToController.failure(code: "", message: message)) // TODO: - Pass a general code
             }
         })
+    }
+    
+    /**
+     * Method to process a report.
+     */
+    func processReport(_ report: Report, withApprover approver: Member, completionHandler: (@escaping (ManagerResponseToController<Report>) -> Void)) {
+        // Step 1: - Update report with the member id.
+        
+        var updatedReport = report
+        updatedReport.submittedToId = approver.id
+        
+        reportService.update(report: updatedReport) { [weak self] (result) in
+            switch(result) {
+            case .success(let receivedReport):
+                // Step 2: - Submit the report with the updated status.
+                
+                var statusUpdatedReport = receivedReport
+                statusUpdatedReport.status = ReportStatus.submitted.rawValue
+                
+                self?.reportService.processReport(report: statusUpdatedReport, completionHandler: { (processReportResult) in
+                    
+                    switch(result) {
+                    case .success(let finalReport):
+                        completionHandler(ManagerResponseToController.success(finalReport))
+                    case .error(let serviceError):
+                        completionHandler(ManagerResponseToController.failure(code: serviceError.code, message: serviceError.message))
+                    case .failure(let message):
+                        completionHandler(ManagerResponseToController.failure(code: "", message: message)) // TODO: - Pass a general code
+                    }
+                })
+            case .error(let serviceError):
+                completionHandler(ManagerResponseToController.failure(code: serviceError.code, message: serviceError.message))
+            case .failure(let message):
+                completionHandler(ManagerResponseToController.failure(code: "", message: message)) // TODO: - Pass a general code
+            }
+        }
     }
 }

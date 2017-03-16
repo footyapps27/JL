@@ -10,11 +10,22 @@ import Foundation
 import UIKit
 
 /***********************************/
+// MARK: - Protocol
+/***********************************/
+protocol ApproversListDelegate: class {
+    func reportSubmitted()
+}
+
+/***********************************/
 // MARK: - Properties
 /***********************************/
 class ApproversListViewController: BaseViewControllerWithTableView {
     
     let manager = ApproversListManager()
+    
+    var report: Report?
+    
+    weak var delegate: ApproversListDelegate?
 }
 /***********************************/
 // MARK: - View Lifecycle
@@ -62,6 +73,18 @@ extension ApproversListViewController {
     func addBarButtonItems() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Submit", style: .plain, target: self, action: #selector(rightBarButtonTapped(_:)))// TODO - Move to constants
     }
+    
+    /**
+     * Method to show success alert when a report is successfully submitted.
+     */
+    func showSuccessAlert() {
+        let alert = UIAlertController(title: "Success", message: "Report successfully submitted.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default) { action in
+            alert.dismiss(animated: true, completion: nil)
+            self.navigationController?.popViewController(animated: true)
+        })
+        self.present(alert, animated: true)
+    }
 }
 /***********************************/
 // MARK: - Service Call
@@ -96,8 +119,37 @@ extension ApproversListViewController {
         }
     }
     
+    /**
+     * Method to process a report.
+     */
     func processReport() {
-        
+        if report != nil {
+            
+            if !refreshControl.isRefreshing {
+                showLoadingIndicator(disableUserInteraction: false)
+            }
+            // Unwrapping here since we have checked the condition on button click.
+            let approver = manager.getApprovers()[tableView.indexPathForSelectedRow!.row]
+            manager.processReport(report!, withApprover: approver, completionHandler: { [weak self] (response) in
+                guard let `self` = self else {
+                    log.error("Self reference missing in closure.")
+                    return
+                }
+                
+                switch(response) {
+                case .success(_):
+                    // TODO: - Move to constants
+                    self.delegate?.reportSubmitted()
+                    self.refreshControl.isRefreshing ? self.refreshControl.endRefreshing() : self.hideLoadingIndicator(enableUserInteraction: true)
+                    self.showSuccessAlert()
+                case .failure(_, let message):
+                    Utilities.showErrorAlert(withMessage: message, onController: self)
+                    self.refreshControl.isRefreshing ? self.refreshControl.endRefreshing() : self.hideLoadingIndicator(enableUserInteraction: true)
+                }
+            })
+        } else {
+            log.error("Report object found nil while submitting.")
+        }
     }
 }
 /***********************************/

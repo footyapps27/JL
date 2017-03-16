@@ -72,6 +72,18 @@ extension Utilities {
     }
     
     /**
+     * Method to show an success alert.
+     */
+    static func showSuccessAlert(withMessage message: String, onController controller: UIViewController) {
+        // TODO: - Add to the text file.
+        let alert = UIAlertController(title: "Success", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default) { action in
+            alert.dismiss(animated: true, completion: nil)
+        })
+        controller.present(alert, animated: true)
+    }
+
+    /**
      * Method to show an action sheet.
      */
     static func showActionSheet(withTitle title: String?, message: String?, actions: [UIAlertAction], onController controller: UIViewController) {
