@@ -32,6 +32,20 @@ class SignInViewController: BaseViewController {
     /***********************************/
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateUI()
+        addBarButton()
+    }
+}
+/***********************************/
+// MARK: - Helpers
+/***********************************/
+extension SignInViewController {
+    func updateUI() {
+        view.backgroundColor = Color.background.value
+        btnSignIn.backgroundColor = Color.theme.value
+    }
+    
+    func addBarButton() {
         let cancel = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelTapped))
         navigationItem.leftBarButtonItems = [cancel]
     }
@@ -82,6 +96,7 @@ extension SignInViewController {
             switch(result) {
             case .success( _):
                 // Inform the parent that the user logged in successfully, and the member that has logged in.
+                // TODO - Replace this with delegate
                 NotificationCenter.default.post(name: Notification.Name(Constants.Notifications.loginSuccessful), object: nil)
                 self.dismiss(animated: false, completion: nil)
             case .failure(_ , let message):
