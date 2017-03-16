@@ -169,7 +169,8 @@ struct Constants {
         }
         
         struct Approval { // TODO - rename this
-            static let reportApproval = URLs.baseURL + "/approval/process"
+            static let getAllApprovals = URLs.baseURL + "/approval/retrievebyapprover"
+            static let processReportApproval = URLs.baseURL + "/approval/process"
         }
         
         struct Member {

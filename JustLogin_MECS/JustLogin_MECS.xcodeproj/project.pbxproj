@@ -38,6 +38,7 @@
 		8C0A01E01E78E19400A96867 /* ApproversListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A01DF1E78E19400A96867 /* ApproversListManager.swift */; };
 		8C0A01E21E78E4E700A96867 /* ApproversListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A01E11E78E4E700A96867 /* ApproversListTableViewCell.swift */; };
 		8C0A01E41E78EAB600A96867 /* MemberService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A01E31E78EAB600A96867 /* MemberService.swift */; };
+		8C1766501E7A65D500D1CDE0 /* ApprovalListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C17664F1E7A65D500D1CDE0 /* ApprovalListManager.swift */; };
 		8C26DDB91E779DE400FC0E13 /* ReportDetailsFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C26DDB81E779DE400FC0E13 /* ReportDetailsFooterView.swift */; };
 		8C299FF31E681EDA0077A730 /* ExpenseDetailsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C299FF21E681EDA0077A730 /* ExpenseDetailsHeaderView.swift */; };
 		8C42DFD31E63DE7D00A3B69A /* AddReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C42DFD21E63DE7D00A3B69A /* AddReportViewController.swift */; };
@@ -181,6 +182,7 @@
 		8C0A01DF1E78E19400A96867 /* ApproversListManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApproversListManager.swift; sourceTree = "<group>"; };
 		8C0A01E11E78E4E700A96867 /* ApproversListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApproversListTableViewCell.swift; sourceTree = "<group>"; };
 		8C0A01E31E78EAB600A96867 /* MemberService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberService.swift; sourceTree = "<group>"; };
+		8C17664F1E7A65D500D1CDE0 /* ApprovalListManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApprovalListManager.swift; path = JustLogin_MECS/Service/ApprovalListManager.swift; sourceTree = SOURCE_ROOT; };
 		8C26DDB81E779DE400FC0E13 /* ReportDetailsFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsFooterView.swift; sourceTree = "<group>"; };
 		8C299FF21E681EDA0077A730 /* ExpenseDetailsHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseDetailsHeaderView.swift; sourceTree = "<group>"; };
 		8C42DFD21E63DE7D00A3B69A /* AddReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReportViewController.swift; sourceTree = "<group>"; };
@@ -723,6 +725,7 @@
 		8CF655E01E58B55600D4FEF3 /* Approval */ = {
 			isa = PBXGroup;
 			children = (
+				8C17664F1E7A65D500D1CDE0 /* ApprovalListManager.swift */,
 			);
 			path = Approval;
 			sourceTree = "<group>";
@@ -1144,6 +1147,7 @@
 				8CF655C91E58455A00D4FEF3 /* Member.swift in Sources */,
 				8CF655DD1E58B06300D4FEF3 /* Expense.swift in Sources */,
 				8C42DFD31E63DE7D00A3B69A /* AddReportViewController.swift in Sources */,
+				8C1766501E7A65D500D1CDE0 /* ApprovalListManager.swift in Sources */,
 				8C8995D71E60822B00482317 /* ExpenseDetailsViewController.swift in Sources */,
 				8C00F6601E1E651A0007F29C /* AppDelegate.swift in Sources */,
 				8C9602101E1FDB7F00EE66A3 /* SignUpViewController.swift in Sources */,

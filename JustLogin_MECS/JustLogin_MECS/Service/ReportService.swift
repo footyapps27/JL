@@ -141,7 +141,7 @@ struct ReportService : IReportService {
     
     func processReport(report: Report, completionHandler:( @escaping (Result<Report>) -> Void)) {
         let payload = getPayloadForProcessReport(report)
-        serviceAdapter.post(destination: Constants.URLs.Approval.reportApproval, payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
+        serviceAdapter.post(destination: Constants.URLs.Approval.processReportApproval, payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
             switch(response) {
             case .success(let success, _ ):
                 let report = Report(withJSON: JSON(success))

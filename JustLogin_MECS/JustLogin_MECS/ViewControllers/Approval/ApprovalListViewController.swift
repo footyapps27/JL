@@ -12,61 +12,97 @@ import UIKit
 class ApprovalListViewController: BaseViewControllerWithTableView {
     
     /***********************************/
+    // MARK: - Properties
+    /***********************************/
+    let manager = ApprovalListManager()
+    /***********************************/
     // MARK: - View Lifecycle
     /***********************************/
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        addSearchController(toTableView: tableView, withSearchResultsUpdater: self)
-    }
-    
-    /***********************************/
-    // MARK: - Actions
-    /***********************************/
-    
-    
-    /***********************************/
-    // MARK: - Helpers
-    /***********************************/
-    func filterContentForSearchText(searchText: String, scope: String = "All") {
-        //        filteredCandies = candies.filter { candy in
-        //            return candy.name.lowercaseString.containsString(searchText.lowercaseString)
-        //        }
+        tableView.isHidden = true
         
-        tableView.reloadData()
+        addSearchController(toTableView: tableView, withSearchResultsUpdater: self)
+        
+        addRefreshControl(toTableView: tableView, withAction: #selector(refreshTableView(_:)))
+        
+        fetchApprovals()
     }
-    
 }
-
+/***********************************/
+// MARK: - Actions
+/***********************************/
+extension ApprovalListViewController {
+    
+    func refreshTableView(_ refreshControl: UIRefreshControl) {
+        fetchApprovals()
+    }
+}
+/***********************************/
+// MARK: - Service Call
+/***********************************/
+extension ApprovalListViewController {
+    /**
+     * Method to fetch approvals that will be displayed in the tableview.
+     */
+    func fetchApprovals() {
+        
+        if !refreshControl.isRefreshing {
+            showLoadingIndicator(disableUserInteraction: false)
+        }
+        
+        manager.fetchApprovals { [weak self] (response) in
+            // TODO: - Add loading indicator
+            guard let `self` = self else {
+                log.error("Self reference missing in closure.")
+                return
+            }
+            
+            switch(response) {
+            case .success(_):
+                self.tableView.isHidden = false
+                self.tableView.reloadData()
+                self.refreshControl.isRefreshing ? self.refreshControl.endRefreshing() : self.hideLoadingIndicator(enableUserInteraction: true)
+            case .failure(_, let message):
+                // TODO: - Handle the empty table view screen.
+                Utilities.showErrorAlert(withMessage: message, onController: self)
+                self.refreshControl.isRefreshing ? self.refreshControl.endRefreshing() : self.hideLoadingIndicator(enableUserInteraction: true)
+            }
+        }
+    }
+}
+/***********************************/
+// MARK: - UITableViewDataSource
+/***********************************/
 extension ApprovalListViewController: UITableViewDataSource {
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // TODO: - Hardcoded data
-        return 10
+        return manager.getApprovals().count
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.approvalListTableViewCellIdentifier, for: indexPath) as? ApprovalListTableViewCell {
-            cell.lblReportName.text = "Office party"
-            cell.lblEmployeeName.text = "John Doe"
-            cell.lblAmount.text = "$98.55"
-            cell.lblStatus.text = "Overdue by 1 day"
-            return cell
-        }
-        // TODO: - This has to be updated
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.approvalListTableViewCellIdentifier, for: indexPath) as! ApprovalListTableViewCell
+        cell.lblReportName.text = manager.getReportTitle(forIndexPath: indexPath)
+        cell.lblEmployeeName.text = "John Doe"
+        cell.lblAmount.text = manager.getFormattedReportAmount(forIndexPath: indexPath)
+        cell.lblStatus.text = manager.getReportStatus(forIndexPath: indexPath)
+        return cell
     }
 }
-
+/***********************************/
+// MARK: - UITableViewDelegate
+/***********************************/
 extension ApprovalListViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return CGFloat(Constants.CellHeight.approvalListCellHeight)
     }
 }
-
+/***********************************/
+// MARK: - UISearchResultsUpdating
+/***********************************/
 extension ApprovalListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        //filterContentForSearchText(searchController.searchBar.text!)
     }
 }
