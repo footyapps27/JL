@@ -39,6 +39,8 @@
 		8C0A01E21E78E4E700A96867 /* ApproversListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A01E11E78E4E700A96867 /* ApproversListTableViewCell.swift */; };
 		8C0A01E41E78EAB600A96867 /* MemberService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A01E31E78EAB600A96867 /* MemberService.swift */; };
 		8C1766501E7A65D500D1CDE0 /* ApprovalListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C17664F1E7A65D500D1CDE0 /* ApprovalListManager.swift */; };
+		8C1766521E7A7B3A00D1CDE0 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1766511E7A7B3A00D1CDE0 /* UIColor.swift */; };
+		8C1766551E7A851200D1CDE0 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1766541E7A851200D1CDE0 /* Styles.swift */; };
 		8C26DDB91E779DE400FC0E13 /* ReportDetailsFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C26DDB81E779DE400FC0E13 /* ReportDetailsFooterView.swift */; };
 		8C299FF31E681EDA0077A730 /* ExpenseDetailsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C299FF21E681EDA0077A730 /* ExpenseDetailsHeaderView.swift */; };
 		8C42DFD31E63DE7D00A3B69A /* AddReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C42DFD21E63DE7D00A3B69A /* AddReportViewController.swift */; };
@@ -183,6 +185,8 @@
 		8C0A01E11E78E4E700A96867 /* ApproversListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApproversListTableViewCell.swift; sourceTree = "<group>"; };
 		8C0A01E31E78EAB600A96867 /* MemberService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberService.swift; sourceTree = "<group>"; };
 		8C17664F1E7A65D500D1CDE0 /* ApprovalListManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApprovalListManager.swift; path = JustLogin_MECS/Service/ApprovalListManager.swift; sourceTree = SOURCE_ROOT; };
+		8C1766511E7A7B3A00D1CDE0 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		8C1766541E7A851200D1CDE0 /* Styles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		8C26DDB81E779DE400FC0E13 /* ReportDetailsFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsFooterView.swift; sourceTree = "<group>"; };
 		8C299FF21E681EDA0077A730 /* ExpenseDetailsHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseDetailsHeaderView.swift; sourceTree = "<group>"; };
 		8C42DFD21E63DE7D00A3B69A /* AddReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReportViewController.swift; sourceTree = "<group>"; };
@@ -339,6 +343,7 @@
 				8CEAADB91E5540A500BDB5ED /* Service */,
 				8CEAADBA1E5540B500BDB5ED /* Singleton */,
 				8C00F65A1E1E651A0007F29C /* Storyboard */,
+				8C1766531E7A850900D1CDE0 /* Styles */,
 				8CEAADBB1E5540CA00BDB5ED /* Utilities */,
 				8C00F65D1E1E651A0007F29C /* ViewControllers */,
 				8C00F65F1E1E651A0007F29C /* Views */,
@@ -481,6 +486,7 @@
 			children = (
 				8C0A01CE1E77C38100A96867 /* Dictionary.swift */,
 				8C0A01CF1E77C38100A96867 /* Double.swift */,
+				8C1766511E7A7B3A00D1CDE0 /* UIColor.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -494,6 +500,14 @@
 				8C0A01D91E77C4E000A96867 /* ReportDetailsMoreDetailStrategy.swift */,
 			);
 			path = ReportDetailStrategy;
+			sourceTree = "<group>";
+		};
+		8C1766531E7A850900D1CDE0 /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+				8C1766541E7A851200D1CDE0 /* Styles.swift */,
+			);
+			path = Styles;
 			sourceTree = "<group>";
 		};
 		8C5141341E1F5F2F003AD3B1 /* Base */ = {
@@ -1153,6 +1167,7 @@
 				8C9602101E1FDB7F00EE66A3 /* SignUpViewController.swift in Sources */,
 				8C9602141E1FDB9900EE66A3 /* HomeViewController.swift in Sources */,
 				8C42DFDD1E6436C900A3B69A /* ExpenseAndReportField.swift in Sources */,
+				8C1766521E7A7B3A00D1CDE0 /* UIColor.swift in Sources */,
 				8C07A5671E6E87840015D419 /* AddExpenseTableViewCellCurrencyAndAmount.swift in Sources */,
 				8C0A01D11E77C38100A96867 /* Double.swift in Sources */,
 				8C07A56B1E6E88F00015D419 /* AddExpenseTableViewCellWithMultipleSelection.swift in Sources */,
@@ -1172,6 +1187,7 @@
 				8CFD020A1E73A8B200526962 /* ReviewSelectCurrencyViewController.swift in Sources */,
 				8C0A01DC1E78CA0E00A96867 /* ApprovalService.swift in Sources */,
 				8CFD02151E73D39800526962 /* ReviewSelectReportManager.swift in Sources */,
+				8C1766551E7A851200D1CDE0 /* Styles.swift in Sources */,
 				8CE007231E28F3280089D159 /* SettingsTableProfileSectionHeaderView.swift in Sources */,
 				8CF655C71E58387100D4FEF3 /* LoginService.swift in Sources */,
 				8CF3F6521E652B1E00A18D73 /* AddReportTableViewCellDuration.swift in Sources */,

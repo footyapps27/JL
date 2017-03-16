@@ -7,11 +7,18 @@
 //
 
 import Foundation
+import UIKit
 
+/***********************************/
+// MARK: - Roles
+/***********************************/
 enum Roles {
     case Submitter, Approver, Admin
 }
 
+/***********************************/
+// MARK: - Report Status
+/***********************************/
 enum ReportStatus : Int
 {
     case unsubmitted = 0, submitted, rejected, approved, reimbursed, undoReimburse
@@ -21,6 +28,9 @@ enum ReportStatus : Int
     }
 }
 
+/***********************************/
+// MARK: - Expense Status
+/***********************************/
 enum ExpenseStatus : Int {
     
     case unreported = -1,
@@ -35,6 +45,9 @@ enum ExpenseStatus : Int {
     }
 }
 
+/***********************************/
+// MARK: - Expense & Report Field Types
+/***********************************/
 enum ExpenseAndReportFieldType: Int {
     case text = 0,
     email,
@@ -54,6 +67,9 @@ enum ExpenseAndReportFieldType: Int {
     imageSelection
 }
 
+/***********************************/
+// MARK: - Settings Options
+/***********************************/
 enum SettingsOptions: String {
     case organizationProfile = "Organization Profile"
     case users = "Users"
@@ -72,8 +88,50 @@ enum SettingsOptions: String {
     case upgradeOrganization = "Upgrade Organization"
 }
 
+/***********************************/
+// MARK: - Report Details Segment Control
+/***********************************/
 enum ReportDetailSegmentedControl: Int {
     case expenses = 0,
     moreDetails,
     history
+}
+
+/***********************************/
+// MARK: - Color
+/***********************************/
+enum Color {
+    
+    case theme
+    case background
+    case required
+    case tabBarText
+    
+    // For custom colors
+    case custom(hexString: String, alpha: Double)
+    
+    func withAlpha(_ alpha: Double) -> UIColor {
+        return self.value.withAlphaComponent(CGFloat(alpha))
+    }
+}
+
+extension Color {
+    
+    var value: UIColor {
+        var instanceColor = UIColor.clear
+        
+        switch self {
+        case .theme:
+            instanceColor = UIColor(hexString: "#0098AA")
+        case .background:
+            instanceColor = UIColor(hexString: "#F1F3F6")
+        case .required:
+            instanceColor = UIColor(hexString: "#E44864")
+        case .tabBarText:
+            instanceColor = UIColor(hexString: "#7B7B7B")
+        case .custom(let hexValue, let opacity):
+            instanceColor = UIColor(hexString: hexValue).withAlphaComponent(CGFloat(opacity))
+        }
+        return instanceColor
+    }
 }

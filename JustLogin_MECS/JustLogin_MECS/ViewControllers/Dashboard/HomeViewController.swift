@@ -44,6 +44,7 @@ extension HomeViewController {
 /***********************************/
 extension HomeViewController {
     func updateUI() {
+        view.backgroundColor = Color.theme.value
         lblMemberName.text = manager.getMemberName()
     }
     

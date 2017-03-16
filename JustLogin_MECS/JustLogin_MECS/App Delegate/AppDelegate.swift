@@ -24,6 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let console = ConsoleDestination()
         log.addDestination(console)
         
+        // Initial setup
+        Styles.initialStylesSetup()
         return true
     }
 
