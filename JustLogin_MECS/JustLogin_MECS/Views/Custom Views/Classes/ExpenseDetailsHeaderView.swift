@@ -25,6 +25,10 @@ protocol ExpenseDetailsHeaderViewDelegate: class {
  */
 class ExpenseDetailsHeaderView: UIView {
     
+    // This is the top portion of the header view, which is not dynamic.
+    // Contains all the labels
+    @IBOutlet weak var vwLabelContainer: UIView!
+    
     @IBOutlet weak var lblCategory: UILabel!
     
     @IBOutlet weak var lblAmount: UILabel!
@@ -97,5 +101,13 @@ extension ExpenseDetailsHeaderView {
     
     @IBAction func policyViolationTapped(_ sender: UIButton) {
         // TODO: - Handle the view update here
+    }
+}
+/***********************************/
+// MARK: - Lifecycle
+/***********************************/
+extension ExpenseDetailsHeaderView {
+    override func awakeFromNib() {
+        vwLabelContainer.backgroundColor = Color.theme.value
     }
 }

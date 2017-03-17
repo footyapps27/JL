@@ -35,3 +35,11 @@ extension ReportDetailsHeaderView {
         lblStatus.text = manager.getReportStatus()
     }
 }
+/***********************************/
+// MARK: - Lifecycle
+/***********************************/
+extension ReportDetailsHeaderView {
+    override func awakeFromNib() {
+        backgroundColor = Color.theme.value
+    }
+}

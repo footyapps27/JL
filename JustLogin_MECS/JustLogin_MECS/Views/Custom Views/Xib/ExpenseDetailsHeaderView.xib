@@ -145,6 +145,7 @@
                 <outlet property="lblStatus" destination="wKL-nR-Rmi" id="5bz-DE-4E5"/>
                 <outlet property="parentStackView" destination="BQo-y5-p0m" id="T0z-AI-cem"/>
                 <outlet property="parentStackViewHeight" destination="g8G-1q-Y8g" id="cfr-TG-dyN"/>
+                <outlet property="vwLabelContainer" destination="at4-LD-xU3" id="2pi-MU-CrU"/>
             </connections>
             <point key="canvasLocation" x="-213" y="-918"/>
         </view>

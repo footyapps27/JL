@@ -17,6 +17,7 @@ struct Styles {
         setupNavigationBar()
         setupTableViewBackground()
         setupTabBar()
+        setupSegmentedControl()
     }
 }
 /***********************************/
@@ -37,5 +38,9 @@ extension Styles {
         UITabBar.appearance().tintColor = Color.theme.value
         UITabBar.appearance().backgroundColor = .white
         UITabBar.appearance().isTranslucent = false
+    }
+    
+    fileprivate static func setupSegmentedControl() {
+        UISegmentedControl.appearance().tintColor = Color.theme.value
     }
 }
