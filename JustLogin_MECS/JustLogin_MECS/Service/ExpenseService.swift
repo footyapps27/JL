@@ -24,7 +24,7 @@ protocol IExpenseService {
     /**
      * Create a new expense.
      */
-    func create(expense: Expense, completionHandler:( @escaping (Result<Expense>) -> Void))
+    func create(payload: [String : Any], completionHandler:( @escaping (Result<Expense>) -> Void))
     
     /**
      * Update an existing expense.
@@ -45,7 +45,7 @@ struct ExpenseService : IExpenseService {
     var serviceAdapter: NetworkAdapter = AlamofireNetworkAdapter()
     
     func getAllExpenses(_ completionHandler:( @escaping (Result<[Expense]>) -> Void)) {
-        serviceAdapter.post(destination: Constants.URLs.getAllExpenses, payload: [:], headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
+        serviceAdapter.post(destination: Constants.URLs.Expense.getAllExpenses, payload: [:], headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
             switch(response) {
             case .success(let success, _ ):
                 var allExpenses: [Expense] = []
@@ -68,7 +68,7 @@ struct ExpenseService : IExpenseService {
     
     func getExpenseDetails(expenseId: String, completionHandler:( @escaping (Result<Expense>) -> Void)) {
         let payload = getPayloadForExpenseDetails(expenseId)
-        serviceAdapter.post(destination: Constants.URLs.expenseDetails
+        serviceAdapter.post(destination: Constants.URLs.Expense.expenseDetails
         , payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
             switch(response) {
             case .success(let success, _ ):
@@ -85,9 +85,8 @@ struct ExpenseService : IExpenseService {
         }
     }
     
-    func create(expense: Expense, completionHandler:( @escaping (Result<Expense>) -> Void)) {
-        let payload = getPayloadForCreateExpense(expense)
-        serviceAdapter.post(destination: Constants.URLs.updateExpense
+    func create(payload: [String : Any], completionHandler:( @escaping (Result<Expense>) -> Void)) {
+        serviceAdapter.post(destination: Constants.URLs.Expense.createExpense
         , payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
             switch(response) {
             case .success(let success, _ ):
@@ -106,7 +105,7 @@ struct ExpenseService : IExpenseService {
     
     func update(expense: Expense, completionHandler:( @escaping (Result<Expense>) -> Void)) {
         let payload = getPayloadForUpdateExpense(expense)
-        serviceAdapter.post(destination: Constants.URLs.createExpense, payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
+        serviceAdapter.post(destination: Constants.URLs.Expense.updateExpense, payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
             switch(response) {
             case .success(let success, _ ):
                 let expense = Expense(withJSON: JSON(success))
@@ -124,7 +123,7 @@ struct ExpenseService : IExpenseService {
     
     func delete(expenseIds: [String], completionHandler:( @escaping (Result<Void>) -> Void)) {
         let payload = getPayloadForDeleteExpense(expenseIds)
-        serviceAdapter.post(destination: Constants.URLs.deleteExpense, payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
+        serviceAdapter.post(destination: Constants.URLs.Expense.deleteExpense, payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
             switch(response) {
             case .success(_ , _):
                 completionHandler(Result.success())

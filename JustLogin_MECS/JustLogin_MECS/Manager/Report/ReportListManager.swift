@@ -78,11 +78,7 @@ extension ReportListManager {
      */
     func getReportStatus(forIndexPath indexPath: IndexPath) -> String {
         let report = reports[indexPath.row]
-        if let status = ReportStatus(rawValue: report.status) {
-            return status.name.capitalized
-        }
-        log.error("Status of expense is invalid")
-        return Constants.General.emptyString
+        return Utilities.getStatus(forReport: report).capitalized
     }
 }
 /***********************************/

@@ -47,7 +47,7 @@ struct Expense {
     
     var customFields: [[String : Any]] = []
     
-    var auditHistory: [ExpenseAuditHistory] = []
+    var auditHistory: [AuditHistory] = []
     
     /**
      * Default initializer
@@ -99,7 +99,7 @@ extension Expense {
         
         let jsonHistories = json[Constants.ResponseParameters.history].exists() ? json[Constants.ResponseParameters.history].arrayValue : []
         for jsonHistory in jsonHistories {
-            let history = ExpenseAuditHistory(withJSON: jsonHistory)
+            let history = AuditHistory(withJSON: jsonHistory)
             auditHistory.append(history)
         }
     }

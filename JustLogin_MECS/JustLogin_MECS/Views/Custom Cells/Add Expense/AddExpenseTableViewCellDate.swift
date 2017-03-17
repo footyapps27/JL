@@ -25,11 +25,21 @@ class AddExpenseTableViewCellDate: AddExpenseBaseTableViewCell {
         txtDate.tag = ExpenseAndReportFieldType.date.rawValue
     }
     
-    override func validateInput(withField reportField: ExpenseAndReportField) -> (success: Bool, errorMessage: String) {
+    override func validateInput(withField expenseField: ExpenseAndReportField) -> (success: Bool, errorMessage: String) {
         if txtDate.text!.isEmpty {
             return (false, "Please make sure 'Date' has been entered.")
         }
         return(true, Constants.General.emptyString)
+    }
+    
+    override func makeFirstResponder() {
+        txtDate.becomeFirstResponder()
+    }
+    
+    override func getPayload(withField expenseField: ExpenseAndReportField) -> [String : Any] {
+        return [
+            Constants.RequestParameters.Expense.date : getFormattedDateFromText(txtDate.text!)
+        ]
     }
 }
 /***********************************/
@@ -38,5 +48,18 @@ class AddExpenseTableViewCellDate: AddExpenseBaseTableViewCell {
 extension AddExpenseTableViewCellDate {
     override func awakeFromNib() {
         txtDate.text = Utilities.convertDateToStringForDisplay(Date())
+    }
+}
+/***********************************/
+// MARK: - Private Methods
+/***********************************/
+extension AddExpenseTableViewCellDate {
+    func getFormattedDateFromText(_ text: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = Constants.General.localDisplayDateFormat
+        
+        let formattedDate = dateFormatter.date(from: text)!
+        
+        return Utilities.convertDateToStringForServerCommunication(formattedDate)
     }
 }

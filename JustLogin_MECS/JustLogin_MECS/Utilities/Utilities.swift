@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import SystemConfiguration
+import SnapKit
 
 /***********************************/
 // MARK: - String to date conversion
@@ -20,6 +21,15 @@ class Utilities {
     static func convertServerStringToDate(_ string: String) -> Date? {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = Constants.General.dateFormatReceivedFromServer
+        return dateFormatter.date(from: string)
+    }
+    
+    /**
+     * Method to convert server string to date for history.
+     */
+    static func convertAuditHistoryServerStringToDate(_ string: String) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = Constants.General.dateFormatReceivedFromServerForAuditHistory
         return dateFormatter.date(from: string)
     }
     
@@ -61,6 +71,18 @@ extension Utilities {
         controller.present(alert, animated: true)
     }
     
+    /**
+     * Method to show an success alert.
+     */
+    static func showSuccessAlert(withMessage message: String, onController controller: UIViewController) {
+        // TODO: - Add to the text file.
+        let alert = UIAlertController(title: "Success", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default) { action in
+            alert.dismiss(animated: true, completion: nil)
+        })
+        controller.present(alert, animated: true)
+    }
+
     /**
      * Method to show an action sheet.
      */
@@ -109,6 +131,43 @@ extension Utilities {
         let needsConnection = flags.contains(.connectionRequired)
         
         return (isReachable && !needsConnection)
+    }
+}
+/***********************************/
+// MARK: - Dynamic UI creation
+/***********************************/
+extension Utilities {
+    static func getDynamicView(withFieldName fieldName: String, andFieldValue fieldValue: String) -> UIView {
+        
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        // TODO: - Put the values in constant
+        let lblFieldName = UILabel()
+        lblFieldName.text = fieldName
+        lblFieldName.font = UIFont.systemFont(ofSize: 14)
+        
+        let lblFieldValue = UILabel()
+        lblFieldValue.text = fieldValue
+        lblFieldValue.font = UIFont.systemFont(ofSize: 16)
+        
+        view.addSubview(lblFieldName)
+        view.addSubview(lblFieldValue)
+        
+        lblFieldName.snp.makeConstraints { (make) in
+            make.top.equalTo(view)
+            make.left.equalTo(view)
+            make.right.equalTo(view).offset(-8)
+            make.height.equalTo(25)
+        }
+        
+        lblFieldValue.snp.makeConstraints { (make) in
+            make.top.equalTo(lblFieldName.snp.bottom).offset(-2)
+            make.left.equalTo(view)
+            make.right.equalTo(view).offset(-8)
+            make.height.equalTo(25)
+        }
+        return view
     }
 }
 /***********************************/
@@ -166,6 +225,57 @@ extension Utilities {
             return status.name
         }
         log.error("Status of expense is invalid")
+        return Constants.General.emptyString
+    }
+}
+/***********************************/
+// MARK: - Report UI Format
+/***********************************/
+extension Utilities {
+    static func getFormattedAmount(forReport report: Report) -> String {
+        var currencyAndAmount = Constants.General.emptyString
+        
+        guard let baseCurrencyId = Singleton.sharedInstance.organization?.baseCurrencyId else {
+            return String(report.amount)
+        }
+        
+        if let currency = Singleton.sharedInstance.organization?.currencies[baseCurrencyId] {
+            currencyAndAmount = currency.symbol
+        }
+        
+        currencyAndAmount += " " + String(format: Constants.General.decimalFormat, report.amount)
+        
+        return currencyAndAmount
+    }
+    
+    static func getStatus(forReport report: Report) -> String {
+        if let status = ReportStatus(rawValue: report.status) {
+            return status.name
+        }
+        log.error("Status of expense is invalid")
+        return Constants.General.emptyString
+    }
+}
+/***********************************/
+// MARK: - Category Image Name
+/***********************************/
+extension Utilities {
+    static func getCategoryImageName(forId id: String) -> String {
+        if let category = Singleton.sharedInstance.organization?.categories[id] {
+            // TODO: - Move to constants
+            return "Category" + String(category.logo)
+        }
+        return Constants.General.emptyString
+    }
+}
+/***********************************/
+// MARK: - Currency
+/***********************************/
+extension Utilities {
+    static func getCurrencyCode(forId id: String) -> String {
+        if let currency = Singleton.sharedInstance.organization?.currencies[id] {
+            return currency.code
+        }
         return Constants.General.emptyString
     }
 }

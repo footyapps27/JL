@@ -18,6 +18,8 @@ class AddExpenseTableViewCellCategory: AddExpenseBaseTableViewCell {
     
     @IBOutlet weak var txtCategory: UITextField!
     
+    var selectedCategoryId: String?
+    
     /***********************************/
     // MARK: - Parent method override
     /***********************************/
@@ -25,11 +27,26 @@ class AddExpenseTableViewCellCategory: AddExpenseBaseTableViewCell {
         
     }
     
-    override func validateInput(withField reportField: ExpenseAndReportField) -> (success: Bool, errorMessage: String) {
-        if txtCategory.text!.isEmpty {
+    override func validateInput(withField expenseField: ExpenseAndReportField) -> (success: Bool, errorMessage: String) {
+        if expenseField.isMandatory && txtCategory.text!.isEmpty {
             return (false, "Please make sure 'Category' has been selected.")
         }
         return(true, Constants.General.emptyString)
+    }
+    
+    override func updateView(withId id: String, value: String) {
+        selectedCategoryId = id
+        txtCategory.text = value
+        imgView.image = UIImage(named: Utilities.getCategoryImageName(forId: id))
+    }
+    
+    override func getPayload(withField expenseField: ExpenseAndReportField) -> [String : Any] {
+        if selectedCategoryId != nil {
+            return [
+                Constants.RequestParameters.Expense.categoryId : selectedCategoryId!
+            ]
+        }
+        return [:]
     }
 }
 /***********************************/
@@ -37,6 +54,6 @@ class AddExpenseTableViewCellCategory: AddExpenseBaseTableViewCell {
 /***********************************/
 extension AddExpenseTableViewCellCategory {
     override func awakeFromNib() {
-        imgView.image = UIImage(named: "Category8")
+        imgView.image = UIImage(named: Constants.Defaults.categoryImage)
     }
 }

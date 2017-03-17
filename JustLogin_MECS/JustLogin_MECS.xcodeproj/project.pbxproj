@@ -25,6 +25,23 @@
 		8C07A56D1E6E89EE0015D419 /* AddExpenseTableViewCellWithImageSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C07A56C1E6E89EE0015D419 /* AddExpenseTableViewCellWithImageSelection.swift */; };
 		8C07A56F1E6E8BB30015D419 /* AddExpenseTableViewCellWithTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C07A56E1E6E8BB30015D419 /* AddExpenseTableViewCellWithTextView.swift */; };
 		8C07A5711E6E8BDF0015D419 /* AddExpenseBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C07A5701E6E8BDF0015D419 /* AddExpenseBaseTableViewCell.swift */; };
+		8C0A01CA1E77B29600A96867 /* ReportDetailsFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C0A01C91E77B29600A96867 /* ReportDetailsFooterView.xib */; };
+		8C0A01CC1E77BBD300A96867 /* ReportDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A01CB1E77BBD300A96867 /* ReportDetailsTableViewCell.swift */; };
+		8C0A01D01E77C38100A96867 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A01CE1E77C38100A96867 /* Dictionary.swift */; };
+		8C0A01D11E77C38100A96867 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A01CF1E77C38100A96867 /* Double.swift */; };
+		8C0A01D41E77C3C900A96867 /* ReportDetailsStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A01D31E77C3C900A96867 /* ReportDetailsStrategy.swift */; };
+		8C0A01D61E77C4AE00A96867 /* ReportDetailsExpenseStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A01D51E77C4AE00A96867 /* ReportDetailsExpenseStrategy.swift */; };
+		8C0A01D81E77C4C600A96867 /* ReportDetailsAuditHistoryStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A01D71E77C4C600A96867 /* ReportDetailsAuditHistoryStrategy.swift */; };
+		8C0A01DA1E77C4E000A96867 /* ReportDetailsMoreDetailStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A01D91E77C4E000A96867 /* ReportDetailsMoreDetailStrategy.swift */; };
+		8C0A01DC1E78CA0E00A96867 /* ApprovalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A01DB1E78CA0E00A96867 /* ApprovalService.swift */; };
+		8C0A01DE1E78E15100A96867 /* ApproversListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A01DD1E78E15100A96867 /* ApproversListViewController.swift */; };
+		8C0A01E01E78E19400A96867 /* ApproversListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A01DF1E78E19400A96867 /* ApproversListManager.swift */; };
+		8C0A01E21E78E4E700A96867 /* ApproversListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A01E11E78E4E700A96867 /* ApproversListTableViewCell.swift */; };
+		8C0A01E41E78EAB600A96867 /* MemberService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A01E31E78EAB600A96867 /* MemberService.swift */; };
+		8C1766501E7A65D500D1CDE0 /* ApprovalListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C17664F1E7A65D500D1CDE0 /* ApprovalListManager.swift */; };
+		8C1766521E7A7B3A00D1CDE0 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1766511E7A7B3A00D1CDE0 /* UIColor.swift */; };
+		8C1766551E7A851200D1CDE0 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1766541E7A851200D1CDE0 /* Styles.swift */; };
+		8C26DDB91E779DE400FC0E13 /* ReportDetailsFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C26DDB81E779DE400FC0E13 /* ReportDetailsFooterView.swift */; };
 		8C299FF31E681EDA0077A730 /* ExpenseDetailsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C299FF21E681EDA0077A730 /* ExpenseDetailsHeaderView.swift */; };
 		8C42DFD31E63DE7D00A3B69A /* AddReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C42DFD21E63DE7D00A3B69A /* AddReportViewController.swift */; };
 		8C42DFD51E63DEA300A3B69A /* ReportDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C42DFD41E63DEA300A3B69A /* ReportDetailsViewController.swift */; };
@@ -69,6 +86,11 @@
 		8CF2FBD31E7156A3001C008E /* SettingsListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF2FBD21E7156A3001C008E /* SettingsListManager.swift */; };
 		8CF2FBD51E71A26D001C008E /* ExpenseAuditHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF2FBD41E71A26D001C008E /* ExpenseAuditHistory.swift */; };
 		8CF2FBD71E726E56001C008E /* ExpenseDetailsAuditHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF2FBD61E726E56001C008E /* ExpenseDetailsAuditHistoryTableViewCell.swift */; };
+		8CF2FBDC1E72C6A4001C008E /* Category.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CF2FBDB1E72C6A4001C008E /* Category.storyboard */; };
+		8CF2FBDF1E72C73C001C008E /* ReviewSelectCategoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF2FBDE1E72C73C001C008E /* ReviewSelectCategoryManager.swift */; };
+		8CF2FBE11E72C76E001C008E /* CategoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF2FBE01E72C76E001C008E /* CategoryService.swift */; };
+		8CF2FBE41E72CE00001C008E /* ReviewSelectCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF2FBE31E72CE00001C008E /* ReviewSelectCategoryTableViewCell.swift */; };
+		8CF2FBE71E72D61B001C008E /* ReviewSelectCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF2FBE61E72D61B001C008E /* ReviewSelectCategoryViewController.swift */; };
 		8CF342411E5D3941008387BF /* SignInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF342401E5D3941008387BF /* SignInManager.swift */; };
 		8CF342441E5D40E4008387BF /* BaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF342431E5D40E4008387BF /* BaseManager.swift */; };
 		8CF3F64E1E652AA900A18D73 /* AddReportTableViewCellWithTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF3F64D1E652AA900A18D73 /* AddReportTableViewCellWithTextField.swift */; };
@@ -76,7 +98,6 @@
 		8CF3F6521E652B1E00A18D73 /* AddReportTableViewCellDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF3F6511E652B1E00A18D73 /* AddReportTableViewCellDuration.swift */; };
 		8CF3F6541E652B3400A18D73 /* AddReportTableViewCellWithTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF3F6531E652B3400A18D73 /* AddReportTableViewCellWithTextView.swift */; };
 		8CF3F6591E6671DA00A18D73 /* AddReportBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF3F6581E6671DA00A18D73 /* AddReportBaseTableViewCell.swift */; };
-		8CF3F65B1E66FF6100A18D73 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF3F65A1E66FF6000A18D73 /* Dictionary.swift */; };
 		8CF655C71E58387100D4FEF3 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655C61E58387100D4FEF3 /* LoginService.swift */; };
 		8CF655C91E58455A00D4FEF3 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655C81E58455A00D4FEF3 /* Member.swift */; };
 		8CF655CB1E585A8200D4FEF3 /* Role.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655CA1E585A8200D4FEF3 /* Role.swift */; };
@@ -92,6 +113,16 @@
 		8CF655DF1E58B07000D4FEF3 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655DE1E58B07000D4FEF3 /* Report.swift */; };
 		8CF655E71E58B59B00D4FEF3 /* LaunchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655E61E58B59B00D4FEF3 /* LaunchManager.swift */; };
 		8CF655EC1E58BE2E00D4FEF3 /* LoginServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655EB1E58BE2E00D4FEF3 /* LoginServiceTests.swift */; };
+		8CFD02071E73A83C00526962 /* Currency.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CFD02061E73A83C00526962 /* Currency.storyboard */; };
+		8CFD020A1E73A8B200526962 /* ReviewSelectCurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFD02091E73A8B200526962 /* ReviewSelectCurrencyViewController.swift */; };
+		8CFD020D1E73A93C00526962 /* ReviewSelectCurrencyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFD020C1E73A93C00526962 /* ReviewSelectCurrencyManager.swift */; };
+		8CFD020F1E73AAE800526962 /* CurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFD020E1E73AAE800526962 /* CurrencyService.swift */; };
+		8CFD02111E73D2FA00526962 /* ReviewSelectReportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFD02101E73D2FA00526962 /* ReviewSelectReportTableViewCell.swift */; };
+		8CFD02131E73D35D00526962 /* ReviewSelectReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFD02121E73D35D00526962 /* ReviewSelectReportViewController.swift */; };
+		8CFD02151E73D39800526962 /* ReviewSelectReportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFD02141E73D39800526962 /* ReviewSelectReportManager.swift */; };
+		8CFD02191E753DD800526962 /* ExpenseDetailsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CFD02181E753DD800526962 /* ExpenseDetailsHeaderView.xib */; };
+		8CFD021B1E762EEC00526962 /* HomeScreenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFD021A1E762EEC00526962 /* HomeScreenManager.swift */; };
+		8CFD02211E7650EF00526962 /* ReportDetailsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFD02201E7650EF00526962 /* ReportDetailsHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,6 +171,23 @@
 		8C07A56C1E6E89EE0015D419 /* AddExpenseTableViewCellWithImageSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddExpenseTableViewCellWithImageSelection.swift; sourceTree = "<group>"; };
 		8C07A56E1E6E8BB30015D419 /* AddExpenseTableViewCellWithTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddExpenseTableViewCellWithTextView.swift; sourceTree = "<group>"; };
 		8C07A5701E6E8BDF0015D419 /* AddExpenseBaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddExpenseBaseTableViewCell.swift; sourceTree = "<group>"; };
+		8C0A01C91E77B29600A96867 /* ReportDetailsFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReportDetailsFooterView.xib; sourceTree = "<group>"; };
+		8C0A01CB1E77BBD300A96867 /* ReportDetailsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsTableViewCell.swift; sourceTree = "<group>"; };
+		8C0A01CE1E77C38100A96867 /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
+		8C0A01CF1E77C38100A96867 /* Double.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
+		8C0A01D31E77C3C900A96867 /* ReportDetailsStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsStrategy.swift; sourceTree = "<group>"; };
+		8C0A01D51E77C4AE00A96867 /* ReportDetailsExpenseStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsExpenseStrategy.swift; sourceTree = "<group>"; };
+		8C0A01D71E77C4C600A96867 /* ReportDetailsAuditHistoryStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsAuditHistoryStrategy.swift; sourceTree = "<group>"; };
+		8C0A01D91E77C4E000A96867 /* ReportDetailsMoreDetailStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsMoreDetailStrategy.swift; sourceTree = "<group>"; };
+		8C0A01DB1E78CA0E00A96867 /* ApprovalService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApprovalService.swift; sourceTree = "<group>"; };
+		8C0A01DD1E78E15100A96867 /* ApproversListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApproversListViewController.swift; sourceTree = "<group>"; };
+		8C0A01DF1E78E19400A96867 /* ApproversListManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApproversListManager.swift; sourceTree = "<group>"; };
+		8C0A01E11E78E4E700A96867 /* ApproversListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApproversListTableViewCell.swift; sourceTree = "<group>"; };
+		8C0A01E31E78EAB600A96867 /* MemberService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberService.swift; sourceTree = "<group>"; };
+		8C17664F1E7A65D500D1CDE0 /* ApprovalListManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApprovalListManager.swift; path = JustLogin_MECS/Service/ApprovalListManager.swift; sourceTree = SOURCE_ROOT; };
+		8C1766511E7A7B3A00D1CDE0 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		8C1766541E7A851200D1CDE0 /* Styles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
+		8C26DDB81E779DE400FC0E13 /* ReportDetailsFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsFooterView.swift; sourceTree = "<group>"; };
 		8C299FF21E681EDA0077A730 /* ExpenseDetailsHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseDetailsHeaderView.swift; sourceTree = "<group>"; };
 		8C42DFD21E63DE7D00A3B69A /* AddReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReportViewController.swift; sourceTree = "<group>"; };
 		8C42DFD41E63DEA300A3B69A /* ReportDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsViewController.swift; sourceTree = "<group>"; };
@@ -180,6 +228,11 @@
 		8CF2FBD21E7156A3001C008E /* SettingsListManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsListManager.swift; path = JustLogin_MECS/Model/SettingsListManager.swift; sourceTree = SOURCE_ROOT; };
 		8CF2FBD41E71A26D001C008E /* ExpenseAuditHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseAuditHistory.swift; sourceTree = "<group>"; };
 		8CF2FBD61E726E56001C008E /* ExpenseDetailsAuditHistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseDetailsAuditHistoryTableViewCell.swift; sourceTree = "<group>"; };
+		8CF2FBDB1E72C6A4001C008E /* Category.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Category.storyboard; sourceTree = "<group>"; };
+		8CF2FBDE1E72C73C001C008E /* ReviewSelectCategoryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewSelectCategoryManager.swift; sourceTree = "<group>"; };
+		8CF2FBE01E72C76E001C008E /* CategoryService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryService.swift; sourceTree = "<group>"; };
+		8CF2FBE31E72CE00001C008E /* ReviewSelectCategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewSelectCategoryTableViewCell.swift; sourceTree = "<group>"; };
+		8CF2FBE61E72D61B001C008E /* ReviewSelectCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewSelectCategoryViewController.swift; sourceTree = "<group>"; };
 		8CF342401E5D3941008387BF /* SignInManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInManager.swift; sourceTree = "<group>"; };
 		8CF342431E5D40E4008387BF /* BaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseManager.swift; sourceTree = "<group>"; };
 		8CF3F64D1E652AA900A18D73 /* AddReportTableViewCellWithTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReportTableViewCellWithTextField.swift; sourceTree = "<group>"; };
@@ -187,7 +240,6 @@
 		8CF3F6511E652B1E00A18D73 /* AddReportTableViewCellDuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReportTableViewCellDuration.swift; sourceTree = "<group>"; };
 		8CF3F6531E652B3400A18D73 /* AddReportTableViewCellWithTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReportTableViewCellWithTextView.swift; sourceTree = "<group>"; };
 		8CF3F6581E6671DA00A18D73 /* AddReportBaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReportBaseTableViewCell.swift; sourceTree = "<group>"; };
-		8CF3F65A1E66FF6000A18D73 /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Dictionary.swift; path = "JustLogin_MECS/Views/Custom Cells/Add Report/Dictionary.swift"; sourceTree = SOURCE_ROOT; };
 		8CF655C61E58387100D4FEF3 /* LoginService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		8CF655C81E58455A00D4FEF3 /* Member.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		8CF655CA1E585A8200D4FEF3 /* Role.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Role.swift; sourceTree = "<group>"; };
@@ -203,6 +255,16 @@
 		8CF655DE1E58B07000D4FEF3 /* Report.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		8CF655E61E58B59B00D4FEF3 /* LaunchManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchManager.swift; sourceTree = "<group>"; };
 		8CF655EB1E58BE2E00D4FEF3 /* LoginServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginServiceTests.swift; sourceTree = "<group>"; };
+		8CFD02061E73A83C00526962 /* Currency.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Currency.storyboard; sourceTree = "<group>"; };
+		8CFD02091E73A8B200526962 /* ReviewSelectCurrencyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewSelectCurrencyViewController.swift; sourceTree = "<group>"; };
+		8CFD020C1E73A93C00526962 /* ReviewSelectCurrencyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewSelectCurrencyManager.swift; sourceTree = "<group>"; };
+		8CFD020E1E73AAE800526962 /* CurrencyService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyService.swift; sourceTree = "<group>"; };
+		8CFD02101E73D2FA00526962 /* ReviewSelectReportTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewSelectReportTableViewCell.swift; sourceTree = "<group>"; };
+		8CFD02121E73D35D00526962 /* ReviewSelectReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewSelectReportViewController.swift; sourceTree = "<group>"; };
+		8CFD02141E73D39800526962 /* ReviewSelectReportManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewSelectReportManager.swift; sourceTree = "<group>"; };
+		8CFD02181E753DD800526962 /* ExpenseDetailsHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpenseDetailsHeaderView.xib; sourceTree = "<group>"; };
+		8CFD021A1E762EEC00526962 /* HomeScreenManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeScreenManager.swift; path = "JustLogin_MECS/Views/Custom Views/Xib/HomeScreenManager.swift"; sourceTree = SOURCE_ROOT; };
+		8CFD02201E7650EF00526962 /* ReportDetailsHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsHeaderView.swift; sourceTree = "<group>"; };
 		C1E5D39D743F2AA54C3A1C46 /* Pods-JustLogin_MECS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JustLogin_MECS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JustLogin_MECS/Pods-JustLogin_MECS.debug.xcconfig"; sourceTree = "<group>"; };
 		CF3885E556538396244297B4 /* Pods-JustLogin_MECSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JustLogin_MECSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-JustLogin_MECSTests/Pods-JustLogin_MECSTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -274,13 +336,14 @@
 				8C00F6521E1E651A0007F29C /* App Delegate */,
 				8C00F6541E1E651A0007F29C /* Constants */,
 				8C96021B1E1FE13100EE66A3 /* Enums */,
+				8C0A01CD1E77C38100A96867 /* Extensions */,
 				8CF3F6551E654B6F00A18D73 /* Helpers */,
-				8C8995D11E5FD48700482317 /* Extensions */,
 				8CEAADB81E55409400BDB5ED /* Manager */,
 				8C00F6571E1E651A0007F29C /* Model */,
 				8CEAADB91E5540A500BDB5ED /* Service */,
 				8CEAADBA1E5540B500BDB5ED /* Singleton */,
 				8C00F65A1E1E651A0007F29C /* Storyboard */,
+				8C1766531E7A850900D1CDE0 /* Styles */,
 				8CEAADBB1E5540CA00BDB5ED /* Utilities */,
 				8C00F65D1E1E651A0007F29C /* ViewControllers */,
 				8C00F65F1E1E651A0007F29C /* Views */,
@@ -353,6 +416,8 @@
 				8C9601FE1E1FAE8C00EE66A3 /* Dashboard.storyboard */,
 				8C8995DC1E6085D900482317 /* Expense.storyboard */,
 				8C42DFDA1E63E1AA00A3B69A /* Report.storyboard */,
+				8CF2FBDB1E72C6A4001C008E /* Category.storyboard */,
+				8CFD02061E73A83C00526962 /* Currency.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -362,6 +427,8 @@
 			children = (
 				8CA4B6ED1E28A58D007C3BE5 /* Approval */,
 				8C5141351E1F5F3D003AD3B1 /* Base */,
+				8CF2FBE51E72D61B001C008E /* Category */,
+				8CFD02081E73A89400526962 /* Currency */,
 				8C9602021E1FDB7F00EE66A3 /* Dashboard */,
 				8C9602041E1FDB7F00EE66A3 /* Login */,
 				8CD333151E23BC4D00557B6F /* Expense */,
@@ -386,11 +453,15 @@
 				8C07A5611E6E825E0015D419 /* Add Expense */,
 				8CF3F64C1E652A9D00A18D73 /* Add Report */,
 				8C5141341E1F5F2F003AD3B1 /* Base */,
+				8CF2FBE21E72CDEA001C008E /* Category */,
 				8C00F6641E1E870B0007F29C /* LaunchCollectionViewCell.swift */,
 				8CA4B6F21E28ACA6007C3BE5 /* ReportListTableViewCell.swift */,
 				8CA4B6F61E28C3A6007C3BE5 /* ExpenseListTableViewCell.swift */,
 				8CE007141E28D7C90089D159 /* ApprovalListTableViewCell.swift */,
 				8CF2FBD61E726E56001C008E /* ExpenseDetailsAuditHistoryTableViewCell.swift */,
+				8CFD02101E73D2FA00526962 /* ReviewSelectReportTableViewCell.swift */,
+				8C0A01CB1E77BBD300A96867 /* ReportDetailsTableViewCell.swift */,
+				8C0A01E11E78E4E700A96867 /* ApproversListTableViewCell.swift */,
 			);
 			path = "Custom Cells";
 			sourceTree = "<group>";
@@ -410,6 +481,42 @@
 			path = "Add Expense";
 			sourceTree = "<group>";
 		};
+		8C0A01CD1E77C38100A96867 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8C0A01CE1E77C38100A96867 /* Dictionary.swift */,
+				8C0A01CF1E77C38100A96867 /* Double.swift */,
+				8C1766511E7A7B3A00D1CDE0 /* UIColor.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8C0A01D21E77C3A500A96867 /* ReportDetailStrategy */ = {
+			isa = PBXGroup;
+			children = (
+				8C0A01D31E77C3C900A96867 /* ReportDetailsStrategy.swift */,
+				8C0A01D51E77C4AE00A96867 /* ReportDetailsExpenseStrategy.swift */,
+				8C0A01D71E77C4C600A96867 /* ReportDetailsAuditHistoryStrategy.swift */,
+				8C0A01D91E77C4E000A96867 /* ReportDetailsMoreDetailStrategy.swift */,
+			);
+			path = ReportDetailStrategy;
+			sourceTree = "<group>";
+		};
+		8C1766531E7A850900D1CDE0 /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+				8C1766541E7A851200D1CDE0 /* Styles.swift */,
+			);
+			path = Styles;
+			sourceTree = "<group>";
+		};
+		8C213C921E7B7A4900BB934A /* ReportToolBarStrategy */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ReportToolBarStrategy;
+			sourceTree = "<group>";
+		};
 		8C5141341E1F5F2F003AD3B1 /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -426,14 +533,6 @@
 				8CD333201E23C4E500557B6F /* BaseViewControllerWithTableView.swift */,
 			);
 			path = Base;
-			sourceTree = "<group>";
-		};
-		8C8995D11E5FD48700482317 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				8CF3F65A1E66FF6000A18D73 /* Dictionary.swift */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		8C9602021E1FDB7F00EE66A3 /* Dashboard */ = {
@@ -486,6 +585,8 @@
 				8CA4B6E91E28A3DA007C3BE5 /* ReportListViewController.swift */,
 				8C42DFD21E63DE7D00A3B69A /* AddReportViewController.swift */,
 				8C42DFD41E63DEA300A3B69A /* ReportDetailsViewController.swift */,
+				8CFD02121E73D35D00526962 /* ReviewSelectReportViewController.swift */,
+				8C0A01DD1E78E15100A96867 /* ApproversListViewController.swift */,
 			);
 			path = Report;
 			sourceTree = "<group>";
@@ -512,6 +613,8 @@
 			children = (
 				8CE007211E28F3280089D159 /* SettingsTableProfileSectionHeaderView.swift */,
 				8C299FF21E681EDA0077A730 /* ExpenseDetailsHeaderView.swift */,
+				8CFD02201E7650EF00526962 /* ReportDetailsHeaderView.swift */,
+				8C26DDB81E779DE400FC0E13 /* ReportDetailsFooterView.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -520,6 +623,8 @@
 			isa = PBXGroup;
 			children = (
 				8CE007261E28F3420089D159 /* SettingsTableProfileSectionHeaderView.xib */,
+				8CFD02181E753DD800526962 /* ExpenseDetailsHeaderView.xib */,
+				8C0A01C91E77B29600A96867 /* ReportDetailsFooterView.xib */,
 			);
 			path = Xib;
 			sourceTree = "<group>";
@@ -535,6 +640,8 @@
 			isa = PBXGroup;
 			children = (
 				8CF655E01E58B55600D4FEF3 /* Approval */,
+				8CF2FBDD1E72C729001C008E /* Category */,
+				8CFD020B1E73A92E00526962 /* Currency */,
 				8CF342421E5D40D7008387BF /* Base */,
 				8CF655E11E58B55600D4FEF3 /* Dashboard */,
 				8CF655E21E58B55600D4FEF3 /* Expense */,
@@ -553,6 +660,10 @@
 				8CF655D41E586CF900D4FEF3 /* OrganizationDetailsService.swift */,
 				8CF655D81E589EB700D4FEF3 /* ExpenseService.swift */,
 				8CF655DA1E589F1B00D4FEF3 /* ReportService.swift */,
+				8CF2FBE01E72C76E001C008E /* CategoryService.swift */,
+				8CFD020E1E73AAE800526962 /* CurrencyService.swift */,
+				8C0A01DB1E78CA0E00A96867 /* ApprovalService.swift */,
+				8C0A01E31E78EAB600A96867 /* MemberService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -579,6 +690,30 @@
 				8CEAADBD1E55468100BDB5ED /* BaseService.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		8CF2FBDD1E72C729001C008E /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				8CF2FBDE1E72C73C001C008E /* ReviewSelectCategoryManager.swift */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		8CF2FBE21E72CDEA001C008E /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				8CF2FBE31E72CE00001C008E /* ReviewSelectCategoryTableViewCell.swift */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		8CF2FBE51E72D61B001C008E /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				8CF2FBE61E72D61B001C008E /* ReviewSelectCategoryViewController.swift */,
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 		8CF342421E5D40D7008387BF /* Base */ = {
@@ -611,6 +746,7 @@
 		8CF655E01E58B55600D4FEF3 /* Approval */ = {
 			isa = PBXGroup;
 			children = (
+				8C17664F1E7A65D500D1CDE0 /* ApprovalListManager.swift */,
 			);
 			path = Approval;
 			sourceTree = "<group>";
@@ -618,6 +754,7 @@
 		8CF655E11E58B55600D4FEF3 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				8CFD021A1E762EEC00526962 /* HomeScreenManager.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -647,6 +784,10 @@
 				8CB44AD31E5B0380005CC04D /* ReportListManager.swift */,
 				8C42DFD61E63E03400A3B69A /* AddReportManager.swift */,
 				8C42DFD81E63E05100A3B69A /* ReportDetailsManager.swift */,
+				8C0A01D21E77C3A500A96867 /* ReportDetailStrategy */,
+				8C213C921E7B7A4900BB934A /* ReportToolBarStrategy */,
+				8CFD02141E73D39800526962 /* ReviewSelectReportManager.swift */,
+				8C0A01DF1E78E19400A96867 /* ApproversListManager.swift */,
 			);
 			path = Report;
 			sourceTree = "<group>";
@@ -679,6 +820,22 @@
 			children = (
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		8CFD02081E73A89400526962 /* Currency */ = {
+			isa = PBXGroup;
+			children = (
+				8CFD02091E73A8B200526962 /* ReviewSelectCurrencyViewController.swift */,
+			);
+			path = Currency;
+			sourceTree = "<group>";
+		};
+		8CFD020B1E73A92E00526962 /* Currency */ = {
+			isa = PBXGroup;
+			children = (
+				8CFD020C1E73A93C00526962 /* ReviewSelectCurrencyManager.swift */,
+			);
+			path = Currency;
 			sourceTree = "<group>";
 		};
 		C5CD3670715C6E149859CB9E /* Pods */ = {
@@ -810,9 +967,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CF2FBDC1E72C6A4001C008E /* Category.storyboard in Resources */,
+				8CFD02191E753DD800526962 /* ExpenseDetailsHeaderView.xib in Resources */,
 				8C00F6611E1E651A0007F29C /* Main.storyboard in Resources */,
 				8C42DFDB1E63E1AA00A3B69A /* Report.storyboard in Resources */,
 				8CE007271E28F3420089D159 /* SettingsTableProfileSectionHeaderView.xib in Resources */,
+				8C0A01CA1E77B29600A96867 /* ReportDetailsFooterView.xib in Resources */,
+				8CFD02071E73A83C00526962 /* Currency.storyboard in Resources */,
 				8C00F62E1E1E633B0007F29C /* LaunchScreen.storyboard in Resources */,
 				8C00F62B1E1E633B0007F29C /* Assets.xcassets in Resources */,
 				8C9601FF1E1FAE8C00EE66A3 /* Dashboard.storyboard in Resources */,
@@ -986,45 +1147,64 @@
 				8CA4B6EA1E28A3DA007C3BE5 /* ReportListViewController.swift in Sources */,
 				8CD3331D1E23C48000557B6F /* SettingsListViewController.swift in Sources */,
 				8C96020D1E1FDB7F00EE66A3 /* SignInViewController.swift in Sources */,
+				8CFD02211E7650EF00526962 /* ReportDetailsHeaderView.swift in Sources */,
 				8CF655D71E5875CF00D4FEF3 /* Singleton.swift in Sources */,
+				8CFD021B1E762EEC00526962 /* HomeScreenManager.swift in Sources */,
 				8CF3F6501E652B0100A18D73 /* AddReportTableViewCellWithMultipleSelection.swift in Sources */,
 				8CF342441E5D40E4008387BF /* BaseManager.swift in Sources */,
 				8C42DFD51E63DEA300A3B69A /* ReportDetailsViewController.swift in Sources */,
 				8CF655CD1E585ACE00D4FEF3 /* AccessPrivilege.swift in Sources */,
 				8CD333191E23BC7D00557B6F /* ExpenseListViewController.swift in Sources */,
+				8CFD02111E73D2FA00526962 /* ReviewSelectReportTableViewCell.swift in Sources */,
 				8CF655D31E58694E00D4FEF3 /* Currency.swift in Sources */,
 				8CA4B6F71E28C3A6007C3BE5 /* ExpenseListTableViewCell.swift in Sources */,
 				8C07A5651E6E87570015D419 /* AddExpenseTableViewCellDate.swift in Sources */,
 				8C07A56D1E6E89EE0015D419 /* AddExpenseTableViewCellWithImageSelection.swift in Sources */,
+				8CF2FBE41E72CE00001C008E /* ReviewSelectCategoryTableViewCell.swift in Sources */,
 				8C00F6651E1E870B0007F29C /* LaunchCollectionViewCell.swift in Sources */,
 				8C96020A1E1FDB7F00EE66A3 /* LaunchViewController.swift in Sources */,
 				8CF655D51E586CF900D4FEF3 /* OrganizationDetailsService.swift in Sources */,
 				8C07A5691E6E88DE0015D419 /* AddExpenseTableViewCellWithTextField.swift in Sources */,
+				8CF2FBE71E72D61B001C008E /* ReviewSelectCategoryViewController.swift in Sources */,
 				8CF655C91E58455A00D4FEF3 /* Member.swift in Sources */,
 				8CF655DD1E58B06300D4FEF3 /* Expense.swift in Sources */,
 				8C42DFD31E63DE7D00A3B69A /* AddReportViewController.swift in Sources */,
+				8C1766501E7A65D500D1CDE0 /* ApprovalListManager.swift in Sources */,
 				8C8995D71E60822B00482317 /* ExpenseDetailsViewController.swift in Sources */,
 				8C00F6601E1E651A0007F29C /* AppDelegate.swift in Sources */,
 				8C9602101E1FDB7F00EE66A3 /* SignUpViewController.swift in Sources */,
 				8C9602141E1FDB9900EE66A3 /* HomeViewController.swift in Sources */,
 				8C42DFDD1E6436C900A3B69A /* ExpenseAndReportField.swift in Sources */,
+				8C1766521E7A7B3A00D1CDE0 /* UIColor.swift in Sources */,
 				8C07A5671E6E87840015D419 /* AddExpenseTableViewCellCurrencyAndAmount.swift in Sources */,
+				8C0A01D11E77C38100A96867 /* Double.swift in Sources */,
 				8C07A56B1E6E88F00015D419 /* AddExpenseTableViewCellWithMultipleSelection.swift in Sources */,
 				8CF655DF1E58B07000D4FEF3 /* Report.swift in Sources */,
 				8CF2FBD31E7156A3001C008E /* SettingsListManager.swift in Sources */,
+				8C0A01DA1E77C4E000A96867 /* ReportDetailsMoreDetailStrategy.swift in Sources */,
 				8CF3F6591E6671DA00A18D73 /* AddReportBaseTableViewCell.swift in Sources */,
+				8C0A01DE1E78E15100A96867 /* ApproversListViewController.swift in Sources */,
 				8CEAADBE1E55468100BDB5ED /* BaseService.swift in Sources */,
 				8CA4B6EF1E28A5A8007C3BE5 /* ApprovalListViewController.swift in Sources */,
-				8CF3F65B1E66FF6100A18D73 /* Dictionary.swift in Sources */,
+				8CFD020F1E73AAE800526962 /* CurrencyService.swift in Sources */,
 				8C299FF31E681EDA0077A730 /* ExpenseDetailsHeaderView.swift in Sources */,
 				8CB44AD21E5AC642005CC04D /* ExpenseListManager.swift in Sources */,
 				8C07A5711E6E8BDF0015D419 /* AddExpenseBaseTableViewCell.swift in Sources */,
+				8CFD020D1E73A93C00526962 /* ReviewSelectCurrencyManager.swift in Sources */,
 				8CF3F64E1E652AA900A18D73 /* AddReportTableViewCellWithTextField.swift in Sources */,
+				8CFD020A1E73A8B200526962 /* ReviewSelectCurrencyViewController.swift in Sources */,
+				8C0A01DC1E78CA0E00A96867 /* ApprovalService.swift in Sources */,
+				8CFD02151E73D39800526962 /* ReviewSelectReportManager.swift in Sources */,
+				8C1766551E7A851200D1CDE0 /* Styles.swift in Sources */,
 				8CE007231E28F3280089D159 /* SettingsTableProfileSectionHeaderView.swift in Sources */,
 				8CF655C71E58387100D4FEF3 /* LoginService.swift in Sources */,
 				8CF3F6521E652B1E00A18D73 /* AddReportTableViewCellDuration.swift in Sources */,
 				8C42DFD71E63E03400A3B69A /* AddReportManager.swift in Sources */,
+				8C0A01D01E77C38100A96867 /* Dictionary.swift in Sources */,
+				8CFD02131E73D35D00526962 /* ReviewSelectReportViewController.swift in Sources */,
+				8C0A01CC1E77BBD300A96867 /* ReportDetailsTableViewCell.swift in Sources */,
 				8C07A56F1E6E8BB30015D419 /* AddExpenseTableViewCellWithTextView.swift in Sources */,
+				8CF2FBE11E72C76E001C008E /* CategoryService.swift in Sources */,
 				8C07A5631E6E87390015D419 /* AddExpenseTableViewCellCategory.swift in Sources */,
 				8CD333211E23C4E500557B6F /* BaseViewControllerWithTableView.swift in Sources */,
 				8C5141291E1E98EC003AD3B1 /* Constants.swift in Sources */,
@@ -1033,10 +1213,12 @@
 				8CF342411E5D3941008387BF /* SignInManager.swift in Sources */,
 				8CF2FBD71E726E56001C008E /* ExpenseDetailsAuditHistoryTableViewCell.swift in Sources */,
 				8CF3F6541E652B3400A18D73 /* AddReportTableViewCellWithTextView.swift in Sources */,
+				8C0A01E21E78E4E700A96867 /* ApproversListTableViewCell.swift in Sources */,
 				8C51413F1E1F5FDB003AD3B1 /* BaseCustomTableViewCell.swift in Sources */,
 				8CF2FBD51E71A26D001C008E /* ExpenseAuditHistory.swift in Sources */,
 				8C5141371E1F5F53003AD3B1 /* BaseViewController.swift in Sources */,
 				8C42DFD91E63E05100A3B69A /* ReportDetailsManager.swift in Sources */,
+				8C0A01E41E78EAB600A96867 /* MemberService.swift in Sources */,
 				8CEB70B71E6D3C3500411ECB /* Strings.swift in Sources */,
 				8CB44AD41E5B0380005CC04D /* ReportListManager.swift in Sources */,
 				8CF655D91E589EB700D4FEF3 /* ExpenseService.swift in Sources */,
@@ -1044,13 +1226,19 @@
 				8C8995D91E60836C00482317 /* AddExpenseManager.swift in Sources */,
 				8C96021D1E1FE14A00EE66A3 /* Enums.swift in Sources */,
 				8CF655DB1E589F1B00D4FEF3 /* ReportService.swift in Sources */,
+				8C0A01D81E77C4C600A96867 /* ReportDetailsAuditHistoryStrategy.swift in Sources */,
 				8CE007151E28D7C90089D159 /* ApprovalListTableViewCell.swift in Sources */,
+				8C0A01D61E77C4AE00A96867 /* ReportDetailsExpenseStrategy.swift in Sources */,
 				8CA4B6F31E28ACA6007C3BE5 /* ReportListTableViewCell.swift in Sources */,
 				8C8995DB1E60839400482317 /* ExpenseDetailsManager.swift in Sources */,
 				8CF655CF1E58693500D4FEF3 /* Organization.swift in Sources */,
 				8CF655E71E58B59B00D4FEF3 /* LaunchManager.swift in Sources */,
+				8C0A01E01E78E19400A96867 /* ApproversListManager.swift in Sources */,
 				8CF655CB1E585A8200D4FEF3 /* Role.swift in Sources */,
 				8CF655D11E58694400D4FEF3 /* Category.swift in Sources */,
+				8C26DDB91E779DE400FC0E13 /* ReportDetailsFooterView.swift in Sources */,
+				8CF2FBDF1E72C73C001C008E /* ReviewSelectCategoryManager.swift in Sources */,
+				8C0A01D41E77C3C900A96867 /* ReportDetailsStrategy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,17 +15,17 @@ class ExpenseDetailsViewController: BaseViewControllerWithTableView {
     /***********************************/
     let manager = ExpenseDetailsManager()
     
-    var expenseId: String?
+    var expense: Expense?
     
     @IBOutlet weak var toolbar: UIToolbar!
-    
-    @IBOutlet weak var headerView: ExpenseDetailsHeaderView!
     
     @IBOutlet weak var btnEdit: UIBarButtonItem!
     
     @IBOutlet weak var btnClone: UIBarButtonItem!
     
     @IBOutlet weak var btnMoreOptions: UIBarButtonItem!
+    
+    var headerView: ExpenseDetailsHeaderView?
 }
 /***********************************/
 // MARK: - View Lifecycle
@@ -34,8 +34,18 @@ extension ExpenseDetailsViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        headerView.delegate = self
+        
+        // Set this, since we need to set the headers. 
+        // Will improve performance
+        manager.expense = expense!
+        
         fetchExpenseDetails()
+        tableView.allowsSelection = false
+        
+        headerView = ExpenseDetailsHeaderView.instanceFromNib()
+        headerView?.delegate = self
+        
+        updateTableHeaderView()
     }
 }
 /***********************************/
@@ -43,10 +53,9 @@ extension ExpenseDetailsViewController {
 /***********************************/
 extension ExpenseDetailsViewController {
     func updateUIAfterSuccessfulResponse() {
-        headerView.updateView(withManager: manager)
+        updateTableHeaderView()
         self.tableView.reloadData()
         updateToolbarItems()
-        // TODO: - Update toolbar
     }
     
     func updateToolbarItems() {
@@ -54,6 +63,12 @@ extension ExpenseDetailsViewController {
             let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: nil)
             toolbar.items = [flexibleSpace, btnClone, flexibleSpace]
         }
+    }
+    
+    func updateTableHeaderView() {
+        headerView!.updateView(withManager: manager)
+        headerView!.frame = CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: headerView!.getHeight())
+        tableView.tableHeaderView = headerView
     }
 }
 /***********************************/
@@ -81,7 +96,7 @@ extension ExpenseDetailsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.expenseDetailsAuditHistoryTableViewCellIdentifier, for: indexPath) as! ExpenseDetailsAuditHistoryTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.auditHistoryTableViewCellIdentifier, for: indexPath) as! AuditHistoryTableViewCell
         
         cell.lblDescription.text = manager.getAuditHistoryDescription(forIndexPath: indexPath)
         cell.lblUserAndDate.text = manager.getAuditHistoryDetails(forIndexPath: indexPath)
@@ -93,16 +108,8 @@ extension ExpenseDetailsViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 /***********************************/
 extension ExpenseDetailsViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return headerView
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return headerView.getHeight()
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView .deselectRow(at: indexPath, animated: false)
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return CGFloat(Constants.CellHeight.expenseAuditHistoryCellHeight)
     }
 }
 /***********************************/
@@ -122,7 +129,7 @@ extension ExpenseDetailsViewController {
      */
     func fetchExpenseDetails() {
         showLoadingIndicator(disableUserInteraction: false)
-        manager.fetchExpenseDetails(withExpenseId: expenseId!) { [weak self] (response) in
+        manager.fetchExpenseDetails(withExpenseId: expense!.id) { [weak self] (response) in
             guard let `self` = self else {
                 log.error("Self reference missing in closure.")
                 return

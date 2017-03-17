@@ -34,7 +34,7 @@ struct AuthenticationService: IAuthenticationService {
         
         let payload = getPayloadForLogin(withOrganizationName: organizationName, userId: userId, password: password)
         
-        serviceAdapter.post(destination: Constants.URLs.login, payload: payload, headers: nil) { (response) in
+        serviceAdapter.post(destination: Constants.URLs.Authentication.login, payload: payload, headers: nil) { (response) in
             switch(response) {
             case .success(let success, let headers):
                 
@@ -58,7 +58,7 @@ struct AuthenticationService: IAuthenticationService {
     
     
     func logoutUser(_ completionHandler:( @escaping (Result<Void>) -> Void)) {
-        serviceAdapter.post(destination: Constants.URLs.logout, payload: [:], headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
+        serviceAdapter.post(destination: Constants.URLs.Authentication.logout, payload: [:], headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
             switch(response) {
             case .success(_,_):
                 completionHandler(Result.success())

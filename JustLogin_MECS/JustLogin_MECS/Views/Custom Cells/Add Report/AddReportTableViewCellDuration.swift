@@ -27,10 +27,6 @@ class AddReportTableViewCellDuration: AddReportBaseTableViewCell {
     /***********************************/
     // MARK: - Parent class override
     /***********************************/
-    override func updateView(withField reportField: ExpenseAndReportField) {
-        txtTo.tag = ExpenseAndReportFieldType.date.rawValue
-        txtFrom.tag = ExpenseAndReportFieldType.date.rawValue
-    }
     
     override func validateInput(withField reportField: ExpenseAndReportField) -> (success: Bool, errorMessage: String) {
         // This cell is only used for Duration
@@ -51,9 +47,19 @@ class AddReportTableViewCellDuration: AddReportBaseTableViewCell {
             Constants.RequestParameters.Report.endDate : getFormattedDateFromText(txtTo.text!)
         ]
     }
-    
 }
-
+/***********************************/
+// MARK: - View lifecylce
+/***********************************/
+extension AddReportTableViewCellDuration {
+    override func awakeFromNib() {
+        txtTo.tag = ExpenseAndReportFieldType.date.rawValue
+        txtFrom.tag = ExpenseAndReportFieldType.date.rawValue
+    }
+}
+/***********************************/
+// MARK: - Private Methods
+/***********************************/
 extension AddReportTableViewCellDuration {
     func getFormattedDateFromText(_ text: String) -> String {
         let dateFormatter = DateFormatter()

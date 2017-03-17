@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Review Select Category View Controller-->
+        <scene sceneID="Dat-FM-DmB">
+            <objects>
+                <viewController storyboardIdentifier="reviewSelectCategoryViewController" id="8Wd-sd-dCY" customClass="ReviewSelectCategoryViewController" customModule="JustLogin_MECS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="KGn-S4-fa9"/>
+                        <viewControllerLayoutGuide type="bottom" id="nfT-yo-GYJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="HKM-fu-idO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="43" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="H0J-In-LDP">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="reviewSelectCategoryTableViewCellIdentifier" rowHeight="42" id="tIo-eW-WvP" customClass="ReviewSelectCategoryTableViewCell" customModule="JustLogin_MECS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="42"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tIo-eW-WvP" id="Amm-eJ-jPy">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="41.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Category1" translatesAutoresizingMaskIntoConstraints="NO" id="VOi-sV-yJ2">
+                                                    <rect key="frame" x="16" y="10" width="20" height="20.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="3vC-nr-5uZ"/>
+                                                        <constraint firstAttribute="height" constant="20" id="aHE-VX-mdT"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lodging" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iuk-Fq-iSF">
+                                                    <rect key="frame" x="56" y="5" width="311" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="CMZ-mn-5Bu"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Iuk-Fq-iSF" firstAttribute="leading" secondItem="VOi-sV-yJ2" secondAttribute="trailing" constant="20" id="3jK-YK-fx9"/>
+                                                <constraint firstItem="VOi-sV-yJ2" firstAttribute="leading" secondItem="Amm-eJ-jPy" secondAttribute="leadingMargin" constant="8" id="JpH-3H-TRD"/>
+                                                <constraint firstAttribute="trailing" secondItem="Iuk-Fq-iSF" secondAttribute="trailing" constant="8" id="Uva-Mc-hg8"/>
+                                                <constraint firstItem="Iuk-Fq-iSF" firstAttribute="centerY" secondItem="Amm-eJ-jPy" secondAttribute="centerY" id="gC7-1R-GXJ"/>
+                                                <constraint firstItem="VOi-sV-yJ2" firstAttribute="centerY" secondItem="Amm-eJ-jPy" secondAttribute="centerY" id="yBl-bh-cYz"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outlet property="imgView" destination="VOi-sV-yJ2" id="qRY-P1-oPu"/>
+                                            <outlet property="lblCategoryName" destination="Iuk-Fq-iSF" id="Btq-eU-2eU"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="8Wd-sd-dCY" id="cC6-3V-uzp"/>
+                                    <outlet property="delegate" destination="8Wd-sd-dCY" id="2ZA-vV-lRi"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="H0J-In-LDP" secondAttribute="trailing" id="Bvh-PC-sbe"/>
+                            <constraint firstItem="nfT-yo-GYJ" firstAttribute="top" secondItem="H0J-In-LDP" secondAttribute="bottom" id="JmU-Mc-FNt"/>
+                            <constraint firstItem="H0J-In-LDP" firstAttribute="leading" secondItem="HKM-fu-idO" secondAttribute="leading" id="Nb9-qD-USA"/>
+                            <constraint firstItem="H0J-In-LDP" firstAttribute="top" secondItem="KGn-S4-fa9" secondAttribute="bottom" id="dRJ-4V-h7N"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="H0J-In-LDP" id="jwq-Ee-r0h"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DXq-xl-c7x" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2652" y="-1240.0299850074964"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Category1" width="16" height="16"/>
+    </resources>
+</document>

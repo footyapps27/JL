@@ -28,7 +28,17 @@ struct Report {
     
     var status: Int = Constants.Defaults.reportStatus
     
+    var submittedToId: String = Constants.General.emptyString
+    
+    var submittedToName: String = Constants.General.emptyString
+    
     var expenseIds: [String] = []
+    
+    var expenses: [Expense] = []
+    
+    var customFields: [[String : Any]] = []
+    
+    var auditHistory: [AuditHistory] = []
     
     /***********************************/
     // MARK: - Initializer
@@ -67,6 +77,18 @@ struct Report {
         let jsonExpenseIds = json[Constants.ResponseParameters.expenseIds].exists() ? json[Constants.ResponseParameters.expenseIds].arrayValue : []
         for expenseId in jsonExpenseIds {
             expenseIds.append(expenseId.stringValue)
+        }
+        
+        let jsonExpenses = json[Constants.ResponseParameters.expenses].exists() ? json[Constants.ResponseParameters.expenses].arrayValue : []
+        for jsonExpense in jsonExpenses {
+            let expense = Expense(withJSON: jsonExpense)
+            expenses.append(expense)
+        }
+        
+        let jsonHistories = json[Constants.ResponseParameters.history].exists() ? json[Constants.ResponseParameters.history].arrayValue : []
+        for jsonHistory in jsonHistories {
+            let history = AuditHistory(withJSON: jsonHistory)
+            auditHistory.append(history)
         }
     }
 }

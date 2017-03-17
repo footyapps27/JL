@@ -9,29 +9,30 @@
 import Foundation
 import UIKit
 
-/***********************************/
-// MARK: - Properties
-/***********************************/
+
 class ReportListViewController: BaseViewControllerWithTableView {
-    let manager = ReportListManager()
-}
-/***********************************/
-// MARK: - View Lifecycle
-/***********************************/
-extension ReportListViewController {
     
+    /***********************************/
+    // MARK: - Properties
+    /***********************************/
+    let manager = ReportListManager()
+    
+    /***********************************/
+    // MARK: - View Lifecycle
+    /***********************************/
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.isHidden = true
+        // Register for notification
+        NotificationCenter.default.addObserver(self, selector: #selector(ReportListViewController.fetchReports), name: Notification.Name(Constants.Notifications.refreshReportList), object: nil)
         
-        addSearchController(toTableView: tableView, withSearchResultsUpdater: self)
-        
-        addRefreshControl(toTableView: tableView, withAction: #selector(refreshTableView(_:)))
-        
-        addBarButtonItems()
+        updateUI()
         
         fetchReports()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name(Constants.Notifications.refreshReportList), object: nil)
     }
 }
 /***********************************/
@@ -56,6 +57,18 @@ extension ReportListViewController {
      */
     func addBarButtonItems() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(rightBarButtonTapped(_:)))
+    }
+    
+    func updateUI() {
+        self.navigationItem.title = Constants.ViewControllerTitles.reports
+        
+        tableView.isHidden = true
+        
+        addSearchController(toTableView: tableView, withSearchResultsUpdater: self)
+        
+        addRefreshControl(toTableView: tableView, withAction: #selector(refreshTableView(_:)))
+        
+        addBarButtonItems()
     }
     
     func navigateToAddReport() {

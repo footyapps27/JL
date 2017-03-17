@@ -17,6 +17,11 @@ protocol IReportService {
     func getAllReports(_ completionHandler:( @escaping (Result<[Report]>) -> Void))
     
     /**
+     * Method to retrieve details of an expense.
+     */
+    func getReportDetails(reportId: String, completionHandler:( @escaping (Result<Report>) -> Void))
+    
+    /**
      * Create a new report.
      */
     func create(payload: [String : Any], completionHandler:( @escaping (Result<Report>) -> Void))
@@ -31,6 +36,10 @@ protocol IReportService {
      */
     func delete(reportId: String, completionHandler:( @escaping (Result<Report>) -> Void))
     
+    /**
+     * This will deal with submission/rejection of the report.
+     */
+    func processReport(report: Report, completionHandler:( @escaping (Result<Report>) -> Void))
 }
 
 struct ReportService : IReportService {
@@ -45,7 +54,7 @@ struct ReportService : IReportService {
      * Method to retrieve all reports.
      */
     func getAllReports(_ completionHandler:( @escaping (Result<[Report]>) -> Void)) {
-        serviceAdapter.post(destination: Constants.URLs.getAllReports, payload: [:], headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
+        serviceAdapter.post(destination: Constants.URLs.Report.getAllReports, payload: [:], headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
             switch(response) {
                 case .success(let success, _ ):
                     var allReports: [Report] = []
@@ -64,11 +73,30 @@ struct ReportService : IReportService {
         }
     }
     
+    func getReportDetails(reportId: String, completionHandler:( @escaping (Result<Report>) -> Void)) {
+        let payload = getPayloadForReportDetails(reportId)
+        serviceAdapter.post(destination: Constants.URLs.Report.reportDetails
+        , payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
+            switch(response) {
+            case .success(let success, _ ):
+                let report = Report(withJSON: JSON(success))
+                completionHandler(Result.success(report))
+                
+            case .errors(let error):
+                let error = ServiceError(JSON(error))
+                completionHandler(Result.error(error))
+                
+            case .failure(let description):
+                completionHandler(Result.failure(description))
+            }
+        }
+    }
+    
     /**
      * Create a new report.
      */
     func create(payload: [String : Any], completionHandler:( @escaping (Result<Report>) -> Void)) {
-        serviceAdapter.post(destination: Constants.URLs.createReport, payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
+        serviceAdapter.post(destination: Constants.URLs.Report.createReport, payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
             switch(response) {
             case .success(let success, _ ):
                 let report = Report(withJSON: JSON(success))
@@ -87,8 +115,17 @@ struct ReportService : IReportService {
      */
     func update(report: Report, completionHandler:( @escaping (Result<Report>) -> Void)) {
         let payload = getPayloadForUpdateReport(report)
-        serviceAdapter.post(destination: Constants.URLs.createExpense, payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
-            // TODO: - Need to handle the scenarios here.
+        serviceAdapter.post(destination: Constants.URLs.Report.updateReport, payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
+            switch(response) {
+            case .success(let success, _ ):
+                let report = Report(withJSON: JSON(success))
+                completionHandler(Result.success(report))
+            case .errors(let error):
+                let error = ServiceError(JSON(error))
+                completionHandler(Result.error(error))
+            case .failure(let description):
+                completionHandler(Result.failure(description))
+            }
         }
     }
     
@@ -97,46 +134,70 @@ struct ReportService : IReportService {
      */
     func delete(reportId: String, completionHandler:( @escaping (Result<Report>) -> Void)) {
         let payload = getPayloadForDeleteReport(reportId)
-        serviceAdapter.post(destination: Constants.URLs.createExpense, payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
+        serviceAdapter.post(destination: Constants.URLs.Report.deleteReport, payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
             // TODO: - Need to handle the scenarios here.
         }
     }
-
+    
+    func processReport(report: Report, completionHandler:( @escaping (Result<Report>) -> Void)) {
+        let payload = getPayloadForProcessReport(report)
+        serviceAdapter.post(destination: Constants.URLs.Approval.processReportApproval, payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
+            switch(response) {
+            case .success(let success, _ ):
+                let report = Report(withJSON: JSON(success))
+                completionHandler(Result.success(report))
+            case .errors(let error):
+                let error = ServiceError(JSON(error))
+                completionHandler(Result.error(error))
+            case .failure(let description):
+                completionHandler(Result.failure(description))
+            }
+        }
+    }
 }
 
 extension ReportService {
     
-//    /**
-//     * Method to format payload for create report.
-//     */
-//    func getPayloadForCreateReport(_ report: Report) -> [String : Any] {
-//        var payload: [String : Any] = [:]
-//        
-//        if !report.businessPurpose.isEmpty {
-//            payload[Constants.RequestParameters.Report.businessPurpose] = report.businessPurpose
-//        }
-//        
-//        if !report.title.isEmpty {
-//            payload[Constants.RequestParameters.Report.title] = report.title
-//        }
-//        
-//        if let startDate = report.startDate {
-//            payload[Constants.RequestParameters.Report.startDate] = Utilities.convertDateToStringForServerCommunication(startDate)
-//        }
-//        
-//        if let endDate = report.endDate {
-//            payload[Constants.RequestParameters.Report.endDate] = Utilities.convertDateToStringForServerCommunication(endDate)
-//        }
-//        
-//        return payload
-//    }
+    /**
+     * Method to format payload for expense details.
+     */
+    func getPayloadForReportDetails(_ reportId: String) -> [String : Any] {
+        return [Constants.RequestParameters.General.ids : [reportId]]
+    }
     
     /**
      * Method to format payload for update report.
      */
-    func getPayloadForUpdateReport(_ report: Report) -> [String : String] {
-        // TODO: - Need to handle the scenarios here.
-        return [:]
+    func getPayloadForUpdateReport(_ report: Report) -> [String : Any] {
+        var payload: [String : Any] = [:]
+        
+        if !report.title.isEmpty {
+            payload[Constants.RequestParameters.Report.title] = report.title
+        }
+        
+        if !report.id.isEmpty {
+            payload[Constants.RequestParameters.Report.reportId] = report.id
+        }
+        
+        if !report.businessPurpose.isEmpty {
+            payload[Constants.RequestParameters.Report.businessPurpose] = report.businessPurpose
+        }
+        
+        if !report.submittedToId.isEmpty {
+            payload[Constants.RequestParameters.Report.submittedToId] = report.submittedToId
+        }
+        
+        if let startDate = report.startDate {
+            payload[Constants.RequestParameters.Report.startDate] = Utilities.convertDateToStringForServerCommunication(startDate)
+        }
+        
+        if let endDate = report.endDate {
+            payload[Constants.RequestParameters.Report.endDate] = Utilities.convertDateToStringForServerCommunication(endDate)
+        }
+        
+        payload[Constants.RequestParameters.Report.statusType] = report.status
+        
+        return payload
     }
     
     /**
@@ -145,5 +206,12 @@ extension ReportService {
     func getPayloadForDeleteReport(_ reportId: String) -> [String : String] {
         // TODO: - Need to handle the scenarios here.
         return [:]
+    }
+    
+    func getPayloadForProcessReport(_ report: Report) -> [String : Any] {
+        return [
+            Constants.RequestParameters.Report.reportId : report.id,
+            Constants.RequestParameters.Report.statusType : report.status
+        ]
     }
 }

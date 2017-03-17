@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-
 /***********************************/
 // MARK: - Properties
 /***********************************/
@@ -27,7 +26,7 @@ extension SettingsListViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateLabels()
+        updateUI()
     }
 }
 /***********************************/
@@ -57,7 +56,8 @@ extension SettingsListViewController {
 // MARK: - Helpers
 /***********************************/
 extension SettingsListViewController {
-    func updateLabels() {
+    func updateUI() {
+        self.navigationItem.title = Constants.ViewControllerTitles.settings
         lblOrganization.text = manager.getOrganizationName()
         lblRole.text = manager.getRole()
     }

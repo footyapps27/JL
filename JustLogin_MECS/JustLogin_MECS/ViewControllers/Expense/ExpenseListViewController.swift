@@ -24,18 +24,17 @@ class ExpenseListViewController: BaseViewControllerWithTableView {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.isHidden = true
-        tableView.allowsMultipleSelectionDuringEditing = true
+        // Register for notification
+        NotificationCenter.default.addObserver(self, selector: #selector(ExpenseListViewController.fetchExpenses), name: Notification.Name(Constants.Notifications.refreshExpenseList), object: nil)
         
-        addSearchController(toTableView: tableView, withSearchResultsUpdater: self)
-        
-        addRefreshControl(toTableView: tableView, withAction: #selector(refreshTableView(_:)))
-        
-        addBarButtonItems(forNormalState: true)
+        updateUI()
         
         fetchExpenses()
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name(Constants.Notifications.refreshExpenseList), object: nil)
+    }
 }
 /***********************************/
 // MARK: - Actions
@@ -80,6 +79,23 @@ extension ExpenseListViewController {
     }
     
     /**
+     * Update the various elements of UI.
+     */
+    func updateUI() {
+        
+        self.navigationItem.title = Constants.ViewControllerTitles.expenses
+        
+        tableView.isHidden = true
+        tableView.allowsMultipleSelectionDuringEditing = true
+        
+        addSearchController(toTableView: tableView, withSearchResultsUpdater: self)
+        
+        addRefreshControl(toTableView: tableView, withAction: #selector(refreshTableView(_:)))
+        
+        addBarButtonItems(forNormalState: true)
+    }
+    
+    /**
      * Method to display the actions for multiple expenses.
      */
     func showActionsForMultipleExpenses() {
@@ -110,13 +126,14 @@ extension ExpenseListViewController {
     }
     
     func navigateToAddExpense() {
-        let addExpenseViewController = UIStoryboard(name: Constants.StoryboardIds.expenseStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.addExpenseViewController) as! BaseViewController
+        let addExpenseViewController = UIStoryboard(name: Constants.StoryboardIds.expenseStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.addExpenseViewController) as! AddExpenseViewController
+        addExpenseViewController.delegate = self
         Utilities.pushControllerAndHideTabbar(fromController:self, toController: addExpenseViewController)
     }
     
     func navigateToExpenseDetails(forExpense expense: Expense) {
         let expenseDetailsViewController = UIStoryboard(name: Constants.StoryboardIds.expenseStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.expenseDetailsViewController) as! ExpenseDetailsViewController
-        expenseDetailsViewController.expenseId = expense.id
+        expenseDetailsViewController.expense = expense
         Utilities.pushControllerAndHideTabbar(fromController:self, toController: expenseDetailsViewController)
     }
 }
@@ -196,5 +213,14 @@ extension ExpenseListViewController: UITableViewDelegate {
 extension ExpenseListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         // TODO: - Implementation missing
+    }
+}
+/***********************************/
+// MARK: - AddExpenseDelegate
+/***********************************/
+extension ExpenseListViewController: AddExpenseDelegate {
+    func expenseCreated() {
+        // Refresh the list once an expense is created.
+        fetchExpenses()
     }
 }

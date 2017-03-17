@@ -13,14 +13,28 @@ struct Constants {
     struct General {
         static let emptyString = ""
         static let dateFormatReceivedFromServer = "yyyy-MM-dd'T'HH:mm:ss"
+        static let dateFormatReceivedFromServerForAuditHistory = "yyyy-MM-dd'T'HH:mm:ss.SSS"
         static let localDisplayDateFormat = "dd/MM/yyyy"
-        static let auditHistoryDisplayDateFormat = "dd/MM/yyyy hh:mm tt"
+        static let auditHistoryDisplayDateFormat = "dd/MM/yyyy hh:mm a"
         static let dateFormatSentToServer = "yyyy-MM-dd"
         static let decimalFormat = "%.2f"
     }
     
     struct UISize {
         static let activityIndicatorHeightWidth = 50
+        static let expenseHeaderViewIntialHeight = 250
+    }
+    
+    struct ViewControllerTitles {
+        static let reviewSelectCategory = "Select a Category"
+        static let reviewSelectCurrency = "Select a Currency"
+        static let reviewSelectReport = "Select a Report"
+        static let addExpense = "Add Expense"
+        
+        static let settings = "Settings"
+        static let expenses = "Expenses"
+        static let reports = "Reports"
+        static let approvals = "Approvals"
     }
     
     struct UIImageNames {
@@ -40,9 +54,12 @@ struct Constants {
         static let accessPrivilegeApproveReports = 0
         static let exchangeRate = 1.0
         static let fieldType = 0
+        static let categoryImage = "Category8"
     }
     
     struct CellIdentifiers {
+        static let defaultTableViewCellIdentifier = "defaultTableViewCellIdentifier"
+        
         static let launchCollectionViewCellIdentifier = "launchCollectionCellIdentifier"
         static let expenseListTableViewCellIdentifier = "expenseListTableViewCellIdentifier"
         static let settingsListTableViewCellIdentifier = "settingsListTableViewCellIdentifier"
@@ -62,13 +79,20 @@ struct Constants {
         static let addExpenseTableViewCellWithTextView = "addExpenseTableViewCellWithTextView"
         static let addExpenseTableViewCellWithImageSelection = "addExpenseTableViewCellWithImageSelection"
         
-        static let expenseDetailsAuditHistoryTableViewCellIdentifier = "expenseDetailsAuditHistoryTableViewCellIdentifier"
+        static let auditHistoryTableViewCellIdentifier = "auditHistoryTableViewCellIdentifier"
+        
+        static let reviewSelectCategoryTableViewCellIdentifier = "reviewSelectCategoryTableViewCellIdentifier"
+        static let reviewSelectReportTableViewCellIdentifier = "reviewSelectReportTableViewCellIdentifier"
+        
+        static let reportDetailsTableViewCellIdentifier = "reportDetailsTableViewCellIdentifier"
+        static let approversListTableViewCellIdentifier = "approversListTableViewCellIdentifier"
     }
     
     struct CellHeight {
         static let reportListCellHeight = 68
         static let approvalListCellHeight = 68
         static let expenseListCellHeight = 90
+        static let expenseAuditHistoryCellHeight = 47
     }
     
     struct StoryboardIds {
@@ -76,6 +100,8 @@ struct Constants {
         static let expenseStoryboard = "Expense"
         static let reportStoryboard = "Report"
         static let mainStoryboard = "Main"
+        static let categoryStoryboard = "Category"
+        static let currencyStoryboard = "Currency"
         
         static let approverAndAdminDashboard = "approverAndAdminDashboard"
         static let submitterDashboard = "submitterDashboard"
@@ -83,37 +109,83 @@ struct Constants {
         static let addExpenseViewController = "addExpenseViewController"
         static let expenseDetailsViewController = "expenseDetailsViewController"
         static let addReportViewController = "addReportViewController"
+        static let approversListViewController = "approversListViewController"
         static let reportDetailsViewController = "reportDetailsViewController"
         static let launchViewController = "launchViewController"
+        
+        static let reviewSelectCategoryViewController = "reviewSelectCategoryViewController"
+        static let reviewSelectCurrencyViewController = "reviewSelectCurrencyViewController"
+        static let reviewSelectReportViewController = "reviewSelectReportViewController"
     }
     
     struct Notifications {
         static let loginSuccessful = "loginSuccessful"
+        static let refreshReportList = "refreshReportList"
+        static let refreshExpenseList = "refreshExpenseList"
     }
     
     /***********************************/
     // MARK: - Web service related constants
     /***********************************/
+    
+    /***********************************/
+    // MARK: - URLs
+    /***********************************/
     struct URLs {
         static let baseURL = "http://52.220.239.178/api"
         
-        static let login = URLs.baseURL + "/authentication/login"
-        static let logout = URLs.baseURL + "/authentication/logout"
+        struct Authentication {
+            static let login = URLs.baseURL + "/authentication/login"
+            static let logout = URLs.baseURL + "/authentication/logout"
+        }
         
-        static let organizationDetails = URLs.baseURL + "/organization/details"
+        struct Organization {
+            static let organizationDetails = URLs.baseURL + "/organization/details"
+        }
         
-        static let getAllExpenses = URLs.baseURL + "/expense/retrievebymember"
-        static let expenseDetails = URLs.baseURL + "/expense/retrieve"
-        static let createExpense = URLs.baseURL + "/expense/create"
-        static let updateExpense = URLs.baseURL + "/expense/update"
-        static let deleteExpense = URLs.baseURL + "/expense/delete"
+        struct Expense {
+            static let getAllExpenses = URLs.baseURL + "/expense/retrievebymember"
+            static let expenseDetails = URLs.baseURL + "/expense/retrieve"
+            static let createExpense = URLs.baseURL + "/expense/create"
+            static let updateExpense = URLs.baseURL + "/expense/update"
+            static let deleteExpense = URLs.baseURL + "/expense/delete"
+        }
         
-        static let getAllReports = URLs.baseURL + "/report/retrievebymember"
-        static let createReport = URLs.baseURL + "/report/create"
-        static let updateReport = URLs.baseURL + "/organization/details"
-        static let deleteReport = URLs.baseURL + "/organization/details"
+        struct Report {
+            static let getAllReports = URLs.baseURL + "/report/retrievebymember"
+            static let reportDetails = URLs.baseURL + "/report/retrieve"
+            static let createReport = URLs.baseURL + "/report/create"
+            static let updateReport = URLs.baseURL + "/report/update"
+            static let deleteReport = URLs.baseURL + "/report/delete"
+        }
+        
+        struct Category {
+            static let getAllCategories = URLs.baseURL + "/category/retrievebyorganization"
+            static let createCategory = URLs.baseURL + "/category/create"
+            static let updateCategory = URLs.baseURL + "/category/update"
+            static let deleteCategory = URLs.baseURL + "/category/delete"
+        }
+        
+        struct Currency {
+            static let getAllCurrencies = URLs.baseURL + "/currency/retrievebyorganization"
+            static let createCurrency = URLs.baseURL + "/currency/create"
+            static let updateCurrency = URLs.baseURL + "/currency/update"
+            static let deleteCurrency = URLs.baseURL + "/currency/delete"
+        }
+        
+        struct Approval { // TODO - rename this
+            static let getAllApprovals = URLs.baseURL + "/approval/retrievebyapprover"
+            static let processReportApproval = URLs.baseURL + "/approval/process"
+        }
+        
+        struct Member {
+            static let getApprovers = URLs.baseURL + "/member/retrieveallapprovers"
+        }
     }
     
+    /***********************************/
+    // MARK: - Request Parameters
+    /***********************************/
     struct RequestParameters {
         struct General {
             static let ids = "ids"
@@ -147,9 +219,14 @@ struct Constants {
             static let title = "title"
             static let startDate = "startDate"
             static let endDate = "endDate"
+            static let statusType = "statusType"
+            static let submittedToId = "submittedToId"
         }
     }
     
+    /***********************************/
+    // MARK: - Response Parameters
+    /***********************************/
     struct ResponseParameters {
         static let accessToken = "AccessToken"
         
@@ -245,5 +322,7 @@ struct Constants {
         static let createdDate = "createdDate"
         static let createdBy = "createdBy"
         static let history = "history"
+        
+        static let members = "members"
     }
 }

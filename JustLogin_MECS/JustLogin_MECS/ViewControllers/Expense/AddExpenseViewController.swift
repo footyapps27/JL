@@ -35,10 +35,14 @@ extension AddExpenseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = Constants.ViewControllerTitles.addExpense
         addBarButtonItems()
         initializeDatePicker()
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 44
+        
+        // Make sure the manager has a reference to all the cell before hand
+        manager.populateCells(fromController: self)
     }
 }
 /***********************************/
@@ -50,6 +54,13 @@ extension AddExpenseViewController {
      */
     func addBarButtonItems() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.save, target: self, action: #selector(rightBarButtonTapped(_:)))
+        
+        /*  If this is the only view controller, then we need to put a dismiss button.
+            Since then this controller is being presented from dashboard.
+         */
+        if navigationController?.viewControllers.count == 1 {
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.cancel, target: self, action: #selector(leftBarButtonTapped(_:)))
+        }
     }
     
     func initializeDatePicker() {
@@ -67,19 +78,45 @@ extension AddExpenseViewController {
         
         toolbar?.setItems([space, done], animated: true)
     }
+    
+    /**
+     * Since this controller is called as modal controller or navigation controller, we need to move out accordingly.
+     */
+    func navigateOutAfterExpenseCreation() {
+        if navigationController?.viewControllers.count == 1 {
+            // Navigate to the expense list.
+            self.dismiss(animated: true, completion:nil)
+        } else {
+            _ = self.navigationController?.popViewController(animated: true)
+        }
+    }
 }
 /***********************************/
 // MARK: - Actions
 /***********************************/
 extension AddExpenseViewController {
     
+    /**
+     * Action for Save button.
+     * Do the validations before saving.
+     */
     func rightBarButtonTapped(_ sender: UIBarButtonItem) {
-        let validation = manager.validateInputs(forTableView: tableView)
+        view.endEditing(true)
+        let validation = manager.validateInputs()
         if !validation.success {
             Utilities.showErrorAlert(withMessage: validation.errorMessage, onController: self)
         } else {
             callAddExpenseService()
         }
+    }
+    
+    /**
+     * Action for Cancel button.
+     * Dismiss the controller.
+     */
+    func leftBarButtonTapped(_ sender: UIBarButtonItem) {
+        view.endEditing(true)
+        self.dismiss(animated: true, completion: nil)
     }
     
     func dismissDatePicker(_ sender: UIBarButtonItem?) {
@@ -96,10 +133,10 @@ extension AddExpenseViewController {
      * Method to fetch expenses that will be displayed in the tableview.
      */
     func callAddExpenseService() {
-        /*
+        
         showLoadingIndicator(disableUserInteraction: true)
         
-        manager.addExpenseWithInputsFromTableView(tableView: tableView) { [weak self] (response) in
+        manager.addExpenseWithInput() { [weak self] (response) in
             guard let `self` = self else {
                 log.error("Self reference missing in closure.")
                 return
@@ -107,14 +144,14 @@ extension AddExpenseViewController {
             switch(response) {
             case .success(_):
                 self.hideLoadingIndicator(enableUserInteraction: true)
-                self.delegate?.reportCreated()
-                _ = self.navigationController?.popViewController(animated: true)
+                self.delegate?.expenseCreated()
+                self.navigateOutAfterExpenseCreation()
             case .failure(_, let message):
-                // TODO: - Handle the empty table view screen.
+                 //TODO: - Handle the empty table view screen.
                 Utilities.showErrorAlert(withMessage: message, onController: self)
                 self.hideLoadingIndicator(enableUserInteraction: true)
             }
-        }*/
+        }
     }
 }
 /***********************************/
@@ -130,6 +167,12 @@ extension AddExpenseViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // If the cell is already cached, then just return it from the cache.
+        if let cell = manager.getExistingCells()[indexPath] {
+            return cell
+        }
+        
+        // If it is not available in cache, then create or reuse the cell
         let identifier = manager.getTableViewCellIdentifier(forIndexPath: indexPath)
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! AddExpenseBaseTableViewCell
         manager.formatCell(cell, forIndexPath: indexPath)
@@ -145,13 +188,19 @@ extension AddExpenseViewController: UITableViewDelegate {
         if section == 0 {
             return CGFloat.leastNormalMagnitude
         }
-        return 10
+        return 10 // TODO - Move to constant
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Cell selected
-        let cell = tableView.cellForRow(at: indexPath) as! AddExpenseBaseTableViewCell
-        manager.performActionForSelectedCell(cell, forIndexPath: indexPath)
+        if manager.checkIfNavigationIsRequired(forIndexPath: indexPath) {
+            self.view .endEditing(true)
+            let controller = manager.getDetailsNavigationController(forIndexPath: indexPath, withDelegate: self)
+            Utilities.pushControllerAndHideTabbar(fromController: self, toController: controller)
+        } else {
+            let cell = tableView.cellForRow(at: indexPath) as! AddExpenseBaseTableViewCell
+            manager.performActionForSelectedCell(cell, forIndexPath: indexPath)
+        }
     }
 }
 /***********************************/
@@ -160,6 +209,7 @@ extension AddExpenseViewController: UITableViewDelegate {
 extension AddExpenseViewController: UITextFieldDelegate {
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        
         if textField.tag == ExpenseAndReportFieldType.date.rawValue {
             currentTextField = textField
             textField.inputView = datePicker
@@ -172,6 +222,13 @@ extension AddExpenseViewController: UITextFieldDelegate {
         if textField.tag == ExpenseAndReportFieldType.date.rawValue {
             dismissDatePicker(nil)
         }
+        
+        // For the amount, round it to 2 decimal places
+        if textField.tag == ExpenseAndReportFieldType.currencyAndAmount.rawValue {
+            if let amount = Double(textField.text!) {
+                textField.text = String(amount.roundTo(places: 2))
+            }
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -180,5 +237,41 @@ extension AddExpenseViewController: UITextFieldDelegate {
         }
         textField.resignFirstResponder()
         return true
+    }
+}
+/***********************************/
+// MARK: - ReviewSelectCategoryViewControllerDelegate
+/***********************************/
+extension AddExpenseViewController: ReviewSelectCategoryViewControllerDelegate {
+    func categorySelected(_ category: Category) {
+        manager.updateCellBasedAtLastSelectedIndex(withId: category.id, value: category.name)
+    }
+}
+/***********************************/
+// MARK: - ReviewSelectCurrencyViewControllerDelegate
+/***********************************/
+extension AddExpenseViewController: ReviewSelectCurrencyViewControllerDelegate {
+    func currencySelected(_ currency: Currency) {
+        
+        /* This needs to be handled in phase 2.
+         
+        if currency.id != Singleton.sharedInstance.organization?.baseCurrencyId {
+            // TODO: - Need to check if the selected currency is same as base currency. If not, then show the exchange rate cell.
+            manager.addExchangeRateField()
+        } else {
+            // Here remove the exchange rate cell from the dictCells & the tableview
+            manager.removeExchangeRateField()
+        }
+         
+         */
+        manager.updateCellBasedAtLastSelectedIndex(withId: currency.id, value: currency.code)
+    }
+}
+/***********************************/
+// MARK: - ReviewSelectReportViewControllerDelegate
+/***********************************/
+extension AddExpenseViewController: ReviewSelectReportViewControllerDelegate {
+    func reportSelected(_ report: Report) {
+        manager.updateCellBasedAtLastSelectedIndex(withId: report.id, value: report.title)
     }
 }
