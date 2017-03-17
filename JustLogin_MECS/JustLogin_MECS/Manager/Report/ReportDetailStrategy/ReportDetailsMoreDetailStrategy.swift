@@ -9,52 +9,69 @@
 import Foundation
 import UIKit
 
-class ReportDetailsMoreDetailStrategy {
-    var report: Report?
-}
 /***********************************/
 // MARK: - ReportDetailsStrategy
 /***********************************/
-extension ReportDetailsMoreDetailStrategy: ReportDetailsStrategy {
+struct ReportDetailsMoreDetailStrategy: ReportDetailsStrategy {
     func getCell(withTableView tableView: UITableView, atIndexPath indexPath: IndexPath, forReport report: Report) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.reportDetailsTableViewCellIdentifier, for: indexPath) as! ReportDetailsTableViewCell
         
-        self.report = report
-        return createCell(withTableView: tableView, atIndexPath: indexPath)
+        let dict = getFieldsToDisplay(forReport: report)[indexPath.row]
+        
+        cell.updateView(withFieldName: dict.keys.first!, fieldValue: dict.values.first!)
+        return cell
     }
     
     func getCellHeight(withTableView tableView: UITableView, atIndexPath indexPath: IndexPath, forReport report: Report) -> CGFloat {
-        self.report = report
-        return CGFloat(getFieldsToDisplay().count)
+        return CGFloat(Constants.CellHeight.reportMoreDetailsCellHeight)
     }
     
     func getNumberOfRows(forReport report: Report) -> Int {
-        return 1
+        return getFieldsToDisplay(forReport: report).count
     }
 }
 /***********************************/
 // MARK: - Private Methods
 /***********************************/
 extension ReportDetailsMoreDetailStrategy {
-    
-    func createCell(withTableView tableView: UITableView, atIndexPath indexPath: IndexPath) -> ReportDetailsTableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.reportDetailsTableViewCellIdentifier, for: indexPath) as! ReportDetailsTableViewCell
+    func getFieldsToDisplay(forReport report: Report) -> [[String : String]] {
+        var fieldsToDisplay: [[String : String]] = []
         
-        cell.updateView(withFields: getFieldsToDisplay())
-        return cell
-    }
-    
-    func getFieldsToDisplay() -> [String : String] {
-        var fieldsToDisplay: [String : String] = [:]
-        if report != nil {
-            if !report!.businessPurpose.isEmpty {
-                fieldsToDisplay[LocalizedString.businessPurpose] = report?.businessPurpose
-            }
-            
-            for dict in report!.customFields {
-                // TODO: - Add the custom fields here
-                print(dict)
-            }
+        if !report.reportNumber.isEmpty {
+            let dict = [LocalizedString.reportNumber : report.reportNumber]
+            fieldsToDisplay.append(dict)
+        }
+        
+        let dict = [LocalizedString.reportDuration : getDuration(forReport: report)]
+        fieldsToDisplay.append(dict)
+        
+        if !report.businessPurpose.isEmpty {
+            let dict = [LocalizedString.businessPurpose : report.businessPurpose]
+            fieldsToDisplay.append(dict)
+        }
+        
+        for dict in report.customFields {
+            // TODO: - Add the custom fields here
+            log.debug(dict)
         }
         return fieldsToDisplay
+    }
+    
+    func getDuration(forReport report: Report) -> String {
+        var duration = Constants.General.emptyString
+        
+        if let date = report.startDate {
+            duration = Utilities.convertDateToStringForDisplay(date)
+        } else {
+            log.error("Report Start date is nil")
+        }
+        
+        if let date = report.endDate {
+            duration += " - " + Utilities.convertDateToStringForDisplay(date)
+        } else {
+            log.error("Report end date is nil")
+        }
+        
+        return duration
     }
 }

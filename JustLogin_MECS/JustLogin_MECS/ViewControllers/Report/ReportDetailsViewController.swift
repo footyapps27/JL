@@ -124,8 +124,11 @@ extension ReportDetailsViewController {
         if manager.shouldDisplayFooter() {
             tableView.tableFooterView = footerView
         } else {
-            tableView.tableFooterView = nil
+            tableView.tableFooterView = UIView()
         }
+        
+        let separatorStyle: UITableViewCellSeparatorStyle = manager.shouldHaveSeparator() ? .singleLine : .none
+        tableView.separatorStyle = separatorStyle
         
         tableView.reloadData()
     }

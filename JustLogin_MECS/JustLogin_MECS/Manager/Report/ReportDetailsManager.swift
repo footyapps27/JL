@@ -45,6 +45,10 @@ extension ReportDetailsManager {
     func shouldDisplayFooter() -> Bool {
          return segmentedControlSelectedIndex == ReportDetailSegmentedControl.expenses.rawValue
     }
+    
+    func shouldHaveSeparator() -> Bool {
+        return segmentedControlSelectedIndex != ReportDetailSegmentedControl.moreDetails.rawValue
+    }
 }
 /***********************************/
 // MARK: - TableView Datasource

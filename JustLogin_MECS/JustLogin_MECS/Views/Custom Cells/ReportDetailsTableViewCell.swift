@@ -11,28 +11,23 @@ import UIKit
 
 class ReportDetailsTableViewCell: BaseCustomTableViewCell {
     
-    @IBOutlet weak var parentStackView: UIStackView!
+    @IBOutlet weak var lblFieldName: UILabel!
     
-    @IBOutlet weak var parentStackViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var lblFieldValue: UILabel!
 }
 /***********************************/
 // MARK: - UI update methods
 /***********************************/
 extension ReportDetailsTableViewCell {
-    func updateView(withFields fields: [String:String]) {
-        
-        for dict in fields {
-            let view = Utilities.getDynamicView(withFieldName: dict.key, andFieldValue: dict.value)
-            parentStackView.addArrangedSubview(view)
-            parentStackViewHeight.constant += CGFloat(50)
-        }
-        //setNeedsLayout()
+    func updateView(withFieldName fieldName: String, fieldValue: String) {
+        lblFieldName.text = fieldName
+        lblFieldValue.text = fieldValue
     }
     
     /**
      * The height of the view after the stack view has been dynamically populated.
      */
     func getHeight() -> CGFloat {
-        return parentStackViewHeight.constant
+        return 62
     }
 }

@@ -18,5 +18,8 @@ struct LocalizedString {
     static let merchantName = "Merchant Name"
     static let paymentMode = "Payment Mode"
     
+    static let reportNumber = "Report Number"
+    static let reportDuration = "Report Duration"
     static let businessPurpose = "Business Purpose"
+    
 }

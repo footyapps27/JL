@@ -18,6 +18,8 @@ struct Report {
     
     var amount: Double = Constants.Defaults.amount
     
+    var reportNumber: String = Constants.General.emptyString
+    
     var businessPurpose: String = Constants.General.emptyString
     
     var startDate: Date?
@@ -59,6 +61,8 @@ struct Report {
         id = json[Constants.ResponseParameters.reportId].stringValue
         
         amount = json[Constants.ResponseParameters.amount].doubleValue
+        
+        reportNumber = json[Constants.ResponseParameters.reportNumber].stringValue
         
         businessPurpose = json[Constants.ResponseParameters.businessPurpose].stringValue
         

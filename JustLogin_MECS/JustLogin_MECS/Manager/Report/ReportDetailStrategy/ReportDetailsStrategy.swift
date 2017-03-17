@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-protocol ReportDetailsStrategy: class {
+protocol ReportDetailsStrategy {
     func getCell(withTableView tableView: UITableView, atIndexPath indexPath: IndexPath, forReport report: Report) -> UITableViewCell
     
     func getCellHeight(withTableView tableView: UITableView, atIndexPath indexPath: IndexPath, forReport report: Report) -> CGFloat

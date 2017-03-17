@@ -93,6 +93,7 @@ struct Constants {
         static let approvalListCellHeight = 68
         static let expenseListCellHeight = 90
         static let expenseAuditHistoryCellHeight = 47
+        static let reportMoreDetailsCellHeight = 62
     }
     
     struct StoryboardIds {
@@ -312,6 +313,7 @@ struct Constants {
         
         static let reports = "reports"
         static let reportId = "reportId"
+        static let reportNumber = "reportNumber"
         static let businessPurpose = "businessPurpose"
         static let startDate = "startDate"
         static let endDate = "endDate"
