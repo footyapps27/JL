@@ -510,6 +510,13 @@
 			path = Styles;
 			sourceTree = "<group>";
 		};
+		8C213C921E7B7A4900BB934A /* ReportToolBarStrategy */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ReportToolBarStrategy;
+			sourceTree = "<group>";
+		};
 		8C5141341E1F5F2F003AD3B1 /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -778,6 +785,7 @@
 				8C42DFD61E63E03400A3B69A /* AddReportManager.swift */,
 				8C42DFD81E63E05100A3B69A /* ReportDetailsManager.swift */,
 				8C0A01D21E77C3A500A96867 /* ReportDetailStrategy */,
+				8C213C921E7B7A4900BB934A /* ReportToolBarStrategy */,
 				8CFD02141E73D39800526962 /* ReviewSelectReportManager.swift */,
 				8C0A01DF1E78E19400A96867 /* ApproversListManager.swift */,
 			);

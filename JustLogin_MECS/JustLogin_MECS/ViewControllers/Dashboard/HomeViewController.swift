@@ -44,6 +44,7 @@ extension HomeViewController {
 /***********************************/
 extension HomeViewController {
     func updateUI() {
+        self.navigationItem.title = Singleton.sharedInstance.organization?.name
         view.backgroundColor = Color.theme.value
         lblMemberName.text = manager.getMemberName()
     }

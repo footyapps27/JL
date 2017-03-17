@@ -27,14 +27,7 @@ class ExpenseListViewController: BaseViewControllerWithTableView {
         // Register for notification
         NotificationCenter.default.addObserver(self, selector: #selector(ExpenseListViewController.fetchExpenses), name: Notification.Name(Constants.Notifications.refreshExpenseList), object: nil)
         
-        tableView.isHidden = true
-        tableView.allowsMultipleSelectionDuringEditing = true
-        
-        addSearchController(toTableView: tableView, withSearchResultsUpdater: self)
-        
-        addRefreshControl(toTableView: tableView, withAction: #selector(refreshTableView(_:)))
-        
-        addBarButtonItems(forNormalState: true)
+        updateUI()
         
         fetchExpenses()
     }
@@ -83,6 +76,23 @@ extension ExpenseListViewController {
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: leftSystemItem, target: self, action: #selector(leftBarButtonTapped(_:)))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: rightSystemItem, target: self, action: #selector(rightBarButtonTapped(_:)))
+    }
+    
+    /**
+     * Update the various elements of UI.
+     */
+    func updateUI() {
+        
+        self.navigationItem.title = Constants.ViewControllerTitles.expenses
+        
+        tableView.isHidden = true
+        tableView.allowsMultipleSelectionDuringEditing = true
+        
+        addSearchController(toTableView: tableView, withSearchResultsUpdater: self)
+        
+        addRefreshControl(toTableView: tableView, withAction: #selector(refreshTableView(_:)))
+        
+        addBarButtonItems(forNormalState: true)
     }
     
     /**

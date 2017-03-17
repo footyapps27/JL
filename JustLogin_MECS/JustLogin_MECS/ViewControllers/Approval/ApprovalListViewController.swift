@@ -22,13 +22,23 @@ class ApprovalListViewController: BaseViewControllerWithTableView {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        updateUI()
+        
+        fetchApprovals()
+    }
+}
+/***********************************/
+// MARK: - Helpers
+/***********************************/
+extension ApprovalListViewController {
+    func updateUI() {
+        self.navigationItem.title = Constants.ViewControllerTitles.approvals
+        
         tableView.isHidden = true
         
         addSearchController(toTableView: tableView, withSearchResultsUpdater: self)
         
         addRefreshControl(toTableView: tableView, withAction: #selector(refreshTableView(_:)))
-        
-        fetchApprovals()
     }
 }
 /***********************************/

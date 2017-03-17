@@ -16,6 +16,7 @@ struct Styles {
     static func initialStylesSetup() {
         setupNavigationBar()
         setupTableViewBackground()
+        setupTabBar()
     }
 }
 /***********************************/
@@ -30,5 +31,11 @@ extension Styles {
     
     fileprivate static func setupTableViewBackground() {
         UITableView.appearance().backgroundColor = Color.background.value
+    }
+    
+    fileprivate static func setupTabBar() {
+        UITabBar.appearance().tintColor = Color.theme.value
+        UITabBar.appearance().backgroundColor = .white
+        UITabBar.appearance().isTranslucent = false
     }
 }

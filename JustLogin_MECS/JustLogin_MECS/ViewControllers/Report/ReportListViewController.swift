@@ -26,13 +26,7 @@ class ReportListViewController: BaseViewControllerWithTableView {
         // Register for notification
         NotificationCenter.default.addObserver(self, selector: #selector(ReportListViewController.fetchReports), name: Notification.Name(Constants.Notifications.refreshReportList), object: nil)
         
-        tableView.isHidden = true
-        
-        addSearchController(toTableView: tableView, withSearchResultsUpdater: self)
-        
-        addRefreshControl(toTableView: tableView, withAction: #selector(refreshTableView(_:)))
-        
-        addBarButtonItems()
+        updateUI()
         
         fetchReports()
     }
@@ -63,6 +57,18 @@ extension ReportListViewController {
      */
     func addBarButtonItems() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(rightBarButtonTapped(_:)))
+    }
+    
+    func updateUI() {
+        self.navigationItem.title = Constants.ViewControllerTitles.reports
+        
+        tableView.isHidden = true
+        
+        addSearchController(toTableView: tableView, withSearchResultsUpdater: self)
+        
+        addRefreshControl(toTableView: tableView, withAction: #selector(refreshTableView(_:)))
+        
+        addBarButtonItems()
     }
     
     func navigateToAddReport() {

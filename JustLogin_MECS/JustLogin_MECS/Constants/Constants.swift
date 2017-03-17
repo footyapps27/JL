@@ -30,6 +30,11 @@ struct Constants {
         static let reviewSelectCurrency = "Select a Currency"
         static let reviewSelectReport = "Select a Report"
         static let addExpense = "Add Expense"
+        
+        static let settings = "Settings"
+        static let expenses = "Expenses"
+        static let reports = "Reports"
+        static let approvals = "Approvals"
     }
     
     struct UIImageNames {
