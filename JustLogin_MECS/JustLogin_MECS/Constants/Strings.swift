@@ -22,4 +22,12 @@ struct LocalizedString {
     static let reportDuration = "Report Duration"
     static let businessPurpose = "Business Purpose"
     
+    static let submit = "Submit"
+    static let edit = "Edit"
+    static let cancel = "Cancel"
+    static let moreOptions = "More Options"
+    
+    static let addExpense = "Add Expense"
+    static let includeExpense = "Include Expense"
+    
 }

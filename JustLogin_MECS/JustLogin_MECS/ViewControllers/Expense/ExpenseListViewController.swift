@@ -128,13 +128,13 @@ extension ExpenseListViewController {
     func navigateToAddExpense() {
         let addExpenseViewController = UIStoryboard(name: Constants.StoryboardIds.expenseStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.addExpenseViewController) as! AddExpenseViewController
         addExpenseViewController.delegate = self
-        Utilities.pushControllerAndHideTabbar(fromController:self, toController: addExpenseViewController)
+        Utilities.pushControllerAndHideTabbarForChildOnly(fromController:self, toController: addExpenseViewController)
     }
     
     func navigateToExpenseDetails(forExpense expense: Expense) {
         let expenseDetailsViewController = UIStoryboard(name: Constants.StoryboardIds.expenseStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.expenseDetailsViewController) as! ExpenseDetailsViewController
         expenseDetailsViewController.expense = expense
-        Utilities.pushControllerAndHideTabbar(fromController:self, toController: expenseDetailsViewController)
+        Utilities.pushControllerAndHideTabbarForChildOnly(fromController:self, toController: expenseDetailsViewController)
     }
 }
 /***********************************/

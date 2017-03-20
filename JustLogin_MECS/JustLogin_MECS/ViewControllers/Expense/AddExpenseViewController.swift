@@ -196,7 +196,7 @@ extension AddExpenseViewController: UITableViewDelegate {
         if manager.checkIfNavigationIsRequired(forIndexPath: indexPath) {
             self.view .endEditing(true)
             let controller = manager.getDetailsNavigationController(forIndexPath: indexPath, withDelegate: self)
-            Utilities.pushControllerAndHideTabbar(fromController: self, toController: controller)
+            Utilities.pushControllerAndHideTabbarForChildAndParent(fromController: self, toController: controller)
         } else {
             let cell = tableView.cellForRow(at: indexPath) as! AddExpenseBaseTableViewCell
             manager.performActionForSelectedCell(cell, forIndexPath: indexPath)

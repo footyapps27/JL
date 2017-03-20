@@ -87,7 +87,6 @@ enum SettingsOptions: String {
     case aboutUs = "About Us"
     case upgradeOrganization = "Upgrade Organization"
 }
-
 /***********************************/
 // MARK: - Report Details Segment Control
 /***********************************/
@@ -96,13 +95,20 @@ enum ReportDetailsSegmentedControl: Int {
     moreDetails,
     history
 }
-
 /***********************************/
-// MARK: - Report Details Segment Control
+// MARK: - Report Details Caller
 /***********************************/
 enum ReportDetailsCaller: Int {
     case reportList = 0,
     approvalList
+}
+/***********************************/
+// MARK: - Bar Button Tags for Report Details
+/***********************************/
+enum ReportDetailsToolBarButtonTag: Int {
+    case left = 0,
+    middle,
+    right
 }
 /***********************************/
 // MARK: - Color
