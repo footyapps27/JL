@@ -122,7 +122,7 @@ extension ExpenseListViewController {
                 }
             })
         }
-        Utilities.showActionSheet(withTitle: nil, message: nil, actions: [actionAddToReport, actionDeleteExpenses], onController: self)
+        Utilities.showActionSheet(withTitle: nil, message: nil, actions: [actionDeleteExpenses, actionAddToReport ], onController: self)
     }
     
     func navigateToAddExpense() {
@@ -203,7 +203,6 @@ extension ExpenseListViewController: UITableViewDelegate {
             manager.addExpenseToSelectedExpenses(forIndexPath: indexPath)
             return
         }
-        tableView.deselectRow(at: indexPath, animated: true)
         navigateToExpenseDetails(forExpense: manager.getExpenses()[indexPath.row])
     }
 }

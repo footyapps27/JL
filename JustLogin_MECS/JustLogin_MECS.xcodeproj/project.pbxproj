@@ -43,6 +43,7 @@
 		8C1766551E7A851200D1CDE0 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1766541E7A851200D1CDE0 /* Styles.swift */; };
 		8C26DDB91E779DE400FC0E13 /* ReportDetailsFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C26DDB81E779DE400FC0E13 /* ReportDetailsFooterView.swift */; };
 		8C299FF31E681EDA0077A730 /* ExpenseDetailsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C299FF21E681EDA0077A730 /* ExpenseDetailsHeaderView.swift */; };
+		8C3768181E7F76CE00E82044 /* ReportDetailToolBarStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3768171E7F76CE00E82044 /* ReportDetailToolBarStrategy.swift */; };
 		8C42DFD31E63DE7D00A3B69A /* AddReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C42DFD21E63DE7D00A3B69A /* AddReportViewController.swift */; };
 		8C42DFD51E63DEA300A3B69A /* ReportDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C42DFD41E63DEA300A3B69A /* ReportDetailsViewController.swift */; };
 		8C42DFD71E63E03400A3B69A /* AddReportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C42DFD61E63E03400A3B69A /* AddReportManager.swift */; };
@@ -189,6 +190,7 @@
 		8C1766541E7A851200D1CDE0 /* Styles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		8C26DDB81E779DE400FC0E13 /* ReportDetailsFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsFooterView.swift; sourceTree = "<group>"; };
 		8C299FF21E681EDA0077A730 /* ExpenseDetailsHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseDetailsHeaderView.swift; sourceTree = "<group>"; };
+		8C3768171E7F76CE00E82044 /* ReportDetailToolBarStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailToolBarStrategy.swift; sourceTree = "<group>"; };
 		8C42DFD21E63DE7D00A3B69A /* AddReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReportViewController.swift; sourceTree = "<group>"; };
 		8C42DFD41E63DEA300A3B69A /* ReportDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsViewController.swift; sourceTree = "<group>"; };
 		8C42DFD61E63E03400A3B69A /* AddReportManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReportManager.swift; sourceTree = "<group>"; };
@@ -510,11 +512,12 @@
 			path = Styles;
 			sourceTree = "<group>";
 		};
-		8C213C921E7B7A4900BB934A /* ReportToolBarStrategy */ = {
+		8C3768161E7F769B00E82044 /* ReportDetailToolBarStrategy */ = {
 			isa = PBXGroup;
 			children = (
+				8C3768171E7F76CE00E82044 /* ReportDetailToolBarStrategy.swift */,
 			);
-			path = ReportToolBarStrategy;
+			path = ReportDetailToolBarStrategy;
 			sourceTree = "<group>";
 		};
 		8C5141341E1F5F2F003AD3B1 /* Base */ = {
@@ -781,11 +784,11 @@
 		8CF655E41E58B55600D4FEF3 /* Report */ = {
 			isa = PBXGroup;
 			children = (
+				8C0A01D21E77C3A500A96867 /* ReportDetailStrategy */,
+				8C3768161E7F769B00E82044 /* ReportDetailToolBarStrategy */,
 				8CB44AD31E5B0380005CC04D /* ReportListManager.swift */,
 				8C42DFD61E63E03400A3B69A /* AddReportManager.swift */,
 				8C42DFD81E63E05100A3B69A /* ReportDetailsManager.swift */,
-				8C0A01D21E77C3A500A96867 /* ReportDetailStrategy */,
-				8C213C921E7B7A4900BB934A /* ReportToolBarStrategy */,
 				8CFD02141E73D39800526962 /* ReviewSelectReportManager.swift */,
 				8C0A01DF1E78E19400A96867 /* ApproversListManager.swift */,
 			);
@@ -1227,6 +1230,7 @@
 				8C96021D1E1FE14A00EE66A3 /* Enums.swift in Sources */,
 				8CF655DB1E589F1B00D4FEF3 /* ReportService.swift in Sources */,
 				8C0A01D81E77C4C600A96867 /* ReportDetailsAuditHistoryStrategy.swift in Sources */,
+				8C3768181E7F76CE00E82044 /* ReportDetailToolBarStrategy.swift in Sources */,
 				8CE007151E28D7C90089D159 /* ApprovalListTableViewCell.swift in Sources */,
 				8C0A01D61E77C4AE00A96867 /* ReportDetailsExpenseStrategy.swift in Sources */,
 				8CA4B6F31E28ACA6007C3BE5 /* ReportListTableViewCell.swift in Sources */,

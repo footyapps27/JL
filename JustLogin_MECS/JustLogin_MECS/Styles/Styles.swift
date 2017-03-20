@@ -18,6 +18,7 @@ struct Styles {
         setupTableViewBackground()
         setupTabBar()
         setupSegmentedControl()
+        setupUITableViewCellSelection()
     }
 }
 /***********************************/
@@ -42,5 +43,15 @@ extension Styles {
     
     fileprivate static func setupSegmentedControl() {
         UISegmentedControl.appearance().tintColor = Color.theme.value
+    }
+    
+    fileprivate static func setupUITableViewCellSelection() {
+        // Cell selection color
+        let colorView = UIView()
+        colorView.backgroundColor = Color.theme.withAlpha(0.15)
+        UITableViewCell.appearance().selectedBackgroundView = colorView
+        
+        // Tint Color
+        UITableViewCell.appearance().tintColor = Color.theme.value
     }
 }
