@@ -172,22 +172,25 @@ extension ReportDetailsManager {
 /***********************************/
 extension ReportDetailsManager {
     func getToolBarStrategy(forReportStatus status: ReportStatus, caller: ReportDetailsCaller) -> ReportDetailsToolBarBaseStrategy {
-//        var strategy:
-//        switch(status, caller) {
-//        case (ReportStatus.unsubmitted, ReportDetailsCaller.reportList): fallthrough
-//        case (ReportStatus.submitted, ReportDetailsCaller.reportList): fallthrough
-//        case (ReportStatus.rejected, ReportDetailsCaller.reportList): fallthrough
-//        case (ReportStatus.approved, ReportDetailsCaller.reportList): fallthrough
-//        case (ReportStatus.reimbursed, ReportDetailsCaller.reportList): fallthrough
-//        
-//        case (ReportStatus.unsubmitted, ReportDetailsCaller.approvalList): fallthrough
-//        case (ReportStatus.submitted, ReportDetailsCaller.approvalList): fallthrough
-//        case (ReportStatus.rejected, ReportDetailsCaller.approvalList): fallthrough
-//        case (ReportStatus.approved, ReportDetailsCaller.approvalList): fallthrough
-//        case (ReportStatus.reimbursed, ReportDetailsCaller.approvalList): fallthrough
-//        
-//        default: ReportDetailsToolBarUnsubmittedStrategy()
-//        }
-        return ReportDetailsToolBarUnsubmittedStrategy()
+        var strategy: ReportDetailsToolBarBaseStrategy
+        switch(status, caller) {
+        case (ReportStatus.unsubmitted, ReportDetailsCaller.reportList):
+            strategy = ReportDetailsToolBarUnsubmittedStrategy()
+        case (ReportStatus.submitted, ReportDetailsCaller.reportList):
+            strategy = ReportDetailsToolBarSubmittedStrategy()
+        case (ReportStatus.rejected, ReportDetailsCaller.reportList): fallthrough
+        case (ReportStatus.approved, ReportDetailsCaller.reportList): fallthrough
+        case (ReportStatus.reimbursed, ReportDetailsCaller.reportList): fallthrough
+        
+        case (ReportStatus.unsubmitted, ReportDetailsCaller.approvalList): fallthrough
+        case (ReportStatus.submitted, ReportDetailsCaller.approvalList): fallthrough
+        case (ReportStatus.rejected, ReportDetailsCaller.approvalList): fallthrough
+        case (ReportStatus.approved, ReportDetailsCaller.approvalList): fallthrough
+        case (ReportStatus.reimbursed, ReportDetailsCaller.approvalList): fallthrough
+        
+        default:
+            strategy = ReportDetailsToolBarUnsubmittedStrategy()
+        }
+        return strategy
     }
 }

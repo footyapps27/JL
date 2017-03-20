@@ -30,4 +30,6 @@ struct LocalizedString {
     static let addExpense = "Add Expense"
     static let includeExpense = "Include Expense"
     
+    static let recall = "Recall"
+    static let viewAsPDF = "View As PDF"
 }

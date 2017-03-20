@@ -56,7 +56,7 @@ extension AddExpenseViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.save, target: self, action: #selector(rightBarButtonTapped(_:)))
         
         /*  If this is the only view controller, then we need to put a dismiss button.
-            Since then this controller is being presented from dashboard.
+            Since then this controller is being presented from dashboard/report details.
          */
         if navigationController?.viewControllers.count == 1 {
             self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.cancel, target: self, action: #selector(leftBarButtonTapped(_:)))
