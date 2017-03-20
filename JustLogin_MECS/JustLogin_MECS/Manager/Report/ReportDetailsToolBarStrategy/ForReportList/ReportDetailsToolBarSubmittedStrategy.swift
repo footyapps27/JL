@@ -20,10 +20,10 @@ struct ReportDetailsToolBarSubmittedStrategy: ReportDetailsToolBarBaseStrategy {
         let btnRecall = UIBarButtonItem(title: LocalizedString.recall, style: .plain, target: delegate, action: #selector(delegate.barButtonItemTapped(_:)))
         btnRecall.tag = ReportDetailsToolBarButtonTag.left.rawValue
         
-        let btnViewAsPDF = UIBarButtonItem(title: LocalizedString.viewAsPDF, style: .plain, target: delegate, action: #selector(delegate.barButtonItemTapped(_:)))
-        btnViewAsPDF.tag = ReportDetailsToolBarButtonTag.right.rawValue
+        let btnViewPDF = UIBarButtonItem(title: LocalizedString.viewPDF, style: .plain, target: delegate, action: #selector(delegate.barButtonItemTapped(_:)))
+        btnViewPDF.tag = ReportDetailsToolBarButtonTag.right.rawValue
         
-        toolBar.items = [flexibleSpace, btnRecall, flexibleSpace, btnViewAsPDF, flexibleSpace]
+        toolBar.items = [flexibleSpace, btnRecall, flexibleSpace, btnViewPDF, flexibleSpace]
     }
     
     func performActionForBarButtonItem(_ barButton: UIBarButtonItem, forReport report: Report, onController controller: ReportDetailsViewController) {

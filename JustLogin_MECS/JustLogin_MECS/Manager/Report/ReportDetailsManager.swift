@@ -178,16 +178,15 @@ extension ReportDetailsManager {
             strategy = ReportDetailsToolBarUnsubmittedStrategy()
         case (ReportStatus.submitted, ReportDetailsCaller.reportList):
             strategy = ReportDetailsToolBarSubmittedStrategy()
-        case (ReportStatus.rejected, ReportDetailsCaller.reportList): fallthrough
         case (ReportStatus.approved, ReportDetailsCaller.reportList): fallthrough
         case (ReportStatus.reimbursed, ReportDetailsCaller.reportList): fallthrough
         
-        case (ReportStatus.unsubmitted, ReportDetailsCaller.approvalList): fallthrough
-        case (ReportStatus.submitted, ReportDetailsCaller.approvalList): fallthrough
-        case (ReportStatus.rejected, ReportDetailsCaller.approvalList): fallthrough
-        case (ReportStatus.approved, ReportDetailsCaller.approvalList): fallthrough
-        case (ReportStatus.reimbursed, ReportDetailsCaller.approvalList): fallthrough
-        
+        case (ReportStatus.submitted, ReportDetailsCaller.approvalList):
+            strategy = ReportDetailsToolBarApprovalListSubmittedStrategy()
+        case (ReportStatus.approved, ReportDetailsCaller.approvalList):
+            strategy = ReportDetailsToolBarApprovalListApprovedStrategy()
+        case (ReportStatus.reimbursed, ReportDetailsCaller.approvalList):
+            strategy = ReportDetailsToolBarApprovalListReimbursedStrategy()
         default:
             strategy = ReportDetailsToolBarUnsubmittedStrategy()
         }

@@ -21,6 +21,10 @@ class AddReportTableViewCellWithMultipleSelection: AddReportBaseTableViewCell {
     /***********************************/
     // MARK: - Parent class override methods
     /***********************************/
+    override func updateView(withField reportField: ExpenseAndReportField) {
+        lblFieldName.text = reportField.name
+    }
+    
     override func validateInput(withField reportField: ExpenseAndReportField) -> (success: Bool, errorMessage: String) {
         if reportField.isMandatory {
             if txtField.text!.isEmpty {

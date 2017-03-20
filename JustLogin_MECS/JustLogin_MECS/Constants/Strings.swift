@@ -31,5 +31,11 @@ struct LocalizedString {
     static let includeExpense = "Include Expense"
     
     static let recall = "Recall"
-    static let viewAsPDF = "View As PDF"
+    static let viewPDF = "View PDF"
+    
+    static let approve = "Approve"
+    static let reject = "Reject"
+    
+    static let recordReimbursement = "Record Reimbursement"
+    static let undoReimbursement = "Undo Reimbursement"
 }

@@ -46,6 +46,9 @@
 		8C3768241E7F888C00E82044 /* ReportDetailsToolBarBaseStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3768231E7F888C00E82044 /* ReportDetailsToolBarBaseStrategy.swift */; };
 		8C37682A1E7FB51E00E82044 /* ReportDetailsToolBarUnsubmittedStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3768291E7FB51E00E82044 /* ReportDetailsToolBarUnsubmittedStrategy.swift */; };
 		8C37682C1E7FE9F000E82044 /* ReportDetailsToolBarSubmittedStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C37682B1E7FE9F000E82044 /* ReportDetailsToolBarSubmittedStrategy.swift */; };
+		8C37682E1E7FF9FB00E82044 /* ReportDetailsToolBarApprovalListSubmittedStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C37682D1E7FF9FB00E82044 /* ReportDetailsToolBarApprovalListSubmittedStrategy.swift */; };
+		8C3768301E7FFC0E00E82044 /* ReportDetailsToolBarApprovalListApprovedStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C37682F1E7FFC0E00E82044 /* ReportDetailsToolBarApprovalListApprovedStrategy.swift */; };
+		8C3768321E7FFE8D00E82044 /* ReportDetailsToolBarApprovalListReimbursedStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3768311E7FFE8D00E82044 /* ReportDetailsToolBarApprovalListReimbursedStrategy.swift */; };
 		8C42DFD31E63DE7D00A3B69A /* AddReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C42DFD21E63DE7D00A3B69A /* AddReportViewController.swift */; };
 		8C42DFD51E63DEA300A3B69A /* ReportDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C42DFD41E63DEA300A3B69A /* ReportDetailsViewController.swift */; };
 		8C42DFD71E63E03400A3B69A /* AddReportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C42DFD61E63E03400A3B69A /* AddReportManager.swift */; };
@@ -195,6 +198,9 @@
 		8C3768231E7F888C00E82044 /* ReportDetailsToolBarBaseStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsToolBarBaseStrategy.swift; sourceTree = "<group>"; };
 		8C3768291E7FB51E00E82044 /* ReportDetailsToolBarUnsubmittedStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsToolBarUnsubmittedStrategy.swift; sourceTree = "<group>"; };
 		8C37682B1E7FE9F000E82044 /* ReportDetailsToolBarSubmittedStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsToolBarSubmittedStrategy.swift; sourceTree = "<group>"; };
+		8C37682D1E7FF9FB00E82044 /* ReportDetailsToolBarApprovalListSubmittedStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsToolBarApprovalListSubmittedStrategy.swift; sourceTree = "<group>"; };
+		8C37682F1E7FFC0E00E82044 /* ReportDetailsToolBarApprovalListApprovedStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsToolBarApprovalListApprovedStrategy.swift; sourceTree = "<group>"; };
+		8C3768311E7FFE8D00E82044 /* ReportDetailsToolBarApprovalListReimbursedStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsToolBarApprovalListReimbursedStrategy.swift; sourceTree = "<group>"; };
 		8C42DFD21E63DE7D00A3B69A /* AddReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReportViewController.swift; sourceTree = "<group>"; };
 		8C42DFD41E63DEA300A3B69A /* ReportDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsViewController.swift; sourceTree = "<group>"; };
 		8C42DFD61E63E03400A3B69A /* AddReportManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReportManager.swift; sourceTree = "<group>"; };
@@ -529,6 +535,9 @@
 		8C3768271E7FB4FE00E82044 /* ForApprovalList */ = {
 			isa = PBXGroup;
 			children = (
+				8C37682D1E7FF9FB00E82044 /* ReportDetailsToolBarApprovalListSubmittedStrategy.swift */,
+				8C37682F1E7FFC0E00E82044 /* ReportDetailsToolBarApprovalListApprovedStrategy.swift */,
+				8C3768311E7FFE8D00E82044 /* ReportDetailsToolBarApprovalListReimbursedStrategy.swift */,
 			);
 			path = ForApprovalList;
 			sourceTree = "<group>";
@@ -1180,6 +1189,7 @@
 				8CF342441E5D40E4008387BF /* BaseManager.swift in Sources */,
 				8C42DFD51E63DEA300A3B69A /* ReportDetailsViewController.swift in Sources */,
 				8CF655CD1E585ACE00D4FEF3 /* AccessPrivilege.swift in Sources */,
+				8C3768321E7FFE8D00E82044 /* ReportDetailsToolBarApprovalListReimbursedStrategy.swift in Sources */,
 				8CD333191E23BC7D00557B6F /* ExpenseListViewController.swift in Sources */,
 				8CFD02111E73D2FA00526962 /* ReviewSelectReportTableViewCell.swift in Sources */,
 				8CF655D31E58694E00D4FEF3 /* Currency.swift in Sources */,
@@ -1197,6 +1207,7 @@
 				8C42DFD31E63DE7D00A3B69A /* AddReportViewController.swift in Sources */,
 				8C1766501E7A65D500D1CDE0 /* ApprovalListManager.swift in Sources */,
 				8C8995D71E60822B00482317 /* ExpenseDetailsViewController.swift in Sources */,
+				8C37682E1E7FF9FB00E82044 /* ReportDetailsToolBarApprovalListSubmittedStrategy.swift in Sources */,
 				8C00F6601E1E651A0007F29C /* AppDelegate.swift in Sources */,
 				8C9602101E1FDB7F00EE66A3 /* SignUpViewController.swift in Sources */,
 				8C9602141E1FDB9900EE66A3 /* HomeViewController.swift in Sources */,
@@ -1235,6 +1246,7 @@
 				8CF2FBE11E72C76E001C008E /* CategoryService.swift in Sources */,
 				8C07A5631E6E87390015D419 /* AddExpenseTableViewCellCategory.swift in Sources */,
 				8CD333211E23C4E500557B6F /* BaseViewControllerWithTableView.swift in Sources */,
+				8C3768301E7FFC0E00E82044 /* ReportDetailsToolBarApprovalListApprovedStrategy.swift in Sources */,
 				8C5141291E1E98EC003AD3B1 /* Constants.swift in Sources */,
 				8C51413B1E1F5F95003AD3B1 /* BaseCustomCollectionViewCell.swift in Sources */,
 				8C8995D51E60821200482317 /* AddExpenseViewController.swift in Sources */,
