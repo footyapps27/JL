@@ -29,10 +29,6 @@
 		8C0A01CC1E77BBD300A96867 /* ReportDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A01CB1E77BBD300A96867 /* ReportDetailsTableViewCell.swift */; };
 		8C0A01D01E77C38100A96867 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A01CE1E77C38100A96867 /* Dictionary.swift */; };
 		8C0A01D11E77C38100A96867 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A01CF1E77C38100A96867 /* Double.swift */; };
-		8C0A01D41E77C3C900A96867 /* ReportDetailsStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A01D31E77C3C900A96867 /* ReportDetailsStrategy.swift */; };
-		8C0A01D61E77C4AE00A96867 /* ReportDetailsExpenseStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A01D51E77C4AE00A96867 /* ReportDetailsExpenseStrategy.swift */; };
-		8C0A01D81E77C4C600A96867 /* ReportDetailsAuditHistoryStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A01D71E77C4C600A96867 /* ReportDetailsAuditHistoryStrategy.swift */; };
-		8C0A01DA1E77C4E000A96867 /* ReportDetailsMoreDetailStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A01D91E77C4E000A96867 /* ReportDetailsMoreDetailStrategy.swift */; };
 		8C0A01DC1E78CA0E00A96867 /* ApprovalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A01DB1E78CA0E00A96867 /* ApprovalService.swift */; };
 		8C0A01DE1E78E15100A96867 /* ApproversListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A01DD1E78E15100A96867 /* ApproversListViewController.swift */; };
 		8C0A01E01E78E19400A96867 /* ApproversListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A01DF1E78E19400A96867 /* ApproversListManager.swift */; };
@@ -43,7 +39,12 @@
 		8C1766551E7A851200D1CDE0 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1766541E7A851200D1CDE0 /* Styles.swift */; };
 		8C26DDB91E779DE400FC0E13 /* ReportDetailsFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C26DDB81E779DE400FC0E13 /* ReportDetailsFooterView.swift */; };
 		8C299FF31E681EDA0077A730 /* ExpenseDetailsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C299FF21E681EDA0077A730 /* ExpenseDetailsHeaderView.swift */; };
-		8C3768181E7F76CE00E82044 /* ReportDetailToolBarStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3768171E7F76CE00E82044 /* ReportDetailToolBarStrategy.swift */; };
+		8C37681E1E7F887200E82044 /* ReportDetailsAuditHistoryStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C37681A1E7F887200E82044 /* ReportDetailsAuditHistoryStrategy.swift */; };
+		8C37681F1E7F887200E82044 /* ReportDetailsBaseStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C37681B1E7F887200E82044 /* ReportDetailsBaseStrategy.swift */; };
+		8C3768201E7F887200E82044 /* ReportDetailsExpenseStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C37681C1E7F887200E82044 /* ReportDetailsExpenseStrategy.swift */; };
+		8C3768211E7F887200E82044 /* ReportDetailsMoreDetailStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C37681D1E7F887200E82044 /* ReportDetailsMoreDetailStrategy.swift */; };
+		8C3768241E7F888C00E82044 /* ReportDetailsToolBarBaseStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3768231E7F888C00E82044 /* ReportDetailsToolBarBaseStrategy.swift */; };
+		8C37682A1E7FB51E00E82044 /* ReportDetailsToolBarUnsubmittedStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3768291E7FB51E00E82044 /* ReportDetailsToolBarUnsubmittedStrategy.swift */; };
 		8C42DFD31E63DE7D00A3B69A /* AddReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C42DFD21E63DE7D00A3B69A /* AddReportViewController.swift */; };
 		8C42DFD51E63DEA300A3B69A /* ReportDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C42DFD41E63DEA300A3B69A /* ReportDetailsViewController.swift */; };
 		8C42DFD71E63E03400A3B69A /* AddReportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C42DFD61E63E03400A3B69A /* AddReportManager.swift */; };
@@ -176,10 +177,6 @@
 		8C0A01CB1E77BBD300A96867 /* ReportDetailsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		8C0A01CE1E77C38100A96867 /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		8C0A01CF1E77C38100A96867 /* Double.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
-		8C0A01D31E77C3C900A96867 /* ReportDetailsStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsStrategy.swift; sourceTree = "<group>"; };
-		8C0A01D51E77C4AE00A96867 /* ReportDetailsExpenseStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsExpenseStrategy.swift; sourceTree = "<group>"; };
-		8C0A01D71E77C4C600A96867 /* ReportDetailsAuditHistoryStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsAuditHistoryStrategy.swift; sourceTree = "<group>"; };
-		8C0A01D91E77C4E000A96867 /* ReportDetailsMoreDetailStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsMoreDetailStrategy.swift; sourceTree = "<group>"; };
 		8C0A01DB1E78CA0E00A96867 /* ApprovalService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApprovalService.swift; sourceTree = "<group>"; };
 		8C0A01DD1E78E15100A96867 /* ApproversListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApproversListViewController.swift; sourceTree = "<group>"; };
 		8C0A01DF1E78E19400A96867 /* ApproversListManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApproversListManager.swift; sourceTree = "<group>"; };
@@ -190,7 +187,12 @@
 		8C1766541E7A851200D1CDE0 /* Styles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		8C26DDB81E779DE400FC0E13 /* ReportDetailsFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsFooterView.swift; sourceTree = "<group>"; };
 		8C299FF21E681EDA0077A730 /* ExpenseDetailsHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseDetailsHeaderView.swift; sourceTree = "<group>"; };
-		8C3768171E7F76CE00E82044 /* ReportDetailToolBarStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailToolBarStrategy.swift; sourceTree = "<group>"; };
+		8C37681A1E7F887200E82044 /* ReportDetailsAuditHistoryStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsAuditHistoryStrategy.swift; sourceTree = "<group>"; };
+		8C37681B1E7F887200E82044 /* ReportDetailsBaseStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsBaseStrategy.swift; sourceTree = "<group>"; };
+		8C37681C1E7F887200E82044 /* ReportDetailsExpenseStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsExpenseStrategy.swift; sourceTree = "<group>"; };
+		8C37681D1E7F887200E82044 /* ReportDetailsMoreDetailStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsMoreDetailStrategy.swift; sourceTree = "<group>"; };
+		8C3768231E7F888C00E82044 /* ReportDetailsToolBarBaseStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsToolBarBaseStrategy.swift; sourceTree = "<group>"; };
+		8C3768291E7FB51E00E82044 /* ReportDetailsToolBarUnsubmittedStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsToolBarUnsubmittedStrategy.swift; sourceTree = "<group>"; };
 		8C42DFD21E63DE7D00A3B69A /* AddReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReportViewController.swift; sourceTree = "<group>"; };
 		8C42DFD41E63DEA300A3B69A /* ReportDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsViewController.swift; sourceTree = "<group>"; };
 		8C42DFD61E63E03400A3B69A /* AddReportManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReportManager.swift; sourceTree = "<group>"; };
@@ -493,17 +495,6 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		8C0A01D21E77C3A500A96867 /* ReportDetailStrategy */ = {
-			isa = PBXGroup;
-			children = (
-				8C0A01D31E77C3C900A96867 /* ReportDetailsStrategy.swift */,
-				8C0A01D51E77C4AE00A96867 /* ReportDetailsExpenseStrategy.swift */,
-				8C0A01D71E77C4C600A96867 /* ReportDetailsAuditHistoryStrategy.swift */,
-				8C0A01D91E77C4E000A96867 /* ReportDetailsMoreDetailStrategy.swift */,
-			);
-			path = ReportDetailStrategy;
-			sourceTree = "<group>";
-		};
 		8C1766531E7A850900D1CDE0 /* Styles */ = {
 			isa = PBXGroup;
 			children = (
@@ -512,12 +503,40 @@
 			path = Styles;
 			sourceTree = "<group>";
 		};
-		8C3768161E7F769B00E82044 /* ReportDetailToolBarStrategy */ = {
+		8C3768191E7F887200E82044 /* ReportDetailsStrategy */ = {
 			isa = PBXGroup;
 			children = (
-				8C3768171E7F76CE00E82044 /* ReportDetailToolBarStrategy.swift */,
+				8C37681A1E7F887200E82044 /* ReportDetailsAuditHistoryStrategy.swift */,
+				8C37681B1E7F887200E82044 /* ReportDetailsBaseStrategy.swift */,
+				8C37681C1E7F887200E82044 /* ReportDetailsExpenseStrategy.swift */,
+				8C37681D1E7F887200E82044 /* ReportDetailsMoreDetailStrategy.swift */,
 			);
-			path = ReportDetailToolBarStrategy;
+			path = ReportDetailsStrategy;
+			sourceTree = "<group>";
+		};
+		8C3768221E7F888C00E82044 /* ReportDetailsToolBarStrategy */ = {
+			isa = PBXGroup;
+			children = (
+				8C3768231E7F888C00E82044 /* ReportDetailsToolBarBaseStrategy.swift */,
+				8C3768271E7FB4FE00E82044 /* ForApprovalList */,
+				8C3768281E7FB4FE00E82044 /* ForReportList */,
+			);
+			path = ReportDetailsToolBarStrategy;
+			sourceTree = "<group>";
+		};
+		8C3768271E7FB4FE00E82044 /* ForApprovalList */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ForApprovalList;
+			sourceTree = "<group>";
+		};
+		8C3768281E7FB4FE00E82044 /* ForReportList */ = {
+			isa = PBXGroup;
+			children = (
+				8C3768291E7FB51E00E82044 /* ReportDetailsToolBarUnsubmittedStrategy.swift */,
+			);
+			path = ForReportList;
 			sourceTree = "<group>";
 		};
 		8C5141341E1F5F2F003AD3B1 /* Base */ = {
@@ -784,8 +803,8 @@
 		8CF655E41E58B55600D4FEF3 /* Report */ = {
 			isa = PBXGroup;
 			children = (
-				8C0A01D21E77C3A500A96867 /* ReportDetailStrategy */,
-				8C3768161E7F769B00E82044 /* ReportDetailToolBarStrategy */,
+				8C3768191E7F887200E82044 /* ReportDetailsStrategy */,
+				8C3768221E7F888C00E82044 /* ReportDetailsToolBarStrategy */,
 				8CB44AD31E5B0380005CC04D /* ReportListManager.swift */,
 				8C42DFD61E63E03400A3B69A /* AddReportManager.swift */,
 				8C42DFD81E63E05100A3B69A /* ReportDetailsManager.swift */,
@@ -1149,6 +1168,7 @@
 			files = (
 				8CA4B6EA1E28A3DA007C3BE5 /* ReportListViewController.swift in Sources */,
 				8CD3331D1E23C48000557B6F /* SettingsListViewController.swift in Sources */,
+				8C37681F1E7F887200E82044 /* ReportDetailsBaseStrategy.swift in Sources */,
 				8C96020D1E1FDB7F00EE66A3 /* SignInViewController.swift in Sources */,
 				8CFD02211E7650EF00526962 /* ReportDetailsHeaderView.swift in Sources */,
 				8CF655D71E5875CF00D4FEF3 /* Singleton.swift in Sources */,
@@ -1178,14 +1198,15 @@
 				8C9602101E1FDB7F00EE66A3 /* SignUpViewController.swift in Sources */,
 				8C9602141E1FDB9900EE66A3 /* HomeViewController.swift in Sources */,
 				8C42DFDD1E6436C900A3B69A /* ExpenseAndReportField.swift in Sources */,
+				8C37681E1E7F887200E82044 /* ReportDetailsAuditHistoryStrategy.swift in Sources */,
 				8C1766521E7A7B3A00D1CDE0 /* UIColor.swift in Sources */,
 				8C07A5671E6E87840015D419 /* AddExpenseTableViewCellCurrencyAndAmount.swift in Sources */,
 				8C0A01D11E77C38100A96867 /* Double.swift in Sources */,
 				8C07A56B1E6E88F00015D419 /* AddExpenseTableViewCellWithMultipleSelection.swift in Sources */,
 				8CF655DF1E58B07000D4FEF3 /* Report.swift in Sources */,
 				8CF2FBD31E7156A3001C008E /* SettingsListManager.swift in Sources */,
-				8C0A01DA1E77C4E000A96867 /* ReportDetailsMoreDetailStrategy.swift in Sources */,
 				8CF3F6591E6671DA00A18D73 /* AddReportBaseTableViewCell.swift in Sources */,
+				8C37682A1E7FB51E00E82044 /* ReportDetailsToolBarUnsubmittedStrategy.swift in Sources */,
 				8C0A01DE1E78E15100A96867 /* ApproversListViewController.swift in Sources */,
 				8CEAADBE1E55468100BDB5ED /* BaseService.swift in Sources */,
 				8CA4B6EF1E28A5A8007C3BE5 /* ApprovalListViewController.swift in Sources */,
@@ -1226,23 +1247,22 @@
 				8CB44AD41E5B0380005CC04D /* ReportListManager.swift in Sources */,
 				8CF655D91E589EB700D4FEF3 /* ExpenseService.swift in Sources */,
 				8CB44AD61E5B1163005CC04D /* Utilities.swift in Sources */,
+				8C3768241E7F888C00E82044 /* ReportDetailsToolBarBaseStrategy.swift in Sources */,
 				8C8995D91E60836C00482317 /* AddExpenseManager.swift in Sources */,
 				8C96021D1E1FE14A00EE66A3 /* Enums.swift in Sources */,
 				8CF655DB1E589F1B00D4FEF3 /* ReportService.swift in Sources */,
-				8C0A01D81E77C4C600A96867 /* ReportDetailsAuditHistoryStrategy.swift in Sources */,
-				8C3768181E7F76CE00E82044 /* ReportDetailToolBarStrategy.swift in Sources */,
 				8CE007151E28D7C90089D159 /* ApprovalListTableViewCell.swift in Sources */,
-				8C0A01D61E77C4AE00A96867 /* ReportDetailsExpenseStrategy.swift in Sources */,
 				8CA4B6F31E28ACA6007C3BE5 /* ReportListTableViewCell.swift in Sources */,
 				8C8995DB1E60839400482317 /* ExpenseDetailsManager.swift in Sources */,
 				8CF655CF1E58693500D4FEF3 /* Organization.swift in Sources */,
 				8CF655E71E58B59B00D4FEF3 /* LaunchManager.swift in Sources */,
+				8C3768201E7F887200E82044 /* ReportDetailsExpenseStrategy.swift in Sources */,
 				8C0A01E01E78E19400A96867 /* ApproversListManager.swift in Sources */,
+				8C3768211E7F887200E82044 /* ReportDetailsMoreDetailStrategy.swift in Sources */,
 				8CF655CB1E585A8200D4FEF3 /* Role.swift in Sources */,
 				8CF655D11E58694400D4FEF3 /* Category.swift in Sources */,
 				8C26DDB91E779DE400FC0E13 /* ReportDetailsFooterView.swift in Sources */,
 				8CF2FBDF1E72C73C001C008E /* ReviewSelectCategoryManager.swift in Sources */,
-				8C0A01D41E77C3C900A96867 /* ReportDetailsStrategy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

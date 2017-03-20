@@ -18,6 +18,8 @@ class ReportDetailsViewController: BaseViewControllerWithTableView {
     
     var report: Report?
     
+    var caller: ReportDetailsCaller = ReportDetailsCaller.reportList
+    
     @IBOutlet weak var headerView: ReportDetailsHeaderView!
     
     @IBOutlet weak var toolbar: UIToolbar!
@@ -53,7 +55,10 @@ class ReportDetailsViewController: BaseViewControllerWithTableView {
 extension ReportDetailsViewController {
     func updateUIAfterSuccessfulResponse() {
         updateTableHeaderAndFooter()
-        updateToolbarItems()
+        
+        manager.updateToolBar(toolbar, caller: caller, delegate: self)
+        
+        //updateToolbarItems()
         tableView.reloadData()
     }
     
@@ -198,5 +203,13 @@ extension ReportDetailsViewController {
                 Utilities.showErrorAlert(withMessage: "Something went wrong. Please try again.", onController: self)// TODO: - Hard coded message. Move to constants or use the server error.
             }
         }
+    }
+}
+/***********************************/
+// MARK: - ReportDetailsToolBarActionDelegate
+/***********************************/
+extension ReportDetailsViewController: ReportDetailsToolBarActionDelegate {
+    func barButtonItemTapped(_ sender: UIBarButtonItem) {
+        manager.performActionForBarButtonItem(sender, caller: caller, onController: self)
     }
 }

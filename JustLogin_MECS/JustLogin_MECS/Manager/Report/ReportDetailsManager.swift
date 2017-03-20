@@ -14,7 +14,7 @@ class ReportDetailsManager {
     
     var reportService: IReportService = ReportService()
     
-    var segmentedControlSelectedIndex: Int = ReportDetailSegmentedControl.expenses.rawValue
+    var segmentedControlSelectedIndex: Int = ReportDetailsSegmentedControl.expenses.rawValue
 }
 /***********************************/
 // MARK: - Data tracking
@@ -43,11 +43,28 @@ extension ReportDetailsManager {
     }
     
     func shouldDisplayFooter() -> Bool {
-         return segmentedControlSelectedIndex == ReportDetailSegmentedControl.expenses.rawValue
+         return segmentedControlSelectedIndex == ReportDetailsSegmentedControl.expenses.rawValue
     }
     
     func shouldHaveSeparator() -> Bool {
-        return segmentedControlSelectedIndex != ReportDetailSegmentedControl.moreDetails.rawValue
+        return segmentedControlSelectedIndex != ReportDetailsSegmentedControl.moreDetails.rawValue
+    }
+    
+    func updateToolBar(_ toolBar: UIToolbar, caller: ReportDetailsCaller, delegate: ReportDetailsToolBarActionDelegate) {
+        let strategy = getToolBarStrategy(forReportStatus: ReportStatus(rawValue: report.status)!, caller: caller)
+        strategy.formatToolBar(toolBar, withDelegate: delegate)
+    }
+}
+/***********************************/
+// MARK: - Actions
+/***********************************/
+extension ReportDetailsManager {
+    /**
+     * Action for the toolbar items.
+     */
+    func performActionForBarButtonItem(_ barButton: UIBarButtonItem, caller: ReportDetailsCaller, onController controller: ReportDetailsViewController) {
+        let strategy = getToolBarStrategy(forReportStatus: ReportStatus(rawValue: report.status)!, caller: caller)
+        strategy.performActionForBarButtonItem(barButton, forReport: report, onController: controller)
     }
 }
 /***********************************/
@@ -134,19 +151,43 @@ extension ReportDetailsManager {
     }
 }
 /***********************************/
-// MARK: - Strategy Selector
+// MARK: - Segment Strategy Selector
 /***********************************/
 extension ReportDetailsManager {
-    func getStrategy(forSelectedSegmentIndex selectedIndex: Int) -> ReportDetailsStrategy {
+    func getStrategy(forSelectedSegmentIndex selectedIndex: Int) -> ReportDetailsBaseStrategy {
         switch selectedIndex {
-        case ReportDetailSegmentedControl.expenses.rawValue:
+        case ReportDetailsSegmentedControl.expenses.rawValue:
             return ReportDetailsExpenseStrategy()
-        case ReportDetailSegmentedControl.moreDetails.rawValue:
+        case ReportDetailsSegmentedControl.moreDetails.rawValue:
             return ReportDetailsMoreDetailStrategy()
-        case ReportDetailSegmentedControl.history.rawValue:
+        case ReportDetailsSegmentedControl.history.rawValue:
             fallthrough
         default:
             return ReportDetailsAuditHistoryStrategy()
         }
+    }
+}
+/***********************************/
+// MARK: - Toolbar Strategy Selector
+/***********************************/
+extension ReportDetailsManager {
+    func getToolBarStrategy(forReportStatus status: ReportStatus, caller: ReportDetailsCaller) -> ReportDetailsToolBarBaseStrategy {
+//        var strategy:
+//        switch(status, caller) {
+//        case (ReportStatus.unsubmitted, ReportDetailsCaller.reportList): fallthrough
+//        case (ReportStatus.submitted, ReportDetailsCaller.reportList): fallthrough
+//        case (ReportStatus.rejected, ReportDetailsCaller.reportList): fallthrough
+//        case (ReportStatus.approved, ReportDetailsCaller.reportList): fallthrough
+//        case (ReportStatus.reimbursed, ReportDetailsCaller.reportList): fallthrough
+//        
+//        case (ReportStatus.unsubmitted, ReportDetailsCaller.approvalList): fallthrough
+//        case (ReportStatus.submitted, ReportDetailsCaller.approvalList): fallthrough
+//        case (ReportStatus.rejected, ReportDetailsCaller.approvalList): fallthrough
+//        case (ReportStatus.approved, ReportDetailsCaller.approvalList): fallthrough
+//        case (ReportStatus.reimbursed, ReportDetailsCaller.approvalList): fallthrough
+//        
+//        default: ReportDetailsToolBarUnsubmittedStrategy()
+//        }
+        return ReportDetailsToolBarUnsubmittedStrategy()
     }
 }

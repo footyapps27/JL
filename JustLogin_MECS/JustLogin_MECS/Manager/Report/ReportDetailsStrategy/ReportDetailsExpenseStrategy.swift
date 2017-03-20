@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 
 /***********************************/
-// MARK: - ReportDetailsStrategy
+// MARK: - ReportDetailsBaseStrategy
 /***********************************/
-struct ReportDetailsExpenseStrategy: ReportDetailsStrategy {
+struct ReportDetailsExpenseStrategy: ReportDetailsBaseStrategy {
     func getCell(withTableView tableView: UITableView, atIndexPath indexPath: IndexPath, forReport report: Report) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.expenseListTableViewCellIdentifier, for: indexPath) as! ExpenseListTableViewCell

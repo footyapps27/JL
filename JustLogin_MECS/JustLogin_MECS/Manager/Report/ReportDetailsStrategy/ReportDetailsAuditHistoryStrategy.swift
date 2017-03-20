@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 
 /***********************************/
-// MARK: - ReportDetailsStrategy
+// MARK: - ReportDetailsBaseStrategy
 /***********************************/
-struct ReportDetailsAuditHistoryStrategy: ReportDetailsStrategy {
+struct ReportDetailsAuditHistoryStrategy: ReportDetailsBaseStrategy {
     
     func getCell(withTableView tableView: UITableView, atIndexPath indexPath: IndexPath, forReport report: Report) -> UITableViewCell {
         

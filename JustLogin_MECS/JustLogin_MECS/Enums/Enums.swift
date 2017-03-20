@@ -91,12 +91,19 @@ enum SettingsOptions: String {
 /***********************************/
 // MARK: - Report Details Segment Control
 /***********************************/
-enum ReportDetailSegmentedControl: Int {
+enum ReportDetailsSegmentedControl: Int {
     case expenses = 0,
     moreDetails,
     history
 }
 
+/***********************************/
+// MARK: - Report Details Segment Control
+/***********************************/
+enum ReportDetailsCaller: Int {
+    case reportList = 0,
+    approvalList
+}
 /***********************************/
 // MARK: - Color
 /***********************************/
