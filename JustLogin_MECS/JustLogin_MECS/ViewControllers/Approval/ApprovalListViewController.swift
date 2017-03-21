@@ -22,9 +22,16 @@ class ApprovalListViewController: BaseViewControllerWithTableView {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Register for notification
+        NotificationCenter.default.addObserver(self, selector: #selector(ApprovalListViewController.fetchApprovals), name: Notification.Name(Constants.Notifications.refreshApprovalList), object: nil)
+        
         updateUI()
         
         fetchApprovals()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name(Constants.Notifications.refreshApprovalList), object: nil)
     }
 }
 /***********************************/

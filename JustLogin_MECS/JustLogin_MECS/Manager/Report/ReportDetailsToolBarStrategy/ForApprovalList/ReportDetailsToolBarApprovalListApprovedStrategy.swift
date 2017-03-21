@@ -48,20 +48,14 @@ extension ReportDetailsToolBarApprovalListApprovedStrategy: ReportDetailsToolBar
     }
 }
 /***********************************/
-// MARK: - Helpers
+// MARK: - Actions
 /***********************************/
 extension ReportDetailsToolBarApprovalListApprovedStrategy {
     /**
      * Reject a report.
      */
     func rejectReport(_ report: Report, onController controller: BaseViewController) {
-        // Show alert asking user the rejection reason
-        let rejectionReason = showRejectionReasonAlert(report, onController: controller)
-        
-        var updatedReport = report
-        updatedReport.status = ReportStatus.rejected.rawValue
-        updatedReport.rejectionReason = rejectionReason
-        callProcessReport(updatedReport, onController: controller)
+        ReportRejectionUtility.showReportRejectionAlert(report, onController: controller, manager: manager)
     }
     
     /**
@@ -88,67 +82,5 @@ extension ReportDetailsToolBarApprovalListApprovedStrategy {
         }
         
         Utilities.showActionSheet(withTitle: nil, message: nil, actions: [actionReject, recordReimbursement, viewAsPDF ], onController: controller)
-    }
-    
-    /**
-     * Method to display the rejection reason alert.
-     */
-    func showRejectionReasonAlert(_ report: Report, onController controller: BaseViewController) -> String {
-        
-        var rejectionReason = Constants.General.emptyString
-        // TODO - Move to constants
-        let alertController = UIAlertController(title: LocalizedString.reject, message: "Please specify an appropriate reason for rejection.", preferredStyle: .alert)
-        
-        let confirmAction = UIAlertAction(title: LocalizedString.confirm, style: .default, handler: {
-            alert -> Void in
-            let reasonTextField = alertController.textFields![0] as UITextField
-            if (reasonTextField.text?.isEmpty)! {
-                alertController.dismiss(animated: true, completion: nil)
-                // Show the alert again.
-                _ = self.showRejectionReasonAlert(report, onController: controller)
-            } else {
-                // Return the reason for the rejection
-                rejectionReason = reasonTextField.text!
-            }
-        })
-        
-        let cancelAction = UIAlertAction(title: LocalizedString.cancel, style: .cancel, handler: {
-            (action : UIAlertAction!) -> Void in
-            alertController.dismiss(animated: true, completion: nil)
-        })
-        
-        alertController.addTextField { (textField : UITextField!) -> Void in
-            textField.becomeFirstResponder()
-        }
-        
-        alertController.addAction(confirmAction)
-        alertController.addAction(cancelAction)
-        
-        controller.present(alertController, animated: true, completion: nil)
-        
-        return rejectionReason
-    }
-}
-/***********************************/
-// MARK: - Service Call
-/***********************************/
-extension ReportDetailsToolBarApprovalListApprovedStrategy {
-    /**
-     * Method to call the service for updating the report status.
-     */
-    func callProcessReport(_ report: Report, onController controller: BaseViewController) {
-        controller.showLoadingIndicator(disableUserInteraction: false)
-        manager.processReport(report) { (response) in
-            switch(response) {
-            case .success(_):
-                controller.hideLoadingIndicator(enableUserInteraction: true)
-                Utilities.showSuccessAlert(withMessage: "Report successfully approved.", onController: controller)
-                NotificationCenter.default.post(name: Notification.Name(Constants.Notifications.refreshReportDetails), object: nil)
-            case .failure(_, _):
-                controller.hideLoadingIndicator(enableUserInteraction: true)
-                // TODO: - Need to kick the user out of this screen & send to the expense list.
-                Utilities.showErrorAlert(withMessage: "Something went wrong. Please try again.", onController: controller)// TODO: - Hard coded message. Move to constants or use the server error.
-            }
-        }
-    }
+    }    
 }

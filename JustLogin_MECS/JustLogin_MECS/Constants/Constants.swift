@@ -124,6 +124,7 @@ struct Constants {
         static let refreshReportList = "refreshReportList"
         static let refreshExpenseList = "refreshExpenseList"
         static let refreshReportDetails = "refreshReportDetails"
+        static let refreshApprovalList = "refreshApprovalList"
     }
     
     /***********************************/
