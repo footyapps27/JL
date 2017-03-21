@@ -21,7 +21,7 @@ enum Roles {
 /***********************************/
 enum ReportStatus : Int
 {
-    case unsubmitted = 0, submitted, rejected, approved, reimbursed, undoReimburse
+    case recalled = -1, unsubmitted, submitted, rejected, approved, reimbursed, undoReimburse
     
     var name: String {
         get { return String(describing: self) }

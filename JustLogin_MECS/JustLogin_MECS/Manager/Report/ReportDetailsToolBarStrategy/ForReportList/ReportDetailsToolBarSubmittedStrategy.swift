@@ -10,9 +10,15 @@ import Foundation
 import UIKit
 
 /***********************************/
+// MARK: - Properties
+/***********************************/
+struct ReportDetailsToolBarSubmittedStrategy {
+    let manager = ReportDetailsManager()
+}
+/***********************************/
 // MARK: - ReportDetailsToolBarBaseStrategy
 /***********************************/
-struct ReportDetailsToolBarSubmittedStrategy: ReportDetailsToolBarBaseStrategy {
+extension ReportDetailsToolBarSubmittedStrategy: ReportDetailsToolBarBaseStrategy {
     
     func formatToolBar(_ toolBar: UIToolbar, withDelegate delegate: ReportDetailsToolBarActionDelegate) {
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: nil)
@@ -38,14 +44,28 @@ struct ReportDetailsToolBarSubmittedStrategy: ReportDetailsToolBarBaseStrategy {
     }
 }
 /***********************************/
-// MARK: - Helpers
+// MARK: - Actions
 /***********************************/
 extension ReportDetailsToolBarSubmittedStrategy {
     /**
      * Recall report.
      */
     func recallReport(_ report: Report, onController controller: BaseViewController) {
-        // TODO - Here we first call the process report, & then ask the screen to refresh.
+        var updatedReport = report
+        updatedReport.status = ReportStatus.recalled.rawValue
+        // Call the service
+        controller.showLoadingIndicator(disableUserInteraction: false)
+        manager.processReport(updatedReport) { (response) in
+            switch(response) {
+            case .success(_):
+                controller.hideLoadingIndicator(enableUserInteraction: true)
+                Utilities.showSuccessAlert(withMessage: "Report successfully approved.", onController: controller)
+                NotificationCenter.default.post(name: Notification.Name(Constants.Notifications.refreshReportDetails), object: nil)
+            case .failure(_, _):
+                controller.hideLoadingIndicator(enableUserInteraction: true)
+                Utilities.showErrorAlert(withMessage: "Something went wrong. Please try again.", onController: controller)// TODO: - Hard coded message. Move to constants or use the server error.
+            }
+        }
     }
     
     /**
