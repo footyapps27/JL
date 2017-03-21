@@ -33,15 +33,6 @@ extension ReportDetailsManager {
 // MARK: - UI check value
 /***********************************/
 extension ReportDetailsManager {
-    
-    func isReportEditable() -> Bool {
-        if report.status == ReportStatus.unsubmitted.rawValue ||
-            report.status == ExpenseStatus.rejected.rawValue {
-            return true
-        }
-        return false
-    }
-    
     func shouldDisplayFooter() -> Bool {
          return segmentedControlSelectedIndex == ReportDetailsSegmentedControl.expenses.rawValue
     }
@@ -62,7 +53,7 @@ extension ReportDetailsManager {
     /**
      * Action for the toolbar items.
      */
-    func performActionForBarButtonItem(_ barButton: UIBarButtonItem, caller: ReportDetailsCaller, onController controller: ReportDetailsViewController) {
+    func performActionForBarButtonItem(_ barButton: UIBarButtonItem, caller: ReportDetailsCaller, onController controller: BaseViewController) {
         let strategy = getToolBarStrategy(forReportStatus: ReportStatus(rawValue: report.status)!, caller: caller)
         strategy.performActionForBarButtonItem(barButton, forReport: report, onController: controller)
     }
@@ -149,6 +140,23 @@ extension ReportDetailsManager {
             }
         }
     }
+    
+    /**
+     * Method to update the status of a report. 
+     * The report that is sent, needs to provide the updated status.
+     */
+    func processReport(_ report: Report, completionHandler: (@escaping (ManagerResponseToController<Report>) -> Void)) {
+        self.reportService.processReport(report: report, completionHandler: { (result) in
+            switch(result) {
+            case .success(let finalReport):
+                completionHandler(ManagerResponseToController.success(finalReport))
+            case .error(let serviceError):
+                completionHandler(ManagerResponseToController.failure(code: serviceError.code, message: serviceError.message))
+            case .failure(let message):
+                completionHandler(ManagerResponseToController.failure(code: "", message: message)) // TODO: - Pass a general code
+            }
+        })
+    }
 }
 /***********************************/
 // MARK: - Segment Strategy Selector
@@ -176,15 +184,20 @@ extension ReportDetailsManager {
         switch(status, caller) {
         case (ReportStatus.unsubmitted, ReportDetailsCaller.reportList):
             strategy = ReportDetailsToolBarUnsubmittedStrategy()
+            
         case (ReportStatus.submitted, ReportDetailsCaller.reportList):
             strategy = ReportDetailsToolBarSubmittedStrategy()
+            
         case (ReportStatus.approved, ReportDetailsCaller.reportList): fallthrough
-        case (ReportStatus.reimbursed, ReportDetailsCaller.reportList): fallthrough
+        case (ReportStatus.reimbursed, ReportDetailsCaller.reportList):
+            strategy = ReportDetailsToolBarApprovedAndReimbursedStrategy()
         
         case (ReportStatus.submitted, ReportDetailsCaller.approvalList):
             strategy = ReportDetailsToolBarApprovalListSubmittedStrategy()
+            
         case (ReportStatus.approved, ReportDetailsCaller.approvalList):
             strategy = ReportDetailsToolBarApprovalListApprovedStrategy()
+            
         case (ReportStatus.reimbursed, ReportDetailsCaller.approvalList):
             strategy = ReportDetailsToolBarApprovalListReimbursedStrategy()
         default:

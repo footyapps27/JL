@@ -407,7 +407,7 @@
                                         <rect key="frame" x="0.0" y="235" width="375" height="62"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZqJ-JX-S09" id="iu0-PE-n9m">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="61"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="61.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Report Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m2y-6X-Fyg">
@@ -546,25 +546,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="Tju-Vg-dfM"/>
                                 </constraints>
-                                <items>
-                                    <barButtonItem title="Submit" style="plain" id="Duj-6P-dCB">
-                                        <connections>
-                                            <action selector="submitButtonTapped:" destination="Vm7-WK-z8x" id="h9l-VN-5Mb"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Vbj-sz-qZk"/>
-                                    <barButtonItem title="Edit" style="plain" id="tdr-bG-Yhw">
-                                        <connections>
-                                            <action selector="editButtonTapped:" destination="Vm7-WK-z8x" id="97M-JS-l2r"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="9BT-qJ-gQp"/>
-                                    <barButtonItem title="More Options" style="plain" id="lbH-Iv-ZEg">
-                                        <connections>
-                                            <action selector="moreOptionsButtonTapped:" destination="Vm7-WK-z8x" id="BIX-dn-651"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
+                                <items/>
                             </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -579,9 +561,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="btnEdit" destination="tdr-bG-Yhw" id="iYX-At-mcT"/>
-                        <outlet property="btnMoreOptions" destination="lbH-Iv-ZEg" id="b6f-iO-fo6"/>
-                        <outlet property="btnSubmit" destination="Duj-6P-dCB" id="8f7-oJ-5lZ"/>
                         <outlet property="headerView" destination="GXl-Wy-Dqm" id="O9q-O1-vwG"/>
                         <outlet property="tableView" destination="VeZ-vW-qDQ" id="aJu-rn-uWB"/>
                         <outlet property="toolbar" destination="u0j-vl-YvL" id="IeD-C6-Z2j"/>

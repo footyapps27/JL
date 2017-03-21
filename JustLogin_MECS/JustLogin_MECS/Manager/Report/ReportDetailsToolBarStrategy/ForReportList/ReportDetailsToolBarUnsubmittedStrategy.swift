@@ -29,7 +29,7 @@ struct ReportDetailsToolBarUnsubmittedStrategy: ReportDetailsToolBarBaseStrategy
         toolBar.items = [btnSubmit, flexibleSpace, btnEdit, flexibleSpace, btnMoreOptions]
     }
     
-    func performActionForBarButtonItem(_ barButton: UIBarButtonItem, forReport report: Report, onController controller: ReportDetailsViewController) {
+    func performActionForBarButtonItem(_ barButton: UIBarButtonItem, forReport report: Report, onController controller: BaseViewController) {
         switch(barButton.tag) {
         case ReportDetailsToolBarButtonTag.left.rawValue:
             navigateToApproversList(forReport: report, onController: controller)
@@ -49,17 +49,17 @@ extension ReportDetailsToolBarUnsubmittedStrategy {
     /**
      * Navigate to the approvers list for selecting the approver for this particular report.
      */
-    func navigateToApproversList(forReport report: Report, onController controller: ReportDetailsViewController) {
+    func navigateToApproversList(forReport report: Report, onController controller: BaseViewController) {
         let approversListViewController = UIStoryboard(name: Constants.StoryboardIds.reportStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.approversListViewController) as! ApproversListViewController
         approversListViewController.report = report
-        approversListViewController.delegate = controller
+        approversListViewController.delegate = controller as? ApproversListDelegate
         Utilities.pushControllerAndHideTabbarForChildAndParent(fromController: controller, toController: approversListViewController)
     }
     
     /**
      * Display the list of options for the user as an action sheet.
      */
-    func displayMoreOptions(forReport report: Report, onController controller: ReportDetailsViewController) {
+    func displayMoreOptions(forReport report: Report, onController controller: BaseViewController) {
         let actionSubmit = UIAlertAction(title: LocalizedString.submit, style: .default) { void in
             self.navigateToApproversList(forReport: report, onController: controller)
         }
@@ -80,7 +80,7 @@ extension ReportDetailsToolBarUnsubmittedStrategy {
     /**
      * Start the edit report flow.
      */
-    func navigateToEditReport(forReport report: Report, onController controller: ReportDetailsViewController) {
+    func navigateToEditReport(forReport report: Report, onController controller: BaseViewController) {
         
     }
 }

@@ -38,4 +38,6 @@ struct LocalizedString {
     
     static let recordReimbursement = "Record Reimbursement"
     static let undoReimbursement = "Undo Reimbursement"
+    
+    static let confirm = "Confirm"
 }

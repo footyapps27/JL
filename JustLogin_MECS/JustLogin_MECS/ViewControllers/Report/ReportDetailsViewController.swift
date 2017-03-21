@@ -24,12 +24,6 @@ class ReportDetailsViewController: BaseViewControllerWithTableView {
     
     @IBOutlet weak var toolbar: UIToolbar!
     
-    @IBOutlet weak var btnSubmit: UIBarButtonItem!
-    
-    @IBOutlet weak var btnEdit: UIBarButtonItem!
-    
-    @IBOutlet weak var btnMoreOptions: UIBarButtonItem!
-    
     var footerView: ReportDetailsFooterView = ReportDetailsFooterView.instanceFromNib()
     
     let segmentedControl = UISegmentedControl(items: ["Expenses", "More Details", "History"]) // TODO - Move to constants
@@ -45,8 +39,15 @@ class ReportDetailsViewController: BaseViewControllerWithTableView {
         
         tableView.tableFooterView = footerView
         
+        // Register for notification
+        NotificationCenter.default.addObserver(self, selector: #selector(ReportDetailsViewController.fetchReportDetails), name: Notification.Name(Constants.Notifications.refreshReportDetails), object: nil)
+        
         updateTableHeaderAndFooter()
         fetchReportDetails()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name(Constants.Notifications.refreshReportDetails), object: nil)
     }
 }
 /***********************************/
@@ -57,23 +58,7 @@ extension ReportDetailsViewController {
         updateTableHeaderAndFooter()
         
         manager.updateToolBar(toolbar, caller: caller, delegate: self)
-        
-        //updateToolbarItems()
         tableView.reloadData()
-    }
-    
-    func updateToolbarItems() {
-        if !manager.isReportEditable() {
-            let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: nil)
-            
-            let btnArchive = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.edit, target: self, action: nil)
-            btnArchive.title = "Archive"
-            
-            let btnViewAsPDF = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.edit, target: self, action: nil)
-            btnViewAsPDF.title = "View As PDF"
-            
-            toolbar.items = [flexibleSpace, btnArchive, flexibleSpace, btnViewAsPDF, flexibleSpace]
-        }
     }
     
     func getHeaderViewWithSegmentedControl() -> UIView {
@@ -111,18 +96,6 @@ extension ReportDetailsViewController {
 // MARK: - Actions
 /***********************************/
 extension ReportDetailsViewController {
-    @IBAction func editButtonTapped(_ sender: UIBarButtonItem) {
-        
-    }
-    
-    @IBAction func submitButtonTapped(_ sender: UIBarButtonItem) {
-        navigateToApproversList()
-    }
-    
-    @IBAction func moreOptionsButtonTapped(_ sender: UIBarButtonItem) {
-        // TODO: - Display the action sheet here
-    }
-    
     func segmentedControlValueChange(_ sender: UISegmentedControl) {
         manager.setSelectedSegmentedControlIndex(sender.selectedSegmentIndex)
         

@@ -25,7 +25,7 @@ struct ReportDetailsToolBarApprovalListReimbursedStrategy: ReportDetailsToolBarB
         toolBar.items = [flexibleSpace, btnViewPDF, flexibleSpace, btnMoreOptions, flexibleSpace]
     }
     
-    func performActionForBarButtonItem(_ barButton: UIBarButtonItem, forReport report: Report, onController controller: ReportDetailsViewController) {
+    func performActionForBarButtonItem(_ barButton: UIBarButtonItem, forReport report: Report, onController controller: BaseViewController) {
         switch(barButton.tag) {
         case ReportDetailsToolBarButtonTag.left.rawValue:
             viewPDF(forReport: report, onController: controller)
@@ -43,7 +43,7 @@ extension ReportDetailsToolBarApprovalListReimbursedStrategy {
     /**
      * Reject a report.
      */
-    func undoReimbursement(_ report: Report, onController controller: ReportDetailsViewController) {
+    func undoReimbursement(_ report: Report, onController controller: BaseViewController) {
         
         // TODO - After successful report, show alerts & update the details & list
     }
@@ -51,14 +51,14 @@ extension ReportDetailsToolBarApprovalListReimbursedStrategy {
     /**
      * Start the edit report flow.
      */
-    func viewPDF(forReport report: Report, onController controller: ReportDetailsViewController) {
+    func viewPDF(forReport report: Report, onController controller: BaseViewController) {
         
     }
     
     /**
      * Display the list of options for the user as an action sheet.
      */
-    func displayMoreOptions(forReport report: Report, onController controller: ReportDetailsViewController) {
+    func displayMoreOptions(forReport report: Report, onController controller: BaseViewController) {
         let undoReimbursement = UIAlertAction(title: LocalizedString.undoReimbursement, style: .default) { void in
             self.undoReimbursement(report, onController: controller)
         }

@@ -37,5 +37,5 @@ protocol ReportDetailsToolBarBaseStrategy {
      * If there are multiple buttons, identify them using the tag that was set during the format of the toolbar.
      * The controller has been passed, in case some functionalities, such displaying alerts, action sheet requires the same.
      */
-    func performActionForBarButtonItem(_ barButton: UIBarButtonItem, forReport report: Report, onController controller: ReportDetailsViewController)
+    func performActionForBarButtonItem(_ barButton: UIBarButtonItem, forReport report: Report, onController controller: BaseViewController)
 }

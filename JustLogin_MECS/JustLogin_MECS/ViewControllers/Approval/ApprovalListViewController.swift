@@ -40,6 +40,13 @@ extension ApprovalListViewController {
         
         addRefreshControl(toTableView: tableView, withAction: #selector(refreshTableView(_:)))
     }
+    
+    func navigateToReportDetails(forReport report: Report) {
+        let reportDetailsViewController = UIStoryboard(name: Constants.StoryboardIds.reportStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.reportDetailsViewController) as! ReportDetailsViewController
+        reportDetailsViewController.caller = ReportDetailsCaller.approvalList
+        reportDetailsViewController.report = report
+        Utilities.pushControllerAndHideTabbarForChildOnly(fromController: self, toController: reportDetailsViewController)
+    }
 }
 /***********************************/
 // MARK: - Actions
@@ -105,8 +112,13 @@ extension ApprovalListViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 /***********************************/
 extension ApprovalListViewController: UITableViewDelegate {
-    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return CGFloat(Constants.CellHeight.approvalListCellHeight)
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        navigateToReportDetails(forReport: manager.getApprovals()[indexPath.row])
     }
 }
 /***********************************/

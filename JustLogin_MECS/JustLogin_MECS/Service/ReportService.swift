@@ -211,7 +211,8 @@ extension ReportService {
     func getPayloadForProcessReport(_ report: Report) -> [String : Any] {
         return [
             Constants.RequestParameters.Report.reportId : report.id,
-            Constants.RequestParameters.Report.statusType : report.status
+            Constants.RequestParameters.Report.statusType : report.status,
+            Constants.RequestParameters.Report.reason : report.rejectionReason
         ]
     }
 }

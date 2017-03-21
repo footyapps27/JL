@@ -30,6 +30,8 @@ struct Report {
     
     var status: Int = Constants.Defaults.reportStatus
     
+    var rejectionReason: String = Constants.General.emptyString
+    
     var submittedToId: String = Constants.General.emptyString
     
     var submittedToName: String = Constants.General.emptyString

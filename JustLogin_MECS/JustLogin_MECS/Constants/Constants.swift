@@ -123,6 +123,7 @@ struct Constants {
         static let loginSuccessful = "loginSuccessful"
         static let refreshReportList = "refreshReportList"
         static let refreshExpenseList = "refreshExpenseList"
+        static let refreshReportDetails = "refreshReportDetails"
     }
     
     /***********************************/
@@ -222,6 +223,7 @@ struct Constants {
             static let endDate = "endDate"
             static let statusType = "statusType"
             static let submittedToId = "submittedToId"
+            static let reason = "reason"
         }
     }
     
