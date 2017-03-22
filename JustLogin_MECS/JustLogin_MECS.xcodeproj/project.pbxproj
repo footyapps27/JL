@@ -50,7 +50,7 @@
 		8C3768301E7FFC0E00E82044 /* ReportDetailsToolBarApprovalListApprovedStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C37682F1E7FFC0E00E82044 /* ReportDetailsToolBarApprovalListApprovedStrategy.swift */; };
 		8C3768321E7FFE8D00E82044 /* ReportDetailsToolBarApprovalListReimbursedStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3768311E7FFE8D00E82044 /* ReportDetailsToolBarApprovalListReimbursedStrategy.swift */; };
 		8C3768341E80053900E82044 /* ReportDetailsToolBarApprovedAndReimbursedStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3768331E80053900E82044 /* ReportDetailsToolBarApprovedAndReimbursedStrategy.swift */; };
-		8C3768361E80DEEB00E82044 /* ReportRejectionUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3768351E80DEEB00E82044 /* ReportRejectionUtility.swift */; };
+		8C3768361E80DEEB00E82044 /* ReportRejectionOrUndoReimburseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3768351E80DEEB00E82044 /* ReportRejectionOrUndoReimburseUtility.swift */; };
 		8C3768381E811CB800E82044 /* Approval.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C3768371E811CB800E82044 /* Approval.storyboard */; };
 		8C37683A1E811E5B00E82044 /* RecordReimbursementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3768391E811E5B00E82044 /* RecordReimbursementViewController.swift */; };
 		8C37683C1E811E9600E82044 /* RecordReimbursementManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C37683B1E811E9600E82044 /* RecordReimbursementManager.swift */; };
@@ -214,7 +214,7 @@
 		8C37682F1E7FFC0E00E82044 /* ReportDetailsToolBarApprovalListApprovedStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsToolBarApprovalListApprovedStrategy.swift; sourceTree = "<group>"; };
 		8C3768311E7FFE8D00E82044 /* ReportDetailsToolBarApprovalListReimbursedStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsToolBarApprovalListReimbursedStrategy.swift; sourceTree = "<group>"; };
 		8C3768331E80053900E82044 /* ReportDetailsToolBarApprovedAndReimbursedStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsToolBarApprovedAndReimbursedStrategy.swift; sourceTree = "<group>"; };
-		8C3768351E80DEEB00E82044 /* ReportRejectionUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportRejectionUtility.swift; sourceTree = "<group>"; };
+		8C3768351E80DEEB00E82044 /* ReportRejectionOrUndoReimburseUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportRejectionOrUndoReimburseUtility.swift; sourceTree = "<group>"; };
 		8C3768371E811CB800E82044 /* Approval.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Approval.storyboard; sourceTree = "<group>"; };
 		8C3768391E811E5B00E82044 /* RecordReimbursementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordReimbursementViewController.swift; sourceTree = "<group>"; };
 		8C37683B1E811E9600E82044 /* RecordReimbursementManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordReimbursementManager.swift; path = JustLogin_MECS/ViewControllers/Approval/RecordReimbursementManager.swift; sourceTree = SOURCE_ROOT; };
@@ -756,7 +756,7 @@
 			isa = PBXGroup;
 			children = (
 				8CB44AD51E5B1163005CC04D /* Utilities.swift */,
-				8C3768351E80DEEB00E82044 /* ReportRejectionUtility.swift */,
+				8C3768351E80DEEB00E82044 /* ReportRejectionOrUndoReimburseUtility.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1281,7 +1281,7 @@
 				8CFD020A1E73A8B200526962 /* ReviewSelectCurrencyViewController.swift in Sources */,
 				8C0A01DC1E78CA0E00A96867 /* ApprovalService.swift in Sources */,
 				8CFD02151E73D39800526962 /* ReviewSelectReportManager.swift in Sources */,
-				8C3768361E80DEEB00E82044 /* ReportRejectionUtility.swift in Sources */,
+				8C3768361E80DEEB00E82044 /* ReportRejectionOrUndoReimburseUtility.swift in Sources */,
 				8C1766551E7A851200D1CDE0 /* Styles.swift in Sources */,
 				8CE007231E28F3280089D159 /* SettingsTableProfileSectionHeaderView.swift in Sources */,
 				8CF655C71E58387100D4FEF3 /* LoginService.swift in Sources */,
