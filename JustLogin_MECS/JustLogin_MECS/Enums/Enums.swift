@@ -64,7 +64,8 @@ enum ExpenseAndReportFieldType: Int {
     dropdown,
     category,
     currencyAndAmount,
-    imageSelection
+    imageSelection,
+    label
 }
 
 /***********************************/

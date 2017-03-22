@@ -78,7 +78,7 @@ extension ApproversListManager {
         // Step 1: - Update report with the member id.
         
         var updatedReport = report
-        updatedReport.submittedToId = approver.id
+        updatedReport.submittedTo.id = approver.id
         
         reportService.update(report: updatedReport) { [weak self] (result) in
             switch(result) {

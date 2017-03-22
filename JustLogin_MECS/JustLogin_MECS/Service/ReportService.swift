@@ -56,14 +56,14 @@ struct ReportService : IReportService {
     func getAllReports(_ completionHandler:( @escaping (Result<[Report]>) -> Void)) {
         serviceAdapter.post(destination: Constants.URLs.Report.getAllReports, payload: [:], headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
             switch(response) {
-                case .success(let success, _ ):
-                    var allReports: [Report] = []
-                    if let jsonReports = success[Constants.ResponseParameters.reports] as? [Any] {
-                        for report in jsonReports {
-                            allReports.append(Report(withJSON: JSON(report)))
-                        }
+            case .success(let success, _ ):
+                var allReports: [Report] = []
+                if let jsonReports = success[Constants.ResponseParameters.reports] as? [Any] {
+                    for report in jsonReports {
+                        allReports.append(Report(withJSON: JSON(report)))
                     }
-                    completionHandler(Result.success(allReports))
+                }
+                completionHandler(Result.success(allReports))
             case .errors(let error):
                 let error = ServiceError(JSON(error))
                 completionHandler(Result.error(error))
@@ -183,8 +183,8 @@ extension ReportService {
             payload[Constants.RequestParameters.Report.businessPurpose] = report.businessPurpose
         }
         
-        if !report.submittedToId.isEmpty {
-            payload[Constants.RequestParameters.Report.submittedToId] = report.submittedToId
+        if !report.submittedTo.id.isEmpty {
+            payload[Constants.RequestParameters.Report.submittedToId] = report.submittedTo.id
         }
         
         if let startDate = report.startDate {

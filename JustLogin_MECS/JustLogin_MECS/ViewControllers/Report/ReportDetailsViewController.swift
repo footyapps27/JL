@@ -186,3 +186,11 @@ extension ReportDetailsViewController: ReportDetailsToolBarActionDelegate {
         manager.performActionForBarButtonItem(sender, caller: caller, onController: self)
     }
 }
+/***********************************/
+// MARK: - RecordReimbursementDelegate
+/***********************************/
+extension ReportDetailsViewController: RecordReimbursementDelegate {
+    func reportReimbursed() {
+        fetchReportDetails()
+    }
+}

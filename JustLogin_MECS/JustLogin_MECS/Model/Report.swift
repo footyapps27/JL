@@ -32,9 +32,13 @@ struct Report {
     
     var rejectionReason: String = Constants.General.emptyString
     
-    var submittedToId: String = Constants.General.emptyString
+    var submitter: ReportMemberDetail = ReportMemberDetail()
     
-    var submittedToName: String = Constants.General.emptyString
+    var submittedTo: ReportMemberDetail = ReportMemberDetail()
+    
+    var approvedBy: ReportMemberDetail = ReportMemberDetail()
+    
+    var reimbursedBy: ReportMemberDetail = ReportMemberDetail()
     
     var expenseIds: [String] = []
     
@@ -71,6 +75,19 @@ struct Report {
         title = json[Constants.ResponseParameters.title].stringValue
         
         status = json[Constants.ResponseParameters.status].intValue
+        
+        let jsonSubmitter = json[Constants.ResponseParameters.submitter]
+        submitter = ReportMemberDetail(withJSON: jsonSubmitter)
+        
+        let jsonSubmittedTo = json[Constants.ResponseParameters.submittedTo]
+        submittedTo = ReportMemberDetail(withJSON: jsonSubmittedTo)
+        
+        let jsonApprover = json[Constants.ResponseParameters.approver]
+        submittedTo = ReportMemberDetail(withJSON: jsonApprover)
+        
+        let jsonReimburse = json[Constants.ResponseParameters.reimburse]
+        reimbursedBy = ReportMemberDetail(withJSON: jsonReimburse)
+        
         
         if let jsonStartDate = json[Constants.ResponseParameters.startDate].string {
             startDate = Utilities.convertServerStringToDate(jsonStartDate)

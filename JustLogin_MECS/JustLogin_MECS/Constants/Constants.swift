@@ -35,6 +35,7 @@ struct Constants {
         static let expenses = "Expenses"
         static let reports = "Reports"
         static let approvals = "Approvals"
+        static let reimbursement = "Reimbursement"
     }
     
     struct UIImageNames {
@@ -84,6 +85,8 @@ struct Constants {
         static let reviewSelectCategoryTableViewCellIdentifier = "reviewSelectCategoryTableViewCellIdentifier"
         static let reviewSelectReportTableViewCellIdentifier = "reviewSelectReportTableViewCellIdentifier"
         
+        static let customFieldTableViewCellWithLabelIdentifier = "customFieldTableViewCellWithLabelIdentifier"
+        
         static let reportDetailsTableViewCellIdentifier = "reportDetailsTableViewCellIdentifier"
         static let approversListTableViewCellIdentifier = "approversListTableViewCellIdentifier"
     }
@@ -103,6 +106,7 @@ struct Constants {
         static let mainStoryboard = "Main"
         static let categoryStoryboard = "Category"
         static let currencyStoryboard = "Currency"
+        static let approvalStoryboard = "Approval"
         
         static let approverAndAdminDashboard = "approverAndAdminDashboard"
         static let submitterDashboard = "submitterDashboard"
@@ -113,6 +117,7 @@ struct Constants {
         static let approversListViewController = "approversListViewController"
         static let reportDetailsViewController = "reportDetailsViewController"
         static let launchViewController = "launchViewController"
+        static let recordReimbursementViewController = "recordReimbursementViewController"
         
         static let reviewSelectCategoryViewController = "reviewSelectCategoryViewController"
         static let reviewSelectCurrencyViewController = "reviewSelectCurrencyViewController"
@@ -329,5 +334,10 @@ struct Constants {
         static let history = "history"
         
         static let members = "members"
+        
+        static let submitter = "submitter"
+        static let approver = "approver"
+        static let reimburse = "reimburse"
+        static let submittedTo = "submittedTo"
     }
 }
