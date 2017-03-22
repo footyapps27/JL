@@ -10,9 +10,15 @@ import Foundation
 import UIKit
 
 /***********************************/
+// MARK: - Properties
+/***********************************/
+struct ReportDetailsToolBarApprovalListReimbursedStrategy {
+    let manager = ReportDetailsManager()
+}
+/***********************************/
 // MARK: - ReportDetailsToolBarBaseStrategy
 /***********************************/
-struct ReportDetailsToolBarApprovalListReimbursedStrategy: ReportDetailsToolBarBaseStrategy {
+extension ReportDetailsToolBarApprovalListReimbursedStrategy: ReportDetailsToolBarBaseStrategy {
     func formatToolBar(_ toolBar: UIToolbar, withDelegate delegate: ReportDetailsToolBarActionDelegate) {
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: nil)
         
@@ -44,8 +50,9 @@ extension ReportDetailsToolBarApprovalListReimbursedStrategy {
      * Reject a report.
      */
     func undoReimbursement(_ report: Report, onController controller: BaseViewController) {
-        
-        // TODO - After successful report, show alerts & update the details & list
+        var updatedReport = report
+        updatedReport.status = ReportStatus.undoReimburse.rawValue
+        ReportRejectionOrUndoReimburseUtility.showReportRejectionOrUndoReimburseAlert(updatedReport, onController: controller, manager: manager)
     }
     
     /**

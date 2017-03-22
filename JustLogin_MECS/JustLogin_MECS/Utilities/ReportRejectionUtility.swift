@@ -9,15 +9,20 @@
 import Foundation
 import UIKit
 
-struct ReportRejectionUtility {
+/***********************************/
+// MARK: - Public Mthods
+/***********************************/
+struct ReportRejectionOrUndoReimburseUtility {
     /**
      * Method to display the rejection reason alert.
      */
-    static func showReportRejectionAlert(_ report: Report, onController controller: BaseViewController, manager: ReportDetailsManager) {
-        // TODO - Move to constants
-        let alertController = UIAlertController(title: LocalizedString.reject, message: "Please specify an appropriate reason for rejection.", preferredStyle: .alert)
+    static func showReportRejectionOrUndoReimburseAlert(_ report: Report, onController controller: BaseViewController, manager: ReportDetailsManager) {
         
-        let confirmAction = self.getRejectReportConfirmAction(report, onController: controller, alertController: alertController, manager: manager)
+        let titleAndMessage = self.getAlertMessage(forReport: report)
+        
+        let alertController = UIAlertController(title: titleAndMessage.title, message: titleAndMessage.message, preferredStyle: .alert)
+        
+        let confirmAction = self.getRejectReportOrUndoReimburseConfirmAction(report, onController: controller, alertController: alertController, manager: manager)
         
         let cancelAction = UIAlertAction(title: LocalizedString.cancel, style: .cancel, handler: {
             (action : UIAlertAction!) -> Void in
@@ -33,11 +38,15 @@ struct ReportRejectionUtility {
         
         controller.present(alertController, animated: true, completion: nil)
     }
-    
+}
+/***********************************/
+// MARK: - Actions
+/***********************************/
+extension ReportRejectionOrUndoReimburseUtility {
     /**
      * The confirm action for the reject report alert.
      */
-    static func getRejectReportConfirmAction(_ report: Report, onController controller: BaseViewController, alertController: UIAlertController, manager: ReportDetailsManager) -> UIAlertAction {
+    fileprivate static func getRejectReportOrUndoReimburseConfirmAction(_ report: Report, onController controller: BaseViewController, alertController: UIAlertController, manager: ReportDetailsManager) -> UIAlertAction {
         return UIAlertAction(title: LocalizedString.confirm, style: .default, handler: {
             alert -> Void in
             // If the user has not input any rejection reason, we DO NOT proceed and show the same alert again.
@@ -45,27 +54,40 @@ struct ReportRejectionUtility {
             if (reasonTextField.text?.isEmpty)! {
                 alertController.dismiss(animated: true, completion: nil)
                 // Show the alert again.
-                _ = self.showReportRejectionAlert(report, onController: controller, manager: manager)
+                _ = self.showReportRejectionOrUndoReimburseAlert(report, onController: controller, manager: manager)
             } else {
                 var updatedReport = report
-                updatedReport.status = ReportStatus.rejected.rawValue
                 updatedReport.rejectionReason = reasonTextField.text!
-                self.callServiceForRejectingReport(updatedReport, onController: controller, manager: manager)
+                self.callServiceForRejectingOrUndoReimburseReport(updatedReport, onController: controller, manager: manager)
             }
         })
     }
     
+    fileprivate static func performActionOnSuccessReponse(forReport report: Report, onController controller: BaseViewController) {
+        NotificationCenter.default.post(name: Notification.Name(Constants.Notifications.refreshApprovalList), object: nil)
+        
+        // Based on the status, we take more specific actions
+        if report.status == ReportStatus.rejected.rawValue {
+            self.showAlertForSuccessfullyRejectedReport(onController: controller)
+        } else {
+            NotificationCenter.default.post(name: Notification.Name(Constants.Notifications.refreshReportDetails), object: nil)
+        }
+    }
+}
+/***********************************/
+// MARK: - Service Call
+/***********************************/
+extension ReportRejectionOrUndoReimburseUtility {
     /**
      * Method to call the service for rejecting a report.
      */
-    static func callServiceForRejectingReport(_ report: Report, onController controller: BaseViewController, manager: ReportDetailsManager) {
+    fileprivate static func callServiceForRejectingOrUndoReimburseReport(_ report: Report, onController controller: BaseViewController, manager: ReportDetailsManager) {
         controller.showLoadingIndicator(disableUserInteraction: false)
         manager.processReport(report) { (response) in
             switch(response) {
             case .success(_):
                 controller.hideLoadingIndicator(enableUserInteraction: true)
-                NotificationCenter.default.post(name: Notification.Name(Constants.Notifications.refreshApprovalList), object: nil)
-                self.showAlertForSuccessfullyRejectedReport(onController: controller)
+                performActionOnSuccessReponse(forReport: report, onController: controller)
             case .failure(_, _):
                 controller.hideLoadingIndicator(enableUserInteraction: true)
                 // TODO: - Need to kick the user out of this screen & send to the expense list.
@@ -73,12 +95,16 @@ struct ReportRejectionUtility {
             }
         }
     }
-    
+}
+/***********************************/
+// MARK: - Helpers
+/***********************************/
+extension ReportRejectionOrUndoReimburseUtility {
     /**
      * Show the alert when a report has been successfully rejected.
      * The user will be moved out of the details screen.
      */
-    static func showAlertForSuccessfullyRejectedReport(onController controller: BaseViewController) {
+    fileprivate static func showAlertForSuccessfullyRejectedReport(onController controller: BaseViewController) {
         // TODO: - Add to the text file.
         let alert = UIAlertController(title: "Success", message: "Report successfully rejected", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default) { action in
@@ -87,5 +113,12 @@ struct ReportRejectionUtility {
             _ = controller.navigationController?.popViewController(animated: true)
         })
         controller.present(alert, animated: true)
+    }
+    
+    fileprivate static func getAlertMessage(forReport report: Report) -> (title: String, message: String) {
+        if report.status == ReportStatus.rejected.rawValue {
+            return (LocalizedString.reject ,"Please specify an appropriate reason for rejection.")
+        }
+        return (LocalizedString.undoReimbursement ,"Please specify an appropriate reason for cancelling the reimbursement.")
     }
 }

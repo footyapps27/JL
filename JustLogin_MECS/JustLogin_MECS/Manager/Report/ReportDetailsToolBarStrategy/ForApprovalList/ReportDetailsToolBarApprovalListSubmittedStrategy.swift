@@ -76,7 +76,9 @@ extension ReportDetailsToolBarApprovalListSubmittedStrategy {
      * Reject a report.
      */
     func rejectReport(_ report: Report, onController controller: BaseViewController) {
-        ReportRejectionUtility.showReportRejectionAlert(report, onController: controller, manager: manager)
+        var updatedReport = report
+        updatedReport.status = ReportStatus.rejected.rawValue
+        ReportRejectionOrUndoReimburseUtility.showReportRejectionOrUndoReimburseAlert(updatedReport, onController: controller, manager: manager)
     }
     
     /**
