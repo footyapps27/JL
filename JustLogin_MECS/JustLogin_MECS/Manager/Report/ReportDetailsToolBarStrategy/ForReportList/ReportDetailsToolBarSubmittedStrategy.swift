@@ -59,7 +59,7 @@ extension ReportDetailsToolBarSubmittedStrategy {
             switch(response) {
             case .success(_):
                 controller.hideLoadingIndicator(enableUserInteraction: true)
-                Utilities.showSuccessAlert(withMessage: "Report successfully approved.", onController: controller)
+                Utilities.showSuccessAlert(withMessage: "Report successfully recalled.", onController: controller)
                 NotificationCenter.default.post(name: Notification.Name(Constants.Notifications.refreshReportDetails), object: nil)
             case .failure(_, _):
                 controller.hideLoadingIndicator(enableUserInteraction: true)

@@ -115,6 +115,9 @@ extension ReportRejectionOrUndoReimburseUtility {
         controller.present(alert, animated: true)
     }
     
+    /**
+     * Get the alert title & message based on the report status. 
+     */
     fileprivate static func getAlertMessage(forReport report: Report) -> (title: String, message: String) {
         if report.status == ReportStatus.rejected.rawValue {
             return (LocalizedString.reject ,"Please specify an appropriate reason for rejection.")
