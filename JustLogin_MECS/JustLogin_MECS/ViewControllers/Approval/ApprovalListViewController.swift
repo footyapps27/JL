@@ -22,9 +22,16 @@ class ApprovalListViewController: BaseViewControllerWithTableView {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Register for notification
+        NotificationCenter.default.addObserver(self, selector: #selector(ApprovalListViewController.fetchApprovals), name: Notification.Name(Constants.Notifications.refreshApprovalList), object: nil)
+        
         updateUI()
         
         fetchApprovals()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name(Constants.Notifications.refreshApprovalList), object: nil)
     }
 }
 /***********************************/
@@ -39,6 +46,13 @@ extension ApprovalListViewController {
         addSearchController(toTableView: tableView, withSearchResultsUpdater: self)
         
         addRefreshControl(toTableView: tableView, withAction: #selector(refreshTableView(_:)))
+    }
+    
+    func navigateToReportDetails(forReport report: Report) {
+        let reportDetailsViewController = UIStoryboard(name: Constants.StoryboardIds.reportStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.reportDetailsViewController) as! ReportDetailsViewController
+        reportDetailsViewController.caller = ReportDetailsCaller.approvalList
+        reportDetailsViewController.report = report
+        Utilities.pushControllerAndHideTabbarForChildOnly(fromController: self, toController: reportDetailsViewController)
     }
 }
 /***********************************/
@@ -95,7 +109,7 @@ extension ApprovalListViewController: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.approvalListTableViewCellIdentifier, for: indexPath) as! ApprovalListTableViewCell
         cell.lblReportName.text = manager.getReportTitle(forIndexPath: indexPath)
-        cell.lblEmployeeName.text = "John Doe"
+        cell.lblEmployeeName.text = manager.getSubmitterName(forIndexPath: indexPath)
         cell.lblAmount.text = manager.getFormattedReportAmount(forIndexPath: indexPath)
         cell.lblStatus.text = manager.getReportStatus(forIndexPath: indexPath)
         return cell
@@ -105,8 +119,13 @@ extension ApprovalListViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 /***********************************/
 extension ApprovalListViewController: UITableViewDelegate {
-    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return CGFloat(Constants.CellHeight.approvalListCellHeight)
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        navigateToReportDetails(forReport: manager.getApprovals()[indexPath.row])
     }
 }
 /***********************************/

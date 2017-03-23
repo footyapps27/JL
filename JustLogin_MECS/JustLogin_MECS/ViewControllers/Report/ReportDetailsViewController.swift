@@ -18,15 +18,11 @@ class ReportDetailsViewController: BaseViewControllerWithTableView {
     
     var report: Report?
     
+    var caller: ReportDetailsCaller = ReportDetailsCaller.reportList
+    
     @IBOutlet weak var headerView: ReportDetailsHeaderView!
     
     @IBOutlet weak var toolbar: UIToolbar!
-    
-    @IBOutlet weak var btnSubmit: UIBarButtonItem!
-    
-    @IBOutlet weak var btnEdit: UIBarButtonItem!
-    
-    @IBOutlet weak var btnMoreOptions: UIBarButtonItem!
     
     var footerView: ReportDetailsFooterView = ReportDetailsFooterView.instanceFromNib()
     
@@ -43,8 +39,15 @@ class ReportDetailsViewController: BaseViewControllerWithTableView {
         
         tableView.tableFooterView = footerView
         
+        // Register for notification
+        NotificationCenter.default.addObserver(self, selector: #selector(ReportDetailsViewController.fetchReportDetails), name: Notification.Name(Constants.Notifications.refreshReportDetails), object: nil)
+        
         updateTableHeaderAndFooter()
         fetchReportDetails()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name(Constants.Notifications.refreshReportDetails), object: nil)
     }
 }
 /***********************************/
@@ -53,22 +56,9 @@ class ReportDetailsViewController: BaseViewControllerWithTableView {
 extension ReportDetailsViewController {
     func updateUIAfterSuccessfulResponse() {
         updateTableHeaderAndFooter()
-        updateToolbarItems()
+        
+        manager.updateToolBar(toolbar, caller: caller, delegate: self)
         tableView.reloadData()
-    }
-    
-    func updateToolbarItems() {
-        if !manager.isReportEditable() {
-            let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: nil)
-            
-            let btnArchive = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.edit, target: self, action: nil)
-            btnArchive.title = "Archive"
-            
-            let btnViewAsPDF = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.edit, target: self, action: nil)
-            btnViewAsPDF.title = "View As PDF"
-            
-            toolbar.items = [flexibleSpace, btnArchive, flexibleSpace, btnViewAsPDF, flexibleSpace]
-        }
     }
     
     func getHeaderViewWithSegmentedControl() -> UIView {
@@ -106,26 +96,17 @@ extension ReportDetailsViewController {
 // MARK: - Actions
 /***********************************/
 extension ReportDetailsViewController {
-    @IBAction func editButtonTapped(_ sender: UIBarButtonItem) {
-        
-    }
-    
-    @IBAction func submitButtonTapped(_ sender: UIBarButtonItem) {
-        navigateToApproversList()
-    }
-    
-    @IBAction func moreOptionsButtonTapped(_ sender: UIBarButtonItem) {
-        // TODO: - Display the action sheet here
-    }
-    
     func segmentedControlValueChange(_ sender: UISegmentedControl) {
         manager.setSelectedSegmentedControlIndex(sender.selectedSegmentIndex)
         
         if manager.shouldDisplayFooter() {
             tableView.tableFooterView = footerView
         } else {
-            tableView.tableFooterView = nil
+            tableView.tableFooterView = UIView()
         }
+        
+        let separatorStyle: UITableViewCellSeparatorStyle = manager.shouldHaveSeparator() ? .singleLine : .none
+        tableView.separatorStyle = separatorStyle
         
         tableView.reloadData()
     }
@@ -195,5 +176,21 @@ extension ReportDetailsViewController {
                 Utilities.showErrorAlert(withMessage: "Something went wrong. Please try again.", onController: self)// TODO: - Hard coded message. Move to constants or use the server error.
             }
         }
+    }
+}
+/***********************************/
+// MARK: - ReportDetailsToolBarActionDelegate
+/***********************************/
+extension ReportDetailsViewController: ReportDetailsToolBarActionDelegate {
+    func barButtonItemTapped(_ sender: UIBarButtonItem) {
+        manager.performActionForBarButtonItem(sender, caller: caller, onController: self)
+    }
+}
+/***********************************/
+// MARK: - RecordReimbursementDelegate
+/***********************************/
+extension ReportDetailsViewController: RecordReimbursementDelegate {
+    func reportReimbursed() {
+        fetchReportDetails()
     }
 }

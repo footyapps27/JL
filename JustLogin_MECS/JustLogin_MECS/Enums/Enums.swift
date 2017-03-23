@@ -21,7 +21,7 @@ enum Roles {
 /***********************************/
 enum ReportStatus : Int
 {
-    case unsubmitted = 0, submitted, rejected, approved, reimbursed, undoReimburse
+    case recalled = -1, unsubmitted, submitted, rejected, approved, reimbursed, undoReimburse
     
     var name: String {
         get { return String(describing: self) }
@@ -64,7 +64,8 @@ enum ExpenseAndReportFieldType: Int {
     dropdown,
     category,
     currencyAndAmount,
-    imageSelection
+    imageSelection,
+    label
 }
 
 /***********************************/
@@ -87,16 +88,29 @@ enum SettingsOptions: String {
     case aboutUs = "About Us"
     case upgradeOrganization = "Upgrade Organization"
 }
-
 /***********************************/
 // MARK: - Report Details Segment Control
 /***********************************/
-enum ReportDetailSegmentedControl: Int {
+enum ReportDetailsSegmentedControl: Int {
     case expenses = 0,
     moreDetails,
     history
 }
-
+/***********************************/
+// MARK: - Report Details Caller
+/***********************************/
+enum ReportDetailsCaller: Int {
+    case reportList = 0,
+    approvalList
+}
+/***********************************/
+// MARK: - Bar Button Tags for Report Details
+/***********************************/
+enum ReportDetailsToolBarButtonTag: Int {
+    case left = 0,
+    middle,
+    right
+}
 /***********************************/
 // MARK: - Color
 /***********************************/

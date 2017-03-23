@@ -26,6 +26,9 @@ struct ExpenseAndReportField {
     
     var dropdownValues: [String] = []
     
+    // This will only be used when we have a value already set for the field.
+    var value: String = Constants.General.emptyString
+    
     /***********************************/
     // MARK: - Initializer
     /***********************************/

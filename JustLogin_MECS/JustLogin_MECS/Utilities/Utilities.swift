@@ -89,7 +89,7 @@ extension Utilities {
     static func showActionSheet(withTitle title: String?, message: String?, actions: [UIAlertAction], onController controller: UIViewController) {
         let actionsheet = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
         
-        let actionCancel = UIAlertAction(title:"Cancel", style: .cancel) { void in
+        let actionCancel = UIAlertAction(title: LocalizedString.cancel, style: .cancel) { void in
             actionsheet.dismiss(animated: true, completion: nil)
         }
         actionsheet.addAction(actionCancel)
@@ -185,15 +185,27 @@ extension Utilities {
         scrollView.contentInset.bottom += adjustmentHeight
         scrollView.scrollIndicatorInsets.bottom += adjustmentHeight
     }
-    
+}
+/***********************************/
+// MARK: - UI update
+/***********************************/
+extension Utilities {
     /**
      * Method to push a controller & hide the tab bar.
      * When returning back the tab bar will again be shown.
      */
-    static func pushControllerAndHideTabbar(fromController: UIViewController, toController: UIViewController) {
+    static func pushControllerAndHideTabbarForChildOnly(fromController: UIViewController, toController: UIViewController) {
+      pushControllerAndHideTabbarForChildAndParent(fromController: fromController, toController: toController)
+        fromController.hidesBottomBarWhenPushed = false
+    }
+    
+    /**
+     * Method to push a controller & hide the tab bar.
+     * When returning back the tab bar will NOT be shown.
+     */
+    static func pushControllerAndHideTabbarForChildAndParent(fromController: UIViewController, toController: UIViewController) {
         fromController.hidesBottomBarWhenPushed = true
         fromController.navigationController?.pushViewController(toController, animated: true)
-        fromController.hidesBottomBarWhenPushed = false
     }
 }
 /***********************************/

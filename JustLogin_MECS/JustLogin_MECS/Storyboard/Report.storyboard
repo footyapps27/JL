@@ -403,33 +403,48 @@
                                             <outlet property="lblUserAndDate" destination="BWK-eo-WYh" id="3oo-Tv-kwe"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="reportDetailsTableViewCellIdentifier" rowHeight="0.0" id="ZqJ-JX-S09" customClass="ReportDetailsTableViewCell" customModule="JustLogin_MECS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="235" width="375" height="0.0"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="reportDetailsTableViewCellIdentifier" rowHeight="62" id="ZqJ-JX-S09" customClass="ReportDetailsTableViewCell" customModule="JustLogin_MECS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="235" width="375" height="62"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZqJ-JX-S09" id="iu0-PE-n9m">
-                                            <rect key="frame" x="0.0" y="-0.5" width="375" height="0.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="61.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="0af-Pa-MsH">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Report Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m2y-6X-Fyg">
+                                                    <rect key="frame" x="20" y="8" width="327" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" id="bEO-4d-8hU"/>
+                                                        <constraint firstAttribute="height" constant="21" id="dg3-6I-V7Q"/>
                                                     </constraints>
-                                                </stackView>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PO-6768" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3DS-EU-gbe">
+                                                    <rect key="frame" x="20" y="33" width="335" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="4Zw-h3-GdV"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="0af-Pa-MsH" secondAttribute="trailing" id="AUQ-X8-sfE"/>
-                                                <constraint firstItem="0af-Pa-MsH" firstAttribute="top" secondItem="iu0-PE-n9m" secondAttribute="top" id="eRJ-IR-YIF"/>
-                                                <constraint firstItem="0af-Pa-MsH" firstAttribute="leading" secondItem="iu0-PE-n9m" secondAttribute="leading" id="q1p-vs-3vO"/>
+                                                <constraint firstItem="m2y-6X-Fyg" firstAttribute="top" secondItem="iu0-PE-n9m" secondAttribute="topMargin" id="1Fu-lU-BDg"/>
+                                                <constraint firstAttribute="trailing" secondItem="3DS-EU-gbe" secondAttribute="trailing" constant="20" id="Qog-HD-nj9"/>
+                                                <constraint firstItem="m2y-6X-Fyg" firstAttribute="leading" secondItem="iu0-PE-n9m" secondAttribute="leading" constant="20" id="VLq-dd-w8n"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="m2y-6X-Fyg" secondAttribute="trailing" constant="20" id="WFx-yS-YnA"/>
+                                                <constraint firstItem="3DS-EU-gbe" firstAttribute="leading" secondItem="iu0-PE-n9m" secondAttribute="leading" constant="20" id="b8A-wm-AMH"/>
+                                                <constraint firstItem="3DS-EU-gbe" firstAttribute="top" secondItem="m2y-6X-Fyg" secondAttribute="bottom" constant="4" id="iQd-md-pbI"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="parentStackView" destination="0af-Pa-MsH" id="8ZR-Ul-wyT"/>
-                                            <outlet property="parentStackViewHeight" destination="bEO-4d-8hU" id="bq9-mW-9gT"/>
+                                            <outlet property="lblFieldName" destination="m2y-6X-Fyg" id="CH9-fz-iqW"/>
+                                            <outlet property="lblFieldValue" destination="3DS-EU-gbe" id="Fkg-xY-puG"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="expenseListTableViewCellIdentifier" rowHeight="90" id="Pss-7r-UcV" customClass="ExpenseListTableViewCell" customModule="JustLogin_MECS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="235" width="375" height="90"/>
+                                        <rect key="frame" x="0.0" y="297" width="375" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Pss-7r-UcV" id="i0K-xp-uI8">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="89.5"/>
@@ -531,25 +546,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="Tju-Vg-dfM"/>
                                 </constraints>
-                                <items>
-                                    <barButtonItem title="Submit" style="plain" id="Duj-6P-dCB">
-                                        <connections>
-                                            <action selector="submitButtonTapped:" destination="Vm7-WK-z8x" id="h9l-VN-5Mb"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Vbj-sz-qZk"/>
-                                    <barButtonItem title="Edit" style="plain" id="tdr-bG-Yhw">
-                                        <connections>
-                                            <action selector="editButtonTapped:" destination="Vm7-WK-z8x" id="97M-JS-l2r"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="9BT-qJ-gQp"/>
-                                    <barButtonItem title="More Options" style="plain" id="lbH-Iv-ZEg">
-                                        <connections>
-                                            <action selector="moreOptionsButtonTapped:" destination="Vm7-WK-z8x" id="BIX-dn-651"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
+                                <items/>
                             </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -564,9 +561,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="btnEdit" destination="tdr-bG-Yhw" id="iYX-At-mcT"/>
-                        <outlet property="btnMoreOptions" destination="lbH-Iv-ZEg" id="b6f-iO-fo6"/>
-                        <outlet property="btnSubmit" destination="Duj-6P-dCB" id="8f7-oJ-5lZ"/>
                         <outlet property="headerView" destination="GXl-Wy-Dqm" id="O9q-O1-vwG"/>
                         <outlet property="tableView" destination="VeZ-vW-qDQ" id="aJu-rn-uWB"/>
                         <outlet property="toolbar" destination="u0j-vl-YvL" id="IeD-C6-Z2j"/>

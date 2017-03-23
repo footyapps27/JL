@@ -35,6 +35,7 @@ struct Constants {
         static let expenses = "Expenses"
         static let reports = "Reports"
         static let approvals = "Approvals"
+        static let reimbursement = "Reimbursement"
     }
     
     struct UIImageNames {
@@ -84,6 +85,8 @@ struct Constants {
         static let reviewSelectCategoryTableViewCellIdentifier = "reviewSelectCategoryTableViewCellIdentifier"
         static let reviewSelectReportTableViewCellIdentifier = "reviewSelectReportTableViewCellIdentifier"
         
+        static let customFieldTableViewCellWithLabelIdentifier = "customFieldTableViewCellWithLabelIdentifier"
+        
         static let reportDetailsTableViewCellIdentifier = "reportDetailsTableViewCellIdentifier"
         static let approversListTableViewCellIdentifier = "approversListTableViewCellIdentifier"
     }
@@ -93,6 +96,7 @@ struct Constants {
         static let approvalListCellHeight = 68
         static let expenseListCellHeight = 90
         static let expenseAuditHistoryCellHeight = 47
+        static let reportMoreDetailsCellHeight = 62
     }
     
     struct StoryboardIds {
@@ -102,6 +106,7 @@ struct Constants {
         static let mainStoryboard = "Main"
         static let categoryStoryboard = "Category"
         static let currencyStoryboard = "Currency"
+        static let approvalStoryboard = "Approval"
         
         static let approverAndAdminDashboard = "approverAndAdminDashboard"
         static let submitterDashboard = "submitterDashboard"
@@ -112,6 +117,7 @@ struct Constants {
         static let approversListViewController = "approversListViewController"
         static let reportDetailsViewController = "reportDetailsViewController"
         static let launchViewController = "launchViewController"
+        static let recordReimbursementViewController = "recordReimbursementViewController"
         
         static let reviewSelectCategoryViewController = "reviewSelectCategoryViewController"
         static let reviewSelectCurrencyViewController = "reviewSelectCurrencyViewController"
@@ -122,6 +128,8 @@ struct Constants {
         static let loginSuccessful = "loginSuccessful"
         static let refreshReportList = "refreshReportList"
         static let refreshExpenseList = "refreshExpenseList"
+        static let refreshReportDetails = "refreshReportDetails"
+        static let refreshApprovalList = "refreshApprovalList"
     }
     
     /***********************************/
@@ -221,6 +229,7 @@ struct Constants {
             static let endDate = "endDate"
             static let statusType = "statusType"
             static let submittedToId = "submittedToId"
+            static let reason = "reason"
         }
     }
     
@@ -312,6 +321,7 @@ struct Constants {
         
         static let reports = "reports"
         static let reportId = "reportId"
+        static let reportNumber = "reportNumber"
         static let businessPurpose = "businessPurpose"
         static let startDate = "startDate"
         static let endDate = "endDate"
@@ -324,5 +334,10 @@ struct Constants {
         static let history = "history"
         
         static let members = "members"
+        
+        static let submitter = "submitter"
+        static let approver = "approver"
+        static let reimburse = "reimburse"
+        static let submittedTo = "submittedTo"
     }
 }
