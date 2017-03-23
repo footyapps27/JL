@@ -165,7 +165,7 @@ extension AddReportViewController: UITableViewDataSource {
         }
         
         let identifier = manager.getTableViewCellIdentifier(forIndexPath: indexPath)
-        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! AddReportBaseTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! CustomFieldBaseTableViewCell
         manager.formatCell(cell, forIndexPath: indexPath)
         return cell
     }
@@ -177,7 +177,7 @@ extension AddReportViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Cell selected
-        let cell = tableView.cellForRow(at: indexPath) as! AddReportBaseTableViewCell
+        let cell = tableView.cellForRow(at: indexPath) as! CustomFieldBaseTableViewCell
         manager.performActionForSelectedCell(cell, forIndexPath: indexPath)
     }
 }

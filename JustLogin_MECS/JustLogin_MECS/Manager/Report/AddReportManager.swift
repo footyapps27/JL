@@ -15,7 +15,7 @@ class AddReportManager {
     
     var reportService = ReportService()
     
-    var dictCells: [IndexPath:AddReportBaseTableViewCell] = [:]
+    var dictCells: [IndexPath:CustomFieldBaseTableViewCell] = [:]
     
     init() {
         updateFields()
@@ -31,7 +31,7 @@ extension AddReportManager {
     func populateCells(fromController controller: AddReportViewController) {
             for row in 0..<fields.count {
                 let indexPath = IndexPath(row: row, section: 0)
-                let cell = controller.tableView(controller.tableView, cellForRowAt: indexPath) as! AddReportBaseTableViewCell
+                let cell = controller.tableView(controller.tableView, cellForRowAt: indexPath) as! CustomFieldBaseTableViewCell
                 dictCells[indexPath] = cell
             }
     }
@@ -46,7 +46,7 @@ extension AddReportManager {
     /**
      * Get the existing cells that have already been populated before.
      */
-    func getExistingCells() -> [IndexPath:AddReportBaseTableViewCell] {
+    func getExistingCells() -> [IndexPath:CustomFieldBaseTableViewCell] {
         return dictCells
     }
     
@@ -54,15 +54,15 @@ extension AddReportManager {
         let reportField = fields[indexPath.row]
         switch reportField.fieldType {
         case ExpenseAndReportFieldType.text.rawValue:
-            return Constants.CellIdentifiers.addReportTableViewCellWithTextField
+            return Constants.CellIdentifiers.customFieldTableViewCellWithTextFieldIdentifier
         case ExpenseAndReportFieldType.doubleTextField.rawValue:
-            return Constants.CellIdentifiers.addReportTableViewCellDuration
+            return Constants.CellIdentifiers.customFieldTableViewCellDurationIdentifier
         case ExpenseAndReportFieldType.textView.rawValue:
-            return Constants.CellIdentifiers.addReportTableViewCellWithTextView
+            return Constants.CellIdentifiers.customFieldTableViewCellWithTextViewIdentifier
         case ExpenseAndReportFieldType.dropdown.rawValue:
-            return Constants.CellIdentifiers.addReportTableViewCellWithMultipleSelection
+            return Constants.CellIdentifiers.customFieldTableViewCellWithMultipleSelectionIdentifier
         default:
-            return Constants.CellIdentifiers.addReportTableViewCellWithTextField
+            return Constants.CellIdentifiers.customFieldTableViewCellWithTextFieldIdentifier
         }
     }
     
@@ -81,7 +81,7 @@ extension AddReportManager {
 /***********************************/
 extension AddReportManager {
     
-    func formatCell(_ cell: AddReportBaseTableViewCell, forIndexPath indexPath: IndexPath) {
+    func formatCell(_ cell: CustomFieldBaseTableViewCell, forIndexPath indexPath: IndexPath) {
         let reportField = fields[indexPath.row]
         cell.selectionStyle = UITableViewCellSelectionStyle.none
         cell.updateView(withField: reportField)
@@ -91,7 +91,7 @@ extension AddReportManager {
 // MARK: - Actions
 /***********************************/
 extension AddReportManager {
-    func performActionForSelectedCell(_ cell: AddReportBaseTableViewCell, forIndexPath indexPath: IndexPath) {
+    func performActionForSelectedCell(_ cell: CustomFieldBaseTableViewCell, forIndexPath indexPath: IndexPath) {
         let reportField = getReportFields()[indexPath.row]
         if reportField.fieldType == ExpenseAndReportFieldType.text.rawValue ||
             reportField.fieldType == ExpenseAndReportFieldType.textView.rawValue {

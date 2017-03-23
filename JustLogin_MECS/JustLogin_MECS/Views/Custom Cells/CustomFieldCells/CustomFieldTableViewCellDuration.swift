@@ -1,15 +1,15 @@
 //
-//  AddReportTableViewCellDuration.swift
+//  CustomFieldTableViewCellDuration.swift
 //  JustLogin_MECS
 //
-//  Created by Samrat on 28/2/17.
+//  Created by Samrat on 23/3/17.
 //  Copyright © 2017 SMRT. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class AddReportTableViewCellDuration: AddReportBaseTableViewCell {
+class CustomFieldTableViewCellDuration: CustomFieldBaseTableViewCell {
     
     /***********************************/
     // MARK: - Outlets
@@ -51,7 +51,7 @@ class AddReportTableViewCellDuration: AddReportBaseTableViewCell {
 /***********************************/
 // MARK: - View lifecylce
 /***********************************/
-extension AddReportTableViewCellDuration {
+extension CustomFieldTableViewCellDuration {
     override func awakeFromNib() {
         txtTo.tag = ExpenseAndReportFieldType.date.rawValue
         txtFrom.tag = ExpenseAndReportFieldType.date.rawValue
@@ -60,13 +60,12 @@ extension AddReportTableViewCellDuration {
 /***********************************/
 // MARK: - Private Methods
 /***********************************/
-extension AddReportTableViewCellDuration {
+extension CustomFieldTableViewCellDuration {
     func getFormattedDateFromText(_ text: String) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = Constants.General.localDisplayDateFormat
         
         let formattedDate = dateFormatter.date(from: text)!
-        
         return Utilities.convertDateToStringForServerCommunication(formattedDate)
     }
 }

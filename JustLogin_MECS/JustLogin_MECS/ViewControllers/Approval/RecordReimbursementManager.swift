@@ -86,7 +86,7 @@ extension RecordReimbursementManager {
         case ExpenseAndReportFieldType.dropdown.rawValue:
             return Constants.CellIdentifiers.addExpenseTableViewCellWithMultipleSelection
         default:
-            return Constants.CellIdentifiers.addReportTableViewCellWithTextField
+            return Constants.CellIdentifiers.addExpenseTableViewCellWithTextField
         }
     }
 }
