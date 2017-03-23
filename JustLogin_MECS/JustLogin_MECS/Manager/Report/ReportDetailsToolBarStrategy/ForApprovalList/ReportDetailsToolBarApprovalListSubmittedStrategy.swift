@@ -57,9 +57,11 @@ extension ReportDetailsToolBarApprovalListSubmittedStrategy {
     func approveReport(_ report: Report, onController controller: BaseViewController) {
         var updatedReport = report
         updatedReport.status = ReportStatus.approved.rawValue
+        // Payload
+        let payload = getPayloadForProcessReport(updatedReport)
         // Call the service
         controller.showLoadingIndicator(disableUserInteraction: false)
-        manager.processReport(updatedReport) { (response) in
+        manager.processReport(withPayload: payload) { (response) in
             switch(response) {
             case .success(_):
                 controller.hideLoadingIndicator(enableUserInteraction: true)
@@ -86,5 +88,19 @@ extension ReportDetailsToolBarApprovalListSubmittedStrategy {
      */
     func viewPDF(forReport report: Report, onController controller: BaseViewController) {
         
+    }
+}
+/***********************************/
+// MARK: - Helpers
+/***********************************/
+extension ReportDetailsToolBarApprovalListSubmittedStrategy {
+    /**
+     * Get the formatted payload for the approval action.
+     */
+    func getPayloadForProcessReport(_ report: Report) -> [String : Any] {
+        return [
+            Constants.RequestParameters.Report.reportId : report.id,
+            Constants.RequestParameters.Report.statusType : report.status
+        ]
     }
 }

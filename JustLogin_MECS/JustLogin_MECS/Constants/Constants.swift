@@ -249,6 +249,7 @@ struct Constants {
         static let memberId = "memberId"
         static let userId = "userId"
         static let fullName = "fullName"
+        static let profileImageUrl = "profileImageUrl"
         static let status = "status"
         static let organizationId = "organizationId"
         static let role = "role"

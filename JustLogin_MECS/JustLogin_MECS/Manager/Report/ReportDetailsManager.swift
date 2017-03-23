@@ -14,6 +14,8 @@ class ReportDetailsManager {
     
     var reportService: IReportService = ReportService()
     
+    var approvalService: IApprovalService = ApprovalService()
+    
     var segmentedControlSelectedIndex: Int = ReportDetailsSegmentedControl.expenses.rawValue
 }
 /***********************************/
@@ -145,8 +147,8 @@ extension ReportDetailsManager {
      * Method to update the status of a report. 
      * The report that is sent, needs to provide the updated status.
      */
-    func processReport(_ report: Report, completionHandler: (@escaping (ManagerResponseToController<Report>) -> Void)) {
-        self.reportService.processReport(report: report, completionHandler: { (result) in
+    func processReport(withPayload payload: [String : Any], completionHandler: (@escaping (ManagerResponseToController<Report>) -> Void)) {
+        approvalService.processReport(payload: payload, completionHandler: { (result) in
             switch(result) {
             case .success(let finalReport):
                 completionHandler(ManagerResponseToController.success(finalReport))

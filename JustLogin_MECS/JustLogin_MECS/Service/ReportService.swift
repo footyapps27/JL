@@ -35,11 +35,6 @@ protocol IReportService {
      * Delete an existing report.
      */
     func delete(reportId: String, completionHandler:( @escaping (Result<Report>) -> Void))
-    
-    /**
-     * This will deal with submission/rejection of the report.
-     */
-    func processReport(report: Report, completionHandler:( @escaping (Result<Report>) -> Void))
 }
 
 struct ReportService : IReportService {
@@ -138,22 +133,6 @@ struct ReportService : IReportService {
             // TODO: - Need to handle the scenarios here.
         }
     }
-    
-    func processReport(report: Report, completionHandler:( @escaping (Result<Report>) -> Void)) {
-        let payload = getPayloadForProcessReport(report)
-        serviceAdapter.post(destination: Constants.URLs.Approval.processReportApproval, payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
-            switch(response) {
-            case .success(let success, _ ):
-                let report = Report(withJSON: JSON(success))
-                completionHandler(Result.success(report))
-            case .errors(let error):
-                let error = ServiceError(JSON(error))
-                completionHandler(Result.error(error))
-            case .failure(let description):
-                completionHandler(Result.failure(description))
-            }
-        }
-    }
 }
 
 extension ReportService {
@@ -206,13 +185,5 @@ extension ReportService {
     func getPayloadForDeleteReport(_ reportId: String) -> [String : String] {
         // TODO: - Need to handle the scenarios here.
         return [:]
-    }
-    
-    func getPayloadForProcessReport(_ report: Report) -> [String : Any] {
-        return [
-            Constants.RequestParameters.Report.reportId : report.id,
-            Constants.RequestParameters.Report.statusType : report.status,
-            Constants.RequestParameters.Report.reason : report.rejectionReason
-        ]
     }
 }
