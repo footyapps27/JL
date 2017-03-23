@@ -109,7 +109,7 @@ extension ApprovalListViewController: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.approvalListTableViewCellIdentifier, for: indexPath) as! ApprovalListTableViewCell
         cell.lblReportName.text = manager.getReportTitle(forIndexPath: indexPath)
-        cell.lblEmployeeName.text = "John Doe"
+        cell.lblEmployeeName.text = manager.getSubmitterName(forIndexPath: indexPath)
         cell.lblAmount.text = manager.getFormattedReportAmount(forIndexPath: indexPath)
         cell.lblStatus.text = manager.getReportStatus(forIndexPath: indexPath)
         return cell

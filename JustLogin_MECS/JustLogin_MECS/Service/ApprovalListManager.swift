@@ -74,6 +74,14 @@ extension ApprovalListManager {
     }
     
     /**
+     * Get the submitter name for the submitted report.
+     */
+    func getSubmitterName(forIndexPath indexPath: IndexPath) -> String {
+        let report = approvals[indexPath.row]
+        return report.submitter.name
+    }
+    
+    /**
      * Method to get the formatted status
      */
     func getReportStatus(forIndexPath indexPath: IndexPath) -> String {
