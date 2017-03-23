@@ -72,13 +72,11 @@ struct Constants {
         static let customFieldTableViewCellWithTextViewIdentifier = "customFieldTableViewCellWithTextViewIdentifier"
         static let customFieldTableViewCellDurationIdentifier = "customFieldTableViewCellDurationIdentifier"
         
-        static let addExpenseTableViewCellCategory = "addExpenseTableViewCellCategory"
-        static let addExpenseTableViewCellDate = "addExpenseTableViewCellDate"
-        static let addExpenseTableViewCellCurrencyAndAmount = "addExpenseTableViewCellCurrencyAndAmount"
-        static let addExpenseTableViewCellWithMultipleSelection = "addExpenseTableViewCellWithMultipleSelection"
-        static let addExpenseTableViewCellWithTextField = "addExpenseTableViewCellWithTextField"
-        static let addExpenseTableViewCellWithTextView = "addExpenseTableViewCellWithTextView"
-        static let addExpenseTableViewCellWithImageSelection = "addExpenseTableViewCellWithImageSelection"
+        static let customFieldTableViewCellCategoryIdentifier = "customFieldTableViewCellCategoryIdentifier"
+        static let customFieldTableViewCellDateIdentifier = "customFieldTableViewCellDateIdentifier"
+        static let customFieldTableViewCellCurrencyAndAmountIdentifier = "customFieldTableViewCellCurrencyAndAmountIdentifier"
+        static let customFieldTableViewCellWithImageSelectionIdentifier = "customFieldTableViewCellWithImageSelectionIdentifier"
+        
         
         static let auditHistoryTableViewCellIdentifier = "auditHistoryTableViewCellIdentifier"
         

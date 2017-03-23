@@ -174,7 +174,7 @@ extension AddExpenseViewController: UITableViewDataSource {
         
         // If it is not available in cache, then create or reuse the cell
         let identifier = manager.getTableViewCellIdentifier(forIndexPath: indexPath)
-        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! AddExpenseBaseTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! CustomFieldBaseTableViewCell
         manager.formatCell(cell, forIndexPath: indexPath)
         return cell
     }
@@ -198,7 +198,7 @@ extension AddExpenseViewController: UITableViewDelegate {
             let controller = manager.getDetailsNavigationController(forIndexPath: indexPath, withDelegate: self)
             Utilities.pushControllerAndHideTabbarForChildAndParent(fromController: self, toController: controller)
         } else {
-            let cell = tableView.cellForRow(at: indexPath) as! AddExpenseBaseTableViewCell
+            let cell = tableView.cellForRow(at: indexPath) as! CustomFieldBaseTableViewCell
             manager.performActionForSelectedCell(cell, forIndexPath: indexPath)
         }
     }

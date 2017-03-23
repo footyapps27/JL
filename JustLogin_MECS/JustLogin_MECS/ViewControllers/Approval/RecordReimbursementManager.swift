@@ -71,22 +71,16 @@ extension RecordReimbursementManager {
         switch expenseField.fieldType {
         case ExpenseAndReportFieldType.label.rawValue:
             return Constants.CellIdentifiers.customFieldTableViewCellWithLabelIdentifier
-        case ExpenseAndReportFieldType.category.rawValue:
-            return Constants.CellIdentifiers.addExpenseTableViewCellCategory
         case ExpenseAndReportFieldType.date.rawValue:
-            return Constants.CellIdentifiers.addExpenseTableViewCellDate
-        case ExpenseAndReportFieldType.currencyAndAmount.rawValue:
-            return Constants.CellIdentifiers.addExpenseTableViewCellCurrencyAndAmount
+            return Constants.CellIdentifiers.customFieldTableViewCellDateIdentifier
         case ExpenseAndReportFieldType.text.rawValue:
-            return Constants.CellIdentifiers.addExpenseTableViewCellWithTextField
+            return Constants.CellIdentifiers.customFieldTableViewCellWithTextFieldIdentifier
         case ExpenseAndReportFieldType.textView.rawValue:
-            return Constants.CellIdentifiers.addExpenseTableViewCellWithTextView
-        case ExpenseAndReportFieldType.imageSelection.rawValue:
-            return Constants.CellIdentifiers.addExpenseTableViewCellWithImageSelection
+            return Constants.CellIdentifiers.customFieldTableViewCellWithTextViewIdentifier
         case ExpenseAndReportFieldType.dropdown.rawValue:
-            return Constants.CellIdentifiers.addExpenseTableViewCellWithMultipleSelection
+            return Constants.CellIdentifiers.customFieldTableViewCellWithMultipleSelectionIdentifier
         default:
-            return Constants.CellIdentifiers.addExpenseTableViewCellWithTextField
+            return Constants.CellIdentifiers.customFieldTableViewCellWithTextFieldIdentifier
         }
     }
 }

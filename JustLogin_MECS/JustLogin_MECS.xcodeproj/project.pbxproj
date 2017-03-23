@@ -17,14 +17,6 @@
 		8C00F6601E1E651A0007F29C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C00F6531E1E651A0007F29C /* AppDelegate.swift */; };
 		8C00F6611E1E651A0007F29C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C00F65B1E1E651A0007F29C /* Main.storyboard */; };
 		8C00F6651E1E870B0007F29C /* LaunchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C00F6641E1E870B0007F29C /* LaunchCollectionViewCell.swift */; };
-		8C07A5631E6E87390015D419 /* AddExpenseTableViewCellCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C07A5621E6E87390015D419 /* AddExpenseTableViewCellCategory.swift */; };
-		8C07A5651E6E87570015D419 /* AddExpenseTableViewCellDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C07A5641E6E87570015D419 /* AddExpenseTableViewCellDate.swift */; };
-		8C07A5671E6E87840015D419 /* AddExpenseTableViewCellCurrencyAndAmount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C07A5661E6E87840015D419 /* AddExpenseTableViewCellCurrencyAndAmount.swift */; };
-		8C07A5691E6E88DE0015D419 /* AddExpenseTableViewCellWithTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C07A5681E6E88DE0015D419 /* AddExpenseTableViewCellWithTextField.swift */; };
-		8C07A56B1E6E88F00015D419 /* AddExpenseTableViewCellWithMultipleSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C07A56A1E6E88F00015D419 /* AddExpenseTableViewCellWithMultipleSelection.swift */; };
-		8C07A56D1E6E89EE0015D419 /* AddExpenseTableViewCellWithImageSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C07A56C1E6E89EE0015D419 /* AddExpenseTableViewCellWithImageSelection.swift */; };
-		8C07A56F1E6E8BB30015D419 /* AddExpenseTableViewCellWithTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C07A56E1E6E8BB30015D419 /* AddExpenseTableViewCellWithTextView.swift */; };
-		8C07A5711E6E8BDF0015D419 /* AddExpenseBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C07A5701E6E8BDF0015D419 /* AddExpenseBaseTableViewCell.swift */; };
 		8C0A01CA1E77B29600A96867 /* ReportDetailsFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C0A01C91E77B29600A96867 /* ReportDetailsFooterView.xib */; };
 		8C0A01CC1E77BBD300A96867 /* ReportDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A01CB1E77BBD300A96867 /* ReportDetailsTableViewCell.swift */; };
 		8C0A01D01E77C38100A96867 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0A01CE1E77C38100A96867 /* Dictionary.swift */; };
@@ -180,14 +172,6 @@
 		8C00F6531E1E651A0007F29C /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8C00F65B1E1E651A0007F29C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		8C00F6641E1E870B0007F29C /* LaunchCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchCollectionViewCell.swift; sourceTree = "<group>"; };
-		8C07A5621E6E87390015D419 /* AddExpenseTableViewCellCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddExpenseTableViewCellCategory.swift; sourceTree = "<group>"; };
-		8C07A5641E6E87570015D419 /* AddExpenseTableViewCellDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddExpenseTableViewCellDate.swift; sourceTree = "<group>"; };
-		8C07A5661E6E87840015D419 /* AddExpenseTableViewCellCurrencyAndAmount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddExpenseTableViewCellCurrencyAndAmount.swift; sourceTree = "<group>"; };
-		8C07A5681E6E88DE0015D419 /* AddExpenseTableViewCellWithTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddExpenseTableViewCellWithTextField.swift; sourceTree = "<group>"; };
-		8C07A56A1E6E88F00015D419 /* AddExpenseTableViewCellWithMultipleSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddExpenseTableViewCellWithMultipleSelection.swift; sourceTree = "<group>"; };
-		8C07A56C1E6E89EE0015D419 /* AddExpenseTableViewCellWithImageSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddExpenseTableViewCellWithImageSelection.swift; sourceTree = "<group>"; };
-		8C07A56E1E6E8BB30015D419 /* AddExpenseTableViewCellWithTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddExpenseTableViewCellWithTextView.swift; sourceTree = "<group>"; };
-		8C07A5701E6E8BDF0015D419 /* AddExpenseBaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddExpenseBaseTableViewCell.swift; sourceTree = "<group>"; };
 		8C0A01C91E77B29600A96867 /* ReportDetailsFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReportDetailsFooterView.xib; sourceTree = "<group>"; };
 		8C0A01CB1E77BBD300A96867 /* ReportDetailsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		8C0A01CE1E77C38100A96867 /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
@@ -487,7 +471,6 @@
 			isa = PBXGroup;
 			children = (
 				8CE4687B1E822AD800535A70 /* CustomFieldCells */,
-				8C07A5611E6E825E0015D419 /* Add Expense */,
 				8C5141341E1F5F2F003AD3B1 /* Base */,
 				8CF2FBE21E72CDEA001C008E /* Category */,
 				8C00F6641E1E870B0007F29C /* LaunchCollectionViewCell.swift */,
@@ -500,21 +483,6 @@
 				8C0A01E11E78E4E700A96867 /* ApproversListTableViewCell.swift */,
 			);
 			path = "Custom Cells";
-			sourceTree = "<group>";
-		};
-		8C07A5611E6E825E0015D419 /* Add Expense */ = {
-			isa = PBXGroup;
-			children = (
-				8C07A5621E6E87390015D419 /* AddExpenseTableViewCellCategory.swift */,
-				8C07A5641E6E87570015D419 /* AddExpenseTableViewCellDate.swift */,
-				8C07A5661E6E87840015D419 /* AddExpenseTableViewCellCurrencyAndAmount.swift */,
-				8C07A5681E6E88DE0015D419 /* AddExpenseTableViewCellWithTextField.swift */,
-				8C07A56A1E6E88F00015D419 /* AddExpenseTableViewCellWithMultipleSelection.swift */,
-				8C07A56C1E6E89EE0015D419 /* AddExpenseTableViewCellWithImageSelection.swift */,
-				8C07A56E1E6E8BB30015D419 /* AddExpenseTableViewCellWithTextView.swift */,
-				8C07A5701E6E8BDF0015D419 /* AddExpenseBaseTableViewCell.swift */,
-			);
-			path = "Add Expense";
 			sourceTree = "<group>";
 		};
 		8C0A01CD1E77C38100A96867 /* Extensions */ = {
@@ -1230,14 +1198,11 @@
 				8CFD02111E73D2FA00526962 /* ReviewSelectReportTableViewCell.swift in Sources */,
 				8CF655D31E58694E00D4FEF3 /* Currency.swift in Sources */,
 				8CA4B6F71E28C3A6007C3BE5 /* ExpenseListTableViewCell.swift in Sources */,
-				8C07A5651E6E87570015D419 /* AddExpenseTableViewCellDate.swift in Sources */,
-				8C07A56D1E6E89EE0015D419 /* AddExpenseTableViewCellWithImageSelection.swift in Sources */,
 				8CE468871E8240CC00535A70 /* CustomFieldTableViewCellWithLabel.swift in Sources */,
 				8CF2FBE41E72CE00001C008E /* ReviewSelectCategoryTableViewCell.swift in Sources */,
 				8C00F6651E1E870B0007F29C /* LaunchCollectionViewCell.swift in Sources */,
 				8C96020A1E1FDB7F00EE66A3 /* LaunchViewController.swift in Sources */,
 				8CF655D51E586CF900D4FEF3 /* OrganizationDetailsService.swift in Sources */,
-				8C07A5691E6E88DE0015D419 /* AddExpenseTableViewCellWithTextField.swift in Sources */,
 				8CF2FBE71E72D61B001C008E /* ReviewSelectCategoryViewController.swift in Sources */,
 				8CF655C91E58455A00D4FEF3 /* Member.swift in Sources */,
 				8CF655DD1E58B06300D4FEF3 /* Expense.swift in Sources */,
@@ -1252,9 +1217,7 @@
 				8C42DFDD1E6436C900A3B69A /* ExpenseAndReportField.swift in Sources */,
 				8C37681E1E7F887200E82044 /* ReportDetailsAuditHistoryStrategy.swift in Sources */,
 				8C1766521E7A7B3A00D1CDE0 /* UIColor.swift in Sources */,
-				8C07A5671E6E87840015D419 /* AddExpenseTableViewCellCurrencyAndAmount.swift in Sources */,
 				8C0A01D11E77C38100A96867 /* Double.swift in Sources */,
-				8C07A56B1E6E88F00015D419 /* AddExpenseTableViewCellWithMultipleSelection.swift in Sources */,
 				8CF655DF1E58B07000D4FEF3 /* Report.swift in Sources */,
 				8CF2FBD31E7156A3001C008E /* SettingsListManager.swift in Sources */,
 				8C37682A1E7FB51E00E82044 /* ReportDetailsToolBarUnsubmittedStrategy.swift in Sources */,
@@ -1264,7 +1227,6 @@
 				8CFD020F1E73AAE800526962 /* CurrencyService.swift in Sources */,
 				8C299FF31E681EDA0077A730 /* ExpenseDetailsHeaderView.swift in Sources */,
 				8CB44AD21E5AC642005CC04D /* ExpenseListManager.swift in Sources */,
-				8C07A5711E6E8BDF0015D419 /* AddExpenseBaseTableViewCell.swift in Sources */,
 				8CFD020D1E73A93C00526962 /* ReviewSelectCurrencyManager.swift in Sources */,
 				8CFD020A1E73A8B200526962 /* ReviewSelectCurrencyViewController.swift in Sources */,
 				8C0A01DC1E78CA0E00A96867 /* ApprovalService.swift in Sources */,
@@ -1281,9 +1243,7 @@
 				8CFD02131E73D35D00526962 /* ReviewSelectReportViewController.swift in Sources */,
 				8C0A01CC1E77BBD300A96867 /* ReportDetailsTableViewCell.swift in Sources */,
 				8C37683A1E811E5B00E82044 /* RecordReimbursementViewController.swift in Sources */,
-				8C07A56F1E6E8BB30015D419 /* AddExpenseTableViewCellWithTextView.swift in Sources */,
 				8CF2FBE11E72C76E001C008E /* CategoryService.swift in Sources */,
-				8C07A5631E6E87390015D419 /* AddExpenseTableViewCellCategory.swift in Sources */,
 				8CD333211E23C4E500557B6F /* BaseViewControllerWithTableView.swift in Sources */,
 				8CE468811E822BF300535A70 /* CustomFieldTableViewCellWithTextField.swift in Sources */,
 				8C3768301E7FFC0E00E82044 /* ReportDetailsToolBarApprovalListApprovedStrategy.swift in Sources */,

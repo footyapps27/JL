@@ -17,7 +17,7 @@ class AddExpenseManager {
     
     var lastSelectedNavigationIndex: IndexPath?
     
-    var dictCells: [IndexPath:AddExpenseBaseTableViewCell] = [:]
+    var dictCells: [IndexPath:CustomFieldBaseTableViewCell] = [:]
     
     init() {
         updateFields()
@@ -34,7 +34,7 @@ extension AddExpenseManager {
         for section in 0..<fields.count {
             for row in 0..<fields[section].count {
                 let indexPath = IndexPath(row: row, section: section)
-                let cell = controller.tableView(controller.tableView, cellForRowAt: indexPath) as! AddExpenseBaseTableViewCell
+                let cell = controller.tableView(controller.tableView, cellForRowAt: indexPath) as! CustomFieldBaseTableViewCell
                 dictCells[indexPath] = cell
             }
         }
@@ -43,7 +43,7 @@ extension AddExpenseManager {
     /**
      * Get the existing cells that have already been populated before.
      */
-    func getExistingCells() -> [IndexPath:AddExpenseBaseTableViewCell] {
+    func getExistingCells() -> [IndexPath:CustomFieldBaseTableViewCell] {
         return dictCells
     }
     
@@ -62,21 +62,21 @@ extension AddExpenseManager {
         let expenseField = (fields[indexPath.section])[indexPath.row]
         switch expenseField.fieldType {
         case ExpenseAndReportFieldType.category.rawValue:
-            return Constants.CellIdentifiers.addExpenseTableViewCellCategory
+            return Constants.CellIdentifiers.customFieldTableViewCellCategoryIdentifier
         case ExpenseAndReportFieldType.date.rawValue:
-            return Constants.CellIdentifiers.addExpenseTableViewCellDate
+            return Constants.CellIdentifiers.customFieldTableViewCellDateIdentifier
         case ExpenseAndReportFieldType.currencyAndAmount.rawValue:
-            return Constants.CellIdentifiers.addExpenseTableViewCellCurrencyAndAmount
+            return Constants.CellIdentifiers.customFieldTableViewCellCurrencyAndAmountIdentifier
         case ExpenseAndReportFieldType.text.rawValue:
-            return Constants.CellIdentifiers.addExpenseTableViewCellWithTextField
+            return Constants.CellIdentifiers.customFieldTableViewCellWithTextFieldIdentifier
         case ExpenseAndReportFieldType.textView.rawValue:
-            return Constants.CellIdentifiers.addExpenseTableViewCellWithTextView
+            return Constants.CellIdentifiers.customFieldTableViewCellWithTextViewIdentifier
         case ExpenseAndReportFieldType.imageSelection.rawValue:
-            return Constants.CellIdentifiers.addExpenseTableViewCellWithImageSelection
+            return Constants.CellIdentifiers.customFieldTableViewCellWithImageSelectionIdentifier
         case ExpenseAndReportFieldType.dropdown.rawValue:
-            return Constants.CellIdentifiers.addExpenseTableViewCellWithMultipleSelection
+            return Constants.CellIdentifiers.customFieldTableViewCellWithMultipleSelectionIdentifier
         default:
-            return Constants.CellIdentifiers.addExpenseTableViewCellWithTextField
+            return Constants.CellIdentifiers.customFieldTableViewCellWithTextFieldIdentifier
         }
     }
 }
@@ -85,7 +85,7 @@ extension AddExpenseManager {
 /***********************************/
 extension AddExpenseManager {
     
-    func formatCell(_ cell: AddExpenseBaseTableViewCell, forIndexPath indexPath: IndexPath) {
+    func formatCell(_ cell: CustomFieldBaseTableViewCell, forIndexPath indexPath: IndexPath) {
         let expenseField = (fields[indexPath.section])[indexPath.row]
         cell.selectionStyle = UITableViewCellSelectionStyle.none
         cell.updateView(withField: expenseField)
@@ -163,7 +163,7 @@ extension AddExpenseManager {
     /**
      * Sing the other cells are already being checked at the controller,
      */
-    func performActionForSelectedCell(_ cell: AddExpenseBaseTableViewCell, forIndexPath indexPath: IndexPath) {
+    func performActionForSelectedCell(_ cell: CustomFieldBaseTableViewCell, forIndexPath indexPath: IndexPath) {
         cell.makeFirstResponder()
     }
     
