@@ -78,6 +78,9 @@
 		8CB44AD61E5B1163005CC04D /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB44AD51E5B1163005CC04D /* Utilities.swift */; };
 		8CC68F1A1E84E6C7002F9DCD /* ReviewSelectExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC68F191E84E6C7002F9DCD /* ReviewSelectExpenseViewController.swift */; };
 		8CC68F1C1E84ED6C002F9DCD /* ReviewSelectExpenseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC68F1B1E84ED6C002F9DCD /* ReviewSelectExpenseManager.swift */; };
+		8CC68F1F1E8523E8002F9DCD /* ExpenseDetailsToolBarBaseStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC68F1E1E8523E8002F9DCD /* ExpenseDetailsToolBarBaseStrategy.swift */; };
+		8CC68F211E852589002F9DCD /* ExpenseDetailsToolBarEditEnabledStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC68F201E852589002F9DCD /* ExpenseDetailsToolBarEditEnabledStrategy.swift */; };
+		8CC68F231E852715002F9DCD /* ExpenseDetailsToolBarEditDisabledStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC68F221E852715002F9DCD /* ExpenseDetailsToolBarEditDisabledStrategy.swift */; };
 		8CD333191E23BC7D00557B6F /* ExpenseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD333181E23BC7D00557B6F /* ExpenseListViewController.swift */; };
 		8CD3331D1E23C48000557B6F /* SettingsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD3331C1E23C48000557B6F /* SettingsListViewController.swift */; };
 		8CD333211E23C4E500557B6F /* BaseViewControllerWithTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD333201E23C4E500557B6F /* BaseViewControllerWithTableView.swift */; };
@@ -233,6 +236,9 @@
 		8CB44AD51E5B1163005CC04D /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		8CC68F191E84E6C7002F9DCD /* ReviewSelectExpenseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewSelectExpenseViewController.swift; sourceTree = "<group>"; };
 		8CC68F1B1E84ED6C002F9DCD /* ReviewSelectExpenseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewSelectExpenseManager.swift; sourceTree = "<group>"; };
+		8CC68F1E1E8523E8002F9DCD /* ExpenseDetailsToolBarBaseStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseDetailsToolBarBaseStrategy.swift; sourceTree = "<group>"; };
+		8CC68F201E852589002F9DCD /* ExpenseDetailsToolBarEditEnabledStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseDetailsToolBarEditEnabledStrategy.swift; sourceTree = "<group>"; };
+		8CC68F221E852715002F9DCD /* ExpenseDetailsToolBarEditDisabledStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseDetailsToolBarEditDisabledStrategy.swift; sourceTree = "<group>"; };
 		8CD333181E23BC7D00557B6F /* ExpenseListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseListViewController.swift; sourceTree = "<group>"; };
 		8CD3331C1E23C48000557B6F /* SettingsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsListViewController.swift; sourceTree = "<group>"; };
 		8CD333201E23C4E500557B6F /* BaseViewControllerWithTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewControllerWithTableView.swift; sourceTree = "<group>"; };
@@ -601,6 +607,16 @@
 			path = Approval;
 			sourceTree = "<group>";
 		};
+		8CC68F1D1E8523A8002F9DCD /* ExpenseDetailsToolBarStrategy */ = {
+			isa = PBXGroup;
+			children = (
+				8CC68F1E1E8523E8002F9DCD /* ExpenseDetailsToolBarBaseStrategy.swift */,
+				8CC68F201E852589002F9DCD /* ExpenseDetailsToolBarEditEnabledStrategy.swift */,
+				8CC68F221E852715002F9DCD /* ExpenseDetailsToolBarEditDisabledStrategy.swift */,
+			);
+			path = ExpenseDetailsToolBarStrategy;
+			sourceTree = "<group>";
+		};
 		8CD333151E23BC4D00557B6F /* Expense */ = {
 			isa = PBXGroup;
 			children = (
@@ -802,6 +818,7 @@
 		8CF655E21E58B55600D4FEF3 /* Expense */ = {
 			isa = PBXGroup;
 			children = (
+				8CC68F1D1E8523A8002F9DCD /* ExpenseDetailsToolBarStrategy */,
 				8CB44AD11E5AC642005CC04D /* ExpenseListManager.swift */,
 				8C8995D81E60836C00482317 /* AddExpenseManager.swift */,
 				8C8995DA1E60839400482317 /* ExpenseDetailsManager.swift */,
@@ -1197,6 +1214,7 @@
 				8CE468911E83A71400535A70 /* CustomFieldTableViewCellDuration.swift in Sources */,
 				8C42DFD51E63DEA300A3B69A /* ReportDetailsViewController.swift in Sources */,
 				8CE4688D1E83A69700535A70 /* CustomFieldTableViewCellCurrencyAndAmount.swift in Sources */,
+				8CC68F211E852589002F9DCD /* ExpenseDetailsToolBarEditEnabledStrategy.swift in Sources */,
 				8CE468891E82553A00535A70 /* ReportMemberDetail.swift in Sources */,
 				8CF655CD1E585ACE00D4FEF3 /* AccessPrivilege.swift in Sources */,
 				8C3768321E7FFE8D00E82044 /* ReportDetailsToolBarApprovalListReimbursedStrategy.swift in Sources */,
@@ -1272,7 +1290,9 @@
 				8CEB70B71E6D3C3500411ECB /* Strings.swift in Sources */,
 				8CE468831E822CE200535A70 /* CustomFieldTableViewCellWithTextView.swift in Sources */,
 				8CB44AD41E5B0380005CC04D /* ReportListManager.swift in Sources */,
+				8CC68F231E852715002F9DCD /* ExpenseDetailsToolBarEditDisabledStrategy.swift in Sources */,
 				8CF655D91E589EB700D4FEF3 /* ExpenseService.swift in Sources */,
+				8CC68F1F1E8523E8002F9DCD /* ExpenseDetailsToolBarBaseStrategy.swift in Sources */,
 				8CB44AD61E5B1163005CC04D /* Utilities.swift in Sources */,
 				8C3768241E7F888C00E82044 /* ReportDetailsToolBarBaseStrategy.swift in Sources */,
 				8C8995D91E60836C00482317 /* AddExpenseManager.swift in Sources */,

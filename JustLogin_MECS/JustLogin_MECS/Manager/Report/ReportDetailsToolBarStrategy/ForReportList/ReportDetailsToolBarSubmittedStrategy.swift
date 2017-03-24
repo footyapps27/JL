@@ -24,19 +24,19 @@ extension ReportDetailsToolBarSubmittedStrategy: ReportDetailsToolBarBaseStrateg
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: nil)
         
         let btnRecall = UIBarButtonItem(title: LocalizedString.recall, style: .plain, target: delegate, action: #selector(delegate.barButtonItemTapped(_:)))
-        btnRecall.tag = ReportDetailsToolBarButtonTag.left.rawValue
+        btnRecall.tag = ToolBarButtonTag.left.rawValue
         
         let btnViewPDF = UIBarButtonItem(title: LocalizedString.viewPDF, style: .plain, target: delegate, action: #selector(delegate.barButtonItemTapped(_:)))
-        btnViewPDF.tag = ReportDetailsToolBarButtonTag.right.rawValue
+        btnViewPDF.tag = ToolBarButtonTag.right.rawValue
         
         toolBar.items = [flexibleSpace, btnRecall, flexibleSpace, btnViewPDF, flexibleSpace]
     }
     
     func performActionForBarButtonItem(_ barButton: UIBarButtonItem, forReport report: Report, onController controller: BaseViewController) {
         switch(barButton.tag) {
-        case ReportDetailsToolBarButtonTag.left.rawValue:
+        case ToolBarButtonTag.left.rawValue:
             recallReport(report, onController: controller)
-        case ReportDetailsToolBarButtonTag.right.rawValue:
+        case ToolBarButtonTag.right.rawValue:
             viewAsPDF(forReport: report, onController: controller)
         default:
             log.debug("Default")

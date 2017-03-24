@@ -1,8 +1,8 @@
 //
-//  ReportDetailsToolBarUnsubmittedStrategy.swift
+//  ExpenseDetailsToolBarEditEnabledStrategy.swift
 //  JustLogin_MECS
 //
-//  Created by Samrat on 20/3/17.
+//  Created by Samrat on 24/3/17.
 //  Copyright © 2017 SMRT. All rights reserved.
 //
 
@@ -10,33 +10,33 @@ import Foundation
 import UIKit
 
 /***********************************/
-// MARK: - ReportDetailsToolBarBaseStrategy
+// MARK: - ExpenseDetailsToolBarEditEnabledStrategy
 /***********************************/
-struct ReportDetailsToolBarUnsubmittedStrategy: ReportDetailsToolBarBaseStrategy {
+struct ExpenseDetailsToolBarEditEnabledStrategy: ExpenseDetailsToolBarBaseStrategy {
     
-    func formatToolBar(_ toolBar: UIToolbar, withDelegate delegate: ReportDetailsToolBarActionDelegate) {
+    func formatToolBar(_ toolBar: UIToolbar, withDelegate delegate: ExpenseDetailsToolBarActionDelegate) {
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: nil)
         
-        let btnSubmit = UIBarButtonItem(title: LocalizedString.submit, style: .plain, target: delegate, action: #selector(delegate.barButtonItemTapped(_:)))
-        btnSubmit.tag = ToolBarButtonTag.left.rawValue
-        
         let btnEdit = UIBarButtonItem(title: LocalizedString.edit, style: .plain, target: delegate, action: #selector(delegate.barButtonItemTapped(_:)))
-        btnEdit.tag = ToolBarButtonTag.middle.rawValue
+        btnEdit.tag = ToolBarButtonTag.left.rawValue
+        
+        let btnClone = UIBarButtonItem(title: LocalizedString.clone, style: .plain, target: delegate, action: #selector(delegate.barButtonItemTapped(_:)))
+        btnClone.tag = ToolBarButtonTag.middle.rawValue
         
         let btnMoreOptions = UIBarButtonItem(title: LocalizedString.moreOptions, style: .plain, target: delegate, action: #selector(delegate.barButtonItemTapped(_:)))
         btnMoreOptions.tag = ToolBarButtonTag.right.rawValue
         
-        toolBar.items = [btnSubmit, flexibleSpace, btnEdit, flexibleSpace, btnMoreOptions]
+        toolBar.items = [btnEdit, flexibleSpace, btnClone, flexibleSpace, btnMoreOptions]
     }
     
-    func performActionForBarButtonItem(_ barButton: UIBarButtonItem, forReport report: Report, onController controller: BaseViewController) {
+    func performActionForBarButtonItem(_ barButton: UIBarButtonItem, forExpense expense: Expense, onController controller: BaseViewController) {
         switch(barButton.tag) {
         case ToolBarButtonTag.left.rawValue:
-            navigateToApproversList(forReport: report, onController: controller)
-        case ToolBarButtonTag.middle.rawValue:
             log.debug("Edit tapped")
+        case ToolBarButtonTag.middle.rawValue:
+            log.debug("Clone tapped")
         case ToolBarButtonTag.right.rawValue:
-            displayMoreOptions(forReport: report, onController: controller)
+            displayMoreOptions(forExpense: expense, onController: controller)
         default:
             log.debug("Default")
         }
@@ -45,7 +45,7 @@ struct ReportDetailsToolBarUnsubmittedStrategy: ReportDetailsToolBarBaseStrategy
 /***********************************/
 // MARK: - Helpers
 /***********************************/
-extension ReportDetailsToolBarUnsubmittedStrategy {
+extension ExpenseDetailsToolBarEditEnabledStrategy {
     /**
      * Navigate to the approvers list for selecting the approver for this particular report.
      */
@@ -59,9 +59,9 @@ extension ReportDetailsToolBarUnsubmittedStrategy {
     /**
      * Display the list of options for the user as an action sheet.
      */
-    func displayMoreOptions(forReport report: Report, onController controller: BaseViewController) {
+    func displayMoreOptions(forExpense expense: Expense, onController controller: BaseViewController) {
         let actionSubmit = UIAlertAction(title: LocalizedString.submit, style: .default) { void in
-            self.navigateToApproversList(forReport: report, onController: controller)
+            
         }
         
         let addExpense = UIAlertAction(title: LocalizedString.addExpense, style: .default) { void in

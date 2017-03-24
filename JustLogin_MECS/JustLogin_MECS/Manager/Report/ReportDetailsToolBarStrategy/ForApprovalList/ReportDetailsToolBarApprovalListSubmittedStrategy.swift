@@ -23,24 +23,24 @@ extension ReportDetailsToolBarApprovalListSubmittedStrategy: ReportDetailsToolBa
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: nil)
         
         let btnApprove = UIBarButtonItem(title: LocalizedString.approve, style: .plain, target: delegate, action: #selector(delegate.barButtonItemTapped(_:)))
-        btnApprove.tag = ReportDetailsToolBarButtonTag.left.rawValue
+        btnApprove.tag = ToolBarButtonTag.left.rawValue
         
         let btnReject = UIBarButtonItem(title: LocalizedString.reject, style: .plain, target: delegate, action: #selector(delegate.barButtonItemTapped(_:)))
-        btnReject.tag = ReportDetailsToolBarButtonTag.middle.rawValue
+        btnReject.tag = ToolBarButtonTag.middle.rawValue
         
         let btnViewPDF = UIBarButtonItem(title: LocalizedString.viewPDF, style: .plain, target: delegate, action: #selector(delegate.barButtonItemTapped(_:)))
-        btnViewPDF.tag = ReportDetailsToolBarButtonTag.right.rawValue
+        btnViewPDF.tag = ToolBarButtonTag.right.rawValue
         
         toolBar.items = [btnApprove, flexibleSpace, btnReject, flexibleSpace, btnViewPDF]
     }
     
     func performActionForBarButtonItem(_ barButton: UIBarButtonItem, forReport report: Report, onController controller: BaseViewController) {
         switch(barButton.tag) {
-        case ReportDetailsToolBarButtonTag.left.rawValue:
+        case ToolBarButtonTag.left.rawValue:
             approveReport(report, onController: controller)
-        case ReportDetailsToolBarButtonTag.middle.rawValue:
+        case ToolBarButtonTag.middle.rawValue:
             rejectReport(report, onController: controller)
-        case ReportDetailsToolBarButtonTag.right.rawValue:
+        case ToolBarButtonTag.right.rawValue:
             viewPDF(forReport: report, onController: controller)
         default:
             log.debug("Default")

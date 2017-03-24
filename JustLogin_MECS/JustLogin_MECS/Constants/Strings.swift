@@ -25,6 +25,7 @@ struct LocalizedString {
     static let submit = "Submit"
     static let edit = "Edit"
     static let cancel = "Cancel"
+    static let clone = "Clone"
     static let moreOptions = "More Options"
     
     static let addExpense = "Add Expense"

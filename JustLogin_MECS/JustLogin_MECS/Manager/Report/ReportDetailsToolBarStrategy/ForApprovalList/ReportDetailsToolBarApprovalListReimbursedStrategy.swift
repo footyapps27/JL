@@ -23,19 +23,19 @@ extension ReportDetailsToolBarApprovalListReimbursedStrategy: ReportDetailsToolB
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: nil)
         
         let btnViewPDF = UIBarButtonItem(title: LocalizedString.viewPDF, style: .plain, target: delegate, action: #selector(delegate.barButtonItemTapped(_:)))
-        btnViewPDF.tag = ReportDetailsToolBarButtonTag.left.rawValue
+        btnViewPDF.tag = ToolBarButtonTag.left.rawValue
         
         let btnMoreOptions = UIBarButtonItem(title: LocalizedString.moreOptions, style: .plain, target: delegate, action: #selector(delegate.barButtonItemTapped(_:)))
-        btnMoreOptions.tag = ReportDetailsToolBarButtonTag.right.rawValue
+        btnMoreOptions.tag = ToolBarButtonTag.right.rawValue
         
         toolBar.items = [flexibleSpace, btnViewPDF, flexibleSpace, btnMoreOptions, flexibleSpace]
     }
     
     func performActionForBarButtonItem(_ barButton: UIBarButtonItem, forReport report: Report, onController controller: BaseViewController) {
         switch(barButton.tag) {
-        case ReportDetailsToolBarButtonTag.left.rawValue:
+        case ToolBarButtonTag.left.rawValue:
             viewPDF(forReport: report, onController: controller)
-        case ReportDetailsToolBarButtonTag.right.rawValue:
+        case ToolBarButtonTag.right.rawValue:
             displayMoreOptions(forReport: report, onController: controller)
         default:
             log.debug("Default")

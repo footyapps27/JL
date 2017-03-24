@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class ExpenseDetailsManager {
     
@@ -25,6 +26,23 @@ extension ExpenseDetailsManager {
             return true
         }
         return false
+    }
+    
+    func updateToolBar(_ toolBar: UIToolbar, delegate: ExpenseDetailsToolBarActionDelegate) {
+        let strategy = getToolBarStrategy(forExpenseStatus: ExpenseStatus(rawValue: expense.status)!)
+        strategy.formatToolBar(toolBar, withDelegate: delegate)
+    }
+}
+/***********************************/
+// MARK: - Actions
+/***********************************/
+extension ExpenseDetailsManager {
+    /**
+     * Action for the toolbar items.
+     */
+    func performActionForBarButtonItem(_ barButton: UIBarButtonItem, onController controller: BaseViewController) {
+        let strategy = getToolBarStrategy(forExpenseStatus: ExpenseStatus(rawValue: expense.status)!)
+        strategy.performActionForBarButtonItem(barButton, forExpense: expense, onController: controller)
     }
 }
 /***********************************/
@@ -136,5 +154,24 @@ extension ExpenseDetailsManager {
                 completionHandler(ManagerResponseToController.failure(code: "", message: message)) // TODO: - Pass a general code
             }
         }
+    }
+}
+/***********************************/
+// MARK: - Toolbar Strategy Selector
+/***********************************/
+extension ExpenseDetailsManager {
+    func getToolBarStrategy(forExpenseStatus status: ExpenseStatus) -> ExpenseDetailsToolBarBaseStrategy {
+        var strategy: ExpenseDetailsToolBarBaseStrategy
+        switch(status) {
+        case ExpenseStatus.unreported:fallthrough
+        case ExpenseStatus.unsubmitted:fallthrough
+        case ExpenseStatus.rejected:
+            strategy = ExpenseDetailsToolBarEditEnabledStrategy()
+        case ExpenseStatus.submitted:fallthrough
+        case ExpenseStatus.approved:fallthrough
+        case ExpenseStatus.reimbursed:
+            strategy = ExpenseDetailsToolBarEditDisabledStrategy()
+        }
+        return strategy
     }
 }

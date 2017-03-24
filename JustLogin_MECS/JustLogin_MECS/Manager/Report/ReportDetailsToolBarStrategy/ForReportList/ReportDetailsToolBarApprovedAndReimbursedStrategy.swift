@@ -18,14 +18,14 @@ struct ReportDetailsToolBarApprovedAndReimbursedStrategy: ReportDetailsToolBarBa
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: nil)
         
         let btnViewPDF = UIBarButtonItem(title: LocalizedString.viewPDF, style: .plain, target: delegate, action: #selector(delegate.barButtonItemTapped(_:)))
-        btnViewPDF.tag = ReportDetailsToolBarButtonTag.middle.rawValue
+        btnViewPDF.tag = ToolBarButtonTag.middle.rawValue
         
         toolBar.items = [flexibleSpace, btnViewPDF, flexibleSpace]
     }
     
     func performActionForBarButtonItem(_ barButton: UIBarButtonItem, forReport report: Report, onController controller: BaseViewController) {
         switch(barButton.tag) {
-        case ReportDetailsToolBarButtonTag.middle.rawValue:
+        case ToolBarButtonTag.middle.rawValue:
             viewAsPDF(forReport: report, onController: controller)
         default:
             log.debug("Default")
