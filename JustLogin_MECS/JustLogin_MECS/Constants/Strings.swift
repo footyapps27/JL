@@ -40,4 +40,6 @@ struct LocalizedString {
     static let undoReimbursement = "Undo Reimbursement"
     
     static let confirm = "Confirm"
+    
+    static let include = "include"
 }

@@ -29,6 +29,7 @@ struct Constants {
         static let reviewSelectCategory = "Select a Category"
         static let reviewSelectCurrency = "Select a Currency"
         static let reviewSelectReport = "Select a Report"
+        static let reviewSelectExpenses = "Select Expenses"
         static let addExpense = "Add Expense"
         
         static let settings = "Settings"

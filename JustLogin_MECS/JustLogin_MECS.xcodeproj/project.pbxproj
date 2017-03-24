@@ -76,6 +76,8 @@
 		8CB44AD21E5AC642005CC04D /* ExpenseListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB44AD11E5AC642005CC04D /* ExpenseListManager.swift */; };
 		8CB44AD41E5B0380005CC04D /* ReportListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB44AD31E5B0380005CC04D /* ReportListManager.swift */; };
 		8CB44AD61E5B1163005CC04D /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB44AD51E5B1163005CC04D /* Utilities.swift */; };
+		8CC68F1A1E84E6C7002F9DCD /* ReviewSelectExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC68F191E84E6C7002F9DCD /* ReviewSelectExpenseViewController.swift */; };
+		8CC68F1C1E84ED6C002F9DCD /* ReviewSelectExpenseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC68F1B1E84ED6C002F9DCD /* ReviewSelectExpenseManager.swift */; };
 		8CD333191E23BC7D00557B6F /* ExpenseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD333181E23BC7D00557B6F /* ExpenseListViewController.swift */; };
 		8CD3331D1E23C48000557B6F /* SettingsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD3331C1E23C48000557B6F /* SettingsListViewController.swift */; };
 		8CD333211E23C4E500557B6F /* BaseViewControllerWithTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD333201E23C4E500557B6F /* BaseViewControllerWithTableView.swift */; };
@@ -229,6 +231,8 @@
 		8CB44AD11E5AC642005CC04D /* ExpenseListManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseListManager.swift; sourceTree = "<group>"; };
 		8CB44AD31E5B0380005CC04D /* ReportListManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportListManager.swift; sourceTree = "<group>"; };
 		8CB44AD51E5B1163005CC04D /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		8CC68F191E84E6C7002F9DCD /* ReviewSelectExpenseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewSelectExpenseViewController.swift; sourceTree = "<group>"; };
+		8CC68F1B1E84ED6C002F9DCD /* ReviewSelectExpenseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewSelectExpenseManager.swift; sourceTree = "<group>"; };
 		8CD333181E23BC7D00557B6F /* ExpenseListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseListViewController.swift; sourceTree = "<group>"; };
 		8CD3331C1E23C48000557B6F /* SettingsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsListViewController.swift; sourceTree = "<group>"; };
 		8CD333201E23C4E500557B6F /* BaseViewControllerWithTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewControllerWithTableView.swift; sourceTree = "<group>"; };
@@ -603,6 +607,7 @@
 				8CD333181E23BC7D00557B6F /* ExpenseListViewController.swift */,
 				8C8995D41E60821200482317 /* AddExpenseViewController.swift */,
 				8C8995D61E60822B00482317 /* ExpenseDetailsViewController.swift */,
+				8CC68F191E84E6C7002F9DCD /* ReviewSelectExpenseViewController.swift */,
 			);
 			path = Expense;
 			sourceTree = "<group>";
@@ -800,6 +805,7 @@
 				8CB44AD11E5AC642005CC04D /* ExpenseListManager.swift */,
 				8C8995D81E60836C00482317 /* AddExpenseManager.swift */,
 				8C8995DA1E60839400482317 /* ExpenseDetailsManager.swift */,
+				8CC68F1B1E84ED6C002F9DCD /* ReviewSelectExpenseManager.swift */,
 			);
 			path = Expense;
 			sourceTree = "<group>";
@@ -1215,6 +1221,7 @@
 				8C9602101E1FDB7F00EE66A3 /* SignUpViewController.swift in Sources */,
 				8C9602141E1FDB9900EE66A3 /* HomeViewController.swift in Sources */,
 				8C42DFDD1E6436C900A3B69A /* ExpenseAndReportField.swift in Sources */,
+				8CC68F1A1E84E6C7002F9DCD /* ReviewSelectExpenseViewController.swift in Sources */,
 				8C37681E1E7F887200E82044 /* ReportDetailsAuditHistoryStrategy.swift in Sources */,
 				8C1766521E7A7B3A00D1CDE0 /* UIColor.swift in Sources */,
 				8C0A01D11E77C38100A96867 /* Double.swift in Sources */,
@@ -1256,6 +1263,7 @@
 				8CE4687F1E822B8600535A70 /* CustomFieldTableViewCellDate.swift in Sources */,
 				8CE4688F1E83A6E600535A70 /* CustomFieldTableViewCellWithImageSelection.swift in Sources */,
 				8C0A01E21E78E4E700A96867 /* ApproversListTableViewCell.swift in Sources */,
+				8CC68F1C1E84ED6C002F9DCD /* ReviewSelectExpenseManager.swift in Sources */,
 				8C51413F1E1F5FDB003AD3B1 /* BaseCustomTableViewCell.swift in Sources */,
 				8CF2FBD51E71A26D001C008E /* ExpenseAuditHistory.swift in Sources */,
 				8C5141371E1F5F53003AD3B1 /* BaseViewController.swift in Sources */,
