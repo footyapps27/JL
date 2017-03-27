@@ -21,7 +21,7 @@ class RecordReimbursementManager {
     
     var approvalService: IApprovalService = ApprovalService()
     
-    var fields: [[ExpenseAndReportField]] = []
+    var fields: [[CustomField]] = []
     
     var lastSelectedNavigationIndex: IndexPath?
     
@@ -51,7 +51,7 @@ extension RecordReimbursementManager {
     /**
      * Method to get all the expenses that need to be displayed.
      */
-    func getFields() -> [[ExpenseAndReportField]] {
+    func getFields() -> [[CustomField]] {
         return fields
     }
     
@@ -69,15 +69,15 @@ extension RecordReimbursementManager {
     func getTableViewCellIdentifier(forIndexPath indexPath: IndexPath) -> String {
         let expenseField = (fields[indexPath.section])[indexPath.row]
         switch expenseField.fieldType {
-        case ExpenseAndReportFieldType.label.rawValue:
+        case CustomFieldType.label.rawValue:
             return Constants.CellIdentifiers.customFieldTableViewCellWithLabelIdentifier
-        case ExpenseAndReportFieldType.date.rawValue:
+        case CustomFieldType.date.rawValue:
             return Constants.CellIdentifiers.customFieldTableViewCellDateIdentifier
-        case ExpenseAndReportFieldType.text.rawValue:
+        case CustomFieldType.text.rawValue:
             return Constants.CellIdentifiers.customFieldTableViewCellWithTextFieldIdentifier
-        case ExpenseAndReportFieldType.textView.rawValue:
+        case CustomFieldType.textView.rawValue:
             return Constants.CellIdentifiers.customFieldTableViewCellWithTextViewIdentifier
-        case ExpenseAndReportFieldType.dropdown.rawValue:
+        case CustomFieldType.dropdown.rawValue:
             return Constants.CellIdentifiers.customFieldTableViewCellWithMultipleSelectionIdentifier
         default:
             return Constants.CellIdentifiers.customFieldTableViewCellWithTextFieldIdentifier
@@ -132,9 +132,9 @@ extension RecordReimbursementManager {
         let field = getFields()[indexPath.section][indexPath.row]
         
         // The below checks are done on the field TYPE.
-        if field.fieldType == ExpenseAndReportFieldType.category.rawValue ||
-            field.fieldType == ExpenseAndReportFieldType.currencyAndAmount.rawValue ||
-            field.fieldType == ExpenseAndReportFieldType.dropdown.rawValue {
+        if field.fieldType == CustomFieldType.category.rawValue ||
+            field.fieldType == CustomFieldType.currencyAndAmount.rawValue ||
+            field.fieldType == CustomFieldType.dropdown.rawValue {
             return true
         }
         
@@ -152,11 +152,11 @@ extension RecordReimbursementManager {
         // This will be used when setting the selected value.
         lastSelectedNavigationIndex = indexPath
         
-        if field.fieldType == ExpenseAndReportFieldType.category.rawValue {
+        if field.fieldType == CustomFieldType.category.rawValue {
             return UIViewController()
         }
         
-        if field.fieldType == ExpenseAndReportFieldType.currencyAndAmount.rawValue {
+        if field.fieldType == CustomFieldType.currencyAndAmount.rawValue {
         }
         
         if field.jsonParameter == Constants.RequestParameters.Expense.reportId {
@@ -196,45 +196,45 @@ extension RecordReimbursementManager {
     
     func updateFields() {
         // Mandatory fields
-        var amount = ExpenseAndReportField()
+        var amount = CustomField()
         amount.name = "Amount"
-        amount.fieldType = ExpenseAndReportFieldType.label.rawValue
+        amount.fieldType = CustomFieldType.label.rawValue
         amount.isMandatory = true
         amount.isEnabled = true
         
-        var paidTo = ExpenseAndReportField()
+        var paidTo = CustomField()
         paidTo.name = "Paid To"
-        paidTo.fieldType = ExpenseAndReportFieldType.label.rawValue
+        paidTo.fieldType = CustomFieldType.label.rawValue
         paidTo.isMandatory = true
         paidTo.isEnabled = true
         
         fields.append([amount, paidTo])
         
-        var date = ExpenseAndReportField()
+        var date = CustomField()
         date.name = "Reimbursed Date"
         date.jsonParameter = "reimburseOn"
-        date.fieldType = ExpenseAndReportFieldType.date.rawValue
+        date.fieldType = CustomFieldType.date.rawValue
         date.isMandatory = true
         date.isEnabled = true
         
-        var paidThrough = ExpenseAndReportField()
+        var paidThrough = CustomField()
         paidThrough.name = "Paid Through"
-        paidThrough.fieldType = ExpenseAndReportFieldType.dropdown.rawValue
+        paidThrough.fieldType = CustomFieldType.dropdown.rawValue
         paidThrough.jsonParameter = "paidThrough"
         paidThrough.dropdownValues = ["Petty Cash", "Undeposited Funds"]
         paidThrough.isMandatory = false
         paidThrough.isEnabled = true
         
-        var notes = ExpenseAndReportField()
+        var notes = CustomField()
         notes.name = "Notes"
-        notes.fieldType = ExpenseAndReportFieldType.textView.rawValue
+        notes.fieldType = CustomFieldType.textView.rawValue
         notes.jsonParameter = "notes"
         notes.isMandatory = false
         notes.isEnabled = true
         
-        var referenceNumber = ExpenseAndReportField()
+        var referenceNumber = CustomField()
         referenceNumber.name = "Reference #"
-        referenceNumber.fieldType = ExpenseAndReportFieldType.text.rawValue
+        referenceNumber.fieldType = CustomFieldType.text.rawValue
         referenceNumber.jsonParameter = "referenceNumber"
         referenceNumber.isMandatory = false
         referenceNumber.isEnabled = true
@@ -261,11 +261,11 @@ extension RecordReimbursementManager {
         
         for index in fields[0].indices {
             if fields[0][index].name == "Amount" {
-                fields[0][index].value = Utilities.getFormattedAmount(forReport: report)
+                fields[0][index].values[Constants.CustomFieldKeys.value] = Utilities.getFormattedAmount(forReport: report)
             }
             
             if fields[0][index].name == "Paid To" {
-                fields[0][index].value = report.submitter.name
+                fields[0][index].values[Constants.CustomFieldKeys.value] = report.submitter.name
             }
         }
     }

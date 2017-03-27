@@ -54,7 +54,7 @@ extension HomeViewController {
      * This will add a navigation controller before presenting the add expense controller
      */
     func navigateToAddExpense() {
-        let addExpenseViewController = UIStoryboard(name: Constants.StoryboardIds.expenseStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.addExpenseViewController) as! AddExpenseViewController
+        let addExpenseViewController = UIStoryboard(name: Constants.StoryboardIds.expenseStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.Expense.addExpenseViewController) as! AddExpenseViewController
         addExpenseViewController.delegate = self
         let navigationController = UINavigationController.init(rootViewController: addExpenseViewController)
         self.present(navigationController, animated: true, completion: nil)
@@ -65,7 +65,7 @@ extension HomeViewController {
      * This will add a navigation controller before presenting the add report controller
      */
     func navigateToAddReport() {
-        let addReportViewController = UIStoryboard(name: Constants.StoryboardIds.reportStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.addReportViewController) as! AddReportViewController
+        let addReportViewController = UIStoryboard(name: Constants.StoryboardIds.reportStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.Report.addReportViewController) as! AddReportViewController
         addReportViewController.delegate = self
         let navigationController = UINavigationController.init(rootViewController: addReportViewController)
         self.present(navigationController, animated: true, completion: nil)

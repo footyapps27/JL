@@ -49,7 +49,7 @@ extension ApprovalListViewController {
     }
     
     func navigateToReportDetails(forReport report: Report) {
-        let reportDetailsViewController = UIStoryboard(name: Constants.StoryboardIds.reportStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.reportDetailsViewController) as! ReportDetailsViewController
+        let reportDetailsViewController = UIStoryboard(name: Constants.StoryboardIds.reportStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.Report.reportDetailsViewController) as! ReportDetailsViewController
         reportDetailsViewController.caller = ReportDetailsCaller.approvalList
         reportDetailsViewController.report = report
         Utilities.pushControllerAndHideTabbarForChildOnly(fromController: self, toController: reportDetailsViewController)

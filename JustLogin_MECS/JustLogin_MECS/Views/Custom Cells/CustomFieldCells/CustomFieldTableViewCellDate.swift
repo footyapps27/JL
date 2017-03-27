@@ -20,13 +20,13 @@ class CustomFieldTableViewCellDate: CustomFieldBaseTableViewCell {
     /***********************************/
     // MARK: - Parent method override
     /***********************************/
-    override func updateView(withField field: ExpenseAndReportField) {
+    override func updateView(withField field: CustomField) {
         lblDate.text = field.name
-        txtDate.tag = ExpenseAndReportFieldType.date.rawValue
+        txtDate.tag = CustomFieldType.date.rawValue
     }
     
-    override func validateInput(withField field: ExpenseAndReportField) -> (success: Bool, errorMessage: String) {
-        if txtDate.text!.isEmpty {
+    override func validateInput(withField field: CustomField) -> (success: Bool, errorMessage: String) {
+        if txtDate.text!.isEmpty && field.isMandatory {
             return (false, "Please make sure 'Date' has been entered.")
         }
         return(true, Constants.General.emptyString)
@@ -36,7 +36,7 @@ class CustomFieldTableViewCellDate: CustomFieldBaseTableViewCell {
         txtDate.becomeFirstResponder()
     }
     
-    override func getPayload(withField field: ExpenseAndReportField) -> [String : Any] {
+    override func getPayload(withField field: CustomField) -> [String : Any] {
         return [
             field.jsonParameter : getFormattedDateFromText(txtDate.text!)
         ]

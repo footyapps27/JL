@@ -91,7 +91,7 @@ extension ReportDetailsToolBarApprovalListApprovedStrategy {
 /***********************************/
 extension ReportDetailsToolBarApprovalListApprovedStrategy {
     func navigateToRecordReimburseReport(_ report: Report, controller: BaseViewController) {
-        let recordReimburseViewController = UIStoryboard(name: Constants.StoryboardIds.approvalStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.recordReimbursementViewController) as! RecordReimbursementViewController
+        let recordReimburseViewController = UIStoryboard(name: Constants.StoryboardIds.approvalStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.Approval.recordReimbursementViewController) as! RecordReimbursementViewController
         recordReimburseViewController.delegate = controller as? RecordReimbursementDelegate
         recordReimburseViewController.report = report
         Utilities.pushControllerAndHideTabbarForChildAndParent(fromController: controller, toController: recordReimburseViewController)

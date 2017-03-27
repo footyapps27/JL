@@ -20,11 +20,12 @@ class CustomFieldTableViewCellWithTextView: CustomFieldBaseTableViewCell {
     /***********************************/
     // MARK: - Parent method override
     /***********************************/
-    override func updateView(withField field: ExpenseAndReportField) {
+    override func updateView(withField field: CustomField) {
         lblFieldName.text = field.name
+        txtView.text = field.values[Constants.CustomFieldKeys.value]
     }
     
-    override func validateInput(withField field: ExpenseAndReportField) -> (success: Bool, errorMessage: String) {
+    override func validateInput(withField field: CustomField) -> (success: Bool, errorMessage: String) {
         if field.isMandatory && txtView.text!.isEmpty {
             return (false, "Please make sure '\(field.name)' has been entered.")
         }
@@ -35,7 +36,7 @@ class CustomFieldTableViewCellWithTextView: CustomFieldBaseTableViewCell {
         txtView.becomeFirstResponder()
     }
     
-    override func getPayload(withField field: ExpenseAndReportField) -> [String : Any] {
+    override func getPayload(withField field: CustomField) -> [String : Any] {
         return [
             field.jsonParameter : txtView.text!
         ]

@@ -34,7 +34,7 @@ struct ReportDetailsToolBarUnsubmittedStrategy: ReportDetailsToolBarBaseStrategy
         case ToolBarButtonTag.left.rawValue:
             navigateToApproversList(forReport: report, onController: controller)
         case ToolBarButtonTag.middle.rawValue:
-            log.debug("Edit tapped")
+            navigateToEditReport(forReport: report, onController: controller)
         case ToolBarButtonTag.right.rawValue:
             displayMoreOptions(forReport: report, onController: controller)
         default:
@@ -50,7 +50,7 @@ extension ReportDetailsToolBarUnsubmittedStrategy {
      * Navigate to the approvers list for selecting the approver for this particular report.
      */
     func navigateToApproversList(forReport report: Report, onController controller: BaseViewController) {
-        let approversListViewController = UIStoryboard(name: Constants.StoryboardIds.reportStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.approversListViewController) as! ApproversListViewController
+        let approversListViewController = UIStoryboard(name: Constants.StoryboardIds.reportStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.Approval.approversListViewController) as! ApproversListViewController
         approversListViewController.report = report
         approversListViewController.delegate = controller as? ApproversListDelegate
         Utilities.pushControllerAndHideTabbarForChildAndParent(fromController: controller, toController: approversListViewController)
@@ -79,7 +79,9 @@ extension ReportDetailsToolBarUnsubmittedStrategy {
      * Start the edit report flow.
      */
     func navigateToEditReport(forReport report: Report, onController controller: BaseViewController) {
-        
+        let editReportViewController = UIStoryboard(name: Constants.StoryboardIds.reportStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.Report.editReportViewController) as! EditReportViewController
+        editReportViewController.report = report
+        Utilities.pushControllerAndHideTabbarForChildAndParent(fromController: controller, toController: editReportViewController)
     }
 }
 /***********************************/
@@ -91,7 +93,7 @@ extension ReportDetailsToolBarUnsubmittedStrategy {
      */
     func navigateToAddExpenseController(fromController controller: BaseViewController) {
         // TODO - Make the add expense customised here.
-        let addExpenseViewController = UIStoryboard(name: Constants.StoryboardIds.expenseStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.addExpenseViewController) as! AddExpenseViewController
+        let addExpenseViewController = UIStoryboard(name: Constants.StoryboardIds.expenseStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.Expense.addExpenseViewController) as! AddExpenseViewController
         let navigationController = UINavigationController.init(rootViewController: addExpenseViewController)
         controller.present(navigationController, animated: true, completion: nil)
     }
@@ -99,8 +101,7 @@ extension ReportDetailsToolBarUnsubmittedStrategy {
      * Method to navigate to the ReviewSelectExpenseController.
      */
     func navigateToReviewSelectExpenseController(forReport report: Report, fromController controller: BaseViewController) {
-        // TODO - Make the add expense customised here.
-        let reviewSelectExpenseViewController = UIStoryboard(name: Constants.StoryboardIds.expenseStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.reviewSelectExpenseViewController) as! ReviewSelectExpenseViewController
+        let reviewSelectExpenseViewController = UIStoryboard(name: Constants.StoryboardIds.expenseStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.Expense.reviewSelectExpenseViewController) as! ReviewSelectExpenseViewController
         reviewSelectExpenseViewController.report = report
         reviewSelectExpenseViewController.delegate = controller as? ReviewSelectExpenseDelegate
         let navigationController = UINavigationController.init(rootViewController: reviewSelectExpenseViewController)

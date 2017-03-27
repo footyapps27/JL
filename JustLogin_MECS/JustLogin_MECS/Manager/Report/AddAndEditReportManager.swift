@@ -9,9 +9,15 @@
 import Foundation
 import UIKit
 
-class AddReportManager {
+class AddAndEditReportManager {
     
-    var fields: [ExpenseAndReportField] = []
+    var report: Report? {
+        didSet {
+            updateFieldValues(forReport: report!)
+        }
+    }
+    
+    var fields: [CustomField] = []
     
     var reportService = ReportService()
     
@@ -24,14 +30,14 @@ class AddReportManager {
 /***********************************/
 // MARK: - Data tracking methods
 /***********************************/
-extension AddReportManager {
+extension AddAndEditReportManager {
     /**
      * Populate the cells from the table view.
      */
-    func populateCells(fromController controller: AddReportViewController) {
+    func populateCells(fromController controller: BaseViewControllerWithTableView, dataSource: UITableViewDataSource) {
             for row in 0..<fields.count {
                 let indexPath = IndexPath(row: row, section: 0)
-                let cell = controller.tableView(controller.tableView, cellForRowAt: indexPath) as! CustomFieldBaseTableViewCell
+                let cell = dataSource.tableView(controller.tableView, cellForRowAt: indexPath) as! CustomFieldBaseTableViewCell
                 dictCells[indexPath] = cell
             }
     }
@@ -39,7 +45,7 @@ extension AddReportManager {
     /**
      * Method to get all the expenses that need to be displayed.
      */
-    func getReportFields() -> [ExpenseAndReportField] {
+    func getReportFields() -> [CustomField] {
         return fields
     }
     
@@ -53,13 +59,13 @@ extension AddReportManager {
     func getTableViewCellIdentifier(forIndexPath indexPath: IndexPath) -> String {
         let reportField = fields[indexPath.row]
         switch reportField.fieldType {
-        case ExpenseAndReportFieldType.text.rawValue:
+        case CustomFieldType.text.rawValue:
             return Constants.CellIdentifiers.customFieldTableViewCellWithTextFieldIdentifier
-        case ExpenseAndReportFieldType.doubleTextField.rawValue:
+        case CustomFieldType.doubleTextField.rawValue:
             return Constants.CellIdentifiers.customFieldTableViewCellDurationIdentifier
-        case ExpenseAndReportFieldType.textView.rawValue:
+        case CustomFieldType.textView.rawValue:
             return Constants.CellIdentifiers.customFieldTableViewCellWithTextViewIdentifier
-        case ExpenseAndReportFieldType.dropdown.rawValue:
+        case CustomFieldType.dropdown.rawValue:
             return Constants.CellIdentifiers.customFieldTableViewCellWithMultipleSelectionIdentifier
         default:
             return Constants.CellIdentifiers.customFieldTableViewCellWithTextFieldIdentifier
@@ -79,7 +85,7 @@ extension AddReportManager {
 /***********************************/
 // MARK: - UI updating
 /***********************************/
-extension AddReportManager {
+extension AddAndEditReportManager {
     
     func formatCell(_ cell: CustomFieldBaseTableViewCell, forIndexPath indexPath: IndexPath) {
         let reportField = fields[indexPath.row]
@@ -90,13 +96,9 @@ extension AddReportManager {
 /***********************************/
 // MARK: - Actions
 /***********************************/
-extension AddReportManager {
+extension AddAndEditReportManager {
     func performActionForSelectedCell(_ cell: CustomFieldBaseTableViewCell, forIndexPath indexPath: IndexPath) {
-        let reportField = getReportFields()[indexPath.row]
-        if reportField.fieldType == ExpenseAndReportFieldType.text.rawValue ||
-            reportField.fieldType == ExpenseAndReportFieldType.textView.rawValue {
-            cell.makeFirstResponder()
-        }
+        cell.makeFirstResponder()
     }
     
     func validateInputs() -> (success: Bool, errorMessage: String) {
@@ -112,7 +114,7 @@ extension AddReportManager {
 /***********************************/
 // MARK: - Services
 /***********************************/
-extension AddReportManager {
+extension AddAndEditReportManager {
     /**
      * Method to get all the expenses that need to be displayed.
      */
@@ -130,22 +132,76 @@ extension AddReportManager {
             }
         }
     }
+    
+    func updateReportWithInputsFromTableView( tableView: UITableView, completionHandler: (@escaping (ManagerResponseToController<Void>) -> Void)) {
+        
+        // For edit, the manager needs to add the 'id' of the report that is being edited.
+        var payload = getPayload()
+        payload[Constants.RequestParameters.Report.reportId] = report!.id
+        
+        reportService.update(payload: payload) { (result) in
+            switch(result) {
+            case .success(_):
+                completionHandler(ManagerResponseToController.success())
+            case .error(let serviceError):
+                completionHandler(ManagerResponseToController.failure(code: serviceError.code, message: serviceError.message))
+            case .failure(let message):
+                completionHandler(ManagerResponseToController.failure(code: "", message: message))
+            }
+        }
+    }
+}
+/***********************************/
+// MARK: - Helpers
+/***********************************/
+extension AddAndEditReportManager {
+    /**
+     * This method will update the field value that is present in the existing report.
+     * The value will be then passed to the cells, which will use them to update its view.
+     */
+    func updateFieldValues(forReport report: Report) {
+        for index in fields.indices {
+            
+            // Title
+            if fields[index].jsonParameter == Constants.RequestParameters.Report.title {
+                fields[index].values[Constants.CustomFieldKeys.value] = report.title
+                continue
+            }
+            
+            // Duration
+            if fields[index].name == "Duration" {
+                if let startDate = report.startDate {
+                    fields[index].values[Constants.CustomFieldKeys.startDateValue] = Utilities.convertDateToStringForDisplay(startDate)
+                }
+                if let endDate = report.endDate {
+                    fields[index].values[Constants.CustomFieldKeys.endDateValue] = Utilities.convertDateToStringForDisplay(endDate)
+                }
+                continue
+            }
+            
+            // Business Purpose
+            if fields[index].jsonParameter == Constants.RequestParameters.Report.businessPurpose {
+                fields[index].values[Constants.CustomFieldKeys.value] = report.businessPurpose
+                continue
+            }
+        }
+    }
 }
 /***********************************/
 // MARK: - Data manipulation
 /***********************************/
-extension AddReportManager {
+extension AddAndEditReportManager {
     func updateFields() {
-        var title = ExpenseAndReportField()
+        var title = CustomField()
         title.name = "Report Title"
         title.jsonParameter = Constants.RequestParameters.Report.title
-        title.fieldType = ExpenseAndReportFieldType.text.rawValue
+        title.fieldType = CustomFieldType.text.rawValue
         title.isMandatory = true
         title.isEnabled = true
         
-        var duration = ExpenseAndReportField()
+        var duration = CustomField()
         duration.name = "Duration"
-        duration.fieldType = ExpenseAndReportFieldType.doubleTextField.rawValue
+        duration.fieldType = CustomFieldType.doubleTextField.rawValue
         duration.isMandatory = true
         duration.isEnabled = true
         
@@ -163,7 +219,7 @@ extension AddReportManager {
         // Add the duration in between
         fields.append(duration)
         
-        if let businessPurposeField = Singleton.sharedInstance.organization?.reportFields["businessPurpose"], businessPurposeField.isEnabled {
+        if let businessPurposeField = Singleton.sharedInstance.organization?.reportFields[Constants.RequestParameters.Report.businessPurpose], businessPurposeField.isEnabled {
                 fields.append(businessPurposeField)
         }
         

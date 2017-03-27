@@ -11,7 +11,7 @@ import UIKit
 
 class AddExpenseManager {
     
-    var fields: [[ExpenseAndReportField]] = []
+    var fields: [[CustomField]] = []
     
     var expenseService: IExpenseService = ExpenseService()
     
@@ -50,7 +50,7 @@ extension AddExpenseManager {
     /**
      * Method to get all the expenses that need to be displayed.
      */
-    func getExpenseFields() -> [[ExpenseAndReportField]] {
+    func getExpenseFields() -> [[CustomField]] {
         return fields
     }
     
@@ -61,19 +61,19 @@ extension AddExpenseManager {
     func getTableViewCellIdentifier(forIndexPath indexPath: IndexPath) -> String {
         let expenseField = (fields[indexPath.section])[indexPath.row]
         switch expenseField.fieldType {
-        case ExpenseAndReportFieldType.category.rawValue:
+        case CustomFieldType.category.rawValue:
             return Constants.CellIdentifiers.customFieldTableViewCellCategoryIdentifier
-        case ExpenseAndReportFieldType.date.rawValue:
+        case CustomFieldType.date.rawValue:
             return Constants.CellIdentifiers.customFieldTableViewCellDateIdentifier
-        case ExpenseAndReportFieldType.currencyAndAmount.rawValue:
+        case CustomFieldType.currencyAndAmount.rawValue:
             return Constants.CellIdentifiers.customFieldTableViewCellCurrencyAndAmountIdentifier
-        case ExpenseAndReportFieldType.text.rawValue:
+        case CustomFieldType.text.rawValue:
             return Constants.CellIdentifiers.customFieldTableViewCellWithTextFieldIdentifier
-        case ExpenseAndReportFieldType.textView.rawValue:
+        case CustomFieldType.textView.rawValue:
             return Constants.CellIdentifiers.customFieldTableViewCellWithTextViewIdentifier
-        case ExpenseAndReportFieldType.imageSelection.rawValue:
+        case CustomFieldType.imageSelection.rawValue:
             return Constants.CellIdentifiers.customFieldTableViewCellWithImageSelectionIdentifier
-        case ExpenseAndReportFieldType.dropdown.rawValue:
+        case CustomFieldType.dropdown.rawValue:
             return Constants.CellIdentifiers.customFieldTableViewCellWithMultipleSelectionIdentifier
         default:
             return Constants.CellIdentifiers.customFieldTableViewCellWithTextFieldIdentifier
@@ -125,9 +125,9 @@ extension AddExpenseManager {
         let expenseField = getExpenseFields()[indexPath.section][indexPath.row]
         
         // The below checks are done on the field TYPE.
-        if expenseField.fieldType == ExpenseAndReportFieldType.category.rawValue ||
-            expenseField.fieldType == ExpenseAndReportFieldType.currencyAndAmount.rawValue ||
-            expenseField.fieldType == ExpenseAndReportFieldType.dropdown.rawValue {
+        if expenseField.fieldType == CustomFieldType.category.rawValue ||
+            expenseField.fieldType == CustomFieldType.currencyAndAmount.rawValue ||
+            expenseField.fieldType == CustomFieldType.dropdown.rawValue {
             return true
         }
         
@@ -145,11 +145,11 @@ extension AddExpenseManager {
         // This will be used when setting the selected value.
         lastSelectedNavigationIndex = indexPath
         
-        if expenseField.fieldType == ExpenseAndReportFieldType.category.rawValue {
+        if expenseField.fieldType == CustomFieldType.category.rawValue {
             return getReviewSelectCategoryController(forIndexPath: indexPath, withDelegate: delegate)
         }
         
-        if expenseField.fieldType == ExpenseAndReportFieldType.currencyAndAmount.rawValue {
+        if expenseField.fieldType == CustomFieldType.currencyAndAmount.rawValue {
             return getReviewSelectCurrencyController(forIndexPath: indexPath, withDelegate: delegate)
         }
         
@@ -188,9 +188,9 @@ extension AddExpenseManager {
     
     // TODO - This method needs to check if the exchange rate is already present, then dont add it.
     func addExchangeRateField() {
-        var exchangeRate = ExpenseAndReportField()
+        var exchangeRate = CustomField()
         exchangeRate.name = "Exchange Rate"
-        exchangeRate.fieldType = ExpenseAndReportFieldType.text.rawValue
+        exchangeRate.fieldType = CustomFieldType.text.rawValue
         exchangeRate.jsonParameter = Constants.RequestParameters.Expense.exchange
         exchangeRate.isMandatory = true
         exchangeRate.isEnabled = true
@@ -214,22 +214,22 @@ extension AddExpenseManager {
     
     func updateFields() {
         // Mandatory fields
-        var category = ExpenseAndReportField()
+        var category = CustomField()
         category.name = "Category"
-        category.fieldType = ExpenseAndReportFieldType.category.rawValue
+        category.fieldType = CustomFieldType.category.rawValue
         category.isMandatory = true
         category.isEnabled = true
         
-        var date = ExpenseAndReportField()
+        var date = CustomField()
         date.name = "Date"
         date.jsonParameter = Constants.RequestParameters.Expense.date
-        date.fieldType = ExpenseAndReportFieldType.date.rawValue
+        date.fieldType = CustomFieldType.date.rawValue
         date.isMandatory = true
         date.isEnabled = true
         
         // By default choose the base currency id
-        var currencyAndAmount = ExpenseAndReportField()
-        currencyAndAmount.fieldType = ExpenseAndReportFieldType.currencyAndAmount.rawValue
+        var currencyAndAmount = CustomField()
+        currencyAndAmount.fieldType = CustomFieldType.currencyAndAmount.rawValue
         currencyAndAmount.isMandatory = true
         currencyAndAmount.isEnabled = true
         
@@ -240,7 +240,7 @@ extension AddExpenseManager {
             fields.append([paymentModeField])
         }
         
-        var sectionThree: [ExpenseAndReportField] = []
+        var sectionThree: [CustomField] = []
         if let merchantNameField = Singleton.sharedInstance.organization?.expenseFields["merchant"], merchantNameField.isEnabled {
             sectionThree.append(merchantNameField)
         }
@@ -260,7 +260,7 @@ extension AddExpenseManager {
         fields.append(sectionThree)
         
         // Section 4
-        var sectionFour: [ExpenseAndReportField] = []
+        var sectionFour: [CustomField] = []
         if let isBillableField = Singleton.sharedInstance.organization?.expenseFields["isBillable"], isBillableField.isEnabled {
             sectionFour.append(isBillableField)
         }
@@ -273,10 +273,10 @@ extension AddExpenseManager {
             sectionFour.append(projectField)
         }
         
-        var addToReport = ExpenseAndReportField()
+        var addToReport = CustomField()
         addToReport.name = "Add to Report"
         addToReport.jsonParameter = Constants.RequestParameters.Expense.reportId
-        addToReport.fieldType = ExpenseAndReportFieldType.dropdown.rawValue
+        addToReport.fieldType = CustomFieldType.dropdown.rawValue
         addToReport.isMandatory = false
         addToReport.isEnabled = true
         
@@ -288,8 +288,8 @@ extension AddExpenseManager {
         // TODO - Add the custom fields
         
         // Finally add the image block
-        var attachImage = ExpenseAndReportField()
-        attachImage.fieldType = ExpenseAndReportFieldType.imageSelection.rawValue
+        var attachImage = CustomField()
+        attachImage.fieldType = CustomFieldType.imageSelection.rawValue
         attachImage.isMandatory = true
         attachImage.isEnabled = true
         
@@ -302,7 +302,7 @@ extension AddExpenseManager {
 extension AddExpenseManager {
     
     func getReviewSelectCategoryController(forIndexPath indexPath: IndexPath, withDelegate delegate: AddExpenseViewController) -> ReviewSelectCategoryViewController {
-        let controller = UIStoryboard(name: Constants.StoryboardIds.categoryStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.reviewSelectCategoryViewController) as! ReviewSelectCategoryViewController
+        let controller = UIStoryboard(name: Constants.StoryboardIds.categoryStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.Category.reviewSelectCategoryViewController) as! ReviewSelectCategoryViewController
         controller.delegate = delegate
         
         // Now check if it already has a preSelected value
@@ -320,7 +320,7 @@ extension AddExpenseManager {
     }
     
     func getReviewSelectCurrencyController(forIndexPath indexPath: IndexPath, withDelegate delegate: AddExpenseViewController) -> ReviewSelectCurrencyViewController {
-        let controller = UIStoryboard(name: Constants.StoryboardIds.currencyStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.reviewSelectCurrencyViewController) as! ReviewSelectCurrencyViewController
+        let controller = UIStoryboard(name: Constants.StoryboardIds.currencyStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.Currency.reviewSelectCurrencyViewController) as! ReviewSelectCurrencyViewController
         controller.delegate = delegate
         
         // Now check if it already has a preSelected value
@@ -337,7 +337,7 @@ extension AddExpenseManager {
     }
     
     func getReviewSelectReportController(forIndexPath indexPath: IndexPath, withDelegate delegate: AddExpenseViewController) -> ReviewSelectReportViewController {
-        let controller = UIStoryboard(name: Constants.StoryboardIds.reportStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.reviewSelectReportViewController) as! ReviewSelectReportViewController
+        let controller = UIStoryboard(name: Constants.StoryboardIds.reportStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.Report.reviewSelectReportViewController) as! ReviewSelectReportViewController
         controller.delegate = delegate
         
         // Now check if it already has a preSelected value

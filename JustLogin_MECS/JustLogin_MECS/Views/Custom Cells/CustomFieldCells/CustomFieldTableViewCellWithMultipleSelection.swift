@@ -21,11 +21,11 @@ class CustomFieldTableViewCellWithMultipleSelection: CustomFieldBaseTableViewCel
     /***********************************/
     // MARK: - Parent method override
     /***********************************/
-    override func updateView(withField field: ExpenseAndReportField) {
+    override func updateView(withField field: CustomField) {
         lblFieldName.text = field.name
     }
     
-    override func validateInput(withField field: ExpenseAndReportField) -> (success: Bool, errorMessage: String) {
+    override func validateInput(withField field: CustomField) -> (success: Bool, errorMessage: String) {
         if field.isMandatory && txtField.text!.isEmpty {
             return (false, "Please make sure \(field.name) has been entered.")
         }
@@ -38,7 +38,7 @@ class CustomFieldTableViewCellWithMultipleSelection: CustomFieldBaseTableViewCel
         txtField.text = value
     }
     
-    override func getPayload(withField field: ExpenseAndReportField) -> [String : Any] {
+    override func getPayload(withField field: CustomField) -> [String : Any] {
         /*
          If "id" is present, then that is given more preference.
          If not present, then we check we can send the text value or not.

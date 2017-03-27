@@ -24,9 +24,9 @@ struct Organization {
     
     var categories: [String: Category] = [:]
     
-    var expenseFields: [String: ExpenseAndReportField] = [:] // The json parameter will be the key
+    var expenseFields: [String: CustomField] = [:] // The json parameter will be the key
     
-    var reportFields: [String: ExpenseAndReportField] = [:] // The json parameter will be the key
+    var reportFields: [String: CustomField] = [:] // The json parameter will be the key
     /***********************************/
     // MARK: - Initializer
     /***********************************/
@@ -64,13 +64,13 @@ struct Organization {
         
         let jsonExpenseFields = json[Constants.ResponseParameters.expenseCustomFields].exists() ? json[Constants.ResponseParameters.expenseCustomFields].arrayValue : []
         for jsonExpenseField in jsonExpenseFields {
-            let expenseField = ExpenseAndReportField(withJSON: jsonExpenseField)
+            let expenseField = CustomField(withJSON: jsonExpenseField)
             expenseFields[expenseField.jsonParameter] = expenseField
         }
         
         let jsonReportFields = json[Constants.ResponseParameters.reportCustomFields].exists() ? json[Constants.ResponseParameters.reportCustomFields].arrayValue : []
         for jsonReportField in jsonReportFields {
-            let reportField = ExpenseAndReportField(withJSON: jsonReportField)
+            let reportField = CustomField(withJSON: jsonReportField)
             reportFields[reportField.jsonParameter] = reportField
         }
     }

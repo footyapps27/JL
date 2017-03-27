@@ -210,7 +210,7 @@ extension AddExpenseViewController: UITextFieldDelegate {
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         
-        if textField.tag == ExpenseAndReportFieldType.date.rawValue {
+        if textField.tag == CustomFieldType.date.rawValue {
             currentTextField = textField
             textField.inputView = datePicker
             textField.inputAccessoryView = toolbar
@@ -219,12 +219,12 @@ extension AddExpenseViewController: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField.tag == ExpenseAndReportFieldType.date.rawValue {
+        if textField.tag == CustomFieldType.date.rawValue {
             dismissDatePicker(nil)
         }
         
         // For the amount, round it to 2 decimal places
-        if textField.tag == ExpenseAndReportFieldType.currencyAndAmount.rawValue {
+        if textField.tag == CustomFieldType.currencyAndAmount.rawValue {
             if let amount = Double(textField.text!) {
                 textField.text = String(amount.roundTo(places: 2))
             }
@@ -232,7 +232,7 @@ extension AddExpenseViewController: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField.tag == ExpenseAndReportFieldType.date.rawValue {
+        if textField.tag == CustomFieldType.date.rawValue {
             return false
         }
         textField.resignFirstResponder()

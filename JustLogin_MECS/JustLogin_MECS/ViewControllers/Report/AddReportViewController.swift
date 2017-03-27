@@ -26,7 +26,7 @@ class AddReportViewController: BaseViewControllerWithTableView {
     
     weak var delegate: AddReportDelegate?
     
-    let manager = AddReportManager()
+    let manager = AddAndEditReportManager()
 }
 /***********************************/
 // MARK: - View Lifecycle
@@ -35,18 +35,27 @@ extension AddReportViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addBarButtonItems()
-        initializeDatePicker()
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 44
         
-        manager.populateCells(fromController: self)
+        updateUI()
+        
+        manager.populateCells(fromController: self, dataSource: self)
     }
 }
 /***********************************/
 // MARK: - Helpers
 /***********************************/
 extension AddReportViewController {
+    /**
+     * The list of items to update on launch of the controller.
+     */
+    func updateUI() {
+        navigationItem.title = Constants.ViewControllerTitles.addReport
+        addBarButtonItems()
+        initializeDatePicker()
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 44
+    }
+    
     /**
      * Method to add bar button items.
      */
@@ -187,7 +196,7 @@ extension AddReportViewController: UITableViewDelegate {
 extension AddReportViewController: UITextFieldDelegate {
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        if textField.tag == ExpenseAndReportFieldType.date.rawValue {
+        if textField.tag == CustomFieldType.date.rawValue {
             currentTextField = textField
             textField.inputView = datePicker
             textField.inputAccessoryView = toolbar
@@ -196,17 +205,16 @@ extension AddReportViewController: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField.tag == ExpenseAndReportFieldType.date.rawValue {
+        if textField.tag == CustomFieldType.date.rawValue {
             dismissDatePicker(nil)
         }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField.tag == ExpenseAndReportFieldType.date.rawValue {
+        if textField.tag == CustomFieldType.date.rawValue {
             return false
         }
         textField.resignFirstResponder()
         return true
     }
 }
-

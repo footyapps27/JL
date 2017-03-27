@@ -78,7 +78,7 @@ class LaunchViewController: BaseViewController {
      */
     func navigateToSubmitterDashboard() {
         
-        let submitterDashboard = UIStoryboard(name: Constants.StoryboardIds.dashboardStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.submitterDashboard) as! UITabBarController
+        let submitterDashboard = UIStoryboard(name: Constants.StoryboardIds.dashboardStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.Dashboard.submitterDashboard) as! UITabBarController
         
         navigationController?.pushViewController(submitterDashboard, animated: true)
     }
@@ -88,7 +88,7 @@ class LaunchViewController: BaseViewController {
      */
     func navigateToAdminAndApproverDashboard() {
         
-        let approverAndAdminDashboard = UIStoryboard(name: Constants.StoryboardIds.dashboardStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.approverAndAdminDashboard) as! UITabBarController
+        let approverAndAdminDashboard = UIStoryboard(name: Constants.StoryboardIds.dashboardStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.Dashboard.approverAndAdminDashboard) as! UITabBarController
         
         navigationController?.pushViewController(approverAndAdminDashboard, animated: true)
     }

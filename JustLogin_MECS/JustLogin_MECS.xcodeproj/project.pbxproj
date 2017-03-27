@@ -48,7 +48,7 @@
 		8C37683C1E811E9600E82044 /* RecordReimbursementManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C37683B1E811E9600E82044 /* RecordReimbursementManager.swift */; };
 		8C42DFD31E63DE7D00A3B69A /* AddReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C42DFD21E63DE7D00A3B69A /* AddReportViewController.swift */; };
 		8C42DFD51E63DEA300A3B69A /* ReportDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C42DFD41E63DEA300A3B69A /* ReportDetailsViewController.swift */; };
-		8C42DFD71E63E03400A3B69A /* AddReportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C42DFD61E63E03400A3B69A /* AddReportManager.swift */; };
+		8C42DFD71E63E03400A3B69A /* AddAndEditReportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C42DFD61E63E03400A3B69A /* AddAndEditReportManager.swift */; };
 		8C42DFD91E63E05100A3B69A /* ReportDetailsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C42DFD81E63E05100A3B69A /* ReportDetailsManager.swift */; };
 		8C42DFDB1E63E1AA00A3B69A /* Report.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C42DFDA1E63E1AA00A3B69A /* Report.storyboard */; };
 		8C42DFDD1E6436C900A3B69A /* ExpenseAndReportField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C42DFDC1E6436C900A3B69A /* ExpenseAndReportField.swift */; };
@@ -76,6 +76,7 @@
 		8CB44AD21E5AC642005CC04D /* ExpenseListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB44AD11E5AC642005CC04D /* ExpenseListManager.swift */; };
 		8CB44AD41E5B0380005CC04D /* ReportListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB44AD31E5B0380005CC04D /* ReportListManager.swift */; };
 		8CB44AD61E5B1163005CC04D /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB44AD51E5B1163005CC04D /* Utilities.swift */; };
+		8CC4555C1E89420100F3C1AB /* EditReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4555B1E89420100F3C1AB /* EditReportViewController.swift */; };
 		8CC68F1A1E84E6C7002F9DCD /* ReviewSelectExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC68F191E84E6C7002F9DCD /* ReviewSelectExpenseViewController.swift */; };
 		8CC68F1C1E84ED6C002F9DCD /* ReviewSelectExpenseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC68F1B1E84ED6C002F9DCD /* ReviewSelectExpenseManager.swift */; };
 		8CC68F1F1E8523E8002F9DCD /* ExpenseDetailsToolBarBaseStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC68F1E1E8523E8002F9DCD /* ExpenseDetailsToolBarBaseStrategy.swift */; };
@@ -208,7 +209,7 @@
 		8C37683B1E811E9600E82044 /* RecordReimbursementManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordReimbursementManager.swift; path = JustLogin_MECS/ViewControllers/Approval/RecordReimbursementManager.swift; sourceTree = SOURCE_ROOT; };
 		8C42DFD21E63DE7D00A3B69A /* AddReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReportViewController.swift; sourceTree = "<group>"; };
 		8C42DFD41E63DEA300A3B69A /* ReportDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsViewController.swift; sourceTree = "<group>"; };
-		8C42DFD61E63E03400A3B69A /* AddReportManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReportManager.swift; sourceTree = "<group>"; };
+		8C42DFD61E63E03400A3B69A /* AddAndEditReportManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAndEditReportManager.swift; sourceTree = "<group>"; };
 		8C42DFD81E63E05100A3B69A /* ReportDetailsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportDetailsManager.swift; sourceTree = "<group>"; };
 		8C42DFDA1E63E1AA00A3B69A /* Report.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Report.storyboard; sourceTree = "<group>"; };
 		8C42DFDC1E6436C900A3B69A /* ExpenseAndReportField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseAndReportField.swift; sourceTree = "<group>"; };
@@ -234,6 +235,7 @@
 		8CB44AD11E5AC642005CC04D /* ExpenseListManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseListManager.swift; sourceTree = "<group>"; };
 		8CB44AD31E5B0380005CC04D /* ReportListManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportListManager.swift; sourceTree = "<group>"; };
 		8CB44AD51E5B1163005CC04D /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		8CC4555B1E89420100F3C1AB /* EditReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditReportViewController.swift; sourceTree = "<group>"; };
 		8CC68F191E84E6C7002F9DCD /* ReviewSelectExpenseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewSelectExpenseViewController.swift; sourceTree = "<group>"; };
 		8CC68F1B1E84ED6C002F9DCD /* ReviewSelectExpenseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewSelectExpenseManager.swift; sourceTree = "<group>"; };
 		8CC68F1E1E8523E8002F9DCD /* ExpenseDetailsToolBarBaseStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseDetailsToolBarBaseStrategy.swift; sourceTree = "<group>"; };
@@ -636,6 +638,7 @@
 				8C42DFD41E63DEA300A3B69A /* ReportDetailsViewController.swift */,
 				8CFD02121E73D35D00526962 /* ReviewSelectReportViewController.swift */,
 				8C0A01DD1E78E15100A96867 /* ApproversListViewController.swift */,
+				8CC4555B1E89420100F3C1AB /* EditReportViewController.swift */,
 			);
 			path = Report;
 			sourceTree = "<group>";
@@ -842,7 +845,7 @@
 				8C3768191E7F887200E82044 /* ReportDetailsStrategy */,
 				8C3768221E7F888C00E82044 /* ReportDetailsToolBarStrategy */,
 				8CB44AD31E5B0380005CC04D /* ReportListManager.swift */,
-				8C42DFD61E63E03400A3B69A /* AddReportManager.swift */,
+				8C42DFD61E63E03400A3B69A /* AddAndEditReportManager.swift */,
 				8C42DFD81E63E05100A3B69A /* ReportDetailsManager.swift */,
 				8CFD02141E73D39800526962 /* ReviewSelectReportManager.swift */,
 				8C0A01DF1E78E19400A96867 /* ApproversListManager.swift */,
@@ -1260,7 +1263,7 @@
 				8C1766551E7A851200D1CDE0 /* Styles.swift in Sources */,
 				8CE007231E28F3280089D159 /* SettingsTableProfileSectionHeaderView.swift in Sources */,
 				8CF655C71E58387100D4FEF3 /* LoginService.swift in Sources */,
-				8C42DFD71E63E03400A3B69A /* AddReportManager.swift in Sources */,
+				8C42DFD71E63E03400A3B69A /* AddAndEditReportManager.swift in Sources */,
 				8CE4687D1E822B0000535A70 /* CustomFieldBaseTableViewCell.swift in Sources */,
 				8C0A01D01E77C38100A96867 /* Dictionary.swift in Sources */,
 				8C37683C1E811E9600E82044 /* RecordReimbursementManager.swift in Sources */,
@@ -1272,6 +1275,7 @@
 				8CD333211E23C4E500557B6F /* BaseViewControllerWithTableView.swift in Sources */,
 				8CE468811E822BF300535A70 /* CustomFieldTableViewCellWithTextField.swift in Sources */,
 				8C3768301E7FFC0E00E82044 /* ReportDetailsToolBarApprovalListApprovedStrategy.swift in Sources */,
+				8CC4555C1E89420100F3C1AB /* EditReportViewController.swift in Sources */,
 				8C5141291E1E98EC003AD3B1 /* Constants.swift in Sources */,
 				8C51413B1E1F5F95003AD3B1 /* BaseCustomCollectionViewCell.swift in Sources */,
 				8C8995D51E60821200482317 /* AddExpenseViewController.swift in Sources */,

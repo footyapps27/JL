@@ -28,20 +28,25 @@ class CustomFieldTableViewCellDuration: CustomFieldBaseTableViewCell {
     // MARK: - Parent class override
     /***********************************/
     
-    override func validateInput(withField reportField: ExpenseAndReportField) -> (success: Bool, errorMessage: String) {
+    override func updateView(withField field: CustomField) {
+        txtFrom.text = field.values[Constants.CustomFieldKeys.startDateValue]
+        txtTo.text = field.values[Constants.CustomFieldKeys.endDateValue]
+    }
+    
+    override func validateInput(withField field: CustomField) -> (success: Bool, errorMessage: String) {
         // This cell is only used for Duration
-        if txtFrom.text!.isEmpty {
+        if txtFrom.text!.isEmpty && field.isMandatory {
             return (false, "Please make sure 'Report To' date has been entered.")
         }
         
-        if txtTo.text!.isEmpty {
+        if txtTo.text!.isEmpty && field.isMandatory {
             return (false, "Please make sure 'Report To' date has been entered.")
         }
         
         return(true, Constants.General.emptyString)
     }
     
-    override func getPayload(withField reportField: ExpenseAndReportField) -> [String:Any] {
+    override func getPayload(withField reportField: CustomField) -> [String:Any] {
         return [
             Constants.RequestParameters.Report.startDate : getFormattedDateFromText(txtFrom.text!),
             Constants.RequestParameters.Report.endDate : getFormattedDateFromText(txtTo.text!)
@@ -53,8 +58,8 @@ class CustomFieldTableViewCellDuration: CustomFieldBaseTableViewCell {
 /***********************************/
 extension CustomFieldTableViewCellDuration {
     override func awakeFromNib() {
-        txtTo.tag = ExpenseAndReportFieldType.date.rawValue
-        txtFrom.tag = ExpenseAndReportFieldType.date.rawValue
+        txtTo.tag = CustomFieldType.date.rawValue
+        txtFrom.tag = CustomFieldType.date.rawValue
     }
 }
 /***********************************/

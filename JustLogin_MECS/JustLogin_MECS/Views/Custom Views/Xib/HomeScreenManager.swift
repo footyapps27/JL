@@ -26,7 +26,7 @@ extension HomeScreenManager {
     }
     
     func getDashboardIdentifier() -> String {
-        var identifier = Constants.StoryboardIds.submitterDashboard
+        var identifier = Constants.StoryboardIds.Dashboard.submitterDashboard
         
         guard let accessPrivileges = Singleton.sharedInstance.member?.role?.accessPrivileges else {
             log.error("Access Privileges found nil when unwrapping")
@@ -34,7 +34,7 @@ extension HomeScreenManager {
         }
         
         if accessPrivileges.approveReport > 0 {
-            identifier = Constants.StoryboardIds.approverAndAdminDashboard
+            identifier = Constants.StoryboardIds.Dashboard.approverAndAdminDashboard
         }
         
         return identifier

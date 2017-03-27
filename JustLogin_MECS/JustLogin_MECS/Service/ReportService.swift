@@ -32,6 +32,11 @@ protocol IReportService {
     func update(report: Report, completionHandler:( @escaping (Result<Report>) -> Void))
     
     /**
+     * Update an existing report from payload.
+     */
+    func update(payload: [String : Any], completionHandler:( @escaping (Result<Report>) -> Void))
+    
+    /**
      * Delete an existing report.
      */
     func delete(reportId: String, completionHandler:( @escaping (Result<Report>) -> Void))
@@ -113,6 +118,13 @@ struct ReportService : IReportService {
      */
     func update(report: Report, completionHandler:( @escaping (Result<Report>) -> Void)) {
         let payload = getPayloadForUpdateReport(report)
+        return update(payload: payload, completionHandler: completionHandler)
+    }
+    
+    /**
+     * Update an existing report.
+     */
+    func update(payload: [String : Any], completionHandler:( @escaping (Result<Report>) -> Void)) {
         serviceAdapter.post(destination: Constants.URLs.Report.updateReport, payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
             switch(response) {
             case .success(let success, _ ):

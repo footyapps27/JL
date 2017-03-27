@@ -48,7 +48,7 @@ enum ExpenseStatus : Int {
 /***********************************/
 // MARK: - Expense & Report Field Types
 /***********************************/
-enum ExpenseAndReportFieldType: Int {
+enum CustomFieldType: Int {
     case text = 0,
     email,
     url,

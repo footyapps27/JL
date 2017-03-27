@@ -1,8 +1,8 @@
 //
-//  RecordReimbursementViewController.swift
+//  EditReportViewController.swift
 //  JustLogin_MECS
 //
-//  Created by Samrat on 21/3/17.
+//  Created by Samrat on 27/3/17.
 //  Copyright © 2017 SMRT. All rights reserved.
 //
 
@@ -10,52 +10,44 @@ import Foundation
 import UIKit
 
 /***********************************/
-// MARK: - Protocol
-/***********************************/
-protocol RecordReimbursementDelegate: class {
-    func reportReimbursed()
-}
-/***********************************/
 // MARK: - Properties
 /***********************************/
-class RecordReimbursementViewController: BaseViewControllerWithTableView {
+class EditReportViewController: BaseViewControllerWithTableView {
     
-    let manager = RecordReimbursementManager()
+    var report: Report?
     
     var datePicker: UIDatePicker?
     var currentTextField: UITextField?
     var toolbar: UIToolbar?
     
-    weak var delegate: RecordReimbursementDelegate?
-    
-    var report: Report?
+    let manager = AddAndEditReportManager()
 }
 /***********************************/
 // MARK: - View Lifecycle
 /***********************************/
-extension RecordReimbursementViewController {
+extension EditReportViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         manager.report = report!
         updateUI()
-        manager.populateCells(fromController: self)
+        manager.populateCells(fromController: self, dataSource: self)
     }
 }
 /***********************************/
 // MARK: - Helpers
 /***********************************/
-extension RecordReimbursementViewController {
+extension EditReportViewController {
+    /**
+     * The list of items to update on launch of the controller.
+     */
     func updateUI() {
-        self.navigationItem.title = Constants.ViewControllerTitles.reimbursement
-        
+        navigationItem.title = Constants.ViewControllerTitles.addReport
         addBarButtonItems()
         initializeDatePicker()
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 44
-        
-        // Make sure the manager has a reference to all the cell before hand
-        manager.populateCells(fromController: self)
     }
     
     /**
@@ -63,6 +55,13 @@ extension RecordReimbursementViewController {
      */
     func addBarButtonItems() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.save, target: self, action: #selector(rightBarButtonTapped(_:)))
+        
+        /*  If this is the only view controller, then we need to put a dismiss button.
+         Since then this controller is being presented from dashboard.
+         */
+        if navigationController?.viewControllers.count == 1 {
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.cancel, target: self, action: #selector(leftBarButtonTapped(_:)))
+        }
     }
     
     func initializeDatePicker() {
@@ -84,8 +83,7 @@ extension RecordReimbursementViewController {
 /***********************************/
 // MARK: - Actions
 /***********************************/
-extension RecordReimbursementViewController {
-    
+extension EditReportViewController {
     /**
      * Action for Save button.
      * Do the validations before saving.
@@ -96,8 +94,17 @@ extension RecordReimbursementViewController {
         if !validation.success {
             Utilities.showErrorAlert(withMessage: validation.errorMessage, onController: self)
         } else {
-            callRecordReimbursementService()
+            callUpdateReportService()
         }
+    }
+    
+    /**
+     * Action for Cancel button.
+     * Dismiss the controller.
+     */
+    func leftBarButtonTapped(_ sender: UIBarButtonItem) {
+        view.endEditing(true)
+        self.dismiss(animated: true, completion: nil)
     }
     
     func dismissDatePicker(_ sender: UIBarButtonItem?) {
@@ -108,15 +115,15 @@ extension RecordReimbursementViewController {
 /***********************************/
 // MARK: - Service Call
 /***********************************/
-extension RecordReimbursementViewController {
+extension EditReportViewController {
     /**
-     * Method to fetch expenses that will be displayed in the tableview.
+     * Method to update the report that has been updated by the user.
      */
-    func callRecordReimbursementService() {
+    func callUpdateReportService() {
         
         showLoadingIndicator(disableUserInteraction: true)
         
-        manager.recordReimbursement() { [weak self] (response) in
+        manager.updateReportWithInputsFromTableView(tableView: tableView) { [weak self] (response) in
             guard let `self` = self else {
                 log.error("Self reference missing in closure.")
                 return
@@ -124,10 +131,9 @@ extension RecordReimbursementViewController {
             switch(response) {
             case .success(_):
                 self.hideLoadingIndicator(enableUserInteraction: true)
-                self.delegate?.reportReimbursed()
                 _ = self.navigationController?.popViewController(animated: true)
             case .failure(_, let message):
-                //TODO: - Handle the empty table view screen.
+                // TODO: - Handle the empty table view screen.
                 Utilities.showErrorAlert(withMessage: message, onController: self)
                 self.hideLoadingIndicator(enableUserInteraction: true)
             }
@@ -137,13 +143,9 @@ extension RecordReimbursementViewController {
 /***********************************/
 // MARK: - UITableViewDataSource
 /***********************************/
-extension RecordReimbursementViewController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return manager.getFields().count
-    }
-    
+extension EditReportViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return manager.getFields()[section].count
+        return manager.getReportFields().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -152,7 +154,6 @@ extension RecordReimbursementViewController: UITableViewDataSource {
             return cell
         }
         
-        // If it is not available in cache, then create or reuse the cell
         let identifier = manager.getTableViewCellIdentifier(forIndexPath: indexPath)
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! CustomFieldBaseTableViewCell
         manager.formatCell(cell, forIndexPath: indexPath)
@@ -162,34 +163,20 @@ extension RecordReimbursementViewController: UITableViewDataSource {
 /***********************************/
 // MARK: - UITableViewDelegate
 /***********************************/
-extension RecordReimbursementViewController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 {
-            return CGFloat.leastNormalMagnitude
-        }
-        return 20 // TODO - Move to constant
-    }
+extension EditReportViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Cell selected
-        if manager.checkIfNavigationIsRequired(forIndexPath: indexPath) {
-            self.view .endEditing(true)
-            let controller = manager.getDetailsNavigationController(forIndexPath: indexPath, withDelegate: self)
-            Utilities.pushControllerAndHideTabbarForChildAndParent(fromController: self, toController: controller)
-        } else {
-            let cell = tableView.cellForRow(at: indexPath) as! CustomFieldBaseTableViewCell
-            manager.performActionForSelectedCell(cell, forIndexPath: indexPath)
-        }
+        let cell = tableView.cellForRow(at: indexPath) as! CustomFieldBaseTableViewCell
+        manager.performActionForSelectedCell(cell, forIndexPath: indexPath)
     }
 }
 /***********************************/
 // MARK: - UITableViewDelegate
 /***********************************/
-extension RecordReimbursementViewController: UITextFieldDelegate {
+extension EditReportViewController: UITextFieldDelegate {
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        
         if textField.tag == CustomFieldType.date.rawValue {
             currentTextField = textField
             textField.inputView = datePicker
@@ -201,13 +188,6 @@ extension RecordReimbursementViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField.tag == CustomFieldType.date.rawValue {
             dismissDatePicker(nil)
-        }
-        
-        // For the amount, round it to 2 decimal places
-        if textField.tag == CustomFieldType.currencyAndAmount.rawValue {
-            if let amount = Double(textField.text!) {
-                textField.text = String(amount.roundTo(places: 2))
-            }
         }
     }
     

@@ -50,7 +50,7 @@ extension ExpenseDetailsToolBarEditEnabledStrategy {
      * Navigate to the approvers list for selecting the approver for this particular report.
      */
     func navigateToApproversList(forReport report: Report, onController controller: BaseViewController) {
-        let approversListViewController = UIStoryboard(name: Constants.StoryboardIds.reportStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.approversListViewController) as! ApproversListViewController
+        let approversListViewController = UIStoryboard(name: Constants.StoryboardIds.reportStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.Approval.approversListViewController) as! ApproversListViewController
         approversListViewController.report = report
         approversListViewController.delegate = controller as? ApproversListDelegate
         Utilities.pushControllerAndHideTabbarForChildAndParent(fromController: controller, toController: approversListViewController)
@@ -66,7 +66,7 @@ extension ExpenseDetailsToolBarEditEnabledStrategy {
         
         let addExpense = UIAlertAction(title: LocalizedString.addExpense, style: .default) { void in
             // TODO - Make the add expense customised here.
-            let addExpenseViewController = UIStoryboard(name: Constants.StoryboardIds.expenseStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.addExpenseViewController) as! AddExpenseViewController
+            let addExpenseViewController = UIStoryboard(name: Constants.StoryboardIds.expenseStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.Expense.addExpenseViewController) as! AddExpenseViewController
             let navigationController = UINavigationController.init(rootViewController: addExpenseViewController)
             controller.present(navigationController, animated: true, completion: nil)
         }

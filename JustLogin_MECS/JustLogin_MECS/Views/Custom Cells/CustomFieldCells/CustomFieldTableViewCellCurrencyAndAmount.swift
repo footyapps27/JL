@@ -22,12 +22,12 @@ class CustomFieldTableViewCellCurrencyAndAmount: CustomFieldBaseTableViewCell {
     /***********************************/
     // MARK: - Parent method override
     /***********************************/
-    override func updateView(withField expenseField: ExpenseAndReportField) {
+    override func updateView(withField field: CustomField) {
         
     }
     
-    override func validateInput(withField expenseField: ExpenseAndReportField) -> (success: Bool, errorMessage: String) {
-        if expenseField.isMandatory && txtAmount.text!.isEmpty {
+    override func validateInput(withField field: CustomField) -> (success: Bool, errorMessage: String) {
+        if field.isMandatory && txtAmount.text!.isEmpty {
             return (false, "Please make sure 'Amount' has been entered.")
         }
         
@@ -43,7 +43,7 @@ class CustomFieldTableViewCellCurrencyAndAmount: CustomFieldBaseTableViewCell {
         lblCurrency.text = value
     }
     
-    override func getPayload(withField reportField: ExpenseAndReportField) -> [String : Any] {
+    override func getPayload(withField reportField: CustomField) -> [String : Any] {
         var payload: [String : Any] = [:]
         if selectedCurrencyId != nil {
             payload[Constants.RequestParameters.Expense.currencyId] = selectedCurrencyId!
@@ -68,7 +68,7 @@ class CustomFieldTableViewCellCurrencyAndAmount: CustomFieldBaseTableViewCell {
 /***********************************/
 extension CustomFieldTableViewCellCurrencyAndAmount {
     override func awakeFromNib() {
-        txtAmount.tag = ExpenseAndReportFieldType.currencyAndAmount.rawValue
+        txtAmount.tag = CustomFieldType.currencyAndAmount.rawValue
         if let organization = Singleton.sharedInstance.organization {
             selectedCurrencyId = organization.baseCurrencyId
             lblCurrency.text = Utilities.getCurrencyCode(forId: organization.baseCurrencyId)

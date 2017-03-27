@@ -81,7 +81,7 @@ extension ReportDetailsViewController {
     
     func navigateToApproversList() {
         if report != nil {
-            let approversListViewController = UIStoryboard(name: Constants.StoryboardIds.reportStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.approversListViewController) as! ApproversListViewController
+            let approversListViewController = UIStoryboard(name: Constants.StoryboardIds.reportStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.Approval.approversListViewController) as! ApproversListViewController
             approversListViewController.report = report!
             approversListViewController.delegate = self
             // TODO - Create a utility function for this
