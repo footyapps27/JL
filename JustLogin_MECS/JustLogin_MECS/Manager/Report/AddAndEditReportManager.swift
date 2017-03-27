@@ -118,7 +118,7 @@ extension AddAndEditReportManager {
     /**
      * Method to get all the expenses that need to be displayed.
      */
-    func addReportWithInputsFromTableView( tableView: UITableView, completionHandler: (@escaping (ManagerResponseToController<Void>) -> Void)) {
+    func addReport(completionHandler: (@escaping (ManagerResponseToController<Void>) -> Void)) {
         let payload = getPayload()
         
         reportService.create(payload: payload) { (result) in
@@ -133,7 +133,7 @@ extension AddAndEditReportManager {
         }
     }
     
-    func updateReportWithInputsFromTableView( tableView: UITableView, completionHandler: (@escaping (ManagerResponseToController<Void>) -> Void)) {
+    func updateReport(completionHandler: (@escaping (ManagerResponseToController<Void>) -> Void)) {
         
         // For edit, the manager needs to add the 'id' of the report that is being edited.
         var payload = getPayload()
