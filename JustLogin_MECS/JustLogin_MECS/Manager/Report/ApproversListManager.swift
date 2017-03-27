@@ -96,7 +96,7 @@ extension ApproversListManager {
                 
                 self?.approvalService.processReport(payload: (payload ?? [:]), completionHandler: { (processReportResult) in
                     
-                    switch(result) {
+                    switch(processReportResult) {
                     case .success(let finalReport):
                         completionHandler(ManagerResponseToController.success(finalReport))
                     case .error(let serviceError):
