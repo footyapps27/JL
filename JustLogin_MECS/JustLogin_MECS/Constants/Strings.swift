@@ -42,5 +42,5 @@ struct LocalizedString {
     
     static let confirm = "Confirm"
     
-    static let include = "include"
+    static let include = "Include"
 }

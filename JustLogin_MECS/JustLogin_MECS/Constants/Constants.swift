@@ -121,6 +121,7 @@ struct Constants {
         static let reviewSelectCategoryViewController = "reviewSelectCategoryViewController"
         static let reviewSelectCurrencyViewController = "reviewSelectCurrencyViewController"
         static let reviewSelectReportViewController = "reviewSelectReportViewController"
+        static let reviewSelectExpenseViewController = "reviewSelectExpenseViewController"
     }
     
     struct Notifications {
@@ -164,6 +165,7 @@ struct Constants {
             static let createReport = URLs.baseURL + "/report/create"
             static let updateReport = URLs.baseURL + "/report/update"
             static let deleteReport = URLs.baseURL + "/report/delete"
+            static let linkExpensesToReport = URLs.baseURL + "/report/link"
         }
         
         struct Category {
@@ -206,6 +208,7 @@ struct Constants {
         
         struct Expense {
             static let expenseId = "expenseId"
+            static let expenseIds = "expenseIds"
             static let categoryId = "categoryId"
             static let currencyId = "currencyId"
             static let reportId = "reportId"

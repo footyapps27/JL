@@ -194,3 +194,11 @@ extension ReportDetailsViewController: RecordReimbursementDelegate {
         fetchReportDetails()
     }
 }
+/***********************************/
+// MARK: - ReviewSelectExpenseDelegate
+/***********************************/
+extension ReportDetailsViewController: ReviewSelectExpenseDelegate {
+    func expensesSelected(_ expenses: [Expense]) {
+        fetchReportDetails()
+    }
+}

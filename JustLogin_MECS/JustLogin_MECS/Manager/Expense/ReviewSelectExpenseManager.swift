@@ -15,9 +15,11 @@ class ReviewSelectExpenseManager {
     
     var expenseService: IExpenseService = ExpenseService()
     
+    var reportService: IReportService = ReportService()
+    
     var expenses: [Expense] = []
     
-    var selectedIndices = Set<Int>()
+    var report: Report = Report()
 }
 /***********************************/
 // MARK: - Data tracking methods
@@ -28,19 +30,12 @@ extension ReviewSelectExpenseManager {
     }
     
     /**
-     * When in multiple selection mode, add the selection of the user.
-     */
-    func addExpenseToSelectedExpenses(forIndexPath indexPath: IndexPath) {
-        selectedIndices.insert(indexPath.row)
-    }
-    
-    /**
      * Method to get the list of selected expenses.
      */
-    func getSelectedExpenses() -> [Expense] {
+    func getSelectedExpenses(fromSelectedIndexPaths selectedIndices: [IndexPath]) -> [Expense] {
         var selectedExpenses: [Expense] = []
         for index in selectedIndices {
-            selectedExpenses.append(expenses[index])
+            selectedExpenses.append(expenses[index.row])
         }
         return selectedExpenses
     }
@@ -130,6 +125,23 @@ extension ReviewSelectExpenseManager {
             }
         })
     }
+    
+    /**
+     * Method to attach the selected expenses to report.
+     */
+    func attachSelectedExpensesToReport(fromSelectedIndexPaths selectedIndices: [IndexPath], completionHandler: (@escaping (ManagerResponseToController<Void>) -> Void)) {
+        let selectedExpenseIds = getExpenseIds(fromSelectedIndexPaths: selectedIndices)
+        reportService.linkExpenseIds(selectedExpenseIds, toReport: report) { (result) in
+            switch(result) {
+            case .success(_):
+                completionHandler(ManagerResponseToController.success())
+            case .error(let serviceError):
+                completionHandler(ManagerResponseToController.failure(code: serviceError.code, message: serviceError.message))
+            case .failure(let message):
+                completionHandler(ManagerResponseToController.failure(code: "", message: message)) // TODO: - Pass a general code
+            }
+        }
+    }
 }
 /***********************************/
 // MARK: - Helpers
@@ -142,5 +154,16 @@ extension ReviewSelectExpenseManager {
             }
             return false
         })
+    }
+    
+    /**
+     * Get Selected Expense Ids.
+     */
+    func getExpenseIds(fromSelectedIndexPaths selectedIndices: [IndexPath]) -> [String] {
+        var selectedExpensesIds: [String] = []
+        for index in selectedIndices {
+            selectedExpensesIds.append(expenses[index.row].id)
+        }
+        return selectedExpensesIds
     }
 }

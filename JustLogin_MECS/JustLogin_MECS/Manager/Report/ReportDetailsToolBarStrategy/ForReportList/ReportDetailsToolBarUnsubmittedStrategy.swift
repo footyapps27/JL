@@ -43,7 +43,7 @@ struct ReportDetailsToolBarUnsubmittedStrategy: ReportDetailsToolBarBaseStrategy
     }
 }
 /***********************************/
-// MARK: - Helpers
+// MARK: - Actions
 /***********************************/
 extension ReportDetailsToolBarUnsubmittedStrategy {
     /**
@@ -65,14 +65,11 @@ extension ReportDetailsToolBarUnsubmittedStrategy {
         }
         
         let addExpense = UIAlertAction(title: LocalizedString.addExpense, style: .default) { void in
-            // TODO - Make the add expense customised here.
-            let addExpenseViewController = UIStoryboard(name: Constants.StoryboardIds.expenseStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.addExpenseViewController) as! AddExpenseViewController
-            let navigationController = UINavigationController.init(rootViewController: addExpenseViewController)
-            controller.present(navigationController, animated: true, completion: nil)
+            self.navigateToAddExpenseController(fromController: controller)
         }
         
         let includeExpense = UIAlertAction(title: LocalizedString.includeExpense, style: .default) { void in
-            // TODO - Show the include expense screen
+            self.navigateToReviewSelectExpenseController(forReport: report, fromController: controller)
         }
         
         Utilities.showActionSheet(withTitle: nil, message: nil, actions: [actionSubmit, addExpense, includeExpense ], onController: controller)
@@ -83,5 +80,30 @@ extension ReportDetailsToolBarUnsubmittedStrategy {
      */
     func navigateToEditReport(forReport report: Report, onController controller: BaseViewController) {
         
+    }
+}
+/***********************************/
+// MARK: - Helpers
+/***********************************/
+extension ReportDetailsToolBarUnsubmittedStrategy {
+    /**
+     * Method to navigate to the AddExpenseViewController.
+     */
+    func navigateToAddExpenseController(fromController controller: BaseViewController) {
+        // TODO - Make the add expense customised here.
+        let addExpenseViewController = UIStoryboard(name: Constants.StoryboardIds.expenseStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.addExpenseViewController) as! AddExpenseViewController
+        let navigationController = UINavigationController.init(rootViewController: addExpenseViewController)
+        controller.present(navigationController, animated: true, completion: nil)
+    }
+    /**
+     * Method to navigate to the ReviewSelectExpenseController.
+     */
+    func navigateToReviewSelectExpenseController(forReport report: Report, fromController controller: BaseViewController) {
+        // TODO - Make the add expense customised here.
+        let reviewSelectExpenseViewController = UIStoryboard(name: Constants.StoryboardIds.expenseStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.reviewSelectExpenseViewController) as! ReviewSelectExpenseViewController
+        reviewSelectExpenseViewController.report = report
+        reviewSelectExpenseViewController.delegate = controller as? ReviewSelectExpenseDelegate
+        let navigationController = UINavigationController.init(rootViewController: reviewSelectExpenseViewController)
+        controller.present(navigationController, animated: true, completion: nil)
     }
 }

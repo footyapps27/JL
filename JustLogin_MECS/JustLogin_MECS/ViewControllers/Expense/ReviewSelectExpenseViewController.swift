@@ -12,7 +12,7 @@ import UIKit
 /***********************************/
 // MARK: - Protocol
 /***********************************/
-protocol ReviewSelectExpenseViewControllerDelegate: class {
+protocol ReviewSelectExpenseDelegate: class {
     func expensesSelected(_ expenses: [Expense])
 }
 /***********************************/
@@ -22,13 +22,17 @@ class ReviewSelectExpenseViewController: BaseViewControllerWithTableView {
     
     let manager = ReviewSelectExpenseManager()
     
-    weak var delegate: ReviewSelectExpenseViewControllerDelegate?
+    var report: Report?
+    
+    weak var delegate: ReviewSelectExpenseDelegate?
     /***********************************/
     // MARK: - View Lifecycle
     /***********************************/
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        manager.report = report!
         
         updateUI()
     }
@@ -39,10 +43,12 @@ class ReviewSelectExpenseViewController: BaseViewControllerWithTableView {
 extension ReviewSelectExpenseViewController {
     func updateUI() {
         title = Constants.ViewControllerTitles.reviewSelectExpenses
+        tableView.allowsMultipleSelectionDuringEditing = true
+        addBarButtonItems()
         fetchExpenses()
     }
     
-    func addBarButtonItems(forNormalState state: Bool) {
+    func addBarButtonItems() {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(leftBarButtonTapped(_:)))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: LocalizedString.include, style: .plain, target: self, action: #selector(rightBarButtonTapped(_:)))
     }
@@ -56,18 +62,18 @@ extension ReviewSelectExpenseViewController {
 /***********************************/
 extension ReviewSelectExpenseViewController {
     
-    func refreshTableView(_ refreshControl: UIRefreshControl) {
-        fetchExpenses()
-    }
-    
     func leftBarButtonTapped(_ sender: UIBarButtonItem) {
         dismissController()
     }
     
     func rightBarButtonTapped(_ sender: UIBarButtonItem) {
-        // Call the delegate with the list of selected ids
-        delegate?.expensesSelected(manager.getSelectedExpenses())
-        dismissController()
+        if tableView.indexPathsForSelectedRows?.count != 0 {
+            // Call the delegate with the list of selected ids
+            callAttachSelectedExpensesToReport()
+        } else {
+            // TODO - Add to messages
+            Utilities.showErrorAlert(withMessage: "Please select atleast one expense to include.", onController: self)
+        }
     }
 }
 /***********************************/
@@ -78,13 +84,9 @@ extension ReviewSelectExpenseViewController {
      * Method to fetch currencies that will be displayed in the tableview.
      */
     func fetchExpenses() {
-        
-        if !refreshControl.isRefreshing {
-            showLoadingIndicator(disableUserInteraction: false)
-        }
+        showLoadingIndicator(disableUserInteraction: false)
         
         manager.fetchExpenses { [weak self] (response) in
-            // TODO: - Add loading indicator
             guard let `self` = self else {
                 log.error("Self reference missing in closure.")
                 return
@@ -95,11 +97,33 @@ extension ReviewSelectExpenseViewController {
                 self.tableView.isHidden = false
                 self.tableView.reloadData()
                 self.tableView.setEditing(true, animated: false)
-                self.refreshControl.isRefreshing ? self.refreshControl.endRefreshing() : self.hideLoadingIndicator(enableUserInteraction: true)
+                self.hideLoadingIndicator(enableUserInteraction: true)
             case .failure(_, let message):
                 // TODO: - Handle the empty table view screen.
                 Utilities.showErrorAlert(withMessage: message, onController: self)
-                self.refreshControl.isRefreshing ? self.refreshControl.endRefreshing() : self.hideLoadingIndicator(enableUserInteraction: true)
+                self.hideLoadingIndicator(enableUserInteraction: true)
+            }
+        }
+    }
+    
+    func callAttachSelectedExpensesToReport() {
+        showLoadingIndicator(disableUserInteraction: false)
+        manager.attachSelectedExpensesToReport(fromSelectedIndexPaths: tableView.indexPathsForSelectedRows!) { [weak self] (response) in
+            guard let `self` = self else {
+                log.error("Self reference missing in closure.")
+                return
+            }
+            
+            switch(response) {
+            case .success(_):
+                let selectedExpenses = self.manager.getSelectedExpenses(fromSelectedIndexPaths: self.tableView.indexPathsForSelectedRows!)
+                self.delegate?.expensesSelected(selectedExpenses)
+                self.dismissController()
+                self.hideLoadingIndicator(enableUserInteraction: true)
+            case .failure(_, let message):
+                // TODO: - Handle the empty table view screen.
+                Utilities.showErrorAlert(withMessage: message, onController: self)
+                self.hideLoadingIndicator(enableUserInteraction: true)
             }
         }
     }
@@ -130,9 +154,7 @@ extension ReviewSelectExpenseViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 /***********************************/
 extension ReviewSelectExpenseViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if tableView.isEditing {
-            manager.addExpenseToSelectedExpenses(forIndexPath: indexPath)
-        }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return CGFloat(Constants.CellHeight.expenseListCellHeight)
     }
 }

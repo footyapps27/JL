@@ -35,15 +35,18 @@ protocol IReportService {
      * Delete an existing report.
      */
     func delete(reportId: String, completionHandler:( @escaping (Result<Report>) -> Void))
+    
+    /**
+     * Link multiple expenses to a report.
+     */
+    func linkExpenseIds(_ expenseIds: [String], toReport report: Report, completionHandler:( @escaping (Result<Void>) -> Void))
 }
-
+/***********************************/
+// MARK: - IExpenseService implementation
+/***********************************/
 struct ReportService : IReportService {
     
     var serviceAdapter: NetworkAdapter = AlamofireNetworkAdapter()
-    
-    /***********************************/
-    // MARK: - IExpenseService implementation
-    /***********************************/
     
     /**
      * Method to retrieve all reports.
@@ -133,8 +136,25 @@ struct ReportService : IReportService {
             // TODO: - Need to handle the scenarios here.
         }
     }
+    
+    func linkExpenseIds(_ expenseIds: [String], toReport report: Report, completionHandler:( @escaping (Result<Void>) -> Void)) {
+        let payload = getPayloadForLinkingExpenses(expenseIds, toReport: report)
+        serviceAdapter.post(destination: Constants.URLs.Report.linkExpensesToReport, payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
+            switch(response) {
+            case .success(_ , _):
+                completionHandler(Result.success())
+            case .errors(let error):
+                let error = ServiceError(JSON(error))
+                completionHandler(Result.error(error))
+            case .failure(let description):
+                completionHandler(Result.failure(description))
+            }
+        }
+    }
 }
-
+/***********************************/
+// MARK: - Helpers
+/***********************************/
 extension ReportService {
     
     /**
@@ -185,5 +205,15 @@ extension ReportService {
     func getPayloadForDeleteReport(_ reportId: String) -> [String : String] {
         // TODO: - Need to handle the scenarios here.
         return [:]
+    }
+    
+    /**
+     * Method to format payload for linking expenses to a report.
+     */
+    func getPayloadForLinkingExpenses(_ expenseIds: [String], toReport report: Report) -> [String : Any] {
+        var payload: [String : Any] = [:]
+        payload[Constants.RequestParameters.Expense.expenseIds] =  expenseIds
+        payload[Constants.RequestParameters.Expense.reportId] = report.id
+        return payload
     }
 }

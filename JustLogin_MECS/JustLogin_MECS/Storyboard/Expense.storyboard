@@ -429,7 +429,7 @@
         <!--Review Select Expense View Controller-->
         <scene sceneID="ZD5-cS-Qpg">
             <objects>
-                <viewController id="HJ8-Tf-lzu" customClass="ReviewSelectExpenseViewController" customModule="JustLogin_MECS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="reviewSelectExpenseViewController" id="HJ8-Tf-lzu" customClass="ReviewSelectExpenseViewController" customModule="JustLogin_MECS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TF0-MW-kaP"/>
                         <viewControllerLayoutGuide type="bottom" id="34m-Cd-5V4"/>
@@ -446,7 +446,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mQc-Hf-iTi" id="Nl3-yG-nzf">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="89"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="89.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="CPC-Eq-z15" userLabel="Name Stack View">
@@ -549,6 +549,9 @@
                             <constraint firstAttribute="trailing" secondItem="9Wc-jM-uDJ" secondAttribute="trailing" id="eZr-P6-qHl"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="9Wc-jM-uDJ" id="fGg-1c-V6q"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dlU-cV-3Cc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
