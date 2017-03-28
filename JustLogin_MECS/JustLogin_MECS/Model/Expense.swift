@@ -45,6 +45,8 @@ struct Expense {
     
     var reportId: String = Constants.General.emptyString
     
+    var reportTitle: String = Constants.General.emptyString
+    
     var customFields: [[String : Any]] = []
     
     var auditHistory: [AuditHistory] = []
@@ -95,8 +97,12 @@ extension Expense {
         
         currencyId = json[Constants.ResponseParameters.currencyId].stringValue
         
-        reportId = json[Constants.ResponseParameters.reportId].stringValue
+        // Report Details
+        let jsonReport = json[Constants.ResponseParameters.report]
+        reportId = jsonReport[Constants.ResponseParameters.reportId].stringValue
+        reportTitle = jsonReport[Constants.ResponseParameters.title].stringValue
         
+        // Audit History
         let jsonHistories = json[Constants.ResponseParameters.history].exists() ? json[Constants.ResponseParameters.history].arrayValue : []
         for jsonHistory in jsonHistories {
             let history = AuditHistory(withJSON: jsonHistory)

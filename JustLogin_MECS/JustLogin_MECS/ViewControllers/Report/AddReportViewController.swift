@@ -141,7 +141,7 @@ extension AddReportViewController {
         
         showLoadingIndicator(disableUserInteraction: true)
         
-        manager.addReportWithInputsFromTableView(tableView: tableView) { [weak self] (response) in
+        manager.addReport { [weak self] (response) in
             guard let `self` = self else {
                 log.error("Self reference missing in closure.")
                 return

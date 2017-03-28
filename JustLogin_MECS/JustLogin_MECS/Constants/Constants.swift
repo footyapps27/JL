@@ -58,6 +58,7 @@ extension Constants {
     struct CustomFieldKeys {
         static let value = "value"
         static let id = "id"
+        static let amount = "amount"
         static let startDateValue = "startDateValue"
         static let endDateValue = "endDateValue"
     }
@@ -291,6 +292,14 @@ extension Constants {
             static let submittedToId = "submittedToId"
             static let reason = "reason"
         }
+        
+        struct CustomFieldJsonParameters {
+            static let paymentMode = "paymentMode"
+            static let merchant = "merchant"
+            static let reference = "reference"
+            static let location = "location"
+            static let description = "description"
+        }
     }
 }
 /***********************************/
@@ -381,6 +390,7 @@ extension Constants {
         static let paymentMode = "paymentMode"
         static let submitterId = "submitterId"
         
+        static let report = "report"
         static let reports = "reports"
         static let reportId = "reportId"
         static let reportNumber = "reportNumber"

@@ -23,7 +23,11 @@ class CustomFieldTableViewCellCurrencyAndAmount: CustomFieldBaseTableViewCell {
     // MARK: - Parent method override
     /***********************************/
     override func updateView(withField field: CustomField) {
-        
+        if let id = field.values[Constants.CustomFieldKeys.id] {
+            selectedCurrencyId = id
+        }
+        lblCurrency.text = field.values[Constants.CustomFieldKeys.value]
+        txtAmount.text = field.values[Constants.CustomFieldKeys.amount]
     }
     
     override func validateInput(withField field: CustomField) -> (success: Bool, errorMessage: String) {

@@ -22,6 +22,11 @@ class CustomFieldTableViewCellWithMultipleSelection: CustomFieldBaseTableViewCel
     // MARK: - Parent method override
     /***********************************/
     override func updateView(withField field: CustomField) {
+        if let id = field.values[Constants.CustomFieldKeys.id] {
+            selectedId = id
+        }
+        txtField.text = field.values[Constants.CustomFieldKeys.value]
+        
         lblFieldName.text = field.name
     }
     

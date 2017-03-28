@@ -11,6 +11,14 @@ import UIKit
 
 class AddExpenseManager {
     
+    var expense: Expense? {
+        didSet {
+            if expense != nil {
+                updateFieldValues(forExpense: expense!)
+            }
+        }
+    }
+    
     var fields: [[CustomField]] = []
     
     var expenseService: IExpenseService = ExpenseService()
@@ -185,25 +193,25 @@ extension AddExpenseManager {
     }
     
     /* This will be enabled in Phase 2
-    
-    // TODO - This method needs to check if the exchange rate is already present, then dont add it.
-    func addExchangeRateField() {
-        var exchangeRate = CustomField()
-        exchangeRate.name = "Exchange Rate"
-        exchangeRate.fieldType = CustomFieldType.text.rawValue
-        exchangeRate.jsonParameter = Constants.RequestParameters.Expense.exchange
-        exchangeRate.isMandatory = true
-        exchangeRate.isEnabled = true
-        
-        fields[0].append(exchangeRate)
-    }
-    
-    // TODO - The same needs to be removed from the dictCells.
-    func removeExchangeRateField() {
-        if fields[0].last?.jsonParameter == Constants.RequestParameters.Expense.exchange {
-            fields[0].removeLast()
-        }
-    }
+     
+     // TODO - This method needs to check if the exchange rate is already present, then dont add it.
+     func addExchangeRateField() {
+     var exchangeRate = CustomField()
+     exchangeRate.name = "Exchange Rate"
+     exchangeRate.fieldType = CustomFieldType.text.rawValue
+     exchangeRate.jsonParameter = Constants.RequestParameters.Expense.exchange
+     exchangeRate.isMandatory = true
+     exchangeRate.isEnabled = true
+     
+     fields[0].append(exchangeRate)
+     }
+     
+     // TODO - The same needs to be removed from the dictCells.
+     func removeExchangeRateField() {
+     if fields[0].last?.jsonParameter == Constants.RequestParameters.Expense.exchange {
+     fields[0].removeLast()
+     }
+     }
      
      */
 }
@@ -216,6 +224,7 @@ extension AddExpenseManager {
         // Mandatory fields
         var category = CustomField()
         category.name = "Category"
+        category.jsonParameter = Constants.RequestParameters.Expense.categoryId
         category.fieldType = CustomFieldType.category.rawValue
         category.isMandatory = true
         category.isEnabled = true
@@ -236,24 +245,24 @@ extension AddExpenseManager {
         fields.append([category, date, currencyAndAmount])
         
         // Custom fields
-        if let paymentModeField = Singleton.sharedInstance.organization?.expenseFields["paymentMode"], paymentModeField.isEnabled {
+        if let paymentModeField = Singleton.sharedInstance.organization?.expenseFields[Constants.RequestParameters.CustomFieldJsonParameters.paymentMode], paymentModeField.isEnabled {
             fields.append([paymentModeField])
         }
         
         var sectionThree: [CustomField] = []
-        if let merchantNameField = Singleton.sharedInstance.organization?.expenseFields["merchant"], merchantNameField.isEnabled {
+        if let merchantNameField = Singleton.sharedInstance.organization?.expenseFields[Constants.RequestParameters.CustomFieldJsonParameters.merchant], merchantNameField.isEnabled {
             sectionThree.append(merchantNameField)
         }
         
-        if let referenceNumberField = Singleton.sharedInstance.organization?.expenseFields["reference"], referenceNumberField.isEnabled {
+        if let referenceNumberField = Singleton.sharedInstance.organization?.expenseFields[Constants.RequestParameters.CustomFieldJsonParameters.reference], referenceNumberField.isEnabled {
             sectionThree.append(referenceNumberField)
         }
         
-        if let locationField = Singleton.sharedInstance.organization?.expenseFields["location"], locationField.isEnabled {
+        if let locationField = Singleton.sharedInstance.organization?.expenseFields[Constants.RequestParameters.CustomFieldJsonParameters.location], locationField.isEnabled {
             sectionThree.append(locationField)
         }
         
-        if let descriptionField = Singleton.sharedInstance.organization?.expenseFields["description"], descriptionField.isEnabled {
+        if let descriptionField = Singleton.sharedInstance.organization?.expenseFields[Constants.RequestParameters.CustomFieldJsonParameters.description], descriptionField.isEnabled {
             sectionThree.append(descriptionField)
         }
         
@@ -300,6 +309,73 @@ extension AddExpenseManager {
 // MARK: - Helpers
 /***********************************/
 extension AddExpenseManager {
+    
+    /**
+     * This method will update the field value that is present in the existing report.
+     * The value will be then passed to the cells, which will use them to update its view.
+     */
+    func updateFieldValues(forExpense expense: Expense) {
+        for section in 0..<fields.count {
+            for row in 0..<fields[section].count {
+                // Category
+                if fields[section][row].jsonParameter == Constants.RequestParameters.Expense.categoryId {
+                    let categoryName = Singleton.sharedInstance.organization?.categories[expense.categoryId]?.name ?? Constants.General.emptyString
+                    
+                    fields[section][row].values[Constants.CustomFieldKeys.id] = expense.categoryId
+                    fields[section][row].values[Constants.CustomFieldKeys.value] = categoryName
+                    continue
+                }
+                
+                // Date
+                if fields[section][row].jsonParameter == Constants.RequestParameters.Expense.date {
+                    if expense.date != nil {
+                        fields[section][row].values[Constants.CustomFieldKeys.value] = Utilities.convertDateToStringForDisplay(expense.date!)
+                        continue
+                    }
+                }
+                
+                // Currency and Amount
+                if fields[section][row].fieldType == CustomFieldType.currencyAndAmount.rawValue {
+                    let currencyCode = Singleton.sharedInstance.organization?.currencies[expense.currencyId]?.code ?? Constants.General.emptyString
+                    fields[section][row].values[Constants.CustomFieldKeys.id] = expense.currencyId
+                    fields[section][row].values[Constants.CustomFieldKeys.value] = currencyCode
+                    fields[section][row].values[Constants.CustomFieldKeys.amount] = String(expense.amount)
+                    continue
+                }
+                
+                // Merchant Name
+                if fields[section][row].jsonParameter == Constants.RequestParameters.CustomFieldJsonParameters.merchant {
+                    fields[section][row].values[Constants.CustomFieldKeys.value] = expense.merchantName
+                    continue
+                }
+                
+                // Reference Number
+                if fields[section][row].jsonParameter == Constants.RequestParameters.CustomFieldJsonParameters.reference {
+                    fields[section][row].values[Constants.CustomFieldKeys.value] = expense.referenceNumber
+                    continue
+                }
+                
+                // Location
+                if fields[section][row].jsonParameter == Constants.RequestParameters.CustomFieldJsonParameters.location {
+                    fields[section][row].values[Constants.CustomFieldKeys.value] = expense.location
+                    continue
+                }
+                
+                // Description
+                if fields[section][row].jsonParameter == Constants.RequestParameters.CustomFieldJsonParameters.description {
+                    fields[section][row].values[Constants.CustomFieldKeys.value] = expense.description
+                    continue
+                }
+                
+                // Report Id
+                if fields[section][row].jsonParameter == Constants.RequestParameters.Expense.reportId {
+                    fields[section][row].values[Constants.CustomFieldKeys.id] = expense.reportId
+                    fields[section][row].values[Constants.CustomFieldKeys.value] = expense.reportTitle
+                    continue
+                }
+            }
+        }
+    }
     
     func getReviewSelectCategoryController(forIndexPath indexPath: IndexPath, withDelegate delegate: AddExpenseViewController) -> ReviewSelectCategoryViewController {
         let controller = UIStoryboard(name: Constants.StoryboardIds.categoryStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.Category.reviewSelectCategoryViewController) as! ReviewSelectCategoryViewController

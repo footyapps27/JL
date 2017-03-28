@@ -17,12 +17,15 @@ struct ExpenseDetailsToolBarEditEnabledStrategy: ExpenseDetailsToolBarBaseStrate
     func formatToolBar(_ toolBar: UIToolbar, withDelegate delegate: ExpenseDetailsToolBarActionDelegate) {
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: nil)
         
+        // Edit
         let btnEdit = UIBarButtonItem(title: LocalizedString.edit, style: .plain, target: delegate, action: #selector(delegate.barButtonItemTapped(_:)))
         btnEdit.tag = ToolBarButtonTag.left.rawValue
         
+        // Clone
         let btnClone = UIBarButtonItem(title: LocalizedString.clone, style: .plain, target: delegate, action: #selector(delegate.barButtonItemTapped(_:)))
         btnClone.tag = ToolBarButtonTag.middle.rawValue
         
+        // More Options
         let btnMoreOptions = UIBarButtonItem(title: LocalizedString.moreOptions, style: .plain, target: delegate, action: #selector(delegate.barButtonItemTapped(_:)))
         btnMoreOptions.tag = ToolBarButtonTag.right.rawValue
         
@@ -32,7 +35,7 @@ struct ExpenseDetailsToolBarEditEnabledStrategy: ExpenseDetailsToolBarBaseStrate
     func performActionForBarButtonItem(_ barButton: UIBarButtonItem, forExpense expense: Expense, onController controller: BaseViewController) {
         switch(barButton.tag) {
         case ToolBarButtonTag.left.rawValue:
-            log.debug("Edit tapped")
+            navigateToEditExpense(forExpense: expense, onController: controller)
         case ToolBarButtonTag.middle.rawValue:
             log.debug("Clone tapped")
         case ToolBarButtonTag.right.rawValue:
@@ -79,9 +82,11 @@ extension ExpenseDetailsToolBarEditEnabledStrategy {
     }
     
     /**
-     * Start the edit report flow.
+     * Start the edit expense flow.
      */
-    func navigateToEditReport(forReport report: Report, onController controller: BaseViewController) {
-        
+    func navigateToEditExpense(forExpense expense: Expense, onController controller: BaseViewController) {
+        let addExpenseViewController = UIStoryboard(name: Constants.StoryboardIds.expenseStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.Expense.addExpenseViewController) as! AddExpenseViewController
+        addExpenseViewController.expense = expense
+        Utilities.pushControllerAndHideTabbarForChildAndParent(fromController: controller, toController: addExpenseViewController)
     }
 }

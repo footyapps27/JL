@@ -20,13 +20,24 @@ protocol AddExpenseDelegate: class {
 /***********************************/
 class AddExpenseViewController: BaseViewControllerWithTableView {
     
+    // UI
     var datePicker: UIDatePicker?
     var currentTextField: UITextField?
     var toolbar: UIToolbar?
     
+    // Objects
+    let manager = AddExpenseManager()
+    
+    /* 
+     This differentiates whether an existing expense needs to be edited, or  a new expense needs to be added.
+     The caller of this view controller needs to set this if edit flow is to be called.
+     */
+    var expense: Expense?
+    
+    // Delegates
     weak var delegate: AddExpenseDelegate?
     
-    let manager = AddExpenseManager()
+    
 }
 /***********************************/
 // MARK: - View Lifecycle
@@ -35,13 +46,23 @@ extension AddExpenseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = Constants.ViewControllerTitles.addExpense
-        addBarButtonItems()
-        initializeDatePicker()
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 44
         
-        // Make sure the manager has a reference to all the cell before hand
+        /*
+            The sequence in which the below methods are called is important to render the view correctly.
+            The manager needs to know whether it is an adding expense or edit expense flow before the UI is rendered.
+            The data is mapped accordingly.
+         */
+ 
+        if expense != nil {
+            manager.expense = expense!
+        }
+        updateUI()
+        /* 
+            Since this is a dynamic form, we are making sure that the manager has a reference to all the cells before hand.
+            The tableview does not provide any methods/properties to access all cells. 
+            Only the visible cells are maintained.
+            In our case, we had to maintain state of all the cells before calling service.
+         */
         manager.populateCells(fromController: self)
     }
 }
@@ -49,6 +70,17 @@ extension AddExpenseViewController {
 // MARK: - Helpers
 /***********************************/
 extension AddExpenseViewController {
+    /**
+     * Update the UI elements on launch of the controller.
+     */
+    func updateUI() {
+        title = Constants.ViewControllerTitles.addExpense
+        addBarButtonItems()
+        initializeDatePicker()
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 44
+    }
+    
     /**
      * Method to add bar button items.
      */

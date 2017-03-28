@@ -24,7 +24,11 @@ class CustomFieldTableViewCellCategory: CustomFieldBaseTableViewCell {
     // MARK: - Parent method override
     /***********************************/
     override func updateView(withField field: CustomField) {
-        
+        if let id = field.values[Constants.CustomFieldKeys.id] {
+            selectedCategoryId = id
+            imgView.image = UIImage(named: Utilities.getCategoryImageName(forId: id))
+        }
+        txtCategory.text = field.values[Constants.CustomFieldKeys.value]
     }
     
     override func validateInput(withField field: CustomField) -> (success: Bool, errorMessage: String) {
@@ -40,10 +44,10 @@ class CustomFieldTableViewCellCategory: CustomFieldBaseTableViewCell {
         imgView.image = UIImage(named: Utilities.getCategoryImageName(forId: id))
     }
     
-    override func getPayload(withField expenseField: CustomField) -> [String : Any] {
+    override func getPayload(withField field: CustomField) -> [String : Any] {
         if selectedCategoryId != nil {
             return [
-                Constants.RequestParameters.Expense.categoryId : selectedCategoryId!
+                field.jsonParameter : selectedCategoryId!
             ]
         }
         return [:]

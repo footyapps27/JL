@@ -30,6 +30,10 @@ extension EditReportViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        /**
+         * The sequence in which the below statements are called is very important for the controller to work as expected.
+         * This first sets the 
+         */
         manager.report = report!
         updateUI()
         manager.populateCells(fromController: self, dataSource: self)
@@ -123,7 +127,7 @@ extension EditReportViewController {
         
         showLoadingIndicator(disableUserInteraction: true)
         
-        manager.updateReportWithInputsFromTableView(tableView: tableView) { [weak self] (response) in
+        manager.updateReport { [weak self] (response) in
             guard let `self` = self else {
                 log.error("Self reference missing in closure.")
                 return
