@@ -16,8 +16,6 @@ class ExpenseListManager {
     var expenseService: IExpenseService = ExpenseService()
     
     var expenses: [Expense] = []
-    
-    var selectedIndices = Set<Int>()
 }
 /***********************************/
 // MARK: - Data tracking methods
@@ -29,30 +27,15 @@ extension ExpenseListManager {
     func getExpenses() -> [Expense] {
         return expenses
     }
-    
-    /**
-     * When in multiple selection mode, add the selection of the user.
-     */
-    func addExpenseToSelectedExpenses(forIndexPath indexPath: IndexPath) {
-        selectedIndices.insert(indexPath.row)
-    }
-    
     /**
      * Method to get the list of selected expense id's.
      */
-    func getSelectedExpenseIds() -> [String] {
+    func getExpenseIds(fromSelectedIndexPaths selectedIndices: [IndexPath]) -> [String] {
         var ids: [String] = []
         for index in selectedIndices {
-            ids.append(expenses[index].id)
+            ids.append(expenses[index.row].id)
         }
         return ids
-    }
-    
-    /**
-     * Remove all the indices that was earlier tracked.
-     */
-    func refreshSelectedIndices() {
-        selectedIndices.removeAll()
     }
 }
 /***********************************/
@@ -145,11 +128,11 @@ extension ExpenseListManager {
      * Delete a list of expenses. 
      * This will alse update expenses
      */
-    func deleteSelectedExpenses(completionHandler: (@escaping (ManagerResponseToController<Void>) -> Void)) {
-        expenseService.delete(expenseIds: getSelectedExpenseIds()) { [weak self] (result) in
+    func deleteExpenses(ids: [String],completionHandler: (@escaping (ManagerResponseToController<Void>) -> Void)) {
+        expenseService.delete(expenseIds: ids) { [weak self] (result) in
             switch(result) {
             case .success(_):
-                self?.updateExpensesAfterDelete()
+                self?.updateExpenseList(deletedIds: ids)
                 completionHandler(ManagerResponseToController.success())
             case .error(let serviceError):
                 completionHandler(ManagerResponseToController.failure(code: serviceError.code, message: serviceError.message))
@@ -163,14 +146,8 @@ extension ExpenseListManager {
 // MARK: - Private Methods
 /***********************************/
 extension ExpenseListManager {
-    /**
-     * Update the list of expenses after the deletion is successful.
-     */
-    fileprivate func updateExpensesAfterDelete() {
-        expenses = expenses
-            .enumerated()
-            .filter { !selectedIndices.contains($0.offset) }
-            .map { $0.element }
-        refreshSelectedIndices()
+    
+    fileprivate func updateExpenseList(deletedIds: [String]) {
+        expenses = expenses.filter { !deletedIds.contains($0.id) }
     }
 }

@@ -46,19 +46,17 @@ extension ExpenseListViewController {
     }
     
     func leftBarButtonTapped(_ sender: UIBarButtonItem) {
-        if !tableView.isEditing {
-            manager.refreshSelectedIndices()
-        }
-        addBarButtonItems(forNormalState: tableView.isEditing)
-        self.tableView.setEditing(!tableView.isEditing, animated: true)
+        tableViewSetEditing(!tableView.isEditing)
     }
     
     func rightBarButtonTapped(_ sender: UIBarButtonItem) {
         if tableView.isEditing {
-            if manager.selectedIndices.count > 0 {
+            if tableView.indexPathsForSelectedRows != nil && tableView.indexPathsForSelectedRows!.count > 0 {
                 showActionsForMultipleExpenses()
             }
+            // No action if the tableview is editing & if no item is selected.
         } else {
+            // Without editing, this will lead to normal adding a new expense flow.
             navigateToAddExpense()
         }
     }
@@ -70,9 +68,9 @@ extension ExpenseListViewController {
     /**
      * Method to add bar button items (left & right) depending on the state of the tableview. (editing or normal).
      */
-    func addBarButtonItems(forNormalState state: Bool) {
-        let leftSystemItem = state ? UIBarButtonSystemItem.edit : UIBarButtonSystemItem.cancel
-        let rightSystemItem = state ? UIBarButtonSystemItem.add : UIBarButtonSystemItem.done
+    func addBarButtonItems() {
+        let leftSystemItem = tableView.isEditing ? UIBarButtonSystemItem.cancel : UIBarButtonSystemItem.edit
+        let rightSystemItem = tableView.isEditing ? UIBarButtonSystemItem.done : UIBarButtonSystemItem.add
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: leftSystemItem, target: self, action: #selector(leftBarButtonTapped(_:)))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: rightSystemItem, target: self, action: #selector(rightBarButtonTapped(_:)))
@@ -84,15 +82,11 @@ extension ExpenseListViewController {
     func updateUI() {
         
         self.navigationItem.title = Constants.ViewControllerTitles.expenses
-        
         tableView.isHidden = true
         tableView.allowsMultipleSelectionDuringEditing = true
-        
         addSearchController(toTableView: tableView, withSearchResultsUpdater: self)
-        
         addRefreshControl(toTableView: tableView, withAction: #selector(refreshTableView(_:)))
-        
-        addBarButtonItems(forNormalState: true)
+        addBarButtonItems()
     }
     
     /**
@@ -112,17 +106,27 @@ extension ExpenseListViewController {
             }
             
             self.showLoadingIndicator(disableUserInteraction: false)
-            self.manager.deleteSelectedExpenses(completionHandler: { (response) in
+            let ids = self.manager.getExpenseIds(fromSelectedIndexPaths: self.tableView.indexPathsForSelectedRows!)
+            self.manager.deleteExpenses(ids: ids, completionHandler: { (response) in
                 self.hideLoadingIndicator(enableUserInteraction: true)
                 switch(response) {
                 case .success(_):
                     self.tableView.reloadData()
+                    self.tableViewSetEditing(false)
                 case .failure(_ , let message):
                     Utilities.showErrorAlert(withMessage: message, onController: self)
                 }
             })
         }
         Utilities.showActionSheet(withTitle: nil, message: nil, actions: [actionDeleteExpenses, actionAddToReport ], onController: self)
+    }
+    
+    /**
+     * Set editing for tableview & update bar buttons.
+     */
+    func tableViewSetEditing(_ editing: Bool) {
+        self.tableView.setEditing(editing, animated: true)
+        addBarButtonItems()
     }
     
     func navigateToAddExpense() {
@@ -199,11 +203,9 @@ extension ExpenseListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if tableView.isEditing {
-            manager.addExpenseToSelectedExpenses(forIndexPath: indexPath)
-            return
+        if !tableView.isEditing {
+            navigateToExpenseDetails(forExpense: manager.getExpenses()[indexPath.row])
         }
-        navigateToExpenseDetails(forExpense: manager.getExpenses()[indexPath.row])
     }
 }
 /***********************************/
