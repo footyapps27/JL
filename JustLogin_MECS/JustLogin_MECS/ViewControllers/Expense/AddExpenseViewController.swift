@@ -138,7 +138,7 @@ extension AddExpenseViewController {
         if !validation.success {
             Utilities.showErrorAlert(withMessage: validation.errorMessage, onController: self)
         } else {
-            callAddExpenseService()
+            expense != nil ? (callUpdateExpenseService()) : (callAddExpenseService())
         }
     }
     
@@ -168,7 +168,7 @@ extension AddExpenseViewController {
         
         showLoadingIndicator(disableUserInteraction: true)
         
-        manager.addExpenseWithInput() { [weak self] (response) in
+        manager.addExpense() { [weak self] (response) in
             guard let `self` = self else {
                 log.error("Self reference missing in closure.")
                 return
@@ -180,6 +180,28 @@ extension AddExpenseViewController {
                 self.navigateOutAfterExpenseCreation()
             case .failure(_, let message):
                  //TODO: - Handle the empty table view screen.
+                Utilities.showErrorAlert(withMessage: message, onController: self)
+                self.hideLoadingIndicator(enableUserInteraction: true)
+            }
+        }
+    }
+    
+    func callUpdateExpenseService() {
+        
+        showLoadingIndicator(disableUserInteraction: true)
+        
+        manager.updateExpense() { [weak self] (response) in
+            guard let `self` = self else {
+                log.error("Self reference missing in closure.")
+                return
+            }
+            switch(response) {
+            case .success(_):
+                self.hideLoadingIndicator(enableUserInteraction: true)
+                self.delegate?.expenseCreated()
+                self.navigateOutAfterExpenseCreation()
+            case .failure(_, let message):
+                //TODO: - Handle the empty table view screen.
                 Utilities.showErrorAlert(withMessage: message, onController: self)
                 self.hideLoadingIndicator(enableUserInteraction: true)
             }

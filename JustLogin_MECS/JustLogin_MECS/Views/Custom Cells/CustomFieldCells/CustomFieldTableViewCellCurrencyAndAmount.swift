@@ -23,6 +23,7 @@ class CustomFieldTableViewCellCurrencyAndAmount: CustomFieldBaseTableViewCell {
     // MARK: - Parent method override
     /***********************************/
     override func updateView(withField field: CustomField) {
+        // TODO: - This is incorrect, since this will override the value the user has chosen in case the cell is not visible any more. We need to check if the selectedCurrency is already present, if not only then set it.
         if let id = field.values[Constants.CustomFieldKeys.id] {
             selectedCurrencyId = id
         }
@@ -73,9 +74,5 @@ class CustomFieldTableViewCellCurrencyAndAmount: CustomFieldBaseTableViewCell {
 extension CustomFieldTableViewCellCurrencyAndAmount {
     override func awakeFromNib() {
         txtAmount.tag = CustomFieldType.currencyAndAmount.rawValue
-        if let organization = Singleton.sharedInstance.organization {
-            selectedCurrencyId = organization.baseCurrencyId
-            lblCurrency.text = Utilities.getCurrencyCode(forId: organization.baseCurrencyId)
-        }
     }
 }

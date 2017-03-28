@@ -29,7 +29,7 @@ protocol IExpenseService {
     /**
      * Update an existing expense.
      */
-    func update(expense: Expense, completionHandler:( @escaping (Result<Expense>) -> Void))
+    func update(payload: [String : Any], completionHandler:( @escaping (Result<Expense>) -> Void))
     
     /**
      * Delete an existing expense.
@@ -103,8 +103,7 @@ struct ExpenseService : IExpenseService {
         }
     }
     
-    func update(expense: Expense, completionHandler:( @escaping (Result<Expense>) -> Void)) {
-        let payload = getPayloadForUpdateExpense(expense)
+    func update(payload: [String : Any], completionHandler:( @escaping (Result<Expense>) -> Void)) {
         serviceAdapter.post(destination: Constants.URLs.Expense.updateExpense, payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
             switch(response) {
             case .success(let success, _ ):
@@ -141,70 +140,6 @@ struct ExpenseService : IExpenseService {
 // MARK: - Payload for services
 /***********************************/
 extension ExpenseService {
-    
-    /**
-     * Method to format payload for create expense.
-     */
-    func getPayloadForCreateExpense(_ expense: Expense) -> [String : Any] {
-        var payload: [String : Any] = [:]
-        
-        payload[Constants.RequestParameters.Expense.amount] = expense.amount
-        
-        payload[Constants.RequestParameters.Expense.status] = expense.status
-        
-        payload[Constants.RequestParameters.Expense.exchange] = expense.exchange
-        
-        if let date = expense.date {
-            payload[Constants.RequestParameters.Expense.date] = Utilities.convertDateToStringForServerCommunication(date)
-        }
-        
-        if !expense.description.isEmpty {
-            payload[Constants.RequestParameters.Expense.description] = expense.description
-        }
-        
-        if !expense.location.isEmpty {
-            payload[Constants.RequestParameters.Expense.location] = expense.location
-        }
-        
-        if !expense.referenceNumber.isEmpty {
-            payload[Constants.RequestParameters.Expense.referenceNumber] = expense.referenceNumber
-        }
-        
-        if !expense.notes.isEmpty {
-            payload[Constants.RequestParameters.Expense.notes] = expense.notes
-        }
-        
-        if !expense.paymentMode.isEmpty {
-            payload[Constants.RequestParameters.Expense.paymentMode] = expense.paymentMode
-        }
-        
-        if !expense.categoryId.isEmpty {
-            payload[Constants.RequestParameters.Expense.categoryId] = expense.categoryId
-        }
-        
-        if !expense.currencyId.isEmpty {
-            payload[Constants.RequestParameters.Expense.currencyId] = expense.currencyId
-        }
-        
-        if !expense.reportId.isEmpty {
-            payload[Constants.RequestParameters.Expense.reportId] = expense.reportId
-        }
-        
-        return payload
-    }
-    
-    /**
-     * Method to format payload for update expense.
-     */
-    func getPayloadForUpdateExpense(_ expense: Expense) -> [String : Any] {
-        var payload: [String : Any] = getPayloadForCreateExpense(expense)
-        
-        if !expense.id.isEmpty {
-            payload[Constants.RequestParameters.Expense.expenseId] = expense.id
-        }
-        return payload
-    }
-    
     /**
      * Method to format payload for expense details.
      */

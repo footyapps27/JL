@@ -106,10 +106,25 @@ extension AddExpenseManager {
     /**
      * Method to get all the expenses that need to be displayed.
      */
-    func addExpenseWithInput(completionHandler: (@escaping (ManagerResponseToController<Void>) -> Void)) {
+    func addExpense(completionHandler: (@escaping (ManagerResponseToController<Void>) -> Void)) {
         let payload = getPayload()
         
         expenseService.create(payload: payload) { (result) in
+            switch(result) {
+            case .success(_):
+                completionHandler(ManagerResponseToController.success())
+            case .error(let serviceError):
+                completionHandler(ManagerResponseToController.failure(code: serviceError.code, message: serviceError.message))
+            case .failure(let message):
+                completionHandler(ManagerResponseToController.failure(code: "", message: message))
+            }
+        }
+    }
+    
+    func updateExpense(completionHandler: (@escaping (ManagerResponseToController<Void>) -> Void)) {
+        var payload = getPayload()
+        payload[Constants.RequestParameters.Expense.expenseId] = expense!.id
+        expenseService.update(payload: payload) { (result) in
             switch(result) {
             case .success(_):
                 completionHandler(ManagerResponseToController.success())
@@ -241,6 +256,10 @@ extension AddExpenseManager {
         currencyAndAmount.fieldType = CustomFieldType.currencyAndAmount.rawValue
         currencyAndAmount.isMandatory = true
         currencyAndAmount.isEnabled = true
+        if let baseCurrencyId = Singleton.sharedInstance.organization?.baseCurrencyId {
+            currencyAndAmount.values[Constants.CustomFieldKeys.id] = baseCurrencyId
+            currencyAndAmount.values[Constants.CustomFieldKeys.value] = Utilities.getCurrencyCode(forId: baseCurrencyId)
+        }
         
         fields.append([category, date, currencyAndAmount])
         
