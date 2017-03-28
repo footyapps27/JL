@@ -24,7 +24,7 @@ class AddAndEditReportManager {
     var dictCells: [IndexPath:CustomFieldBaseTableViewCell] = [:]
     
     init() {
-        updateFields()
+        fields = AddReportDefaultConfiguration.getFields()
     }
 }
 /***********************************/
@@ -183,58 +183,6 @@ extension AddAndEditReportManager {
             if fields[index].jsonParameter == Constants.RequestParameters.Report.businessPurpose {
                 fields[index].values[Constants.CustomFieldKeys.value] = report.businessPurpose
                 continue
-            }
-        }
-    }
-}
-/***********************************/
-// MARK: - Data manipulation
-/***********************************/
-extension AddAndEditReportManager {
-    func updateFields() {
-        var title = CustomField()
-        title.name = "Report Title"
-        title.jsonParameter = Constants.RequestParameters.Report.title
-        title.fieldType = CustomFieldType.text.rawValue
-        title.isMandatory = true
-        title.isEnabled = true
-        
-        var duration = CustomField()
-        duration.name = "Duration"
-        duration.fieldType = CustomFieldType.doubleTextField.rawValue
-        duration.isMandatory = true
-        duration.isEnabled = true
-        
-        // First the title is added
-        fields.append(title)
-        
-        if let customerField = Singleton.sharedInstance.organization?.reportFields["customer"], customerField.isEnabled {
-                fields.append(customerField)
-        }
-        
-        if let projectField = Singleton.sharedInstance.organization?.reportFields["project"], projectField.isEnabled {
-                fields.append(projectField)
-        }
-        
-        // Add the duration in between
-        fields.append(duration)
-        
-        if let businessPurposeField = Singleton.sharedInstance.organization?.reportFields[Constants.RequestParameters.Report.businessPurpose], businessPurposeField.isEnabled {
-                fields.append(businessPurposeField)
-        }
-        
-        // Now add all the other fields
-        guard let allReportFields = Singleton.sharedInstance.organization?.reportFields.values else {
-            return
-        }
-        
-        for reportField in allReportFields {
-            // Since the three fields have been added, negate them & add field only if they are enabled.
-            if  reportField.jsonParameter != "customer" &&
-                reportField.jsonParameter != "project" &&
-                reportField.jsonParameter != "businessPurpose" &&
-                reportField.isEnabled {
-                    fields.append(reportField)
             }
         }
     }

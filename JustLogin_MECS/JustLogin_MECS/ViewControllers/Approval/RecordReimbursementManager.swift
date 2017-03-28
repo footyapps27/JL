@@ -28,7 +28,7 @@ class RecordReimbursementManager {
     var dictCells: [IndexPath:CustomFieldBaseTableViewCell] = [:]
     
     init() {
-        updateFields()
+        fields = RecordReimbursementDefaultConfiguration.getFields()
     }
 }
 /***********************************/
@@ -187,59 +187,6 @@ extension RecordReimbursementManager {
             let cell = dictCells[lastSelectedNavigationIndex!]
             cell?.updateView(withId: id, value: value)
         }
-    }
-}
-/***********************************/
-// MARK: - Data manipulation
-/***********************************/
-extension RecordReimbursementManager {
-    
-    func updateFields() {
-        // Mandatory fields
-        var amount = CustomField()
-        amount.name = "Amount"
-        amount.fieldType = CustomFieldType.label.rawValue
-        amount.isMandatory = true
-        amount.isEnabled = true
-        
-        var paidTo = CustomField()
-        paidTo.name = "Paid To"
-        paidTo.fieldType = CustomFieldType.label.rawValue
-        paidTo.isMandatory = true
-        paidTo.isEnabled = true
-        
-        fields.append([amount, paidTo])
-        
-        var date = CustomField()
-        date.name = "Reimbursed Date"
-        date.jsonParameter = "reimburseOn"
-        date.fieldType = CustomFieldType.date.rawValue
-        date.isMandatory = true
-        date.isEnabled = true
-        
-        var paidThrough = CustomField()
-        paidThrough.name = "Paid Through"
-        paidThrough.fieldType = CustomFieldType.dropdown.rawValue
-        paidThrough.jsonParameter = "paidThrough"
-        paidThrough.dropdownValues = ["Petty Cash", "Undeposited Funds"]
-        paidThrough.isMandatory = false
-        paidThrough.isEnabled = true
-        
-        var notes = CustomField()
-        notes.name = "Notes"
-        notes.fieldType = CustomFieldType.textView.rawValue
-        notes.jsonParameter = "notes"
-        notes.isMandatory = false
-        notes.isEnabled = true
-        
-        var referenceNumber = CustomField()
-        referenceNumber.name = "Reference #"
-        referenceNumber.fieldType = CustomFieldType.text.rawValue
-        referenceNumber.jsonParameter = "referenceNumber"
-        referenceNumber.isMandatory = false
-        referenceNumber.isEnabled = true
-        
-        fields.append([date, paidThrough, notes, referenceNumber])
     }
 }
 /***********************************/

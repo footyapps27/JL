@@ -28,7 +28,7 @@ class AddExpenseManager {
     var dictCells: [IndexPath:CustomFieldBaseTableViewCell] = [:]
     
     init() {
-        updateFields()
+        fields = AddExpenseDefaultConfiguration.getFields()
     }
 }
 /***********************************/
@@ -104,7 +104,7 @@ extension AddExpenseManager {
 /***********************************/
 extension AddExpenseManager {
     /**
-     * Method to get all the expenses that need to be displayed.
+     * Create a new expense based on the inputs inserted by the user.
      */
     func addExpense(completionHandler: (@escaping (ManagerResponseToController<Void>) -> Void)) {
         let payload = getPayload()
@@ -121,6 +121,10 @@ extension AddExpenseManager {
         }
     }
     
+    /**
+     * Update an existing expense. 
+     * This will make sure that the id of the expense will be added to the payload, before calling the service.
+     */
     func updateExpense(completionHandler: (@escaping (ManagerResponseToController<Void>) -> Void)) {
         var payload = getPayload()
         payload[Constants.RequestParameters.Expense.expenseId] = expense!.id
@@ -206,129 +210,11 @@ extension AddExpenseManager {
             cell?.updateView(withId: id, value: value)
         }
     }
-    
-    /* This will be enabled in Phase 2
-     
-     // TODO - This method needs to check if the exchange rate is already present, then dont add it.
-     func addExchangeRateField() {
-     var exchangeRate = CustomField()
-     exchangeRate.name = "Exchange Rate"
-     exchangeRate.fieldType = CustomFieldType.text.rawValue
-     exchangeRate.jsonParameter = Constants.RequestParameters.Expense.exchange
-     exchangeRate.isMandatory = true
-     exchangeRate.isEnabled = true
-     
-     fields[0].append(exchangeRate)
-     }
-     
-     // TODO - The same needs to be removed from the dictCells.
-     func removeExchangeRateField() {
-     if fields[0].last?.jsonParameter == Constants.RequestParameters.Expense.exchange {
-     fields[0].removeLast()
-     }
-     }
-     
-     */
-}
-/***********************************/
-// MARK: - Data manipulation
-/***********************************/
-extension AddExpenseManager {
-    
-    func updateFields() {
-        // Mandatory fields
-        var category = CustomField()
-        category.name = "Category"
-        category.jsonParameter = Constants.RequestParameters.Expense.categoryId
-        category.fieldType = CustomFieldType.category.rawValue
-        category.isMandatory = true
-        category.isEnabled = true
-        
-        var date = CustomField()
-        date.name = "Date"
-        date.jsonParameter = Constants.RequestParameters.Expense.date
-        date.fieldType = CustomFieldType.date.rawValue
-        date.isMandatory = true
-        date.isEnabled = true
-        
-        // By default choose the base currency id
-        var currencyAndAmount = CustomField()
-        currencyAndAmount.fieldType = CustomFieldType.currencyAndAmount.rawValue
-        currencyAndAmount.isMandatory = true
-        currencyAndAmount.isEnabled = true
-        if let baseCurrencyId = Singleton.sharedInstance.organization?.baseCurrencyId {
-            currencyAndAmount.values[Constants.CustomFieldKeys.id] = baseCurrencyId
-            currencyAndAmount.values[Constants.CustomFieldKeys.value] = Utilities.getCurrencyCode(forId: baseCurrencyId)
-        }
-        
-        fields.append([category, date, currencyAndAmount])
-        
-        // Custom fields
-        if let paymentModeField = Singleton.sharedInstance.organization?.expenseFields[Constants.RequestParameters.CustomFieldJsonParameters.paymentMode], paymentModeField.isEnabled {
-            fields.append([paymentModeField])
-        }
-        
-        var sectionThree: [CustomField] = []
-        if let merchantNameField = Singleton.sharedInstance.organization?.expenseFields[Constants.RequestParameters.CustomFieldJsonParameters.merchant], merchantNameField.isEnabled {
-            sectionThree.append(merchantNameField)
-        }
-        
-        if let referenceNumberField = Singleton.sharedInstance.organization?.expenseFields[Constants.RequestParameters.CustomFieldJsonParameters.reference], referenceNumberField.isEnabled {
-            sectionThree.append(referenceNumberField)
-        }
-        
-        if let locationField = Singleton.sharedInstance.organization?.expenseFields[Constants.RequestParameters.CustomFieldJsonParameters.location], locationField.isEnabled {
-            sectionThree.append(locationField)
-        }
-        
-        if let descriptionField = Singleton.sharedInstance.organization?.expenseFields[Constants.RequestParameters.CustomFieldJsonParameters.description], descriptionField.isEnabled {
-            sectionThree.append(descriptionField)
-        }
-        
-        fields.append(sectionThree)
-        
-        // Section 4
-        var sectionFour: [CustomField] = []
-        if let isBillableField = Singleton.sharedInstance.organization?.expenseFields["isBillable"], isBillableField.isEnabled {
-            sectionFour.append(isBillableField)
-        }
-        
-        if let customerField = Singleton.sharedInstance.organization?.expenseFields["customer"], customerField.isEnabled {
-            sectionFour.append(customerField)
-        }
-        
-        if let projectField = Singleton.sharedInstance.organization?.expenseFields["project"], projectField.isEnabled {
-            sectionFour.append(projectField)
-        }
-        
-        var addToReport = CustomField()
-        addToReport.name = "Add to Report"
-        addToReport.jsonParameter = Constants.RequestParameters.Expense.reportId
-        addToReport.fieldType = CustomFieldType.dropdown.rawValue
-        addToReport.isMandatory = false
-        addToReport.isEnabled = true
-        
-        sectionFour.append(addToReport)
-        
-        // Add the section 4 elements to the complete fields
-        fields.append(sectionFour)
-        
-        // TODO - Add the custom fields
-        
-        // Finally add the image block
-        var attachImage = CustomField()
-        attachImage.fieldType = CustomFieldType.imageSelection.rawValue
-        attachImage.isMandatory = true
-        attachImage.isEnabled = true
-        
-        fields.append([attachImage])
-    }
 }
 /***********************************/
 // MARK: - Helpers
 /***********************************/
 extension AddExpenseManager {
-    
     /**
      * This method will update the field value that is present in the existing report.
      * The value will be then passed to the cells, which will use them to update its view.
