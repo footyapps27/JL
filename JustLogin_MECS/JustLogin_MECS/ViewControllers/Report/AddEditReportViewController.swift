@@ -12,8 +12,8 @@ import UIKit
 /***********************************/
 // MARK: - Protocol
 /***********************************/
-protocol AddReportDelegate: class {
-    func reportCreated()
+protocol AddEditReportDelegate: class {
+    func reportCreatedOrModified()
 }
 /***********************************/
 // MARK: - Properties
@@ -31,7 +31,7 @@ class AddEditReportViewController: BaseViewControllerWithTableView {
      */
     var report: Report?
     
-    weak var delegate: AddReportDelegate?
+    weak var delegate: AddEditReportDelegate?
     
     let manager = AddAndEditReportManager()
 }
@@ -168,7 +168,7 @@ extension AddEditReportViewController {
             switch(response) {
             case .success(_):
                 self.hideLoadingIndicator(enableUserInteraction: true)
-                self.delegate?.reportCreated()
+                self.delegate?.reportCreatedOrModified()
                 self.navigateOutAfterReportCreation()
             case .failure(_, let message):
                 // TODO: - Handle the empty table view screen.
@@ -190,7 +190,7 @@ extension AddEditReportViewController {
             switch(response) {
             case .success(_):
                 self.hideLoadingIndicator(enableUserInteraction: true)
-                self.delegate?.reportCreated()
+                self.delegate?.reportCreatedOrModified()
                 self.navigateOutAfterReportCreation()
             case .failure(_, let message):
                 // TODO: - Handle the empty table view screen.

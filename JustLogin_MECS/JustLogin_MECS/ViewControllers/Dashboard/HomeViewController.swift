@@ -81,10 +81,10 @@ extension HomeViewController: AddEditExpenseDelegate {
     }
 }
 /***********************************/
-// MARK: - AddReportDelegate
+// MARK: - AddEditReportDelegate
 /***********************************/
-extension HomeViewController: AddReportDelegate {
-    func reportCreated() {
+extension HomeViewController: AddEditReportDelegate {
+    func reportCreatedOrModified() {
         _ = UIStoryboard(name: Constants.StoryboardIds.dashboardStoryboard, bundle: nil).instantiateViewController(withIdentifier: manager.getDashboardIdentifier()) as! UITabBarController
         // TODO = Here we need to navigate to the report list controller.
     }

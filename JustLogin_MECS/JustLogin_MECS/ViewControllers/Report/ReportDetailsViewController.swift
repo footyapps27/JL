@@ -202,3 +202,11 @@ extension ReportDetailsViewController: ReviewSelectExpenseDelegate {
         fetchReportDetails()
     }
 }
+/***********************************/
+// MARK: - AddEditReportDelegate
+/***********************************/
+extension ReportDetailsViewController: AddEditReportDelegate {
+    func reportCreatedOrModified() {
+        fetchReportDetails()
+    }
+}

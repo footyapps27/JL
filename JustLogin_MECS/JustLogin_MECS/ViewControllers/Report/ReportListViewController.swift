@@ -156,10 +156,10 @@ extension ReportListViewController: UISearchResultsUpdating {
     }
 }
 /***********************************/
-// MARK: - AddReportDelegate
+// MARK: - AddEditReportDelegate
 /***********************************/
-extension ReportListViewController: AddReportDelegate {
-    func reportCreated() {
+extension ReportListViewController: AddEditReportDelegate {
+    func reportCreatedOrModified() {
         fetchReports()
     }
 }

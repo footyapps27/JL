@@ -81,6 +81,7 @@ extension ReportDetailsToolBarUnsubmittedStrategy {
     func navigateToEditReport(forReport report: Report, onController controller: BaseViewController) {
         let addEditReportViewController = UIStoryboard(name: Constants.StoryboardIds.reportStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.Report.addEditReportViewController) as! AddEditReportViewController
         addEditReportViewController.report = report
+        addEditReportViewController.delegate = controller as? AddEditReportDelegate
         Utilities.pushControllerAndHideTabbarForChildAndParent(fromController: controller, toController: addEditReportViewController)
     }
 }
