@@ -56,8 +56,8 @@ extension ExpenseDetailsToolBarEditDisabledStrategy {
         
         let addExpense = UIAlertAction(title: LocalizedString.addExpense, style: .default) { void in
             // TODO - Make the add expense customised here.
-            let addExpenseViewController = UIStoryboard(name: Constants.StoryboardIds.expenseStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.Expense.addExpenseViewController) as! AddExpenseViewController
-            let navigationController = UINavigationController.init(rootViewController: addExpenseViewController)
+            let addEditExpenseViewController = UIStoryboard(name: Constants.StoryboardIds.expenseStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.Expense.addEditExpenseViewController) as! AddEditExpenseViewController
+            let navigationController = UINavigationController.init(rootViewController: addEditExpenseViewController)
             controller.present(navigationController, animated: true, completion: nil)
         }
         

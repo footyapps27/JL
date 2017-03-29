@@ -165,7 +165,7 @@ extension Constants {
         }
         
         struct Expense {
-            static let addExpenseViewController = "addExpenseViewController"
+            static let addEditExpenseViewController = "addEditExpenseViewController"
             static let expenseDetailsViewController = "expenseDetailsViewController"
             static let reviewSelectExpenseViewController = "reviewSelectExpenseViewController"
         }

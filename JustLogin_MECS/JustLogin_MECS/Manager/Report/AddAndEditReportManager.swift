@@ -24,7 +24,7 @@ class AddAndEditReportManager {
     var dictCells: [IndexPath:CustomFieldBaseTableViewCell] = [:]
     
     init() {
-        fields = AddReportDefaultConfiguration.getFields()
+        fields = AddEditReportDefaultConfiguration.getFields()
     }
 }
 /***********************************/

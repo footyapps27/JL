@@ -65,7 +65,7 @@ extension ReportDetailsToolBarUnsubmittedStrategy {
         }
         
         let addExpense = UIAlertAction(title: LocalizedString.addExpense, style: .default) { void in
-            self.navigateToAddExpenseController(fromController: controller)
+            self.navigateToAddEditExpenseController(fromController: controller)
         }
         
         let includeExpense = UIAlertAction(title: LocalizedString.includeExpense, style: .default) { void in
@@ -89,12 +89,12 @@ extension ReportDetailsToolBarUnsubmittedStrategy {
 /***********************************/
 extension ReportDetailsToolBarUnsubmittedStrategy {
     /**
-     * Method to navigate to the AddExpenseViewController.
+     * Method to navigate to the AddEditExpenseViewController.
      */
-    func navigateToAddExpenseController(fromController controller: BaseViewController) {
+    func navigateToAddEditExpenseController(fromController controller: BaseViewController) {
         // TODO - Make the add expense customised here.
-        let addExpenseViewController = UIStoryboard(name: Constants.StoryboardIds.expenseStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.Expense.addExpenseViewController) as! AddExpenseViewController
-        let navigationController = UINavigationController.init(rootViewController: addExpenseViewController)
+        let addEditExpenseViewController = UIStoryboard(name: Constants.StoryboardIds.expenseStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.Expense.addEditExpenseViewController) as! AddEditExpenseViewController
+        let navigationController = UINavigationController.init(rootViewController: addEditExpenseViewController)
         controller.present(navigationController, animated: true, completion: nil)
     }
     /**

@@ -14,7 +14,6 @@ class ExpenseListViewController: BaseViewControllerWithTableView {
     /***********************************/
     // MARK: - Properties
     /***********************************/
-    
     let manager = ExpenseListManager()
     
     /***********************************/
@@ -28,7 +27,6 @@ class ExpenseListViewController: BaseViewControllerWithTableView {
         NotificationCenter.default.addObserver(self, selector: #selector(ExpenseListViewController.fetchExpenses), name: Notification.Name(Constants.Notifications.refreshExpenseList), object: nil)
         
         updateUI()
-        
         fetchExpenses()
     }
     
@@ -130,9 +128,9 @@ extension ExpenseListViewController {
     }
     
     func navigateToAddExpense() {
-        let addExpenseViewController = UIStoryboard(name: Constants.StoryboardIds.expenseStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.Expense.addExpenseViewController) as! AddExpenseViewController
-        addExpenseViewController.delegate = self
-        Utilities.pushControllerAndHideTabbarForChildOnly(fromController:self, toController: addExpenseViewController)
+        let addEditExpenseViewController = UIStoryboard(name: Constants.StoryboardIds.expenseStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.Expense.addEditExpenseViewController) as! AddEditExpenseViewController
+        addEditExpenseViewController.delegate = self
+        Utilities.pushControllerAndHideTabbarForChildOnly(fromController:self, toController: addEditExpenseViewController)
     }
     
     func navigateToExpenseDetails(forExpense expense: Expense) {

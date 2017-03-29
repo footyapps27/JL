@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Add Expense View Controller-->
+        <!--Add Edit Expense View Controller-->
         <scene sceneID="5zO-nQ-QNf">
             <objects>
-                <viewController storyboardIdentifier="addExpenseViewController" id="rsU-Gr-kYU" customClass="AddExpenseViewController" customModule="JustLogin_MECS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="addEditExpenseViewController" id="rsU-Gr-kYU" customClass="AddEditExpenseViewController" customModule="JustLogin_MECS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZcM-hN-xvp"/>
                         <viewControllerLayoutGuide type="bottom" id="zqX-zj-e4E"/>

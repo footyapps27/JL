@@ -54,9 +54,9 @@ extension HomeViewController {
      * This will add a navigation controller before presenting the add expense controller
      */
     func navigateToAddExpense() {
-        let addExpenseViewController = UIStoryboard(name: Constants.StoryboardIds.expenseStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.Expense.addExpenseViewController) as! AddExpenseViewController
-        addExpenseViewController.delegate = self
-        let navigationController = UINavigationController.init(rootViewController: addExpenseViewController)
+        let addEditExpenseViewController = UIStoryboard(name: Constants.StoryboardIds.expenseStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.Expense.addEditExpenseViewController) as! AddEditExpenseViewController
+        addEditExpenseViewController.delegate = self
+        let navigationController = UINavigationController.init(rootViewController: addEditExpenseViewController)
         self.present(navigationController, animated: true, completion: nil)
     }
     

@@ -1,5 +1,5 @@
 //
-//  AddExpenseDefaultConfiguration.swift
+//  AddEditExpenseDefaultConfiguration.swift
 //  JustLogin_MECS
 //
 //  Created by Samrat on 28/3/17.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct AddExpenseDefaultConfiguration {
+struct AddEditExpenseDefaultConfiguration {
     
     /***********************************/
     // MARK: - Public Methods
@@ -29,7 +29,7 @@ struct AddExpenseDefaultConfiguration {
 /***********************************/
 // MARK: - Section 0
 /***********************************/
-extension AddExpenseDefaultConfiguration {
+extension AddEditExpenseDefaultConfiguration {
     
     fileprivate static func getSection0() -> [CustomField] {
         return ([getCategoryField(), getDateField(), getCurrencyAndAmountField()])
@@ -73,7 +73,7 @@ extension AddExpenseDefaultConfiguration {
 /***********************************/
 // MARK: - Section 1
 /***********************************/
-extension AddExpenseDefaultConfiguration {
+extension AddEditExpenseDefaultConfiguration {
     fileprivate static func getSection1() -> [CustomField] {
         if getPaymentModeField() != nil {
             return ([getPaymentModeField()!])
@@ -91,7 +91,7 @@ extension AddExpenseDefaultConfiguration {
 /***********************************/
 // MARK: - Section 2
 /***********************************/
-extension AddExpenseDefaultConfiguration {
+extension AddEditExpenseDefaultConfiguration {
     fileprivate static func getSection2() -> [CustomField] {
         var section2: [CustomField] = []
         if getMerchantNameField() != nil {
@@ -143,7 +143,7 @@ extension AddExpenseDefaultConfiguration {
 /***********************************/
 // MARK: - Section 3
 /***********************************/
-extension AddExpenseDefaultConfiguration {
+extension AddEditExpenseDefaultConfiguration {
     fileprivate static func getSection3() -> [CustomField] {
         var section3: [CustomField] = []
         if getIsBillableField() != nil {
@@ -197,7 +197,7 @@ extension AddExpenseDefaultConfiguration {
 /***********************************/
 // MARK: - Section 4
 /***********************************/
-extension AddExpenseDefaultConfiguration {
+extension AddEditExpenseDefaultConfiguration {
     fileprivate static func getSection4() -> [CustomField] {
         return ([getAttachImageField()])
     }

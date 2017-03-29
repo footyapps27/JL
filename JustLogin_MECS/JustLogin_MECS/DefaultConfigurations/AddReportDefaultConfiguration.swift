@@ -1,5 +1,5 @@
 //
-//  AddReportDefaultConfiguration.swift
+//  AddEditReportDefaultConfiguration.swift
 //  JustLogin_MECS
 //
 //  Created by Samrat on 28/3/17.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct AddReportDefaultConfiguration {
+struct AddEditReportDefaultConfiguration {
     
     /***********************************/
     // MARK: - Public Methods
@@ -40,7 +40,7 @@ struct AddReportDefaultConfiguration {
 /***********************************/
 // MARK: - Mandatory Fields
 /***********************************/
-extension AddReportDefaultConfiguration {
+extension AddEditReportDefaultConfiguration {
     
     fileprivate static func getTitleField() -> CustomField {
         var title = CustomField()
@@ -66,7 +66,7 @@ extension AddReportDefaultConfiguration {
 /***********************************/
 // MARK: - Optional Fields
 /***********************************/
-extension AddReportDefaultConfiguration {
+extension AddEditReportDefaultConfiguration {
     
     fileprivate static func getCustomerField() -> CustomField? {
         if let customerField = Singleton.sharedInstance.organization?.reportFields["customer"], customerField.isEnabled {

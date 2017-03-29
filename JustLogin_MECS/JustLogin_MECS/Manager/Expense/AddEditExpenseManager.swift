@@ -9,8 +9,13 @@
 import Foundation
 import UIKit
 
-class AddExpenseManager {
+class AddEditExpenseManager {
     
+    /*
+        This differentiates whether an existing expense needs to be edited, or  a new expense needs to be added.
+        The view controller needs to set this if edit flow is to be called.
+        All the properties in the tableview will be updated based on the expense that is being set.
+     */
     var expense: Expense? {
         didSet {
             if expense != nil {
@@ -27,22 +32,21 @@ class AddExpenseManager {
     
     var dictCells: [IndexPath:CustomFieldBaseTableViewCell] = [:]
     
+    // On init, make sure that the fields are populated.
     init() {
-        fields = AddExpenseDefaultConfiguration.getFields()
+        fields = AddEditExpenseDefaultConfiguration.getFields()
     }
 }
 /***********************************/
 // MARK: - Data tracking methods
 /***********************************/
-extension AddExpenseManager {
-    /**
-     * Populate the cells from the table view.
-     */
-    func populateCells(fromController controller: AddExpenseViewController) {
+extension AddEditExpenseManager {
+    
+    func populateCells(fromController controller: BaseViewControllerWithTableView, delegate: UITableViewDataSource) {
         for section in 0..<fields.count {
             for row in 0..<fields[section].count {
                 let indexPath = IndexPath(row: row, section: section)
-                let cell = controller.tableView(controller.tableView, cellForRowAt: indexPath) as! CustomFieldBaseTableViewCell
+                let cell = delegate.tableView(controller.tableView, cellForRowAt: indexPath) as! CustomFieldBaseTableViewCell
                 dictCells[indexPath] = cell
             }
         }
@@ -91,7 +95,7 @@ extension AddExpenseManager {
 /***********************************/
 // MARK: - UI updating
 /***********************************/
-extension AddExpenseManager {
+extension AddEditExpenseManager {
     
     func formatCell(_ cell: CustomFieldBaseTableViewCell, forIndexPath indexPath: IndexPath) {
         let expenseField = (fields[indexPath.section])[indexPath.row]
@@ -102,7 +106,7 @@ extension AddExpenseManager {
 /***********************************/
 // MARK: - Services
 /***********************************/
-extension AddExpenseManager {
+extension AddEditExpenseManager {
     /**
      * Create a new expense based on the inputs inserted by the user.
      */
@@ -143,7 +147,7 @@ extension AddExpenseManager {
 /***********************************/
 // MARK: - Actions
 /***********************************/
-extension AddExpenseManager {
+extension AddEditExpenseManager {
     /**
      * This will return true if we have to navigate to details screen for choosing a particular value.
      * Else return false.
@@ -166,7 +170,7 @@ extension AddExpenseManager {
         return false
     }
     
-    func getDetailsNavigationController(forIndexPath indexPath: IndexPath, withDelegate delegate: AddExpenseViewController) -> UIViewController {
+    func getDetailsNavigationController(forIndexPath indexPath: IndexPath, withDelegate delegate: AddEditExpenseViewController) -> UIViewController {
         let expenseField = getExpenseFields()[indexPath.section][indexPath.row]
         
         // This will be used when setting the selected value.
@@ -214,7 +218,7 @@ extension AddExpenseManager {
 /***********************************/
 // MARK: - Helpers
 /***********************************/
-extension AddExpenseManager {
+extension AddEditExpenseManager {
     /**
      * This method will update the field value that is present in the existing report.
      * The value will be then passed to the cells, which will use them to update its view.
@@ -282,7 +286,7 @@ extension AddExpenseManager {
         }
     }
     
-    func getReviewSelectCategoryController(forIndexPath indexPath: IndexPath, withDelegate delegate: AddExpenseViewController) -> ReviewSelectCategoryViewController {
+    func getReviewSelectCategoryController(forIndexPath indexPath: IndexPath, withDelegate delegate: AddEditExpenseViewController) -> ReviewSelectCategoryViewController {
         let controller = UIStoryboard(name: Constants.StoryboardIds.categoryStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.Category.reviewSelectCategoryViewController) as! ReviewSelectCategoryViewController
         controller.delegate = delegate
         
@@ -300,7 +304,7 @@ extension AddExpenseManager {
         return controller
     }
     
-    func getReviewSelectCurrencyController(forIndexPath indexPath: IndexPath, withDelegate delegate: AddExpenseViewController) -> ReviewSelectCurrencyViewController {
+    func getReviewSelectCurrencyController(forIndexPath indexPath: IndexPath, withDelegate delegate: AddEditExpenseViewController) -> ReviewSelectCurrencyViewController {
         let controller = UIStoryboard(name: Constants.StoryboardIds.currencyStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.Currency.reviewSelectCurrencyViewController) as! ReviewSelectCurrencyViewController
         controller.delegate = delegate
         
@@ -317,7 +321,7 @@ extension AddExpenseManager {
         return controller
     }
     
-    func getReviewSelectReportController(forIndexPath indexPath: IndexPath, withDelegate delegate: AddExpenseViewController) -> ReviewSelectReportViewController {
+    func getReviewSelectReportController(forIndexPath indexPath: IndexPath, withDelegate delegate: AddEditExpenseViewController) -> ReviewSelectReportViewController {
         let controller = UIStoryboard(name: Constants.StoryboardIds.reportStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.Report.reviewSelectReportViewController) as! ReviewSelectReportViewController
         controller.delegate = delegate
         
