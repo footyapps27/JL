@@ -100,7 +100,11 @@ extension RecordReimbursementManager {
 /***********************************/
 extension RecordReimbursementManager {
     /**
-     * Method to get all the expenses that need to be displayed.
+     Record a reimbursement of a report. This will retrieve the payload response from the entries made by the user to the form(UITableView). It will also add the report id & report status to the payload.
+     
+     - Parameter completionHandler: Escaping closure which will return either of the two options below:-
+     Success: An empty response.
+     Failure: Code & message if something went wrong while retrieving the list of approvals.
      */
     func recordReimbursement(completionHandler: (@escaping (ManagerResponseToController<Void>) -> Void)) {
         var payload = getPayload()

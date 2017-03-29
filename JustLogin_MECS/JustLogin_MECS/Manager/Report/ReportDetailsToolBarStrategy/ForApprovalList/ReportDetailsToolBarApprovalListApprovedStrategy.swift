@@ -83,7 +83,13 @@ extension ReportDetailsToolBarApprovalListApprovedStrategy {
             self.viewPDF(forReport: report, onController: controller)
         }
         
-        Utilities.showActionSheet(withTitle: nil, message: nil, actions: [actionReject, recordReimbursement, viewAsPDF ], onController: controller)
+        // Only if the user has access to reimburse, will we show the record reimburse option.
+        var actions: [UIAlertAction] = [actionReject, recordReimbursement, viewAsPDF ]
+        if !(Singleton.sharedInstance.member?.role?.accessPrivileges?.reimburseReport)! {
+            actions.remove(at: 1)
+        }
+        
+        Utilities.showActionSheet(withTitle: nil, message: nil, actions: actions, onController: controller)
     }    
 }
 /***********************************/
