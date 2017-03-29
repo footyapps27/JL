@@ -38,11 +38,11 @@ extension RecordReimbursementManager {
     /**
      * Populate the cells from the table view.
      */
-    func populateCells(fromController controller: RecordReimbursementViewController) {
+    func populateCells(fromController controller: BaseViewControllerWithTableView, delegate: UITableViewDataSource) {
         for section in 0..<fields.count {
             for row in 0..<fields[section].count {
                 let indexPath = IndexPath(row: row, section: section)
-                let cell = controller.tableView(controller.tableView, cellForRowAt: indexPath) as! CustomFieldBaseTableViewCell
+                let cell = delegate.tableView(controller.tableView, cellForRowAt: indexPath) as! CustomFieldBaseTableViewCell
                 dictCells[indexPath] = cell
             }
         }
@@ -146,7 +146,7 @@ extension RecordReimbursementManager {
         return false
     }
     
-    func getDetailsNavigationController(forIndexPath indexPath: IndexPath, withDelegate delegate: RecordReimbursementViewController) -> UIViewController {
+    func getDetailsNavigationController(forIndexPath indexPath: IndexPath, withDelegate delegate: BaseViewController) -> UIViewController {
         let field = getFields()[indexPath.section][indexPath.row]
         
         // This will be used when setting the selected value.

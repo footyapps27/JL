@@ -39,7 +39,7 @@ extension RecordReimbursementViewController {
         super.viewDidLoad()
         manager.report = report!
         updateUI()
-        manager.populateCells(fromController: self)
+        manager.populateCells(fromController: self, delegate: self)
     }
 }
 /***********************************/
@@ -48,14 +48,10 @@ extension RecordReimbursementViewController {
 extension RecordReimbursementViewController {
     func updateUI() {
         self.navigationItem.title = Constants.ViewControllerTitles.reimbursement
-        
         addBarButtonItems()
         initializeDatePicker()
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 44
-        
-        // Make sure the manager has a reference to all the cell before hand
-        manager.populateCells(fromController: self)
     }
     
     /**

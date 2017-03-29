@@ -170,7 +170,7 @@ extension AddEditExpenseManager {
         return false
     }
     
-    func getDetailsNavigationController(forIndexPath indexPath: IndexPath, withDelegate delegate: AddEditExpenseViewController) -> UIViewController {
+    func getDetailsNavigationController(forIndexPath indexPath: IndexPath, withDelegate delegate: BaseViewController) -> UIViewController {
         let expenseField = getExpenseFields()[indexPath.section][indexPath.row]
         
         // This will be used when setting the selected value.
@@ -286,9 +286,9 @@ extension AddEditExpenseManager {
         }
     }
     
-    func getReviewSelectCategoryController(forIndexPath indexPath: IndexPath, withDelegate delegate: AddEditExpenseViewController) -> ReviewSelectCategoryViewController {
+    func getReviewSelectCategoryController(forIndexPath indexPath: IndexPath, withDelegate delegate: BaseViewController) -> ReviewSelectCategoryViewController {
         let controller = UIStoryboard(name: Constants.StoryboardIds.categoryStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.Category.reviewSelectCategoryViewController) as! ReviewSelectCategoryViewController
-        controller.delegate = delegate
+        controller.delegate = delegate as? ReviewSelectCategoryViewControllerDelegate
         
         // Now check if it already has a preSelected value
         let cell = dictCells[indexPath]!
@@ -304,9 +304,9 @@ extension AddEditExpenseManager {
         return controller
     }
     
-    func getReviewSelectCurrencyController(forIndexPath indexPath: IndexPath, withDelegate delegate: AddEditExpenseViewController) -> ReviewSelectCurrencyViewController {
+    func getReviewSelectCurrencyController(forIndexPath indexPath: IndexPath, withDelegate delegate: BaseViewController) -> ReviewSelectCurrencyViewController {
         let controller = UIStoryboard(name: Constants.StoryboardIds.currencyStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.Currency.reviewSelectCurrencyViewController) as! ReviewSelectCurrencyViewController
-        controller.delegate = delegate
+        controller.delegate = delegate as? ReviewSelectCurrencyViewControllerDelegate
         
         // Now check if it already has a preSelected value
         let cell = dictCells[indexPath]!
@@ -321,9 +321,9 @@ extension AddEditExpenseManager {
         return controller
     }
     
-    func getReviewSelectReportController(forIndexPath indexPath: IndexPath, withDelegate delegate: AddEditExpenseViewController) -> ReviewSelectReportViewController {
+    func getReviewSelectReportController(forIndexPath indexPath: IndexPath, withDelegate delegate: BaseViewController) -> ReviewSelectReportViewController {
         let controller = UIStoryboard(name: Constants.StoryboardIds.reportStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.Report.reviewSelectReportViewController) as! ReviewSelectReportViewController
-        controller.delegate = delegate
+        controller.delegate = delegate as? ReviewSelectReportViewControllerDelegate
         
         // Now check if it already has a preSelected value
         let cell = dictCells[indexPath]!
