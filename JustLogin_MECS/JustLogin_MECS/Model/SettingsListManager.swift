@@ -39,6 +39,13 @@ extension SettingsListManager {
         }
         return Constants.General.emptyString
     }
+    
+    func getProfileImageUrl() -> URL? {
+        if let member = Singleton.sharedInstance.member {
+            return URL.init(string: member.profileImageUrl)
+        }
+        return URL.init(string: Constants.General.emptyString)
+    }
 }
 /***********************************/
 // MARK: - Service Call

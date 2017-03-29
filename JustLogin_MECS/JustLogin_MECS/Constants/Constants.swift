@@ -109,6 +109,7 @@ extension Constants {
         static let attachmentDefault = "AttachmentDefault"
         static let policyViolationActive = "PolicyViolationActive"
         static let policyViolationDefault = "PolicyViolationDefault"
+        static let profile = "Profile"
     }
 }
 /***********************************/

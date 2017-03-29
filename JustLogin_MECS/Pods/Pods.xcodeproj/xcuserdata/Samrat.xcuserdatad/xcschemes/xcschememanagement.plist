@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>AlamofireImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>NVActivityIndicatorView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -57,7 +62,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>68385244694B10EB47295815ACE8CBB2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>91D9A51084A05533B3ED3153A8EA2A83</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9EFE4C70245EE2857D336B8B9FA4E825</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -67,22 +87,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B23F845EAE565159FE480BC85F755281</key>
+		<key>DAC11E952F8532F71A5A4736FA9FFF4C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BFEE2C08ABD1FFD1D029366A47FC16C4</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C553680776CE2F4080BB0189031E0061</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>CEF718CF4D8D6534A222880820B8B20E</key>
+		<key>FDB0308291F298D3DD62F06F49D2A932</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import AlamofireImage
 /***********************************/
 // MARK: - Properties
 /***********************************/
@@ -60,6 +61,20 @@ extension SettingsListViewController {
         self.navigationItem.title = Constants.ViewControllerTitles.settings
         lblOrganization.text = manager.getOrganizationName()
         lblRole.text = manager.getRole()
+        let placeholderImage = UIImage(named: Constants.UIImageNames.profile)!
+        if manager.getProfileImageUrl() != nil {
+            let filter = AspectScaledToFillSizeWithRoundedCornersFilter(
+                size: imgVwProfile.frame.size,
+                radius: imgVwProfile.frame.size.width/2
+            )
+            imgVwProfile.af_setImage(
+                withURL: manager.getProfileImageUrl()!,
+                placeholderImage: placeholderImage,
+                filter: filter
+            )
+        } else {
+            imgVwProfile.image = placeholderImage
+        }
     }
     
     func navigateToLaunchController() {
