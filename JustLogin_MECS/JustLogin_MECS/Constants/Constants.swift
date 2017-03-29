@@ -223,6 +223,7 @@ extension Constants {
             static let updateReport = URLs.baseURL + "/report/update"
             static let deleteReport = URLs.baseURL + "/report/delete"
             static let linkExpensesToReport = URLs.baseURL + "/report/link"
+            static let unlinkExpenseFromReport = URLs.baseURL + "/report/unlink"
         }
         
         struct Category {

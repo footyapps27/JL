@@ -104,6 +104,13 @@ enum ReportDetailsCaller: Int {
     approvalList
 }
 /***********************************/
+// MARK: - Expense Details Caller
+/***********************************/
+enum ExpenseDetailsCaller: Int {
+    case expenseList = 0,
+    reportDetails
+}
+/***********************************/
 // MARK: - Bar Button Tags for Report & Expense Details
 /***********************************/
 enum ToolBarButtonTag: Int {

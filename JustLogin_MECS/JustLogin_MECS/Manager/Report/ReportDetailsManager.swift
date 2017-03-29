@@ -36,7 +36,7 @@ extension ReportDetailsManager {
 /***********************************/
 extension ReportDetailsManager {
     func shouldDisplayFooter() -> Bool {
-         return segmentedControlSelectedIndex == ReportDetailsSegmentedControl.expenses.rawValue
+        return segmentedControlSelectedIndex == ReportDetailsSegmentedControl.expenses.rawValue
     }
     
     func shouldHaveSeparator() -> Bool {
@@ -58,6 +58,13 @@ extension ReportDetailsManager {
     func performActionForBarButtonItem(_ barButton: UIBarButtonItem, caller: ReportDetailsCaller, onController controller: BaseViewController) {
         let strategy = getToolBarStrategy(forReportStatus: ReportStatus(rawValue: report.status)!, caller: caller)
         strategy.performActionForBarButtonItem(barButton, forReport: report, onController: controller)
+    }
+    
+    func performActionForTableViewDidSelectRow(atIndexPath indexPath: IndexPath, onController controller: BaseViewController) {
+        // Perform action only for Expense
+        if segmentedControlSelectedIndex == ReportDetailsSegmentedControl.expenses.rawValue {
+            navigateToExpenseDetails(forExpenseAtIndexPath: indexPath, fromController: controller)
+        }
     }
 }
 /***********************************/
@@ -123,6 +130,18 @@ extension ReportDetailsManager {
     }
 }
 /***********************************/
+// MARK: - TableView Audit history
+/***********************************/
+extension ReportDetailsManager {
+    func navigateToExpenseDetails(forExpenseAtIndexPath indexPath: IndexPath, fromController controller: BaseViewController) {
+        let expense = report.expenses[indexPath.row]
+        let expenseDetailsViewController = UIStoryboard(name: Constants.StoryboardIds.expenseStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.Expense.expenseDetailsViewController) as! ExpenseDetailsViewController
+        expenseDetailsViewController.caller = ExpenseDetailsCaller.reportDetails
+        expenseDetailsViewController.expense = expense
+        Utilities.pushControllerAndHideTabbarForChildAndParent(fromController:controller, toController: expenseDetailsViewController)
+    }
+}
+/***********************************/
 // MARK: - Service Call
 /***********************************/
 extension ReportDetailsManager {
@@ -144,7 +163,7 @@ extension ReportDetailsManager {
     }
     
     /**
-     * Method to update the status of a report. 
+     * Method to update the status of a report.
      * The report that is sent, needs to provide the updated status.
      */
     func processReport(withPayload payload: [String : Any], completionHandler: (@escaping (ManagerResponseToController<Report>) -> Void)) {
@@ -193,7 +212,7 @@ extension ReportDetailsManager {
         case (ReportStatus.approved, ReportDetailsCaller.reportList): fallthrough
         case (ReportStatus.reimbursed, ReportDetailsCaller.reportList):
             strategy = ReportDetailsToolBarApprovedAndReimbursedStrategy()
-        
+            
         case (ReportStatus.submitted, ReportDetailsCaller.approvalList):
             strategy = ReportDetailsToolBarApprovalListSubmittedStrategy()
             

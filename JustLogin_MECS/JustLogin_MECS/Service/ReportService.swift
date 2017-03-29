@@ -45,6 +45,17 @@ protocol IReportService {
      * Link multiple expenses to a report.
      */
     func linkExpenseIds(_ expenseIds: [String], toReport report: Report, completionHandler:( @escaping (Result<Void>) -> Void))
+    
+    /**
+     Unlink an expense from the report it is attached to.
+     
+     - Parameter expense: The expense which needs to be unlinked.
+     - Parameter completionHandler: Escaping closure which will return either Success or Failure.
+     Success response: List of report approvals for the user.
+     Failure response: Code & message if something went wrong while retrieving the list of approvals.
+     
+     */
+    func unlinkExpenseFromAttachedReport(_ expense: Expense, completionHandler:( @escaping (Result<Void>) -> Void))
 }
 /***********************************/
 // MARK: - IExpenseService implementation
@@ -163,6 +174,21 @@ struct ReportService : IReportService {
             }
         }
     }
+    
+    func unlinkExpenseFromAttachedReport(_ expense: Expense, completionHandler:( @escaping (Result<Void>) -> Void)) {
+        let payload = getPayloadForUnlinkingExpense(expense)
+        serviceAdapter.post(destination: Constants.URLs.Report.unlinkExpenseFromReport, payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
+            switch(response) {
+            case .success(_ , _):
+                completionHandler(Result.success())
+            case .errors(let error):
+                let error = ServiceError(JSON(error))
+                completionHandler(Result.error(error))
+            case .failure(let description):
+                completionHandler(Result.failure(description))
+            }
+        }
+    }
 }
 /***********************************/
 // MARK: - Helpers
@@ -226,6 +252,13 @@ extension ReportService {
         var payload: [String : Any] = [:]
         payload[Constants.RequestParameters.Expense.expenseIds] =  expenseIds
         payload[Constants.RequestParameters.Expense.reportId] = report.id
+        return payload
+    }
+    
+    func getPayloadForUnlinkingExpense(_ expense: Expense) -> [String : Any] {
+        var payload: [String : Any] = [:]
+        payload[Constants.RequestParameters.Expense.expenseIds] =  [expense.id]
+        payload[Constants.RequestParameters.Report.reportId] = expense.reportId
         return payload
     }
 }

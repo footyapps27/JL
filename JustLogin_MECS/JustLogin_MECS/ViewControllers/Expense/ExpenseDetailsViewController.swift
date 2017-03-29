@@ -17,6 +17,8 @@ class ExpenseDetailsViewController: BaseViewControllerWithTableView {
     
     var expense: Expense?
     
+    var caller: ExpenseDetailsCaller = ExpenseDetailsCaller.expenseList
+    
     @IBOutlet weak var toolbar: UIToolbar!
     
     var headerView: ExpenseDetailsHeaderView?
@@ -29,9 +31,12 @@ extension ExpenseDetailsViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Set this, since we need to set the headers. 
-        // Will improve performance
+        /* 
+         Setting this, since we need to set the headers.
+         Will improve performance
+         */
         manager.expense = expense!
+        manager.caller = caller
         
         fetchExpenseDetails()
         tableView.allowsSelection = false

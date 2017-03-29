@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 /***********************************/
-// MARK: - ExpenseDetailsToolBarEditDisabledStrategy
+// MARK: - ExpenseDetailsToolBarBaseStrategy
 /***********************************/
 struct ExpenseDetailsToolBarEditDisabledStrategy: ExpenseDetailsToolBarBaseStrategy {
     
