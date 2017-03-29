@@ -11,6 +11,11 @@ import UIKit
 
 class AddAndEditReportManager {
     
+    /*
+     This differentiates whether an existing report needs to be edited, or  a new report needs to be added.
+     The view controller needs to set this if edit flow is to be called.
+     All the properties in the tableview will be updated based on the expense that is being set.
+     */
     var report: Report? {
         didSet {
             updateFieldValues(forReport: report!)
@@ -34,10 +39,10 @@ extension AddAndEditReportManager {
     /**
      * Populate the cells from the table view.
      */
-    func populateCells(fromController controller: BaseViewControllerWithTableView, dataSource: UITableViewDataSource) {
+    func populateCells(fromController controller: BaseViewControllerWithTableView, delegate: UITableViewDataSource) {
             for row in 0..<fields.count {
                 let indexPath = IndexPath(row: row, section: 0)
-                let cell = dataSource.tableView(controller.tableView, cellForRowAt: indexPath) as! CustomFieldBaseTableViewCell
+                let cell = delegate.tableView(controller.tableView, cellForRowAt: indexPath) as! CustomFieldBaseTableViewCell
                 dictCells[indexPath] = cell
             }
     }

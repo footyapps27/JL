@@ -72,9 +72,9 @@ extension ReportListViewController {
     }
     
     func navigateToAddReport() {
-        let addReportViewController = UIStoryboard(name: Constants.StoryboardIds.reportStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.Report.addReportViewController) as! AddReportViewController
-        addReportViewController.delegate = self
-        Utilities.pushControllerAndHideTabbarForChildOnly(fromController: self, toController: addReportViewController)
+        let addEditReportViewController = UIStoryboard(name: Constants.StoryboardIds.reportStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.Report.addEditReportViewController) as! AddEditReportViewController
+        addEditReportViewController.delegate = self
+        Utilities.pushControllerAndHideTabbarForChildOnly(fromController: self, toController: addEditReportViewController)
     }
     
     func navigateToReportDetails(forReport report: Report) {

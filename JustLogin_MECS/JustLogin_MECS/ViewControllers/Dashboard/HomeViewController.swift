@@ -65,9 +65,9 @@ extension HomeViewController {
      * This will add a navigation controller before presenting the add report controller
      */
     func navigateToAddReport() {
-        let addReportViewController = UIStoryboard(name: Constants.StoryboardIds.reportStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.Report.addReportViewController) as! AddReportViewController
-        addReportViewController.delegate = self
-        let navigationController = UINavigationController.init(rootViewController: addReportViewController)
+        let addEditReportViewController = UIStoryboard(name: Constants.StoryboardIds.reportStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.Report.addEditReportViewController) as! AddEditReportViewController
+        addEditReportViewController.delegate = self
+        let navigationController = UINavigationController.init(rootViewController: addEditReportViewController)
         self.present(navigationController, animated: true, completion: nil)
     }
 }

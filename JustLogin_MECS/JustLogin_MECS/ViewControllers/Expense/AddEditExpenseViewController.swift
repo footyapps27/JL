@@ -36,8 +36,6 @@ class AddEditExpenseViewController: BaseViewControllerWithTableView {
     
     // Delegates
     weak var delegate: AddEditExpenseDelegate?
-    
-    
 }
 /***********************************/
 // MARK: - View Lifecycle

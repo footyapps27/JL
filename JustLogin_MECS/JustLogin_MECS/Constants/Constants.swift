@@ -158,8 +158,7 @@ extension Constants {
         }
         
         struct Report {
-            static let addReportViewController = "addReportViewController"
-            static let editReportViewController = "editReportViewController"
+            static let addEditReportViewController = "addEditReportViewController"
             static let reportDetailsViewController = "reportDetailsViewController"
             static let reviewSelectReportViewController = "reviewSelectReportViewController"
         }
