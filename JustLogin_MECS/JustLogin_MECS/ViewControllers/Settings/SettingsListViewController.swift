@@ -19,6 +19,9 @@ class SettingsListViewController: BaseViewControllerWithTableView {
     @IBOutlet weak var lblOrganization: UILabel!
     
     let manager = SettingsListManager()
+    
+    // For image selection.
+    let imagePickerController = UIImagePickerController()
 }
 /***********************************/
 // MARK: - View Lifecycle
@@ -28,6 +31,7 @@ extension SettingsListViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateUI()
+        imagePickerController.delegate = self
     }
 }
 /***********************************/
@@ -52,6 +56,18 @@ extension SettingsListViewController {
             }
         }
     }
+    
+    func profileImageTapped(_ tapGestureRecognizer: UITapGestureRecognizer) {
+        let pickPhoto = UIAlertAction(title: LocalizedString.pickPhoto, style: .default) { void in
+            self.selectImageFromGallery()
+        }
+        
+        let openCamera = UIAlertAction(title: LocalizedString.openCamera, style: .default) { void in
+            self.selectImageUsingCamera()
+        }
+        
+        Utilities.showActionSheet(withTitle: nil, message: nil, actions: [pickPhoto, openCamera ], onController: self)
+    }
 }
 /***********************************/
 // MARK: - Helpers
@@ -61,6 +77,15 @@ extension SettingsListViewController {
         self.navigationItem.title = Constants.ViewControllerTitles.settings
         lblOrganization.text = manager.getOrganizationName()
         lblRole.text = manager.getRole()
+        updateProfileImage()
+    }
+    
+    func updateProfileImage() {
+        // Add Tap gesture
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(profileImageTapped(_:)))
+        imgVwProfile.isUserInteractionEnabled = true
+        imgVwProfile.addGestureRecognizer(tapGestureRecognizer)
+        // Load photo from the server or cache
         let placeholderImage = UIImage(named: Constants.UIImageNames.profile)!
         if manager.getProfileImageUrl() != nil {
             let filter = AspectScaledToFillSizeWithRoundedCornersFilter(
@@ -74,6 +99,26 @@ extension SettingsListViewController {
             )
         } else {
             imgVwProfile.image = placeholderImage
+        }
+    }
+    
+    func selectImageFromGallery() {
+        imagePickerController.allowsEditing = false
+        imagePickerController.sourceType = .photoLibrary
+        imagePickerController.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
+        imagePickerController.modalPresentationStyle = .fullScreen
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    func selectImageUsingCamera() {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            imagePickerController.allowsEditing = false
+            imagePickerController.sourceType = UIImagePickerControllerSourceType.camera
+            imagePickerController.cameraCaptureMode = .photo
+            imagePickerController.modalPresentationStyle = .fullScreen
+            present(imagePickerController,animated: true,completion: nil)
+        } else {
+            log.debug("Camera not found")
         }
     }
     
@@ -108,4 +153,15 @@ extension SettingsListViewController: UITableViewDataSource {
 /***********************************/
 extension SettingsListViewController: UITableViewDelegate {
     
+}
+/***********************************/
+// MARK: - UIImagePickerControllerDelegate
+/***********************************/
+extension SettingsListViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            imgVwProfile.image = pickedImage
+        }
+        dismiss(animated: true, completion: nil)
+    }
 }
