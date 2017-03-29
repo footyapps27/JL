@@ -59,7 +59,7 @@
 		8C753AA01E8A4EAD00B0906C /* AddEditExpenseDefaultConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C753A9F1E8A4EAD00B0906C /* AddEditExpenseDefaultConfiguration.swift */; };
 		8C753AA21E8A787A00B0906C /* AddReportDefaultConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C753AA11E8A787A00B0906C /* AddReportDefaultConfiguration.swift */; };
 		8C753AA41E8A815700B0906C /* RecordReimbursementDefaultConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C753AA31E8A815700B0906C /* RecordReimbursementDefaultConfiguration.swift */; };
-		8C8995D51E60821200482317 /* AddExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8995D41E60821200482317 /* AddExpenseViewController.swift */; };
+		8C8995D51E60821200482317 /* AddEditExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8995D41E60821200482317 /* AddEditExpenseViewController.swift */; };
 		8C8995D71E60822B00482317 /* ExpenseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8995D61E60822B00482317 /* ExpenseDetailsViewController.swift */; };
 		8C8995D91E60836C00482317 /* AddEditExpenseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8995D81E60836C00482317 /* AddEditExpenseManager.swift */; };
 		8C8995DB1E60839400482317 /* ExpenseDetailsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8995DA1E60839400482317 /* ExpenseDetailsManager.swift */; };
@@ -223,7 +223,7 @@
 		8C753A9F1E8A4EAD00B0906C /* AddEditExpenseDefaultConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditExpenseDefaultConfiguration.swift; sourceTree = "<group>"; };
 		8C753AA11E8A787A00B0906C /* AddReportDefaultConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReportDefaultConfiguration.swift; sourceTree = "<group>"; };
 		8C753AA31E8A815700B0906C /* RecordReimbursementDefaultConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordReimbursementDefaultConfiguration.swift; sourceTree = "<group>"; };
-		8C8995D41E60821200482317 /* AddExpenseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddExpenseViewController.swift; sourceTree = "<group>"; };
+		8C8995D41E60821200482317 /* AddEditExpenseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditExpenseViewController.swift; sourceTree = "<group>"; };
 		8C8995D61E60822B00482317 /* ExpenseDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseDetailsViewController.swift; sourceTree = "<group>"; };
 		8C8995D81E60836C00482317 /* AddEditExpenseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditExpenseManager.swift; sourceTree = "<group>"; };
 		8C8995DA1E60839400482317 /* ExpenseDetailsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseDetailsManager.swift; sourceTree = "<group>"; };
@@ -640,7 +640,7 @@
 			isa = PBXGroup;
 			children = (
 				8CD333181E23BC7D00557B6F /* ExpenseListViewController.swift */,
-				8C8995D41E60821200482317 /* AddExpenseViewController.swift */,
+				8C8995D41E60821200482317 /* AddEditExpenseViewController.swift */,
 				8C8995D61E60822B00482317 /* ExpenseDetailsViewController.swift */,
 				8CC68F191E84E6C7002F9DCD /* ReviewSelectExpenseViewController.swift */,
 			);
@@ -1298,7 +1298,7 @@
 				8CC4555C1E89420100F3C1AB /* EditReportViewController.swift in Sources */,
 				8C5141291E1E98EC003AD3B1 /* Constants.swift in Sources */,
 				8C51413B1E1F5F95003AD3B1 /* BaseCustomCollectionViewCell.swift in Sources */,
-				8C8995D51E60821200482317 /* AddExpenseViewController.swift in Sources */,
+				8C8995D51E60821200482317 /* AddEditExpenseViewController.swift in Sources */,
 				8CF342411E5D3941008387BF /* SignInManager.swift in Sources */,
 				8CF2FBD71E726E56001C008E /* ExpenseDetailsAuditHistoryTableViewCell.swift in Sources */,
 				8CE468851E822D5500535A70 /* CustomFieldTableViewCellWithMultipleSelection.swift in Sources */,

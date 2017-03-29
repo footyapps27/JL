@@ -215,11 +215,11 @@ extension ExpenseListViewController: UISearchResultsUpdating {
     }
 }
 /***********************************/
-// MARK: - AddExpenseDelegate
+// MARK: - AddEditExpenseDelegate
 /***********************************/
-extension ExpenseListViewController: AddExpenseDelegate {
-    func expenseCreated() {
-        // Refresh the list once an expense is created.
+extension ExpenseListViewController: AddEditExpenseDelegate {
+    func expenseCreatedOrModified() {
+        // Refresh the list once an expense is created or modified.
         fetchExpenses()
     }
 }

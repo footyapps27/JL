@@ -12,8 +12,8 @@ import UIKit
 /***********************************/
 // MARK: - Protocol
 /***********************************/
-protocol AddExpenseDelegate: class {
-    func expenseCreated()
+protocol AddEditExpenseDelegate: class {
+    func expenseCreatedOrModified()
 }
 /***********************************/
 // MARK: - Properties
@@ -35,7 +35,7 @@ class AddEditExpenseViewController: BaseViewControllerWithTableView {
     var expense: Expense?
     
     // Delegates
-    weak var delegate: AddExpenseDelegate?
+    weak var delegate: AddEditExpenseDelegate?
     
     
 }
@@ -176,7 +176,7 @@ extension AddEditExpenseViewController {
             switch(response) {
             case .success(_):
                 self.hideLoadingIndicator(enableUserInteraction: true)
-                self.delegate?.expenseCreated()
+                self.delegate?.expenseCreatedOrModified()
                 self.navigateOutAfterExpenseCreation()
             case .failure(_, let message):
                  //TODO: - Handle the empty table view screen.
@@ -198,7 +198,7 @@ extension AddEditExpenseViewController {
             switch(response) {
             case .success(_):
                 self.hideLoadingIndicator(enableUserInteraction: true)
-                self.delegate?.expenseCreated()
+                self.delegate?.expenseCreatedOrModified()
                 self.navigateOutAfterExpenseCreation()
             case .failure(_, let message):
                 //TODO: - Handle the empty table view screen.

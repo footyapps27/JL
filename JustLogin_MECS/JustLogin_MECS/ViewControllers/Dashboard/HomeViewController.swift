@@ -72,10 +72,10 @@ extension HomeViewController {
     }
 }
 /***********************************/
-// MARK: - AddExpenseDelegate
+// MARK: - AddEditExpenseDelegate
 /***********************************/
-extension HomeViewController: AddExpenseDelegate {
-    func expenseCreated() {
+extension HomeViewController: AddEditExpenseDelegate {
+    func expenseCreatedOrModified() {
          _ = UIStoryboard(name: Constants.StoryboardIds.dashboardStoryboard, bundle: nil).instantiateViewController(withIdentifier: manager.getDashboardIdentifier()) as! UITabBarController
         // TODO = Here we need to navigate to the expense list controller.
     }
