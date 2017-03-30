@@ -160,8 +160,49 @@ extension SettingsListViewController: UITableViewDelegate {
 extension SettingsListViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            imgVwProfile.image = pickedImage
+            
+            
+            showLoadingIndicator(disableUserInteraction: false)
+            
+                if let data = UIImageJPEGRepresentation(pickedImage, 0.8) {
+                    let fileName = getDocumentsDirectory().appendingPathComponent("temp.png")
+                    try? data.write(to: fileName, options: [Data.WritingOptions.atomic])
+                    
+                    
+                    // Need to clear the cache first
+                    let urlRequest = URLRequest(url: fileName)
+                    let imageDownloader = UIImageView.af_sharedImageDownloader
+                    _ = imageDownloader.imageCache?.removeImage(for: urlRequest, withIdentifier: nil)
+                    imageDownloader.sessionManager.session.configuration.urlCache?.removeCachedResponse(for: urlRequest)
+                    
+                    let filter = AspectScaledToFillSizeWithRoundedCornersFilter(
+                        size: self.imgVwProfile.frame.size,
+                        radius: self.imgVwProfile.frame.size.width/2
+                    )
+                    self.imgVwProfile.af_setImage(
+                        withURL: fileName,
+                        placeholderImage: nil,
+                        filter: filter
+                    )
+                    
+                    manager.updateProfileImage(imageURL: fileName, completionHandler: { (response) in
+                        switch(response) {
+                        case .success(_):
+                            
+                            self.hideLoadingIndicator(enableUserInteraction: true)
+                        case .failure(_, let message):
+                            Utilities.showErrorAlert(withMessage: message, onController: self)
+                            self.hideLoadingIndicator(enableUserInteraction: true)
+                        }
+                    })
+                }
         }
         dismiss(animated: true, completion: nil)
+    }
+    
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
     }
 }

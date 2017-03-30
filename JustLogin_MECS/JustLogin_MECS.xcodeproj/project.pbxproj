@@ -63,6 +63,7 @@
 		8C825D7D1E8BE2B7000DB586 /* ExpenseDetailsToolBarStrategyWithoutUnlink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C825D7C1E8BE2B7000DB586 /* ExpenseDetailsToolBarStrategyWithoutUnlink.swift */; };
 		8C825D7F1E8C99A1000DB586 /* NetworkAdapterFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C825D7E1E8C99A1000DB586 /* NetworkAdapterFactory.swift */; };
 		8C825D811E8C9BBC000DB586 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C825D801E8C9BBC000DB586 /* ServiceFactory.swift */; };
+		8C825D841E8D0028000DB586 /* AlamofireNetworkAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C825D831E8D0028000DB586 /* AlamofireNetworkAdapter.swift */; };
 		8C8995D51E60821200482317 /* AddEditExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8995D41E60821200482317 /* AddEditExpenseViewController.swift */; };
 		8C8995D71E60822B00482317 /* ExpenseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8995D61E60822B00482317 /* ExpenseDetailsViewController.swift */; };
 		8C8995D91E60836C00482317 /* AddEditExpenseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8995D81E60836C00482317 /* AddEditExpenseManager.swift */; };
@@ -230,6 +231,7 @@
 		8C825D7C1E8BE2B7000DB586 /* ExpenseDetailsToolBarStrategyWithoutUnlink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseDetailsToolBarStrategyWithoutUnlink.swift; sourceTree = "<group>"; };
 		8C825D7E1E8C99A1000DB586 /* NetworkAdapterFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkAdapterFactory.swift; sourceTree = "<group>"; };
 		8C825D801E8C9BBC000DB586 /* ServiceFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceFactory.swift; sourceTree = "<group>"; };
+		8C825D831E8D0028000DB586 /* AlamofireNetworkAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireNetworkAdapter.swift; sourceTree = "<group>"; };
 		8C8995D41E60821200482317 /* AddEditExpenseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditExpenseViewController.swift; sourceTree = "<group>"; };
 		8C8995D61E60822B00482317 /* ExpenseDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseDetailsViewController.swift; sourceTree = "<group>"; };
 		8C8995D81E60836C00482317 /* AddEditExpenseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditExpenseManager.swift; sourceTree = "<group>"; };
@@ -599,6 +601,14 @@
 			path = DefaultConfigurations;
 			sourceTree = "<group>";
 		};
+		8C825D821E8D0015000DB586 /* AlamofireAdapter */ = {
+			isa = PBXGroup;
+			children = (
+				8C825D831E8D0028000DB586 /* AlamofireNetworkAdapter.swift */,
+			);
+			path = AlamofireAdapter;
+			sourceTree = "<group>";
+		};
 		8C9602021E1FDB7F00EE66A3 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -750,6 +760,7 @@
 		8CEAADB91E5540A500BDB5ED /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				8C825D821E8D0015000DB586 /* AlamofireAdapter */,
 				8CEAADBC1E55411000BDB5ED /* Base */,
 				8CF655C61E58387100D4FEF3 /* AuthenticationService.swift */,
 				8CF655D41E586CF900D4FEF3 /* OrganizationDetailsService.swift */,
@@ -1015,6 +1026,7 @@
 				TargetAttributes = {
 					8C00F61F1E1E633B0007F29C = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = HC8L8DA9KJ;
 						ProvisioningStyle = Automatic;
 					};
 					8C00F6331E1E633B0007F29C = {
@@ -1246,6 +1258,7 @@
 				8CE4688D1E83A69700535A70 /* CustomFieldTableViewCellCurrencyAndAmount.swift in Sources */,
 				8CC68F211E852589002F9DCD /* ExpenseDetailsToolBarEditEnabledStrategy.swift in Sources */,
 				8CE468891E82553A00535A70 /* ReportMemberDetail.swift in Sources */,
+				8C825D841E8D0028000DB586 /* AlamofireNetworkAdapter.swift in Sources */,
 				8CF655CD1E585ACE00D4FEF3 /* AccessPrivilege.swift in Sources */,
 				8C3768321E7FFE8D00E82044 /* ReportDetailsToolBarApprovalListReimbursedStrategy.swift in Sources */,
 				8CD333191E23BC7D00557B6F /* ExpenseListViewController.swift in Sources */,
@@ -1493,10 +1506,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = HC8L8DA9KJ;
 				INFOPLIST_FILE = JustLogin_MECS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.footyapps27.JustLogin-MECS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.justlogin.expenseclaim;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -1508,10 +1523,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = HC8L8DA9KJ;
 				INFOPLIST_FILE = JustLogin_MECS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.footyapps27.JustLogin-MECS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.justlogin.expenseclaim;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

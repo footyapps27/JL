@@ -248,6 +248,7 @@ extension Constants {
         
         struct Member {
             static let getApprovers = URLs.baseURL + "/member/retrieveallapprovers"
+            static let uploadProfileImage = URLs.baseURL + "/member/upload"
         }
     }
 }
@@ -258,6 +259,7 @@ extension Constants {
     struct RequestParameters {
         struct General {
             static let ids = "ids"
+            static let image = "image"
         }
         
         struct Login {

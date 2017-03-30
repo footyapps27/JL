@@ -7,30 +7,29 @@
 //
 
 import Foundation
-import Alamofire
 import SwiftyJSON
 
-/**
- * The response of the network adapter.
- */
+/***********************************/
+// MARK: - NetworkAdapterResponse
+/***********************************/
 enum NetworkAdapterResponse {
     case success(response : [String: Any], headers : [String:String]?)
     case errors([String: Any])
     case failure(String)
 }
 
-/**
- * Enum that will be returned from the service class to the manager.
- */
+/***********************************/
+// MARK: - Result
+/***********************************/
 enum Result<T> {
     case success(T)
     case error(ServiceError)
     case failure(String)
 }
 
-/**
- * The error received from the server.
- */
+/***********************************/
+// MARK: - ServiceError
+/***********************************/
 struct ServiceError {
     let code: String
     let message: String
@@ -41,91 +40,44 @@ struct ServiceError {
     }
 }
 
+/***********************************/
+// MARK: - ServiceMultipartFormData
+/***********************************/
+/**
+ Multipart form data, which is used for uploading images.
+ */
+struct ServiceMultipartFormData {
+    var fileURL: URL
+    var key: String
+}
+
+/***********************************/
+// MARK: - NetworkAdapter
+/***********************************/
 /**
  * The adapter protocol that allows to call web services.
  */
 protocol NetworkAdapter {
     
+    /**
+     Post an asynchronous HTTPPost request to the server.
+     
+     - Parameter destination: The URL of the end point to which the request needs to be posted.
+     - Parameter payload: The payload of the request.
+     - Parameter headers: The headers that need to be sent as part of the request.
+     - Parameter responseHandler: Escaping NetworkAdapterResponse completion handler, which will be called after the request has received a response, or a timeout has taken place.
+
+     */
     func post(destination: String, payload: [String: Any], headers: [String : String]?,responseHandler: @escaping (NetworkAdapterResponse) -> Void)
     
-//    func upload(destination: String, multipartFormData: )
-}
-
-/**
- * The AlamofireNetworkAdapter that implements the NetworkAdapter using Alamofire.
- */
-struct AlamofireNetworkAdapter: NetworkAdapter {
-    
-    func post(destination: String, payload: [String : Any], headers: [String : String]?, responseHandler: @escaping (NetworkAdapterResponse) -> Void) {
-        
-        // Check for internet
-        if Utilities.connectedToNetwork() {
-            log.debug("*****************************")
-            log.debug("**** Web Service Request ****")
-            log.debug("*****************************")
-            log.debug("Request url -> \(destination)")
-            log.debug("Request type -> HTTP POST")
-            log.debug("Request headers -> \(headers)")
-            log.debug("Request payload -> \(payload)")
-            
-            Alamofire.request(destination, method: .post, parameters: payload, encoding: JSONEncoding.default, headers: headers)
-                .responseJSON { response in responseHandler(response.networkAdapterResponse) }
-        }
-        else {
-            // TODO: - Add this to the strings file.
-            responseHandler(NetworkAdapterResponse.failure("No network connection"))
-        }
-    }
-}
-
-/**
- * Extending the library response to be according to our custom response.
- */
-extension Alamofire.DataResponse {
-    
-    var networkAdapterResponse: NetworkAdapterResponse {
-        
-        log.debug("*****************************")
-        log.debug("**** Web Service Reponse ****")
-        log.debug("*****************************")
-        log.debug("Response url -> \(self.request?.url?.absoluteString)")
-        
-        let headers = self.response?.allHeaderFields as? [String: String]
-        
-        if let statusCode = self.response?.statusCode {
-            log.debug("Response status code -> \(statusCode)")
-        }
-        
-        log.debug("Response headers -> \(headers)")
-        
-        if let value = self.result.value {
-            log.debug("Response payload -> \(value)")
-        }
-        
-        if let message = self.result.error?.localizedDescription {
-            log.error("Response failure -> \(message)")
-            return NetworkAdapterResponse.failure(message)
-        }
-        
-        // Check the success status code first.
-        guard self.response?.statusCode == Constants.ResponseParameters.statusCode else {
-            log.error("Invalid status code -> \(self.response?.statusCode)")
-            return NetworkAdapterResponse.failure("Server returned status code != 200")
-        }
-        
-        guard let json = self.result.value as? [String: Any] else {
-            log.error("Invalid json received -> \(self.result.value)")
-            return NetworkAdapterResponse.failure("Invalid JSON response")
-        }
-        
-        if let errors = json[Constants.ResponseParameters.errors] as? [String: Any] {
-            return NetworkAdapterResponse.errors(errors)
-        }
-        
-        if let data = json[Constants.ResponseParameters.data] as? [String: Any] {
-            return NetworkAdapterResponse.success(response: data, headers: headers)
-        }
-        log.error("Invalid JSON response for data key -> \(json[Constants.ResponseParameters.data])")
-        return NetworkAdapterResponse.failure("Invalid JSON response for data key.")
-    }
+    /**
+     Upload a file to the server. This uses multipart form data to achieve the same.
+     
+     - Parameter destination: The URL of the end point to which the request needs to be posted.
+     - Parameter payload: The payload that will be attached as a part of the form data.
+     - Parameter headers: The headers that need to be sent as part of the request.
+     - Parameter responseHandler: Escaping NetworkAdapterResponse completion handler, which will be called after the request has received a response, or a timeout has taken place.
+     
+     */
+    func upload(destination: String, multipartFormData: ServiceMultipartFormData, payload: [String: String], headers: [String : String]?,responseHandler: @escaping (NetworkAdapterResponse) -> Void)
 }
