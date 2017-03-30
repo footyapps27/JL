@@ -13,7 +13,7 @@ import Foundation
  */
 class ExpenseListManager {
     
-    var expenseService: IExpenseService = ExpenseService()
+    var expenseService: IExpenseService = ServiceConfiguration.getExpenseService()
     
     var expenses: [Expense] = []
 }

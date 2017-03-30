@@ -13,11 +13,11 @@ import Foundation
  */
 class ApproversListManager {
     
-    var reportService: IReportService = ReportService()
+    var reportService: IReportService = ServiceConfiguration.getReportService()
     
-    var memberService: IMemberService = MemberService()
+    var memberService: IMemberService = ServiceConfiguration.getMemberService()
     
-    var approvalService: IApprovalService = ApprovalService()
+    var approvalService: IApprovalService = ServiceConfiguration.getApprovalService()
     
     var approvers: [Member] = []
 }

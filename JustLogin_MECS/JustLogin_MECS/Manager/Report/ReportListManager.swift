@@ -13,7 +13,7 @@ import Foundation
  */
 class ReportListManager {
     
-    var reportService: IReportService = ReportService()
+    var reportService: IReportService = ServiceConfiguration.getReportService()
     
     var reports: [Report] = []
 }

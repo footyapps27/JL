@@ -14,8 +14,8 @@ class SignInManager {
     // MARK: - Properties
     /***********************************/
     
-    var authenticationService: IAuthenticationService = AuthenticationService()
-    var organizationDetailsService: IOrganizationDetailsService = OrganizationDetailsService()
+    var authenticationService: IAuthenticationService = ServiceConfiguration.getAuthenticationService()
+    var organizationDetailsService: IOrganizationDetailsService = ServiceConfiguration.getOrganizationDetailsService()
     
     /***********************************/
     // MARK: - Public Methods

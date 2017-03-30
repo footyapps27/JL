@@ -13,7 +13,7 @@ import UIKit
  */
 class ReviewSelectCategoryManager {
     
-    var categoryService: ICategoryService = CategoryService()
+    var categoryService: ICategoryService = ServiceConfiguration.getCategoryService()
     
     var categories: [Category] = []
     

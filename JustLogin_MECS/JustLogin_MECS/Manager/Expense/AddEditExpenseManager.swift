@@ -26,7 +26,7 @@ class AddEditExpenseManager {
     
     var fields: [[CustomField]] = []
     
-    var expenseService: IExpenseService = ExpenseService()
+    var expenseService: IExpenseService = ServiceConfiguration.getExpenseService()
     
     var lastSelectedNavigationIndex: IndexPath?
     

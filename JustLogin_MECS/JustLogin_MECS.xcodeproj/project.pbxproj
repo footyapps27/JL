@@ -62,6 +62,7 @@
 		8C825D7B1E8BC0F0000DB586 /* ExpenseDetailsToolBarStrategyWithUnlink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C825D7A1E8BC0F0000DB586 /* ExpenseDetailsToolBarStrategyWithUnlink.swift */; };
 		8C825D7D1E8BE2B7000DB586 /* ExpenseDetailsToolBarStrategyWithoutUnlink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C825D7C1E8BE2B7000DB586 /* ExpenseDetailsToolBarStrategyWithoutUnlink.swift */; };
 		8C825D7F1E8C99A1000DB586 /* NetworkConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C825D7E1E8C99A1000DB586 /* NetworkConfiguration.swift */; };
+		8C825D811E8C9BBC000DB586 /* ServiceConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C825D801E8C9BBC000DB586 /* ServiceConfiguration.swift */; };
 		8C8995D51E60821200482317 /* AddEditExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8995D41E60821200482317 /* AddEditExpenseViewController.swift */; };
 		8C8995D71E60822B00482317 /* ExpenseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8995D61E60822B00482317 /* ExpenseDetailsViewController.swift */; };
 		8C8995D91E60836C00482317 /* AddEditExpenseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8995D81E60836C00482317 /* AddEditExpenseManager.swift */; };
@@ -118,7 +119,7 @@
 		8CF2FBE71E72D61B001C008E /* ReviewSelectCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF2FBE61E72D61B001C008E /* ReviewSelectCategoryViewController.swift */; };
 		8CF342411E5D3941008387BF /* SignInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF342401E5D3941008387BF /* SignInManager.swift */; };
 		8CF342441E5D40E4008387BF /* BaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF342431E5D40E4008387BF /* BaseManager.swift */; };
-		8CF655C71E58387100D4FEF3 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655C61E58387100D4FEF3 /* LoginService.swift */; };
+		8CF655C71E58387100D4FEF3 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655C61E58387100D4FEF3 /* AuthenticationService.swift */; };
 		8CF655C91E58455A00D4FEF3 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655C81E58455A00D4FEF3 /* Member.swift */; };
 		8CF655CB1E585A8200D4FEF3 /* Role.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655CA1E585A8200D4FEF3 /* Role.swift */; };
 		8CF655CD1E585ACE00D4FEF3 /* AccessPrivilege.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF655CC1E585ACE00D4FEF3 /* AccessPrivilege.swift */; };
@@ -228,6 +229,7 @@
 		8C825D7A1E8BC0F0000DB586 /* ExpenseDetailsToolBarStrategyWithUnlink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseDetailsToolBarStrategyWithUnlink.swift; sourceTree = "<group>"; };
 		8C825D7C1E8BE2B7000DB586 /* ExpenseDetailsToolBarStrategyWithoutUnlink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseDetailsToolBarStrategyWithoutUnlink.swift; sourceTree = "<group>"; };
 		8C825D7E1E8C99A1000DB586 /* NetworkConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkConfiguration.swift; sourceTree = "<group>"; };
+		8C825D801E8C9BBC000DB586 /* ServiceConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceConfiguration.swift; sourceTree = "<group>"; };
 		8C8995D41E60821200482317 /* AddEditExpenseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditExpenseViewController.swift; sourceTree = "<group>"; };
 		8C8995D61E60822B00482317 /* ExpenseDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseDetailsViewController.swift; sourceTree = "<group>"; };
 		8C8995D81E60836C00482317 /* AddEditExpenseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditExpenseManager.swift; sourceTree = "<group>"; };
@@ -280,7 +282,7 @@
 		8CF2FBE61E72D61B001C008E /* ReviewSelectCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewSelectCategoryViewController.swift; sourceTree = "<group>"; };
 		8CF342401E5D3941008387BF /* SignInManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInManager.swift; sourceTree = "<group>"; };
 		8CF342431E5D40E4008387BF /* BaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseManager.swift; sourceTree = "<group>"; };
-		8CF655C61E58387100D4FEF3 /* LoginService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
+		8CF655C61E58387100D4FEF3 /* AuthenticationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		8CF655C81E58455A00D4FEF3 /* Member.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		8CF655CA1E585A8200D4FEF3 /* Role.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Role.swift; sourceTree = "<group>"; };
 		8CF655CC1E585ACE00D4FEF3 /* AccessPrivilege.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessPrivilege.swift; sourceTree = "<group>"; };
@@ -592,6 +594,7 @@
 				8C753AA11E8A787A00B0906C /* AddReportDefaultConfiguration.swift */,
 				8C753AA31E8A815700B0906C /* RecordReimbursementDefaultConfiguration.swift */,
 				8C825D7E1E8C99A1000DB586 /* NetworkConfiguration.swift */,
+				8C825D801E8C9BBC000DB586 /* ServiceConfiguration.swift */,
 			);
 			path = DefaultConfigurations;
 			sourceTree = "<group>";
@@ -748,7 +751,7 @@
 			isa = PBXGroup;
 			children = (
 				8CEAADBC1E55411000BDB5ED /* Base */,
-				8CF655C61E58387100D4FEF3 /* LoginService.swift */,
+				8CF655C61E58387100D4FEF3 /* AuthenticationService.swift */,
 				8CF655D41E586CF900D4FEF3 /* OrganizationDetailsService.swift */,
 				8CF655D81E589EB700D4FEF3 /* ExpenseService.swift */,
 				8CF655DA1E589F1B00D4FEF3 /* ReportService.swift */,
@@ -1238,6 +1241,7 @@
 				8CFD021B1E762EEC00526962 /* HomeScreenManager.swift in Sources */,
 				8CF342441E5D40E4008387BF /* BaseManager.swift in Sources */,
 				8CE468911E83A71400535A70 /* CustomFieldTableViewCellDuration.swift in Sources */,
+				8C825D811E8C9BBC000DB586 /* ServiceConfiguration.swift in Sources */,
 				8C42DFD51E63DEA300A3B69A /* ReportDetailsViewController.swift in Sources */,
 				8CE4688D1E83A69700535A70 /* CustomFieldTableViewCellCurrencyAndAmount.swift in Sources */,
 				8CC68F211E852589002F9DCD /* ExpenseDetailsToolBarEditEnabledStrategy.swift in Sources */,
@@ -1289,7 +1293,7 @@
 				8C1766551E7A851200D1CDE0 /* Styles.swift in Sources */,
 				8C753AA01E8A4EAD00B0906C /* AddEditExpenseDefaultConfiguration.swift in Sources */,
 				8CE007231E28F3280089D159 /* SettingsTableProfileSectionHeaderView.swift in Sources */,
-				8CF655C71E58387100D4FEF3 /* LoginService.swift in Sources */,
+				8CF655C71E58387100D4FEF3 /* AuthenticationService.swift in Sources */,
 				8C42DFD71E63E03400A3B69A /* AddAndEditReportManager.swift in Sources */,
 				8CE4687D1E822B0000535A70 /* CustomFieldBaseTableViewCell.swift in Sources */,
 				8C0A01D01E77C38100A96867 /* Dictionary.swift in Sources */,

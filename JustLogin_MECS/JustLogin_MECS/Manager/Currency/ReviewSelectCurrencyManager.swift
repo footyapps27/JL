@@ -13,7 +13,7 @@ import UIKit
  */
 class ReviewSelectCurrencyManager {
     
-    var currencyService: ICurrencyService = CurrencyService()
+    var currencyService: ICurrencyService = ServiceConfiguration.getCurrencyService()
     
     var currencies: [Currency] = []
     

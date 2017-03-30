@@ -13,8 +13,8 @@ import Foundation
  */
 class LaunchManager {
     
-    var authenticationService:IAuthenticationService = AuthenticationService()
-    var organizationDetailsService: IOrganizationDetailsService = OrganizationDetailsService()
+    var authenticationService:IAuthenticationService = ServiceConfiguration.getAuthenticationService()
+    var organizationDetailsService: IOrganizationDetailsService = ServiceConfiguration.getOrganizationDetailsService()
     
     struct LaunchContent {
         var imageName: String!

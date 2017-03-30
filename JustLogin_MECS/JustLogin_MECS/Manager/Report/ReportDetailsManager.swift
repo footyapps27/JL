@@ -12,9 +12,9 @@ import UIKit
 class ReportDetailsManager {
     var report: Report = Report()
     
-    var reportService: IReportService = ReportService()
+    var reportService: IReportService = ServiceConfiguration.getReportService()
     
-    var approvalService: IApprovalService = ApprovalService()
+    var approvalService: IApprovalService = ServiceConfiguration.getApprovalService()
     
     var segmentedControlSelectedIndex: Int = ReportDetailsSegmentedControl.expenses.rawValue
 }

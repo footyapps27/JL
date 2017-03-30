@@ -47,6 +47,8 @@ struct ServiceError {
 protocol NetworkAdapter {
     
     func post(destination: String, payload: [String: Any], headers: [String : String]?,responseHandler: @escaping (NetworkAdapterResponse) -> Void)
+    
+//    func upload(destination: String, multipartFormData: )
 }
 
 /**
