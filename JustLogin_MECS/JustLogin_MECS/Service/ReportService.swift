@@ -51,7 +51,7 @@ protocol IReportService {
      
      - Parameter expense: The expense which needs to be unlinked.
      - Parameter completionHandler: Escaping closure which will return either Success or Failure.
-     Success response: List of report approvals for the user.
+     Success response: An empty response.
      Failure response: Code & message if something went wrong while retrieving the list of approvals.
      
      */
@@ -62,7 +62,7 @@ protocol IReportService {
 /***********************************/
 struct ReportService : IReportService {
     
-    var serviceAdapter: NetworkAdapter = AlamofireNetworkAdapter()
+    var serviceAdapter: NetworkAdapter = NetworkConfiguration.getNetworkAdapter()
     
     /**
      * Method to retrieve all reports.

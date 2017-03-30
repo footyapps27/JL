@@ -34,7 +34,7 @@ protocol ICategoryService {
 
 struct CategoryService : ICategoryService {
     
-    var serviceAdapter: NetworkAdapter = AlamofireNetworkAdapter()
+    var serviceAdapter: NetworkAdapter = NetworkConfiguration.getNetworkAdapter()
     
     /***********************************/
     // MARK: - IExpenseService implementation
