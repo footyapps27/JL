@@ -19,7 +19,7 @@ protocol IMemberService {
 
 struct MemberService : IMemberService {
     
-    var serviceAdapter: NetworkAdapter = NetworkConfiguration.getNetworkAdapter()
+    var serviceAdapter: NetworkAdapter = NetworkAdapterFactory.getNetworkAdapter()
     
     /***********************************/
     // MARK: - IMemberService implementation

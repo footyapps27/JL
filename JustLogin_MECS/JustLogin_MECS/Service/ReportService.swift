@@ -62,7 +62,7 @@ protocol IReportService {
 /***********************************/
 struct ReportService : IReportService {
     
-    var serviceAdapter: NetworkAdapter = NetworkConfiguration.getNetworkAdapter()
+    var serviceAdapter: NetworkAdapter = NetworkAdapterFactory.getNetworkAdapter()
     
     /**
      * Method to retrieve all reports.

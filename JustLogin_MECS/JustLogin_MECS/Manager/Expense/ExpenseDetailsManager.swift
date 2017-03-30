@@ -15,9 +15,9 @@ class ExpenseDetailsManager {
     
     var caller: ExpenseDetailsCaller = ExpenseDetailsCaller.expenseList
     
-    var expenseService: IExpenseService = ServiceConfiguration.getExpenseService()
+    var expenseService: IExpenseService = ServiceFactory.getExpenseService()
     
-    var reportService: IReportService = ServiceConfiguration.getReportService()
+    var reportService: IReportService = ServiceFactory.getReportService()
 }
 /***********************************/
 // MARK: - UI check value

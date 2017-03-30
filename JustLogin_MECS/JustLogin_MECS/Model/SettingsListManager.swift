@@ -12,7 +12,7 @@ import Foundation
  */
 class SettingsListManager {
     
-    var authenticationService: IAuthenticationService = ServiceConfiguration.getAuthenticationService()
+    var authenticationService: IAuthenticationService = ServiceFactory.getAuthenticationService()
 }
 /***********************************/
 // MARK: - Data tracking methods

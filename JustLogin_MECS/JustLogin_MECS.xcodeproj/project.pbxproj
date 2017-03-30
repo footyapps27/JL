@@ -61,8 +61,8 @@
 		8C753AA41E8A815700B0906C /* RecordReimbursementDefaultConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C753AA31E8A815700B0906C /* RecordReimbursementDefaultConfiguration.swift */; };
 		8C825D7B1E8BC0F0000DB586 /* ExpenseDetailsToolBarStrategyWithUnlink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C825D7A1E8BC0F0000DB586 /* ExpenseDetailsToolBarStrategyWithUnlink.swift */; };
 		8C825D7D1E8BE2B7000DB586 /* ExpenseDetailsToolBarStrategyWithoutUnlink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C825D7C1E8BE2B7000DB586 /* ExpenseDetailsToolBarStrategyWithoutUnlink.swift */; };
-		8C825D7F1E8C99A1000DB586 /* NetworkConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C825D7E1E8C99A1000DB586 /* NetworkConfiguration.swift */; };
-		8C825D811E8C9BBC000DB586 /* ServiceConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C825D801E8C9BBC000DB586 /* ServiceConfiguration.swift */; };
+		8C825D7F1E8C99A1000DB586 /* NetworkAdapterFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C825D7E1E8C99A1000DB586 /* NetworkAdapterFactory.swift */; };
+		8C825D811E8C9BBC000DB586 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C825D801E8C9BBC000DB586 /* ServiceFactory.swift */; };
 		8C8995D51E60821200482317 /* AddEditExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8995D41E60821200482317 /* AddEditExpenseViewController.swift */; };
 		8C8995D71E60822B00482317 /* ExpenseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8995D61E60822B00482317 /* ExpenseDetailsViewController.swift */; };
 		8C8995D91E60836C00482317 /* AddEditExpenseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8995D81E60836C00482317 /* AddEditExpenseManager.swift */; };
@@ -228,8 +228,8 @@
 		8C753AA31E8A815700B0906C /* RecordReimbursementDefaultConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordReimbursementDefaultConfiguration.swift; sourceTree = "<group>"; };
 		8C825D7A1E8BC0F0000DB586 /* ExpenseDetailsToolBarStrategyWithUnlink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseDetailsToolBarStrategyWithUnlink.swift; sourceTree = "<group>"; };
 		8C825D7C1E8BE2B7000DB586 /* ExpenseDetailsToolBarStrategyWithoutUnlink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseDetailsToolBarStrategyWithoutUnlink.swift; sourceTree = "<group>"; };
-		8C825D7E1E8C99A1000DB586 /* NetworkConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkConfiguration.swift; sourceTree = "<group>"; };
-		8C825D801E8C9BBC000DB586 /* ServiceConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceConfiguration.swift; sourceTree = "<group>"; };
+		8C825D7E1E8C99A1000DB586 /* NetworkAdapterFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkAdapterFactory.swift; sourceTree = "<group>"; };
+		8C825D801E8C9BBC000DB586 /* ServiceFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceFactory.swift; sourceTree = "<group>"; };
 		8C8995D41E60821200482317 /* AddEditExpenseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditExpenseViewController.swift; sourceTree = "<group>"; };
 		8C8995D61E60822B00482317 /* ExpenseDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseDetailsViewController.swift; sourceTree = "<group>"; };
 		8C8995D81E60836C00482317 /* AddEditExpenseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditExpenseManager.swift; sourceTree = "<group>"; };
@@ -593,8 +593,8 @@
 				8C753A9F1E8A4EAD00B0906C /* AddEditExpenseDefaultConfiguration.swift */,
 				8C753AA11E8A787A00B0906C /* AddReportDefaultConfiguration.swift */,
 				8C753AA31E8A815700B0906C /* RecordReimbursementDefaultConfiguration.swift */,
-				8C825D7E1E8C99A1000DB586 /* NetworkConfiguration.swift */,
-				8C825D801E8C9BBC000DB586 /* ServiceConfiguration.swift */,
+				8C825D7E1E8C99A1000DB586 /* NetworkAdapterFactory.swift */,
+				8C825D801E8C9BBC000DB586 /* ServiceFactory.swift */,
 			);
 			path = DefaultConfigurations;
 			sourceTree = "<group>";
@@ -1241,7 +1241,7 @@
 				8CFD021B1E762EEC00526962 /* HomeScreenManager.swift in Sources */,
 				8CF342441E5D40E4008387BF /* BaseManager.swift in Sources */,
 				8CE468911E83A71400535A70 /* CustomFieldTableViewCellDuration.swift in Sources */,
-				8C825D811E8C9BBC000DB586 /* ServiceConfiguration.swift in Sources */,
+				8C825D811E8C9BBC000DB586 /* ServiceFactory.swift in Sources */,
 				8C42DFD51E63DEA300A3B69A /* ReportDetailsViewController.swift in Sources */,
 				8CE4688D1E83A69700535A70 /* CustomFieldTableViewCellCurrencyAndAmount.swift in Sources */,
 				8CC68F211E852589002F9DCD /* ExpenseDetailsToolBarEditEnabledStrategy.swift in Sources */,
@@ -1304,7 +1304,7 @@
 				8C37683A1E811E5B00E82044 /* RecordReimbursementViewController.swift in Sources */,
 				8CF2FBE11E72C76E001C008E /* CategoryService.swift in Sources */,
 				8CD333211E23C4E500557B6F /* BaseViewControllerWithTableView.swift in Sources */,
-				8C825D7F1E8C99A1000DB586 /* NetworkConfiguration.swift in Sources */,
+				8C825D7F1E8C99A1000DB586 /* NetworkAdapterFactory.swift in Sources */,
 				8CE468811E822BF300535A70 /* CustomFieldTableViewCellWithTextField.swift in Sources */,
 				8C753AA41E8A815700B0906C /* RecordReimbursementDefaultConfiguration.swift in Sources */,
 				8C3768301E7FFC0E00E82044 /* ReportDetailsToolBarApprovalListApprovedStrategy.swift in Sources */,

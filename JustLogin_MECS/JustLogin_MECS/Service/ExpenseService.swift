@@ -42,7 +42,7 @@ protocol IExpenseService {
 /***********************************/
 struct ExpenseService : IExpenseService {
     
-    var serviceAdapter: NetworkAdapter = NetworkConfiguration.getNetworkAdapter()
+    var serviceAdapter: NetworkAdapter = NetworkAdapterFactory.getNetworkAdapter()
     
     func getAllExpenses(_ completionHandler:( @escaping (Result<[Expense]>) -> Void)) {
         serviceAdapter.post(destination: Constants.URLs.Expense.getAllExpenses, payload: [:], headers: Singleton.sharedInstance.accessTokenHeader) { (response) in

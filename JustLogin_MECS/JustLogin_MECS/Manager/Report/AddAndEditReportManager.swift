@@ -24,7 +24,7 @@ class AddAndEditReportManager {
     
     var fields: [CustomField] = []
     
-    var reportService = ServiceConfiguration.getReportService()
+    var reportService = ServiceFactory.getReportService()
     
     var dictCells: [IndexPath:CustomFieldBaseTableViewCell] = [:]
     

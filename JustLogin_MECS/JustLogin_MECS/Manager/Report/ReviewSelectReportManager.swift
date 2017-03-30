@@ -13,7 +13,7 @@ import UIKit
  */
 class ReviewSelectReportManager {
     
-    var reportService: IReportService = ServiceConfiguration.getReportService()
+    var reportService: IReportService = ServiceFactory.getReportService()
     
     var reports: [Report] = []
 }

@@ -34,7 +34,7 @@ protocol ICategoryService {
 
 struct CategoryService : ICategoryService {
     
-    var serviceAdapter: NetworkAdapter = NetworkConfiguration.getNetworkAdapter()
+    var serviceAdapter: NetworkAdapter = NetworkAdapterFactory.getNetworkAdapter()
     
     /***********************************/
     // MARK: - IExpenseService implementation

@@ -19,7 +19,7 @@ protocol IOrganizationDetailsService {
 
 struct OrganizationDetailsService: IOrganizationDetailsService {
     
-    var serviceAdapter: NetworkAdapter = NetworkConfiguration.getNetworkAdapter()
+    var serviceAdapter: NetworkAdapter = NetworkAdapterFactory.getNetworkAdapter()
     
     /***********************************/
     // MARK: - IOrganizationDetailsService implementation

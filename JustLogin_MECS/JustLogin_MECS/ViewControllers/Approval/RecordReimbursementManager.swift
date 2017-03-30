@@ -19,7 +19,7 @@ class RecordReimbursementManager {
         }
     }
     
-    var approvalService: IApprovalService = ServiceConfiguration.getApprovalService()
+    var approvalService: IApprovalService = ServiceFactory.getApprovalService()
     
     var fields: [[CustomField]] = []
     

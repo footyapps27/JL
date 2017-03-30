@@ -24,7 +24,7 @@ protocol IAuthenticationService {
 
 struct AuthenticationService: IAuthenticationService {
     
-    var serviceAdapter: NetworkAdapter = NetworkConfiguration.getNetworkAdapter()
+    var serviceAdapter: NetworkAdapter = NetworkAdapterFactory.getNetworkAdapter()
     
     /***********************************/
     // MARK: - ILoginService implementation

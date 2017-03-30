@@ -13,9 +13,9 @@ import UIKit
  */
 class ReviewSelectExpenseManager {
     
-    var expenseService: IExpenseService = ServiceConfiguration.getExpenseService()
+    var expenseService: IExpenseService = ServiceFactory.getExpenseService()
     
-    var reportService: IReportService = ServiceConfiguration.getReportService()
+    var reportService: IReportService = ServiceFactory.getReportService()
     
     var expenses: [Expense] = []
     

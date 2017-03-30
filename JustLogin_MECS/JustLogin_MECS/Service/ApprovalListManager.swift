@@ -13,7 +13,7 @@ import Foundation
  */
 class ApprovalListManager {
     
-    var approvalService: IApprovalService = ServiceConfiguration.getApprovalService()
+    var approvalService: IApprovalService = ServiceFactory.getApprovalService()
     var approvals: [Report] = []
 }
 /***********************************/
