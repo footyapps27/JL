@@ -64,6 +64,7 @@
 		8C825D7F1E8C99A1000DB586 /* NetworkAdapterFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C825D7E1E8C99A1000DB586 /* NetworkAdapterFactory.swift */; };
 		8C825D811E8C9BBC000DB586 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C825D801E8C9BBC000DB586 /* ServiceFactory.swift */; };
 		8C825D841E8D0028000DB586 /* AlamofireNetworkAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C825D831E8D0028000DB586 /* AlamofireNetworkAdapter.swift */; };
+		8C825D861E8E0D7C000DB586 /* ImagePickerControllerUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C825D851E8E0D7C000DB586 /* ImagePickerControllerUtility.swift */; };
 		8C8995D51E60821200482317 /* AddEditExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8995D41E60821200482317 /* AddEditExpenseViewController.swift */; };
 		8C8995D71E60822B00482317 /* ExpenseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8995D61E60822B00482317 /* ExpenseDetailsViewController.swift */; };
 		8C8995D91E60836C00482317 /* AddEditExpenseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8995D81E60836C00482317 /* AddEditExpenseManager.swift */; };
@@ -232,6 +233,7 @@
 		8C825D7E1E8C99A1000DB586 /* NetworkAdapterFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkAdapterFactory.swift; sourceTree = "<group>"; };
 		8C825D801E8C9BBC000DB586 /* ServiceFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceFactory.swift; sourceTree = "<group>"; };
 		8C825D831E8D0028000DB586 /* AlamofireNetworkAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireNetworkAdapter.swift; sourceTree = "<group>"; };
+		8C825D851E8E0D7C000DB586 /* ImagePickerControllerUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerControllerUtility.swift; sourceTree = "<group>"; };
 		8C8995D41E60821200482317 /* AddEditExpenseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditExpenseViewController.swift; sourceTree = "<group>"; };
 		8C8995D61E60822B00482317 /* ExpenseDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseDetailsViewController.swift; sourceTree = "<group>"; };
 		8C8995D81E60836C00482317 /* AddEditExpenseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditExpenseManager.swift; sourceTree = "<group>"; };
@@ -787,6 +789,7 @@
 			children = (
 				8CB44AD51E5B1163005CC04D /* Utilities.swift */,
 				8C3768351E80DEEB00E82044 /* ReportRejectionOrUndoReimburseUtility.swift */,
+				8C825D851E8E0D7C000DB586 /* ImagePickerControllerUtility.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1267,6 +1270,7 @@
 				8CA4B6F71E28C3A6007C3BE5 /* ExpenseListTableViewCell.swift in Sources */,
 				8CE468871E8240CC00535A70 /* CustomFieldTableViewCellWithLabel.swift in Sources */,
 				8CF2FBE41E72CE00001C008E /* ReviewSelectCategoryTableViewCell.swift in Sources */,
+				8C825D861E8E0D7C000DB586 /* ImagePickerControllerUtility.swift in Sources */,
 				8C00F6651E1E870B0007F29C /* LaunchCollectionViewCell.swift in Sources */,
 				8C96020A1E1FDB7F00EE66A3 /* LaunchViewController.swift in Sources */,
 				8CF655D51E586CF900D4FEF3 /* OrganizationDetailsService.swift in Sources */,
