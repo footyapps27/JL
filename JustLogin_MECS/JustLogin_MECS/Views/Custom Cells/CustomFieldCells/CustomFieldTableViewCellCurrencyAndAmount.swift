@@ -1,15 +1,15 @@
 //
-//  AddExpenseCurrencyAndAmountTableViewCell.swift
+//  CustomFieldTableViewCellCurrencyAndAmount.swift
 //  JustLogin_MECS
 //
-//  Created by Samrat on 7/3/17.
+//  Created by Samrat on 23/3/17.
 //  Copyright © 2017 SMRT. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class AddExpenseTableViewCellCurrencyAndAmount: AddExpenseBaseTableViewCell {
+class CustomFieldTableViewCellCurrencyAndAmount: CustomFieldBaseTableViewCell {
     /***********************************/
     // MARK: - Outlets
     /***********************************/
@@ -22,12 +22,17 @@ class AddExpenseTableViewCellCurrencyAndAmount: AddExpenseBaseTableViewCell {
     /***********************************/
     // MARK: - Parent method override
     /***********************************/
-    override func updateView(withField expenseField: ExpenseAndReportField) {
-        
+    override func updateView(withField field: CustomField) {
+        // TODO: - This is incorrect, since this will override the value the user has chosen in case the cell is not visible any more. We need to check if the selectedCurrency is already present, if not only then set it.
+        if let id = field.values[Constants.CustomFieldKeys.id] {
+            selectedCurrencyId = id
+        }
+        lblCurrency.text = field.values[Constants.CustomFieldKeys.value]
+        txtAmount.text = field.values[Constants.CustomFieldKeys.amount]
     }
     
-    override func validateInput(withField expenseField: ExpenseAndReportField) -> (success: Bool, errorMessage: String) {
-        if expenseField.isMandatory && txtAmount.text!.isEmpty {
+    override func validateInput(withField field: CustomField) -> (success: Bool, errorMessage: String) {
+        if field.isMandatory && txtAmount.text!.isEmpty {
             return (false, "Please make sure 'Amount' has been entered.")
         }
         
@@ -43,17 +48,17 @@ class AddExpenseTableViewCellCurrencyAndAmount: AddExpenseBaseTableViewCell {
         lblCurrency.text = value
     }
     
-    override func getPayload(withField reportField: ExpenseAndReportField) -> [String : Any] {
+    override func getPayload(withField reportField: CustomField) -> [String : Any] {
         var payload: [String : Any] = [:]
         if selectedCurrencyId != nil {
             payload[Constants.RequestParameters.Expense.currencyId] = selectedCurrencyId!
             payload[Constants.RequestParameters.Expense.amount] = (Double(txtAmount.text!) ?? 0.00)
             
             /* This check will be enabled in Phase 2
-            // If it is the base currency, then we send the exchange rate as 1.00 by default
-            if selectedCurrencyId == Singleton.sharedInstance.organization?.baseCurrencyId {
-                payload[Constants.RequestParameters.Expense.exchange] = Constants.Defaults.exchangeRate
-            }
+             // If it is the base currency, then we send the exchange rate as 1.00 by default
+             if selectedCurrencyId == Singleton.sharedInstance.organization?.baseCurrencyId {
+             payload[Constants.RequestParameters.Expense.exchange] = Constants.Defaults.exchangeRate
+             }
              
              */
             
@@ -66,12 +71,8 @@ class AddExpenseTableViewCellCurrencyAndAmount: AddExpenseBaseTableViewCell {
 /***********************************/
 // MARK: - View Lifecycle
 /***********************************/
-extension AddExpenseTableViewCellCurrencyAndAmount {
+extension CustomFieldTableViewCellCurrencyAndAmount {
     override func awakeFromNib() {
-        txtAmount.tag = ExpenseAndReportFieldType.currencyAndAmount.rawValue
-        if let organization = Singleton.sharedInstance.organization {
-            selectedCurrencyId = organization.baseCurrencyId
-            lblCurrency.text = Utilities.getCurrencyCode(forId: organization.baseCurrencyId)
-        }
+        txtAmount.tag = CustomFieldType.currencyAndAmount.rawValue
     }
 }

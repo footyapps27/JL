@@ -1,15 +1,15 @@
 //
-//  AddReportTableViewCellDuration.swift
+//  CustomFieldTableViewCellDuration.swift
 //  JustLogin_MECS
 //
-//  Created by Samrat on 28/2/17.
+//  Created by Samrat on 23/3/17.
 //  Copyright © 2017 SMRT. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class AddReportTableViewCellDuration: AddReportBaseTableViewCell {
+class CustomFieldTableViewCellDuration: CustomFieldBaseTableViewCell {
     
     /***********************************/
     // MARK: - Outlets
@@ -28,20 +28,25 @@ class AddReportTableViewCellDuration: AddReportBaseTableViewCell {
     // MARK: - Parent class override
     /***********************************/
     
-    override func validateInput(withField reportField: ExpenseAndReportField) -> (success: Bool, errorMessage: String) {
+    override func updateView(withField field: CustomField) {
+        txtFrom.text = field.values[Constants.CustomFieldKeys.startDateValue]
+        txtTo.text = field.values[Constants.CustomFieldKeys.endDateValue]
+    }
+    
+    override func validateInput(withField field: CustomField) -> (success: Bool, errorMessage: String) {
         // This cell is only used for Duration
-        if txtFrom.text!.isEmpty {
+        if txtFrom.text!.isEmpty && field.isMandatory {
             return (false, "Please make sure 'Report To' date has been entered.")
         }
         
-        if txtTo.text!.isEmpty {
+        if txtTo.text!.isEmpty && field.isMandatory {
             return (false, "Please make sure 'Report To' date has been entered.")
         }
         
         return(true, Constants.General.emptyString)
     }
     
-    override func getPayload(withField reportField: ExpenseAndReportField) -> [String:Any] {
+    override func getPayload(withField reportField: CustomField) -> [String:Any] {
         return [
             Constants.RequestParameters.Report.startDate : getFormattedDateFromText(txtFrom.text!),
             Constants.RequestParameters.Report.endDate : getFormattedDateFromText(txtTo.text!)
@@ -51,22 +56,21 @@ class AddReportTableViewCellDuration: AddReportBaseTableViewCell {
 /***********************************/
 // MARK: - View lifecylce
 /***********************************/
-extension AddReportTableViewCellDuration {
+extension CustomFieldTableViewCellDuration {
     override func awakeFromNib() {
-        txtTo.tag = ExpenseAndReportFieldType.date.rawValue
-        txtFrom.tag = ExpenseAndReportFieldType.date.rawValue
+        txtTo.tag = CustomFieldType.date.rawValue
+        txtFrom.tag = CustomFieldType.date.rawValue
     }
 }
 /***********************************/
 // MARK: - Private Methods
 /***********************************/
-extension AddReportTableViewCellDuration {
+extension CustomFieldTableViewCellDuration {
     func getFormattedDateFromText(_ text: String) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = Constants.General.localDisplayDateFormat
         
         let formattedDate = dateFormatter.date(from: text)!
-        
         return Utilities.convertDateToStringForServerCommunication(formattedDate)
     }
 }

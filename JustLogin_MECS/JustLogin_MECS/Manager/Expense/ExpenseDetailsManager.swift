@@ -7,24 +7,38 @@
 //
 
 import Foundation
+import UIKit
 
 class ExpenseDetailsManager {
     
     var expense: Expense = Expense()
     
-    var expenseService: IExpenseService = ExpenseService()
+    var caller: ExpenseDetailsCaller = ExpenseDetailsCaller.expenseList
+    
+    var expenseService: IExpenseService = ServiceFactory.getExpenseService()
+    
+    var reportService: IReportService = ServiceFactory.getReportService()
 }
 /***********************************/
 // MARK: - UI check value
 /***********************************/
 extension ExpenseDetailsManager {
     
-    func isExpenseEditable() -> Bool {
-        if expense.status == ExpenseStatus.unreported.rawValue ||
-            expense.status == ExpenseStatus.unsubmitted.rawValue {
-            return true
-        }
-        return false
+    func updateToolBar(_ toolBar: UIToolbar, delegate: ExpenseDetailsToolBarActionDelegate) {
+        let strategy = getToolBarStrategy(forExpenseStatus: ExpenseStatus(rawValue: expense.status)!, caller: caller)
+        strategy.formatToolBar(toolBar, withDelegate: delegate)
+    }
+}
+/***********************************/
+// MARK: - Actions
+/***********************************/
+extension ExpenseDetailsManager {
+    /**
+     * Action for the toolbar items.
+     */
+    func performActionForBarButtonItem(_ barButton: UIBarButtonItem, onController controller: BaseViewController) {
+        let strategy = getToolBarStrategy(forExpenseStatus: ExpenseStatus(rawValue: expense.status)!, caller: caller)
+        strategy.performActionForBarButtonItem(barButton, forExpense: expense, onController: controller)
     }
 }
 /***********************************/
@@ -136,5 +150,53 @@ extension ExpenseDetailsManager {
                 completionHandler(ManagerResponseToController.failure(code: "", message: message)) // TODO: - Pass a general code
             }
         }
+    }
+    
+    func unlinkExpenseFromAttachedReport(_ expense: Expense, completionHandler: (@escaping (ManagerResponseToController<Void>) -> Void)) {
+        reportService.unlinkExpenseFromAttachedReport(expense, completionHandler: { [weak self] (result) in
+            switch(result) {
+            case .success(_):
+                self?.expense = expense
+                completionHandler(ManagerResponseToController.success())
+            case .error(let serviceError):
+                completionHandler(ManagerResponseToController.failure(code: serviceError.code, message: serviceError.message))
+            case .failure(let message):
+                completionHandler(ManagerResponseToController.failure(code: "", message: message)) // TODO: - Pass a general code
+            }
+        })
+    }
+}
+/***********************************/
+// MARK: - Toolbar Strategy Selector
+/***********************************/
+extension ExpenseDetailsManager {
+    func getToolBarStrategy(forExpenseStatus status: ExpenseStatus, caller: ExpenseDetailsCaller) -> ExpenseDetailsToolBarBaseStrategy {
+        var strategy: ExpenseDetailsToolBarBaseStrategy
+        switch(caller, status) {
+            // Case for Expense List as caller
+        case (ExpenseDetailsCaller.expenseList,ExpenseStatus.unreported):fallthrough
+        case (ExpenseDetailsCaller.expenseList, ExpenseStatus.unsubmitted):fallthrough
+        case (ExpenseDetailsCaller.expenseList, ExpenseStatus.rejected):
+            strategy = ExpenseDetailsToolBarEditEnabledStrategy()
+            
+        case (ExpenseDetailsCaller.expenseList, ExpenseStatus.submitted):fallthrough
+        case (ExpenseDetailsCaller.expenseList, ExpenseStatus.approved):fallthrough
+        case (ExpenseDetailsCaller.expenseList, ExpenseStatus.reimbursed):
+            strategy = ExpenseDetailsToolBarEditDisabledStrategy()
+            
+            // Case for Report Details as caller
+        case (ExpenseDetailsCaller.reportDetails, ExpenseStatus.unsubmitted):fallthrough
+        case (ExpenseDetailsCaller.reportDetails, ExpenseStatus.rejected):
+            strategy = ExpenseDetailsToolBarStrategyWithUnlink()
+            
+        case (ExpenseDetailsCaller.reportDetails, ExpenseStatus.submitted):fallthrough
+        case (ExpenseDetailsCaller.reportDetails, ExpenseStatus.approved):fallthrough
+        case (ExpenseDetailsCaller.reportDetails, ExpenseStatus.reimbursed):
+            strategy = ExpenseDetailsToolBarStrategyWithoutUnlink()
+            
+        default:
+            strategy = ExpenseDetailsToolBarEditDisabledStrategy()
+        }
+        return strategy
     }
 }

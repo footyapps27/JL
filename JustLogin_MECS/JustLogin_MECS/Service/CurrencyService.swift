@@ -34,7 +34,7 @@ protocol ICurrencyService {
 
 struct CurrencyService : ICurrencyService {
     
-    var serviceAdapter: NetworkAdapter = AlamofireNetworkAdapter()
+    var serviceAdapter: NetworkAdapter = NetworkAdapterFactory.getNetworkAdapter()
     
     /***********************************/
     // MARK: - IExpenseService implementation

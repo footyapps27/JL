@@ -78,19 +78,6 @@ extension ReportDetailsViewController {
         headerView.updateView(withManager: manager)
         footerView.updateView(withManager: manager)
     }
-    
-    func navigateToApproversList() {
-        if report != nil {
-            let approversListViewController = UIStoryboard(name: Constants.StoryboardIds.reportStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.approversListViewController) as! ApproversListViewController
-            approversListViewController.report = report!
-            approversListViewController.delegate = self
-            // TODO - Create a utility function for this
-            self.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(approversListViewController, animated: true)
-        } else {
-            log.error("Report found nil while unwrapping in report details")
-        }
-    }
 }
 /***********************************/
 // MARK: - Actions
@@ -139,9 +126,14 @@ extension ReportDetailsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return manager.getHeightForRowAt(withTableView: tableView, atIndexPath: indexPath)
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        manager.performActionForTableViewDidSelectRow(atIndexPath: indexPath, onController: self)
+    }
 }
 /***********************************/
-// MARK: - UITableViewDelegate
+// MARK: - ApproversListDelegate
 /***********************************/
 extension ReportDetailsViewController:ApproversListDelegate {
     func reportSubmitted() {
@@ -191,6 +183,22 @@ extension ReportDetailsViewController: ReportDetailsToolBarActionDelegate {
 /***********************************/
 extension ReportDetailsViewController: RecordReimbursementDelegate {
     func reportReimbursed() {
+        fetchReportDetails()
+    }
+}
+/***********************************/
+// MARK: - ReviewSelectExpenseDelegate
+/***********************************/
+extension ReportDetailsViewController: ReviewSelectExpenseDelegate {
+    func expensesSelected(_ expenses: [Expense]) {
+        fetchReportDetails()
+    }
+}
+/***********************************/
+// MARK: - AddEditReportDelegate
+/***********************************/
+extension ReportDetailsViewController: AddEditReportDelegate {
+    func reportCreatedOrModified() {
         fetchReportDetails()
     }
 }

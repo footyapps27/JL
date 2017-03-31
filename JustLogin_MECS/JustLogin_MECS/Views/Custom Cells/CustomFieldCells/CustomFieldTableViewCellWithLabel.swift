@@ -20,8 +20,8 @@ class CustomFieldTableViewCellWithLabel: CustomFieldBaseTableViewCell {
     /***********************************/
     // MARK: - Parent method override
     /***********************************/
-    override func updateView(withField field: ExpenseAndReportField) {
+    override func updateView(withField field: CustomField) {
         lblFieldName.text = field.name
-        lblFieldValue.text = field.value
+        lblFieldValue.text = field.values[Constants.CustomFieldKeys.value]
     }
 }

@@ -17,13 +17,9 @@ class ExpenseDetailsViewController: BaseViewControllerWithTableView {
     
     var expense: Expense?
     
+    var caller: ExpenseDetailsCaller = ExpenseDetailsCaller.expenseList
+    
     @IBOutlet weak var toolbar: UIToolbar!
-    
-    @IBOutlet weak var btnEdit: UIBarButtonItem!
-    
-    @IBOutlet weak var btnClone: UIBarButtonItem!
-    
-    @IBOutlet weak var btnMoreOptions: UIBarButtonItem!
     
     var headerView: ExpenseDetailsHeaderView?
 }
@@ -35,9 +31,12 @@ extension ExpenseDetailsViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Set this, since we need to set the headers. 
-        // Will improve performance
+        /* 
+         Setting this, since we need to set the headers.
+         Will improve performance
+         */
         manager.expense = expense!
+        manager.caller = caller
         
         fetchExpenseDetails()
         tableView.allowsSelection = false
@@ -55,36 +54,13 @@ extension ExpenseDetailsViewController {
     func updateUIAfterSuccessfulResponse() {
         updateTableHeaderView()
         self.tableView.reloadData()
-        updateToolbarItems()
-    }
-    
-    func updateToolbarItems() {
-        if !manager.isExpenseEditable() {
-            let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: nil)
-            toolbar.items = [flexibleSpace, btnClone, flexibleSpace]
-        }
+        manager.updateToolBar(toolbar, delegate: self)
     }
     
     func updateTableHeaderView() {
         headerView!.updateView(withManager: manager)
         headerView!.frame = CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: headerView!.getHeight())
         tableView.tableHeaderView = headerView
-    }
-}
-/***********************************/
-// MARK: - Actions
-/***********************************/
-extension ExpenseDetailsViewController {
-    @IBAction func editButtonTapped(_ sender: UIBarButtonItem) {
-        
-    }
-    
-    @IBAction func cloneButtonTapped(_ sender: UIBarButtonItem) {
-        
-    }
-    
-    @IBAction func moreOptionsButtonTapped(_ sender: UIBarButtonItem) {
-        
     }
 }
 /***********************************/
@@ -144,5 +120,13 @@ extension ExpenseDetailsViewController {
                 Utilities.showErrorAlert(withMessage: "Something went wrong. Please try again.", onController: self)// TODO: - Hard coded message. Move to constants or use the server error.
             }
         }
+    }
+}
+/***********************************/
+// MARK: - ExpenseDetailsToolBarActionDelegate
+/***********************************/
+extension ExpenseDetailsViewController: ExpenseDetailsToolBarActionDelegate {
+    func barButtonItemTapped(_ sender: UIBarButtonItem) {
+        manager.performActionForBarButtonItem(sender, onController: self)
     }
 }

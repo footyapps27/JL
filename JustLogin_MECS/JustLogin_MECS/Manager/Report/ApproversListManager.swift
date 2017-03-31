@@ -13,9 +13,11 @@ import Foundation
  */
 class ApproversListManager {
     
-    var reportService: IReportService = ReportService()
+    var reportService: IReportService = ServiceFactory.getReportService()
     
-    var memberService: IMemberService = MemberService()
+    var memberService: IMemberService = ServiceFactory.getMemberService()
+    
+    var approvalService: IApprovalService = ServiceFactory.getApprovalService()
     
     var approvers: [Member] = []
 }
@@ -38,7 +40,9 @@ extension ApproversListManager {
      * Method to get the title of the report.
      */
     func getMemberProfileImage(forIndexPath indexPath: IndexPath) -> String {
-        return "" // TODO - Implement the same
+        let member = approvers[indexPath.row]
+        // TODO - If the image url is empty, then show the default image.
+        return member.profileImageUrl
     }
     
     /**
@@ -83,14 +87,16 @@ extension ApproversListManager {
         reportService.update(report: updatedReport) { [weak self] (result) in
             switch(result) {
             case .success(let receivedReport):
-                // Step 2: - Submit the report with the updated status.
                 
+                // Step 2: - Submit the report with the updated status.
                 var statusUpdatedReport = receivedReport
                 statusUpdatedReport.status = ReportStatus.submitted.rawValue
                 
-                self?.reportService.processReport(report: statusUpdatedReport, completionHandler: { (processReportResult) in
+                let payload = self?.getPayloadForProcessReport(statusUpdatedReport)
+                
+                self?.approvalService.processReport(payload: (payload ?? [:]), completionHandler: { (processReportResult) in
                     
-                    switch(result) {
+                    switch(processReportResult) {
                     case .success(let finalReport):
                         completionHandler(ManagerResponseToController.success(finalReport))
                     case .error(let serviceError):
@@ -105,5 +111,19 @@ extension ApproversListManager {
                 completionHandler(ManagerResponseToController.failure(code: "", message: message)) // TODO: - Pass a general code
             }
         }
+    }
+}
+/***********************************/
+// MARK: - Helpers
+/***********************************/
+extension ApproversListManager {
+    /**
+     * Get the formatted payload for the approval action.
+     */
+    func getPayloadForProcessReport(_ report: Report) -> [String : Any] {
+        return [
+            Constants.RequestParameters.Report.reportId : report.id,
+            Constants.RequestParameters.Report.statusType : report.status
+        ]
     }
 }

@@ -26,7 +26,7 @@ protocol IApprovalService {
 /***********************************/
 struct ApprovalService {
     
-    var serviceAdapter: NetworkAdapter = AlamofireNetworkAdapter()
+    var serviceAdapter: NetworkAdapter = NetworkAdapterFactory.getNetworkAdapter()
 }
 /***********************************/
 // MARK: - IApprovalService implementation

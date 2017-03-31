@@ -23,24 +23,24 @@ extension ReportDetailsToolBarApprovalListSubmittedStrategy: ReportDetailsToolBa
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: nil)
         
         let btnApprove = UIBarButtonItem(title: LocalizedString.approve, style: .plain, target: delegate, action: #selector(delegate.barButtonItemTapped(_:)))
-        btnApprove.tag = ReportDetailsToolBarButtonTag.left.rawValue
+        btnApprove.tag = ToolBarButtonTag.left.rawValue
         
         let btnReject = UIBarButtonItem(title: LocalizedString.reject, style: .plain, target: delegate, action: #selector(delegate.barButtonItemTapped(_:)))
-        btnReject.tag = ReportDetailsToolBarButtonTag.middle.rawValue
+        btnReject.tag = ToolBarButtonTag.middle.rawValue
         
         let btnViewPDF = UIBarButtonItem(title: LocalizedString.viewPDF, style: .plain, target: delegate, action: #selector(delegate.barButtonItemTapped(_:)))
-        btnViewPDF.tag = ReportDetailsToolBarButtonTag.right.rawValue
+        btnViewPDF.tag = ToolBarButtonTag.right.rawValue
         
         toolBar.items = [btnApprove, flexibleSpace, btnReject, flexibleSpace, btnViewPDF]
     }
     
     func performActionForBarButtonItem(_ barButton: UIBarButtonItem, forReport report: Report, onController controller: BaseViewController) {
         switch(barButton.tag) {
-        case ReportDetailsToolBarButtonTag.left.rawValue:
+        case ToolBarButtonTag.left.rawValue:
             approveReport(report, onController: controller)
-        case ReportDetailsToolBarButtonTag.middle.rawValue:
+        case ToolBarButtonTag.middle.rawValue:
             rejectReport(report, onController: controller)
-        case ReportDetailsToolBarButtonTag.right.rawValue:
+        case ToolBarButtonTag.right.rawValue:
             viewPDF(forReport: report, onController: controller)
         default:
             log.debug("Default")
@@ -57,9 +57,11 @@ extension ReportDetailsToolBarApprovalListSubmittedStrategy {
     func approveReport(_ report: Report, onController controller: BaseViewController) {
         var updatedReport = report
         updatedReport.status = ReportStatus.approved.rawValue
+        // Payload
+        let payload = getPayloadForProcessReport(updatedReport)
         // Call the service
         controller.showLoadingIndicator(disableUserInteraction: false)
-        manager.processReport(updatedReport) { (response) in
+        manager.processReport(withPayload: payload) { (response) in
             switch(response) {
             case .success(_):
                 controller.hideLoadingIndicator(enableUserInteraction: true)
@@ -86,5 +88,19 @@ extension ReportDetailsToolBarApprovalListSubmittedStrategy {
      */
     func viewPDF(forReport report: Report, onController controller: BaseViewController) {
         
+    }
+}
+/***********************************/
+// MARK: - Helpers
+/***********************************/
+extension ReportDetailsToolBarApprovalListSubmittedStrategy {
+    /**
+     * Get the formatted payload for the approval action.
+     */
+    func getPayloadForProcessReport(_ report: Report) -> [String : Any] {
+        return [
+            Constants.RequestParameters.Report.reportId : report.id,
+            Constants.RequestParameters.Report.statusType : report.status
+        ]
     }
 }

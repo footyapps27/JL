@@ -48,7 +48,7 @@ enum ExpenseStatus : Int {
 /***********************************/
 // MARK: - Expense & Report Field Types
 /***********************************/
-enum ExpenseAndReportFieldType: Int {
+enum CustomFieldType: Int {
     case text = 0,
     email,
     url,
@@ -104,9 +104,16 @@ enum ReportDetailsCaller: Int {
     approvalList
 }
 /***********************************/
-// MARK: - Bar Button Tags for Report Details
+// MARK: - Expense Details Caller
 /***********************************/
-enum ReportDetailsToolBarButtonTag: Int {
+enum ExpenseDetailsCaller: Int {
+    case expenseList = 0,
+    reportDetails
+}
+/***********************************/
+// MARK: - Bar Button Tags for Report & Expense Details
+/***********************************/
+enum ToolBarButtonTag: Int {
     case left = 0,
     middle,
     right

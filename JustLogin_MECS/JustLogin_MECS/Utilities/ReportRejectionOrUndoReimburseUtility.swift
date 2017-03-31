@@ -15,6 +15,7 @@ import UIKit
 struct ReportRejectionOrUndoReimburseUtility {
     /**
      * Method to display the rejection reason alert.
+     * It is important that the status of the report is set to the desired value before sending to this utility.
      */
     static func showReportRejectionOrUndoReimburseAlert(_ report: Report, onController controller: BaseViewController, manager: ReportDetailsManager) {
         
@@ -83,7 +84,9 @@ extension ReportRejectionOrUndoReimburseUtility {
      */
     fileprivate static func callServiceForRejectingOrUndoReimburseReport(_ report: Report, onController controller: BaseViewController, manager: ReportDetailsManager) {
         controller.showLoadingIndicator(disableUserInteraction: false)
-        manager.processReport(report) { (response) in
+        
+        let payload = self.getPayloadForProcessReport(report)
+        manager.processReport(withPayload: payload) { (response) in
             switch(response) {
             case .success(_):
                 controller.hideLoadingIndicator(enableUserInteraction: true)
@@ -123,5 +126,16 @@ extension ReportRejectionOrUndoReimburseUtility {
             return (LocalizedString.reject ,"Please specify an appropriate reason for rejection.")
         }
         return (LocalizedString.undoReimbursement ,"Please specify an appropriate reason for cancelling the reimbursement.")
+    }
+    
+    /**
+     * Get the payload for processing a report.
+     */
+    fileprivate static func getPayloadForProcessReport(_ report: Report) -> [String : Any] {
+        return [
+            Constants.RequestParameters.Report.reportId : report.id,
+            Constants.RequestParameters.Report.statusType : report.status,
+            Constants.RequestParameters.Report.reason : report.rejectionReason
+        ]
     }
 }

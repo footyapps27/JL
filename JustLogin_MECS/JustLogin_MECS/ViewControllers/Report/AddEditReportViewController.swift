@@ -1,5 +1,5 @@
 //
-//  AddReportViewController.swift
+//  AddEditReportViewController.swift
 //  JustLogin_MECS
 //
 //  Created by Samrat on 27/2/17.
@@ -12,41 +12,71 @@ import UIKit
 /***********************************/
 // MARK: - Protocol
 /***********************************/
-protocol AddReportDelegate: class {
-    func reportCreated()
+protocol AddEditReportDelegate: class {
+    func reportCreatedOrModified()
 }
 /***********************************/
 // MARK: - Properties
 /***********************************/
-class AddReportViewController: BaseViewControllerWithTableView {
+class AddEditReportViewController: BaseViewControllerWithTableView {
     
+    // UI
     var datePicker: UIDatePicker?
     var currentTextField: UITextField?
     var toolbar: UIToolbar?
     
-    weak var delegate: AddReportDelegate?
+    /*
+     This differentiates whether an existing report needs to be edited, or  a new report needs to be added.
+     The caller of this view controller needs to set this if edit flow is to be called.
+     */
+    var report: Report?
     
-    let manager = AddReportManager()
+    weak var delegate: AddEditReportDelegate?
+    
+    let manager = AddAndEditReportManager()
 }
 /***********************************/
 // MARK: - View Lifecycle
 /***********************************/
-extension AddReportViewController {
+extension AddEditReportViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addBarButtonItems()
-        initializeDatePicker()
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 44
         
-        manager.populateCells(fromController: self)
+        /*
+         The sequence in which the below methods are called is important to render the view correctly.
+         The manager needs to know whether it is an adding expense or edit expense flow before the UI is rendered.
+         The data is mapped accordingly.
+         */
+        
+        if report != nil {
+            manager.report = report!
+        }
+        updateUI()
+        /*
+         Since this is a dynamic form, we are making sure that the manager has a reference to all the cells before hand.
+         The tableview does not provide any methods/properties to access all cells.
+         Only the visible cells are maintained.
+         In our case, we had to maintain state of all the cells before calling service.
+         */
+        manager.populateCells(fromController: self, delegate: self)
     }
 }
 /***********************************/
 // MARK: - Helpers
 /***********************************/
-extension AddReportViewController {
+extension AddEditReportViewController {
+    /**
+     * The list of items to update on launch of the controller.
+     */
+    func updateUI() {
+        navigationItem.title = Constants.ViewControllerTitles.addReport
+        addBarButtonItems()
+        initializeDatePicker()
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 44
+    }
+    
     /**
      * Method to add bar button items.
      */
@@ -92,7 +122,7 @@ extension AddReportViewController {
 /***********************************/
 // MARK: - Actions
 /***********************************/
-extension AddReportViewController {
+extension AddEditReportViewController {
     /**
      * Action for Save button.
      * Do the validations before saving.
@@ -103,7 +133,7 @@ extension AddReportViewController {
         if !validation.success {
             Utilities.showErrorAlert(withMessage: validation.errorMessage, onController: self)
         } else {
-            callAddReportService()
+            report != nil ? (callEditReportService()) : (callAddReportService())
         }
     }
     
@@ -124,15 +154,13 @@ extension AddReportViewController {
 /***********************************/
 // MARK: - Service Call
 /***********************************/
-extension AddReportViewController {
-    /**
-     * Method to fetch expenses that will be displayed in the tableview.
-     */
+extension AddEditReportViewController {
+    
     func callAddReportService() {
         
         showLoadingIndicator(disableUserInteraction: true)
         
-        manager.addReportWithInputsFromTableView(tableView: tableView) { [weak self] (response) in
+        manager.addReport { [weak self] (response) in
             guard let `self` = self else {
                 log.error("Self reference missing in closure.")
                 return
@@ -140,7 +168,29 @@ extension AddReportViewController {
             switch(response) {
             case .success(_):
                 self.hideLoadingIndicator(enableUserInteraction: true)
-                self.delegate?.reportCreated()
+                self.delegate?.reportCreatedOrModified()
+                self.navigateOutAfterReportCreation()
+            case .failure(_, let message):
+                // TODO: - Handle the empty table view screen.
+                Utilities.showErrorAlert(withMessage: message, onController: self)
+                self.hideLoadingIndicator(enableUserInteraction: true)
+            }
+        }
+    }
+    
+    func callEditReportService() {
+        
+        showLoadingIndicator(disableUserInteraction: true)
+        
+        manager.updateReport { [weak self] (response) in
+            guard let `self` = self else {
+                log.error("Self reference missing in closure.")
+                return
+            }
+            switch(response) {
+            case .success(_):
+                self.hideLoadingIndicator(enableUserInteraction: true)
+                self.delegate?.reportCreatedOrModified()
                 self.navigateOutAfterReportCreation()
             case .failure(_, let message):
                 // TODO: - Handle the empty table view screen.
@@ -153,7 +203,7 @@ extension AddReportViewController {
 /***********************************/
 // MARK: - UITableViewDataSource
 /***********************************/
-extension AddReportViewController: UITableViewDataSource {
+extension AddEditReportViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return manager.getReportFields().count
     }
@@ -165,7 +215,7 @@ extension AddReportViewController: UITableViewDataSource {
         }
         
         let identifier = manager.getTableViewCellIdentifier(forIndexPath: indexPath)
-        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! AddReportBaseTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! CustomFieldBaseTableViewCell
         manager.formatCell(cell, forIndexPath: indexPath)
         return cell
     }
@@ -173,21 +223,21 @@ extension AddReportViewController: UITableViewDataSource {
 /***********************************/
 // MARK: - UITableViewDelegate
 /***********************************/
-extension AddReportViewController: UITableViewDelegate {
+extension AddEditReportViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Cell selected
-        let cell = tableView.cellForRow(at: indexPath) as! AddReportBaseTableViewCell
+        let cell = tableView.cellForRow(at: indexPath) as! CustomFieldBaseTableViewCell
         manager.performActionForSelectedCell(cell, forIndexPath: indexPath)
     }
 }
 /***********************************/
 // MARK: - UITableViewDelegate
 /***********************************/
-extension AddReportViewController: UITextFieldDelegate {
+extension AddEditReportViewController: UITextFieldDelegate {
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        if textField.tag == ExpenseAndReportFieldType.date.rawValue {
+        if textField.tag == CustomFieldType.date.rawValue {
             currentTextField = textField
             textField.inputView = datePicker
             textField.inputAccessoryView = toolbar
@@ -196,17 +246,16 @@ extension AddReportViewController: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField.tag == ExpenseAndReportFieldType.date.rawValue {
+        if textField.tag == CustomFieldType.date.rawValue {
             dismissDatePicker(nil)
         }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField.tag == ExpenseAndReportFieldType.date.rawValue {
+        if textField.tag == CustomFieldType.date.rawValue {
             return false
         }
         textField.resignFirstResponder()
         return true
     }
 }
-

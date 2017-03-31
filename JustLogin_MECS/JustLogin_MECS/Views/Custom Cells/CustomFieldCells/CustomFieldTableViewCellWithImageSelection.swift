@@ -1,15 +1,15 @@
 //
-//  AddReportTableViewCellWithImageSelection.swift
+//  CustomFieldTableViewCellWithImageSelection.swift
 //  JustLogin_MECS
 //
-//  Created by Samrat on 7/3/17.
+//  Created by Samrat on 23/3/17.
 //  Copyright © 2017 SMRT. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class AddExpenseTableViewCellWithImageSelection: AddExpenseBaseTableViewCell {
+class CustomFieldTableViewCellWithImageSelection: CustomFieldBaseTableViewCell {
     /***********************************/
     // MARK: - Outlets
     /***********************************/

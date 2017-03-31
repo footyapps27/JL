@@ -1,5 +1,5 @@
 //
-//  AddExpense.swift
+//  AddEditExpenseViewController.swift
 //  JustLogin_MECS
 //
 //  Created by Samrat on 24/2/17.
@@ -12,43 +12,73 @@ import UIKit
 /***********************************/
 // MARK: - Protocol
 /***********************************/
-protocol AddExpenseDelegate: class {
-    func expenseCreated()
+protocol AddEditExpenseDelegate: class {
+    func expenseCreatedOrModified()
 }
 /***********************************/
 // MARK: - Properties
 /***********************************/
-class AddExpenseViewController: BaseViewControllerWithTableView {
+class AddEditExpenseViewController: BaseViewControllerWithTableView {
     
+    // UI
     var datePicker: UIDatePicker?
     var currentTextField: UITextField?
     var toolbar: UIToolbar?
     
-    weak var delegate: AddExpenseDelegate?
+    // Objects
+    let manager = AddEditExpenseManager()
     
-    let manager = AddExpenseManager()
+    /* 
+     This differentiates whether an existing expense needs to be edited, or  a new expense needs to be added.
+     The caller of this view controller needs to set this if edit flow is to be called.
+     */
+    var expense: Expense?
+    
+    // Delegates
+    weak var delegate: AddEditExpenseDelegate?
 }
 /***********************************/
 // MARK: - View Lifecycle
 /***********************************/
-extension AddExpenseViewController {
+extension AddEditExpenseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = Constants.ViewControllerTitles.addExpense
-        addBarButtonItems()
-        initializeDatePicker()
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 44
         
-        // Make sure the manager has a reference to all the cell before hand
-        manager.populateCells(fromController: self)
+        /*
+            The sequence in which the below methods are called is important to render the view correctly.
+            The manager needs to know whether it is an adding expense or edit expense flow before the UI is rendered.
+            The data is mapped accordingly.
+         */
+ 
+        if expense != nil {
+            manager.expense = expense!
+        }
+        updateUI()
+        /* 
+            Since this is a dynamic form, we are making sure that the manager has a reference to all the cells before hand.
+            The tableview does not provide any methods/properties to access all cells. 
+            Only the visible cells are maintained.
+            In our case, we had to maintain state of all the cells before calling service.
+         */
+        manager.populateCells(fromController: self, delegate: self)
     }
 }
 /***********************************/
 // MARK: - Helpers
 /***********************************/
-extension AddExpenseViewController {
+extension AddEditExpenseViewController {
+    /**
+     * Update the UI elements on launch of the controller.
+     */
+    func updateUI() {
+        title = Constants.ViewControllerTitles.addExpense
+        addBarButtonItems()
+        initializeDatePicker()
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 44
+    }
+    
     /**
      * Method to add bar button items.
      */
@@ -94,7 +124,7 @@ extension AddExpenseViewController {
 /***********************************/
 // MARK: - Actions
 /***********************************/
-extension AddExpenseViewController {
+extension AddEditExpenseViewController {
     
     /**
      * Action for Save button.
@@ -106,7 +136,7 @@ extension AddExpenseViewController {
         if !validation.success {
             Utilities.showErrorAlert(withMessage: validation.errorMessage, onController: self)
         } else {
-            callAddExpenseService()
+            expense != nil ? (callUpdateExpenseService()) : (callAddExpenseService())
         }
     }
     
@@ -128,7 +158,7 @@ extension AddExpenseViewController {
 /***********************************/
 // MARK: - Service Call
 /***********************************/
-extension AddExpenseViewController {
+extension AddEditExpenseViewController {
     /**
      * Method to fetch expenses that will be displayed in the tableview.
      */
@@ -136,7 +166,7 @@ extension AddExpenseViewController {
         
         showLoadingIndicator(disableUserInteraction: true)
         
-        manager.addExpenseWithInput() { [weak self] (response) in
+        manager.addExpense() { [weak self] (response) in
             guard let `self` = self else {
                 log.error("Self reference missing in closure.")
                 return
@@ -144,10 +174,32 @@ extension AddExpenseViewController {
             switch(response) {
             case .success(_):
                 self.hideLoadingIndicator(enableUserInteraction: true)
-                self.delegate?.expenseCreated()
+                self.delegate?.expenseCreatedOrModified()
                 self.navigateOutAfterExpenseCreation()
             case .failure(_, let message):
                  //TODO: - Handle the empty table view screen.
+                Utilities.showErrorAlert(withMessage: message, onController: self)
+                self.hideLoadingIndicator(enableUserInteraction: true)
+            }
+        }
+    }
+    
+    func callUpdateExpenseService() {
+        
+        showLoadingIndicator(disableUserInteraction: true)
+        
+        manager.updateExpense() { [weak self] (response) in
+            guard let `self` = self else {
+                log.error("Self reference missing in closure.")
+                return
+            }
+            switch(response) {
+            case .success(_):
+                self.hideLoadingIndicator(enableUserInteraction: true)
+                self.delegate?.expenseCreatedOrModified()
+                self.navigateOutAfterExpenseCreation()
+            case .failure(_, let message):
+                //TODO: - Handle the empty table view screen.
                 Utilities.showErrorAlert(withMessage: message, onController: self)
                 self.hideLoadingIndicator(enableUserInteraction: true)
             }
@@ -157,7 +209,7 @@ extension AddExpenseViewController {
 /***********************************/
 // MARK: - UITableViewDataSource
 /***********************************/
-extension AddExpenseViewController: UITableViewDataSource {
+extension AddEditExpenseViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return manager.getExpenseFields().count
     }
@@ -174,7 +226,7 @@ extension AddExpenseViewController: UITableViewDataSource {
         
         // If it is not available in cache, then create or reuse the cell
         let identifier = manager.getTableViewCellIdentifier(forIndexPath: indexPath)
-        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! AddExpenseBaseTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! CustomFieldBaseTableViewCell
         manager.formatCell(cell, forIndexPath: indexPath)
         return cell
     }
@@ -182,7 +234,7 @@ extension AddExpenseViewController: UITableViewDataSource {
 /***********************************/
 // MARK: - UITableViewDelegate
 /***********************************/
-extension AddExpenseViewController: UITableViewDelegate {
+extension AddEditExpenseViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
@@ -198,7 +250,7 @@ extension AddExpenseViewController: UITableViewDelegate {
             let controller = manager.getDetailsNavigationController(forIndexPath: indexPath, withDelegate: self)
             Utilities.pushControllerAndHideTabbarForChildAndParent(fromController: self, toController: controller)
         } else {
-            let cell = tableView.cellForRow(at: indexPath) as! AddExpenseBaseTableViewCell
+            let cell = tableView.cellForRow(at: indexPath) as! CustomFieldBaseTableViewCell
             manager.performActionForSelectedCell(cell, forIndexPath: indexPath)
         }
     }
@@ -206,11 +258,11 @@ extension AddExpenseViewController: UITableViewDelegate {
 /***********************************/
 // MARK: - UITableViewDelegate
 /***********************************/
-extension AddExpenseViewController: UITextFieldDelegate {
+extension AddEditExpenseViewController: UITextFieldDelegate {
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         
-        if textField.tag == ExpenseAndReportFieldType.date.rawValue {
+        if textField.tag == CustomFieldType.date.rawValue {
             currentTextField = textField
             textField.inputView = datePicker
             textField.inputAccessoryView = toolbar
@@ -219,12 +271,12 @@ extension AddExpenseViewController: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField.tag == ExpenseAndReportFieldType.date.rawValue {
+        if textField.tag == CustomFieldType.date.rawValue {
             dismissDatePicker(nil)
         }
         
         // For the amount, round it to 2 decimal places
-        if textField.tag == ExpenseAndReportFieldType.currencyAndAmount.rawValue {
+        if textField.tag == CustomFieldType.currencyAndAmount.rawValue {
             if let amount = Double(textField.text!) {
                 textField.text = String(amount.roundTo(places: 2))
             }
@@ -232,7 +284,7 @@ extension AddExpenseViewController: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField.tag == ExpenseAndReportFieldType.date.rawValue {
+        if textField.tag == CustomFieldType.date.rawValue {
             return false
         }
         textField.resignFirstResponder()
@@ -242,7 +294,7 @@ extension AddExpenseViewController: UITextFieldDelegate {
 /***********************************/
 // MARK: - ReviewSelectCategoryViewControllerDelegate
 /***********************************/
-extension AddExpenseViewController: ReviewSelectCategoryViewControllerDelegate {
+extension AddEditExpenseViewController: ReviewSelectCategoryViewControllerDelegate {
     func categorySelected(_ category: Category) {
         manager.updateCellBasedAtLastSelectedIndex(withId: category.id, value: category.name)
     }
@@ -250,7 +302,7 @@ extension AddExpenseViewController: ReviewSelectCategoryViewControllerDelegate {
 /***********************************/
 // MARK: - ReviewSelectCurrencyViewControllerDelegate
 /***********************************/
-extension AddExpenseViewController: ReviewSelectCurrencyViewControllerDelegate {
+extension AddEditExpenseViewController: ReviewSelectCurrencyViewControllerDelegate {
     func currencySelected(_ currency: Currency) {
         
         /* This needs to be handled in phase 2.
@@ -270,7 +322,7 @@ extension AddExpenseViewController: ReviewSelectCurrencyViewControllerDelegate {
 /***********************************/
 // MARK: - ReviewSelectReportViewControllerDelegate
 /***********************************/
-extension AddExpenseViewController: ReviewSelectReportViewControllerDelegate {
+extension AddEditExpenseViewController: ReviewSelectReportViewControllerDelegate {
     func reportSelected(_ report: Report) {
         manager.updateCellBasedAtLastSelectedIndex(withId: report.id, value: report.title)
     }

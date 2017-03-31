@@ -12,7 +12,9 @@ import Foundation
  */
 class SettingsListManager {
     
-    var authenticationService: IAuthenticationService = AuthenticationService()
+    var authenticationService: IAuthenticationService = ServiceFactory.getAuthenticationService()
+    
+    var memberService: IMemberService = ServiceFactory.getMemberService()
 }
 /***********************************/
 // MARK: - Data tracking methods
@@ -39,6 +41,13 @@ extension SettingsListManager {
         }
         return Constants.General.emptyString
     }
+    
+    func getProfileImageUrl() -> URL? {
+        if let member = Singleton.sharedInstance.member {
+            return URL.init(string: member.profileImageUrl)
+        }
+        return URL.init(string: Constants.General.emptyString)
+    }
 }
 /***********************************/
 // MARK: - Service Call
@@ -53,6 +62,19 @@ extension SettingsListManager {
             case .success():
                 // Clear out the singleton
                 Singleton.sharedInstance.flushSharedInstance()
+                completionHandler(ManagerResponseToController.success())
+            case .error(let serviceError):
+                completionHandler(ManagerResponseToController.failure(code: serviceError.code, message: serviceError.message))
+            case .failure(let message):
+                completionHandler(ManagerResponseToController.failure(code: "", message: message)) // TODO: - Pass a general code
+            }
+        }
+    }
+    
+    func updateProfileImage(imageURL: URL, completionHandler: (@escaping (ManagerResponseToController<Void>) -> Void)) {
+        memberService.updateProfileImage(payload: [:], imageURL: imageURL) { (result) in
+            switch(result) {
+            case .success():
                 completionHandler(ManagerResponseToController.success())
             case .error(let serviceError):
                 completionHandler(ManagerResponseToController.failure(code: serviceError.code, message: serviceError.message))

@@ -23,24 +23,24 @@ extension ReportDetailsToolBarApprovalListApprovedStrategy: ReportDetailsToolBar
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: nil)
         
         let btnReject = UIBarButtonItem(title: LocalizedString.reject, style: .plain, target: delegate, action: #selector(delegate.barButtonItemTapped(_:)))
-        btnReject.tag = ReportDetailsToolBarButtonTag.left.rawValue
+        btnReject.tag = ToolBarButtonTag.left.rawValue
         
         let btnViewPDF = UIBarButtonItem(title: LocalizedString.viewPDF, style: .plain, target: delegate, action: #selector(delegate.barButtonItemTapped(_:)))
-        btnViewPDF.tag = ReportDetailsToolBarButtonTag.middle.rawValue
+        btnViewPDF.tag = ToolBarButtonTag.middle.rawValue
         
         let btnMoreOptions = UIBarButtonItem(title: LocalizedString.moreOptions, style: .plain, target: delegate, action: #selector(delegate.barButtonItemTapped(_:)))
-        btnMoreOptions.tag = ReportDetailsToolBarButtonTag.right.rawValue
+        btnMoreOptions.tag = ToolBarButtonTag.right.rawValue
         
         toolBar.items = [btnReject, flexibleSpace, btnViewPDF, flexibleSpace, btnMoreOptions]
     }
     
     func performActionForBarButtonItem(_ barButton: UIBarButtonItem, forReport report: Report, onController controller: BaseViewController) {
         switch(barButton.tag) {
-        case ReportDetailsToolBarButtonTag.left.rawValue:
+        case ToolBarButtonTag.left.rawValue:
             rejectReport(report, onController: controller)
-        case ReportDetailsToolBarButtonTag.middle.rawValue:
+        case ToolBarButtonTag.middle.rawValue:
             viewPDF(forReport: report, onController: controller)
-        case ReportDetailsToolBarButtonTag.right.rawValue:
+        case ToolBarButtonTag.right.rawValue:
             displayMoreOptions(forReport: report, onController: controller)
         default:
             log.debug("Default")
@@ -83,7 +83,13 @@ extension ReportDetailsToolBarApprovalListApprovedStrategy {
             self.viewPDF(forReport: report, onController: controller)
         }
         
-        Utilities.showActionSheet(withTitle: nil, message: nil, actions: [actionReject, recordReimbursement, viewAsPDF ], onController: controller)
+        // Only if the user has access to reimburse, will we show the record reimburse option.
+        var actions: [UIAlertAction] = [actionReject, recordReimbursement, viewAsPDF ]
+        if !(Singleton.sharedInstance.member?.role?.accessPrivileges?.reimburseReport)! {
+            actions.remove(at: 1)
+        }
+        
+        Utilities.showActionSheet(withTitle: nil, message: nil, actions: actions, onController: controller)
     }    
 }
 /***********************************/
@@ -91,7 +97,7 @@ extension ReportDetailsToolBarApprovalListApprovedStrategy {
 /***********************************/
 extension ReportDetailsToolBarApprovalListApprovedStrategy {
     func navigateToRecordReimburseReport(_ report: Report, controller: BaseViewController) {
-        let recordReimburseViewController = UIStoryboard(name: Constants.StoryboardIds.approvalStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.recordReimbursementViewController) as! RecordReimbursementViewController
+        let recordReimburseViewController = UIStoryboard(name: Constants.StoryboardIds.approvalStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.Approval.recordReimbursementViewController) as! RecordReimbursementViewController
         recordReimburseViewController.delegate = controller as? RecordReimbursementDelegate
         recordReimburseViewController.report = report
         Utilities.pushControllerAndHideTabbarForChildAndParent(fromController: controller, toController: recordReimburseViewController)

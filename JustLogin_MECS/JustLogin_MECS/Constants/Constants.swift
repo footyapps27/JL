@@ -8,8 +8,10 @@
 
 import Foundation
 
+/***********************************/
+// MARK: - General
+/***********************************/
 struct Constants {
-    
     struct General {
         static let emptyString = ""
         static let dateFormatReceivedFromServer = "yyyy-MM-dd'T'HH:mm:ss"
@@ -19,17 +21,81 @@ struct Constants {
         static let dateFormatSentToServer = "yyyy-MM-dd"
         static let decimalFormat = "%.2f"
     }
-    
+}
+/***********************************/
+// MARK: - Defaults
+/***********************************/
+extension Constants {
+    struct Defaults {
+        static let numberOfSections = 1
+        static let decimalPlaces = 2
+        static let amount = 0.00
+        static let ExpenseStatus = 0
+        static let reportStatus = 0
+        static let categoryLogo = 0
+        static let accessPrivilegeApproveReports = 0
+        static let exchangeRate = 1.0
+        static let fieldType = 0
+        static let categoryImage = "Category8"
+    }
+}
+/***********************************/
+// MARK: - Notifications
+/***********************************/
+extension Constants {
+    struct Notifications {
+        static let loginSuccessful = "loginSuccessful"
+        static let refreshReportList = "refreshReportList"
+        static let refreshExpenseList = "refreshExpenseList"
+        static let refreshReportDetails = "refreshReportDetails"
+        static let refreshApprovalList = "refreshApprovalList"
+    }
+}
+/***********************************/
+// MARK: - Custom Field Keys
+/***********************************/
+extension Constants {
+    struct CustomFieldKeys {
+        static let value = "value"
+        static let id = "id"
+        static let amount = "amount"
+        static let startDateValue = "startDateValue"
+        static let endDateValue = "endDateValue"
+    }
+}
+/***********************************/
+// MARK: - UI
+/***********************************/
+
+/***********************************/
+// MARK: - Size
+/***********************************/
+extension Constants {
     struct UISize {
         static let activityIndicatorHeightWidth = 50
         static let expenseHeaderViewIntialHeight = 250
     }
     
+    struct CellHeight {
+        static let reportListCellHeight = 68
+        static let approvalListCellHeight = 68
+        static let expenseListCellHeight = 90
+        static let expenseAuditHistoryCellHeight = 47
+        static let reportMoreDetailsCellHeight = 62
+    }
+}
+/***********************************/
+// MARK: - Titles & Names
+/***********************************/
+extension Constants {
     struct ViewControllerTitles {
         static let reviewSelectCategory = "Select a Category"
         static let reviewSelectCurrency = "Select a Currency"
         static let reviewSelectReport = "Select a Report"
+        static let reviewSelectExpenses = "Select Expenses"
+        
         static let addExpense = "Add Expense"
+        static let addReport = "Add Report"
         
         static let settings = "Settings"
         static let expenses = "Expenses"
@@ -43,21 +109,13 @@ struct Constants {
         static let attachmentDefault = "AttachmentDefault"
         static let policyViolationActive = "PolicyViolationActive"
         static let policyViolationDefault = "PolicyViolationDefault"
+        static let profile = "Profile"
     }
-    
-    struct Defaults {
-        static let numberOfSections = 1
-        static let decimalPlaces = 2
-        static let amount = 0.00
-        static let ExpenseStatus = 0
-        static let reportStatus = 0
-        static let categoryLogo = 0
-        static let accessPrivilegeApproveReports = 0
-        static let exchangeRate = 1.0
-        static let fieldType = 0
-        static let categoryImage = "Category8"
-    }
-    
+}
+/***********************************/
+// MARK: - Identifiers
+/***********************************/
+extension Constants {
     struct CellIdentifiers {
         static let defaultTableViewCellIdentifier = "defaultTableViewCellIdentifier"
         
@@ -67,18 +125,14 @@ struct Constants {
         static let reportListTableViewCellIdentifier = "reportListTableViewCellIdentifier"
         static let approvalListTableViewCellIdentifier = "approvalListTableViewCellIdentifier"
         
-        static let addReportTableViewCellWithTextField = "addReportTableViewCellWithTextField"
-        static let addReportTableViewCellWithMultipleSelection = "addReportTableViewCellWithMultipleSelection"
-        static let addReportTableViewCellWithTextView = "addReportTableViewCellWithTextView"
-        static let addReportTableViewCellDuration = "addReportTableViewCellDuration"
-        
-        static let addExpenseTableViewCellCategory = "addExpenseTableViewCellCategory"
-        static let addExpenseTableViewCellDate = "addExpenseTableViewCellDate"
-        static let addExpenseTableViewCellCurrencyAndAmount = "addExpenseTableViewCellCurrencyAndAmount"
-        static let addExpenseTableViewCellWithMultipleSelection = "addExpenseTableViewCellWithMultipleSelection"
-        static let addExpenseTableViewCellWithTextField = "addExpenseTableViewCellWithTextField"
-        static let addExpenseTableViewCellWithTextView = "addExpenseTableViewCellWithTextView"
-        static let addExpenseTableViewCellWithImageSelection = "addExpenseTableViewCellWithImageSelection"
+        static let customFieldTableViewCellWithTextFieldIdentifier = "customFieldTableViewCellWithTextFieldIdentifier"
+        static let customFieldTableViewCellWithMultipleSelectionIdentifier = "customFieldTableViewCellWithMultipleSelectionIdentifier"
+        static let customFieldTableViewCellWithTextViewIdentifier = "customFieldTableViewCellWithTextViewIdentifier"
+        static let customFieldTableViewCellDurationIdentifier = "customFieldTableViewCellDurationIdentifier"
+        static let customFieldTableViewCellCategoryIdentifier = "customFieldTableViewCellCategoryIdentifier"
+        static let customFieldTableViewCellDateIdentifier = "customFieldTableViewCellDateIdentifier"
+        static let customFieldTableViewCellCurrencyAndAmountIdentifier = "customFieldTableViewCellCurrencyAndAmountIdentifier"
+        static let customFieldTableViewCellWithImageSelectionIdentifier = "customFieldTableViewCellWithImageSelectionIdentifier"
         
         static let auditHistoryTableViewCellIdentifier = "auditHistoryTableViewCellIdentifier"
         
@@ -91,14 +145,6 @@ struct Constants {
         static let approversListTableViewCellIdentifier = "approversListTableViewCellIdentifier"
     }
     
-    struct CellHeight {
-        static let reportListCellHeight = 68
-        static let approvalListCellHeight = 68
-        static let expenseListCellHeight = 90
-        static let expenseAuditHistoryCellHeight = 47
-        static let reportMoreDetailsCellHeight = 62
-    }
-    
     struct StoryboardIds {
         static let dashboardStoryboard = "Dashboard"
         static let expenseStoryboard = "Expense"
@@ -108,37 +154,49 @@ struct Constants {
         static let currencyStoryboard = "Currency"
         static let approvalStoryboard = "Approval"
         
-        static let approverAndAdminDashboard = "approverAndAdminDashboard"
-        static let submitterDashboard = "submitterDashboard"
+        struct Main {
+            static let launchViewController = "launchViewController"
+        }
         
-        static let addExpenseViewController = "addExpenseViewController"
-        static let expenseDetailsViewController = "expenseDetailsViewController"
-        static let addReportViewController = "addReportViewController"
-        static let approversListViewController = "approversListViewController"
-        static let reportDetailsViewController = "reportDetailsViewController"
-        static let launchViewController = "launchViewController"
-        static let recordReimbursementViewController = "recordReimbursementViewController"
+        struct Report {
+            static let addEditReportViewController = "addEditReportViewController"
+            static let reportDetailsViewController = "reportDetailsViewController"
+            static let reviewSelectReportViewController = "reviewSelectReportViewController"
+        }
         
-        static let reviewSelectCategoryViewController = "reviewSelectCategoryViewController"
-        static let reviewSelectCurrencyViewController = "reviewSelectCurrencyViewController"
-        static let reviewSelectReportViewController = "reviewSelectReportViewController"
+        struct Expense {
+            static let addEditExpenseViewController = "addEditExpenseViewController"
+            static let expenseDetailsViewController = "expenseDetailsViewController"
+            static let reviewSelectExpenseViewController = "reviewSelectExpenseViewController"
+        }
+        
+        struct Dashboard {
+            static let approverAndAdminDashboard = "approverAndAdminDashboard"
+            static let submitterDashboard = "submitterDashboard"
+        }
+        
+        struct Approval {
+            static let approversListViewController = "approversListViewController"
+            static let recordReimbursementViewController = "recordReimbursementViewController"
+        }
+        
+        struct Category {
+            static let reviewSelectCategoryViewController = "reviewSelectCategoryViewController"
+        }
+        
+        struct Currency {
+            static let reviewSelectCurrencyViewController = "reviewSelectCurrencyViewController"
+        }
     }
-    
-    struct Notifications {
-        static let loginSuccessful = "loginSuccessful"
-        static let refreshReportList = "refreshReportList"
-        static let refreshExpenseList = "refreshExpenseList"
-        static let refreshReportDetails = "refreshReportDetails"
-        static let refreshApprovalList = "refreshApprovalList"
-    }
-    
-    /***********************************/
-    // MARK: - Web service related constants
-    /***********************************/
-    
-    /***********************************/
-    // MARK: - URLs
-    /***********************************/
+}
+/***********************************/
+// MARK: - Web service related constants
+/***********************************/
+
+/***********************************/
+// MARK: - URLs
+/***********************************/
+extension Constants {
     struct URLs {
         static let baseURL = "http://52.220.239.178/api"
         
@@ -165,6 +223,8 @@ struct Constants {
             static let createReport = URLs.baseURL + "/report/create"
             static let updateReport = URLs.baseURL + "/report/update"
             static let deleteReport = URLs.baseURL + "/report/delete"
+            static let linkExpensesToReport = URLs.baseURL + "/report/link"
+            static let unlinkExpenseFromReport = URLs.baseURL + "/report/unlink"
         }
         
         struct Category {
@@ -188,15 +248,18 @@ struct Constants {
         
         struct Member {
             static let getApprovers = URLs.baseURL + "/member/retrieveallapprovers"
+            static let uploadProfileImage = URLs.baseURL + "/member/upload"
         }
     }
-    
-    /***********************************/
-    // MARK: - Request Parameters
-    /***********************************/
+}
+/***********************************/
+// MARK: - Request Parameters
+/***********************************/
+extension Constants {
     struct RequestParameters {
         struct General {
             static let ids = "ids"
+            static let image = "image"
         }
         
         struct Login {
@@ -207,6 +270,7 @@ struct Constants {
         
         struct Expense {
             static let expenseId = "expenseId"
+            static let expenseIds = "expenseIds"
             static let categoryId = "categoryId"
             static let currencyId = "currencyId"
             static let reportId = "reportId"
@@ -231,11 +295,20 @@ struct Constants {
             static let submittedToId = "submittedToId"
             static let reason = "reason"
         }
+        
+        struct CustomFieldJsonParameters {
+            static let paymentMode = "paymentMode"
+            static let merchant = "merchant"
+            static let reference = "reference"
+            static let location = "location"
+            static let description = "description"
+        }
     }
-    
-    /***********************************/
-    // MARK: - Response Parameters
-    /***********************************/
+}
+/***********************************/
+// MARK: - Response Parameters
+/***********************************/
+extension Constants {
     struct ResponseParameters {
         static let accessToken = "AccessToken"
         
@@ -249,6 +322,7 @@ struct Constants {
         static let memberId = "memberId"
         static let userId = "userId"
         static let fullName = "fullName"
+        static let profileImageUrl = "profileImageUrl"
         static let status = "status"
         static let organizationId = "organizationId"
         static let role = "role"
@@ -319,6 +393,7 @@ struct Constants {
         static let paymentMode = "paymentMode"
         static let submitterId = "submitterId"
         
+        static let report = "report"
         static let reports = "reports"
         static let reportId = "reportId"
         static let reportNumber = "reportNumber"

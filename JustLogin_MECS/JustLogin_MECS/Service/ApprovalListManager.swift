@@ -9,12 +9,11 @@
 import Foundation
 
 /**
- * Manager for ApprovalListViewController
+    Manager for ApprovalListViewController.
  */
 class ApprovalListManager {
     
-    var approvalService: IApprovalService = ApprovalService()
-    
+    var approvalService: IApprovalService = ServiceFactory.getApprovalService()
     var approvals: [Report] = []
 }
 /***********************************/
@@ -22,7 +21,9 @@ class ApprovalListManager {
 /***********************************/
 extension ApprovalListManager {
     /**
-     * Method to get all the expenses that need to be displayed.
+        Get the report approvals that is attached to this user.
+     
+        - Returns: List of report approvals for the current logged in user.
      */
     func getApprovals() -> [Report] {
         return approvals
@@ -33,14 +34,24 @@ extension ApprovalListManager {
 /***********************************/
 extension ApprovalListManager {
     /**
-     * Method to get the title of the report.
+     Get the report title at a particular indexpath.
+     The row property of the indexPath will be taken into account & checked against the list of approvals.
+     
+     - Parameter indexPath: The indexPath against which the report title is required.
+     
+     - Returns: The title of the report at the particular indexPath.row from the approval list.
      */
     func getReportTitle(forIndexPath indexPath: IndexPath) -> String {
         return approvals[indexPath.row].title
     }
     
     /**
-     * Method to get the duration of the report.
+     Get the report duration at a particular indexpath.
+     The row property of the indexPath will be taken into account & checked against the list of approvals.
+     
+     - Parameter indexPath: The indexPath against which the report title is required.
+     
+     - Returns: The duration of the report at the particular indexPath.row from the approval list. This will format the start & end date as desired. e.g. 10/10/2017 to 12/12/2017
      */
     func getReportDuration(forIndexPath indexPath: IndexPath) -> String {
         var duration = Constants.General.emptyString
@@ -57,15 +68,20 @@ extension ApprovalListManager {
     }
     
     /**
-     * Method to get the amount of the report.
+     Get the formatted report amount at a particular indexpath.
+     The row property of the indexPath will be taken into account & checked against the list of approvals.
+     
+     - Parameter indexPath: The indexPath against which the report title is required.
+     
+     - Returns: The formatted amount of the report at the particular indexPath.row from the approval list. This will format the amount, adding the currency code attached to the report. e.g. S$ 50.47
      */
     func getFormattedReportAmount(forIndexPath indexPath: IndexPath) -> String {
         let report = approvals[indexPath.row]
         var currencyAndAmount = Constants.General.emptyString
         let baseCurrencyId = Singleton.sharedInstance.organization?.baseCurrencyId
         
-        if let category = Singleton.sharedInstance.organization?.currencies[baseCurrencyId!] {
-            currencyAndAmount = category.symbol
+        if let currency = Singleton.sharedInstance.organization?.currencies[baseCurrencyId!] {
+            currencyAndAmount = currency.symbol
         }
         
         currencyAndAmount += " " + String(format: Constants.General.decimalFormat, report.amount)
@@ -74,7 +90,12 @@ extension ApprovalListManager {
     }
     
     /**
-     * Get the submitter name for the submitted report.
+     Get the submitter name who has submitted the report for approval at a particular indexpath.
+     The row property of the indexPath will be taken into account & checked against the list of approvals.
+     
+     - Parameter indexPath: The indexPath against which the report title is required.
+     
+     - Returns: The submitter who has submitted the report for approval.
      */
     func getSubmitterName(forIndexPath indexPath: IndexPath) -> String {
         let report = approvals[indexPath.row]
@@ -82,7 +103,12 @@ extension ApprovalListManager {
     }
     
     /**
-     * Method to get the formatted status
+     Get the status of the report at a particular indexpath.
+     The row property of the indexPath will be taken into account & checked against the list of approvals.
+     
+     - Parameter indexPath: The indexPath against which the report title is required.
+     
+     - Returns: A string stating the current status of the report.
      */
     func getReportStatus(forIndexPath indexPath: IndexPath) -> String {
         let report = approvals[indexPath.row]
@@ -95,7 +121,11 @@ extension ApprovalListManager {
 extension ApprovalListManager {
     
     /**
-     * Method to fetch all reports from the server.
+     Retrieve list of approvals for this user from the server.
+     
+     - Parameter completionHandler: Escaping closure which will return either Success or Failure. 
+     Success response: List of report approvals for the user.
+     Failure response: Code & message if something went wrong while retrieving the list of approvals.
      */
     func fetchApprovals(completionHandler: (@escaping (ManagerResponseToController<[Report]>) -> Void)) {
         approvalService.getAllApprovals({ [weak self] (result) in

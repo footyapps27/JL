@@ -1,15 +1,15 @@
 //
-//  AddExpenseCategoryTableViewCell.swift
+//  CustomFieldTableViewCellCategory.swift
 //  JustLogin_MECS
 //
-//  Created by Samrat on 7/3/17.
+//  Created by Samrat on 23/3/17.
 //  Copyright © 2017 SMRT. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class AddExpenseTableViewCellCategory: AddExpenseBaseTableViewCell {
+class CustomFieldTableViewCellCategory: CustomFieldBaseTableViewCell {
     
     /***********************************/
     // MARK: - Outlets
@@ -23,12 +23,16 @@ class AddExpenseTableViewCellCategory: AddExpenseBaseTableViewCell {
     /***********************************/
     // MARK: - Parent method override
     /***********************************/
-    override func updateView(withField expenseField: ExpenseAndReportField) {
-        
+    override func updateView(withField field: CustomField) {
+        if let id = field.values[Constants.CustomFieldKeys.id] {
+            selectedCategoryId = id
+            imgView.image = UIImage(named: Utilities.getCategoryImageName(forId: id))
+        }
+        txtCategory.text = field.values[Constants.CustomFieldKeys.value]
     }
     
-    override func validateInput(withField expenseField: ExpenseAndReportField) -> (success: Bool, errorMessage: String) {
-        if expenseField.isMandatory && txtCategory.text!.isEmpty {
+    override func validateInput(withField field: CustomField) -> (success: Bool, errorMessage: String) {
+        if field.isMandatory && txtCategory.text!.isEmpty {
             return (false, "Please make sure 'Category' has been selected.")
         }
         return(true, Constants.General.emptyString)
@@ -40,10 +44,10 @@ class AddExpenseTableViewCellCategory: AddExpenseBaseTableViewCell {
         imgView.image = UIImage(named: Utilities.getCategoryImageName(forId: id))
     }
     
-    override func getPayload(withField expenseField: ExpenseAndReportField) -> [String : Any] {
+    override func getPayload(withField field: CustomField) -> [String : Any] {
         if selectedCategoryId != nil {
             return [
-                Constants.RequestParameters.Expense.categoryId : selectedCategoryId!
+                field.jsonParameter : selectedCategoryId!
             ]
         }
         return [:]
@@ -52,7 +56,7 @@ class AddExpenseTableViewCellCategory: AddExpenseBaseTableViewCell {
 /***********************************/
 // MARK: - View lifecylce
 /***********************************/
-extension AddExpenseTableViewCellCategory {
+extension CustomFieldTableViewCellCategory {
     override func awakeFromNib() {
         imgView.image = UIImage(named: Constants.Defaults.categoryImage)
     }

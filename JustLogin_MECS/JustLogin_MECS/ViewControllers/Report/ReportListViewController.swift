@@ -72,13 +72,13 @@ extension ReportListViewController {
     }
     
     func navigateToAddReport() {
-        let addReportViewController = UIStoryboard(name: Constants.StoryboardIds.reportStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.addReportViewController) as! AddReportViewController
-        addReportViewController.delegate = self
-        Utilities.pushControllerAndHideTabbarForChildOnly(fromController: self, toController: addReportViewController)
+        let addEditReportViewController = UIStoryboard(name: Constants.StoryboardIds.reportStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.Report.addEditReportViewController) as! AddEditReportViewController
+        addEditReportViewController.delegate = self
+        Utilities.pushControllerAndHideTabbarForChildOnly(fromController: self, toController: addEditReportViewController)
     }
     
     func navigateToReportDetails(forReport report: Report) {
-        let reportDetailsViewController = UIStoryboard(name: Constants.StoryboardIds.reportStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.reportDetailsViewController) as! ReportDetailsViewController
+        let reportDetailsViewController = UIStoryboard(name: Constants.StoryboardIds.reportStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.Report.reportDetailsViewController) as! ReportDetailsViewController
         reportDetailsViewController.report = report
         Utilities.pushControllerAndHideTabbarForChildOnly(fromController: self, toController: reportDetailsViewController)
     }
@@ -156,10 +156,10 @@ extension ReportListViewController: UISearchResultsUpdating {
     }
 }
 /***********************************/
-// MARK: - AddReportDelegate
+// MARK: - AddEditReportDelegate
 /***********************************/
-extension ReportListViewController: AddReportDelegate {
-    func reportCreated() {
+extension ReportListViewController: AddEditReportDelegate {
+    func reportCreatedOrModified() {
         fetchReports()
     }
 }

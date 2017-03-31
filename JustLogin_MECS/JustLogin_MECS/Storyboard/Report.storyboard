@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Add Report View Controller-->
+        <!--Add Edit Report View Controller-->
         <scene sceneID="WXY-Rk-MQm">
             <objects>
-                <viewController storyboardIdentifier="addReportViewController" id="zfT-Mp-rtX" customClass="AddReportViewController" customModule="JustLogin_MECS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="addEditReportViewController" id="zfT-Mp-rtX" customClass="AddEditReportViewController" customModule="JustLogin_MECS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xzl-qj-p8C"/>
                         <viewControllerLayoutGuide type="bottom" id="KAU-kb-669"/>
@@ -26,7 +26,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addReportTableViewCellWithTextField" rowHeight="44" id="mS7-Ut-3wr" customClass="AddReportTableViewCellWithTextField" customModule="JustLogin_MECS" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="customFieldTableViewCellWithTextFieldIdentifier" rowHeight="44" id="mS7-Ut-3wr" customClass="CustomFieldTableViewCellWithTextField" customModule="JustLogin_MECS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mS7-Ut-3wr" id="aHk-Mz-cWv">
@@ -34,16 +34,16 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Kdk-xq-3lz">
-                                                    <rect key="frame" x="20" y="0.0" width="335" height="43.5"/>
+                                                    <rect key="frame" x="20" y="0.0" width="335" height="44"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Report Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PFU-rx-fxt">
-                                                            <rect key="frame" x="0.0" y="0.0" width="165.5" height="43.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="165.5" height="44"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tap to enter" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jAy-3q-qJE">
-                                                            <rect key="frame" x="169.5" y="0.0" width="165.5" height="43.5"/>
+                                                            <rect key="frame" x="169.5" y="0.0" width="165.5" height="44"/>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
@@ -69,7 +69,7 @@
                                             <outlet property="txtField" destination="jAy-3q-qJE" id="CrK-0Y-PHc"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addReportTableViewCellWithMultipleSelection" rowHeight="44" id="r7m-ln-Mqv" customClass="AddReportTableViewCellWithMultipleSelection" customModule="JustLogin_MECS" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="customFieldTableViewCellWithMultipleSelectionIdentifier" rowHeight="44" id="r7m-ln-Mqv" customClass="CustomFieldTableViewCellWithMultipleSelection" customModule="JustLogin_MECS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="r7m-ln-Mqv" id="489-NQ-FMK">
@@ -112,7 +112,7 @@
                                             <outlet property="txtField" destination="YXB-qT-x4t" id="yEM-vF-yvd"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addReportTableViewCellWithTextView" rowHeight="70" id="rky-1d-rJ1" customClass="AddReportTableViewCellWithTextView" customModule="JustLogin_MECS" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="customFieldTableViewCellWithTextViewIdentifier" rowHeight="70" id="rky-1d-rJ1" customClass="CustomFieldTableViewCellWithTextView" customModule="JustLogin_MECS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="116" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rky-1d-rJ1" id="gcX-Yz-u0u">
@@ -155,7 +155,7 @@
                                             <outlet property="txtView" destination="w5q-23-tUa" id="7aa-1Y-qQk"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addReportTableViewCellDuration" rowHeight="90" id="EV7-kN-iTR" customClass="AddReportTableViewCellDuration" customModule="JustLogin_MECS" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="customFieldTableViewCellDurationIdentifier" rowHeight="90" id="EV7-kN-iTR" customClass="CustomFieldTableViewCellDuration" customModule="JustLogin_MECS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="186" width="375" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EV7-kN-iTR" id="dVy-Up-OJQ">
@@ -261,7 +261,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SSW-65-o2j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-937" y="106"/>
+            <point key="canvasLocation" x="-1783" y="106"/>
         </scene>
         <!--Report Details View Controller-->
         <scene sceneID="AMS-qr-c75">
@@ -568,7 +568,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ley-TK-vdR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-31.199999999999999" y="105.69715142428787"/>
+            <point key="canvasLocation" x="-1197" y="106"/>
         </scene>
         <!--Review Select Report View Controller-->
         <scene sceneID="Ada-P5-K8b">
@@ -647,7 +647,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x9a-Bx-ADB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="862" y="106"/>
+            <point key="canvasLocation" x="-557" y="106"/>
         </scene>
         <!--Approvers List View Controller-->
         <scene sceneID="Lrl-FP-slh">
@@ -723,7 +723,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="81g-LE-kA4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1655" y="106"/>
+            <point key="canvasLocation" x="43" y="106"/>
         </scene>
     </scenes>
     <resources>

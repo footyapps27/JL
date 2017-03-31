@@ -32,23 +32,37 @@ protocol IReportService {
     func update(report: Report, completionHandler:( @escaping (Result<Report>) -> Void))
     
     /**
+     * Update an existing report from payload.
+     */
+    func update(payload: [String : Any], completionHandler:( @escaping (Result<Report>) -> Void))
+    
+    /**
      * Delete an existing report.
      */
     func delete(reportId: String, completionHandler:( @escaping (Result<Report>) -> Void))
     
     /**
-     * This will deal with submission/rejection of the report.
+     * Link multiple expenses to a report.
      */
-    func processReport(report: Report, completionHandler:( @escaping (Result<Report>) -> Void))
+    func linkExpenseIds(_ expenseIds: [String], toReport report: Report, completionHandler:( @escaping (Result<Void>) -> Void))
+    
+    /**
+     Unlink an expense from the report it is attached to.
+     
+     - Parameter expense: The expense which needs to be unlinked.
+     - Parameter completionHandler: Escaping closure which will return either Success or Failure.
+     Success response: An empty response.
+     Failure response: Code & message if something went wrong while retrieving the list of approvals.
+     
+     */
+    func unlinkExpenseFromAttachedReport(_ expense: Expense, completionHandler:( @escaping (Result<Void>) -> Void))
 }
-
+/***********************************/
+// MARK: - IExpenseService implementation
+/***********************************/
 struct ReportService : IReportService {
     
-    var serviceAdapter: NetworkAdapter = AlamofireNetworkAdapter()
-    
-    /***********************************/
-    // MARK: - IExpenseService implementation
-    /***********************************/
+    var serviceAdapter: NetworkAdapter = NetworkAdapterFactory.getNetworkAdapter()
     
     /**
      * Method to retrieve all reports.
@@ -115,6 +129,13 @@ struct ReportService : IReportService {
      */
     func update(report: Report, completionHandler:( @escaping (Result<Report>) -> Void)) {
         let payload = getPayloadForUpdateReport(report)
+        return update(payload: payload, completionHandler: completionHandler)
+    }
+    
+    /**
+     * Update an existing report.
+     */
+    func update(payload: [String : Any], completionHandler:( @escaping (Result<Report>) -> Void)) {
         serviceAdapter.post(destination: Constants.URLs.Report.updateReport, payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
             switch(response) {
             case .success(let success, _ ):
@@ -139,13 +160,27 @@ struct ReportService : IReportService {
         }
     }
     
-    func processReport(report: Report, completionHandler:( @escaping (Result<Report>) -> Void)) {
-        let payload = getPayloadForProcessReport(report)
-        serviceAdapter.post(destination: Constants.URLs.Approval.processReportApproval, payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
+    func linkExpenseIds(_ expenseIds: [String], toReport report: Report, completionHandler:( @escaping (Result<Void>) -> Void)) {
+        let payload = getPayloadForLinkingExpenses(expenseIds, toReport: report)
+        serviceAdapter.post(destination: Constants.URLs.Report.linkExpensesToReport, payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
             switch(response) {
-            case .success(let success, _ ):
-                let report = Report(withJSON: JSON(success))
-                completionHandler(Result.success(report))
+            case .success(_ , _):
+                completionHandler(Result.success())
+            case .errors(let error):
+                let error = ServiceError(JSON(error))
+                completionHandler(Result.error(error))
+            case .failure(let description):
+                completionHandler(Result.failure(description))
+            }
+        }
+    }
+    
+    func unlinkExpenseFromAttachedReport(_ expense: Expense, completionHandler:( @escaping (Result<Void>) -> Void)) {
+        let payload = getPayloadForUnlinkingExpense(expense)
+        serviceAdapter.post(destination: Constants.URLs.Report.unlinkExpenseFromReport, payload: payload, headers: Singleton.sharedInstance.accessTokenHeader) { (response) in
+            switch(response) {
+            case .success(_ , _):
+                completionHandler(Result.success())
             case .errors(let error):
                 let error = ServiceError(JSON(error))
                 completionHandler(Result.error(error))
@@ -155,7 +190,9 @@ struct ReportService : IReportService {
         }
     }
 }
-
+/***********************************/
+// MARK: - Helpers
+/***********************************/
 extension ReportService {
     
     /**
@@ -208,11 +245,20 @@ extension ReportService {
         return [:]
     }
     
-    func getPayloadForProcessReport(_ report: Report) -> [String : Any] {
-        return [
-            Constants.RequestParameters.Report.reportId : report.id,
-            Constants.RequestParameters.Report.statusType : report.status,
-            Constants.RequestParameters.Report.reason : report.rejectionReason
-        ]
+    /**
+     * Method to format payload for linking expenses to a report.
+     */
+    func getPayloadForLinkingExpenses(_ expenseIds: [String], toReport report: Report) -> [String : Any] {
+        var payload: [String : Any] = [:]
+        payload[Constants.RequestParameters.Expense.expenseIds] =  expenseIds
+        payload[Constants.RequestParameters.Expense.reportId] = report.id
+        return payload
+    }
+    
+    func getPayloadForUnlinkingExpense(_ expense: Expense) -> [String : Any] {
+        var payload: [String : Any] = [:]
+        payload[Constants.RequestParameters.Expense.expenseIds] =  [expense.id]
+        payload[Constants.RequestParameters.Report.reportId] = expense.reportId
+        return payload
     }
 }

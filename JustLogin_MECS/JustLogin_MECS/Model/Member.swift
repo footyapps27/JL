@@ -20,6 +20,8 @@ struct Member {
     
     var fullName: String = Constants.General.emptyString
     
+    var profileImageUrl: String = Constants.General.emptyString
+    
     var status: Bool = false
     
     var organizationId: String = Constants.General.emptyString
@@ -47,6 +49,8 @@ struct Member {
         userId = json[Constants.ResponseParameters.userId].stringValue
         
         fullName = json[Constants.ResponseParameters.fullName].stringValue
+        
+        profileImageUrl = json[Constants.ResponseParameters.profileImageUrl].stringValue
         
         status =  json[Constants.ResponseParameters.status].boolValue
         

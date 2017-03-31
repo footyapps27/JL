@@ -19,16 +19,16 @@ class RecordReimbursementManager {
         }
     }
     
-    var approvalService: IApprovalService = ApprovalService()
+    var approvalService: IApprovalService = ServiceFactory.getApprovalService()
     
-    var fields: [[ExpenseAndReportField]] = []
+    var fields: [[CustomField]] = []
     
     var lastSelectedNavigationIndex: IndexPath?
     
     var dictCells: [IndexPath:CustomFieldBaseTableViewCell] = [:]
     
     init() {
-        updateFields()
+        fields = RecordReimbursementDefaultConfiguration.getFields()
     }
 }
 /***********************************/
@@ -38,11 +38,11 @@ extension RecordReimbursementManager {
     /**
      * Populate the cells from the table view.
      */
-    func populateCells(fromController controller: RecordReimbursementViewController) {
+    func populateCells(fromController controller: BaseViewControllerWithTableView, delegate: UITableViewDataSource) {
         for section in 0..<fields.count {
             for row in 0..<fields[section].count {
                 let indexPath = IndexPath(row: row, section: section)
-                let cell = controller.tableView(controller.tableView, cellForRowAt: indexPath) as! CustomFieldBaseTableViewCell
+                let cell = delegate.tableView(controller.tableView, cellForRowAt: indexPath) as! CustomFieldBaseTableViewCell
                 dictCells[indexPath] = cell
             }
         }
@@ -51,7 +51,7 @@ extension RecordReimbursementManager {
     /**
      * Method to get all the expenses that need to be displayed.
      */
-    func getFields() -> [[ExpenseAndReportField]] {
+    func getFields() -> [[CustomField]] {
         return fields
     }
     
@@ -69,24 +69,18 @@ extension RecordReimbursementManager {
     func getTableViewCellIdentifier(forIndexPath indexPath: IndexPath) -> String {
         let expenseField = (fields[indexPath.section])[indexPath.row]
         switch expenseField.fieldType {
-        case ExpenseAndReportFieldType.label.rawValue:
+        case CustomFieldType.label.rawValue:
             return Constants.CellIdentifiers.customFieldTableViewCellWithLabelIdentifier
-        case ExpenseAndReportFieldType.category.rawValue:
-            return Constants.CellIdentifiers.addExpenseTableViewCellCategory
-        case ExpenseAndReportFieldType.date.rawValue:
-            return Constants.CellIdentifiers.addExpenseTableViewCellDate
-        case ExpenseAndReportFieldType.currencyAndAmount.rawValue:
-            return Constants.CellIdentifiers.addExpenseTableViewCellCurrencyAndAmount
-        case ExpenseAndReportFieldType.text.rawValue:
-            return Constants.CellIdentifiers.addExpenseTableViewCellWithTextField
-        case ExpenseAndReportFieldType.textView.rawValue:
-            return Constants.CellIdentifiers.addExpenseTableViewCellWithTextView
-        case ExpenseAndReportFieldType.imageSelection.rawValue:
-            return Constants.CellIdentifiers.addExpenseTableViewCellWithImageSelection
-        case ExpenseAndReportFieldType.dropdown.rawValue:
-            return Constants.CellIdentifiers.addExpenseTableViewCellWithMultipleSelection
+        case CustomFieldType.date.rawValue:
+            return Constants.CellIdentifiers.customFieldTableViewCellDateIdentifier
+        case CustomFieldType.text.rawValue:
+            return Constants.CellIdentifiers.customFieldTableViewCellWithTextFieldIdentifier
+        case CustomFieldType.textView.rawValue:
+            return Constants.CellIdentifiers.customFieldTableViewCellWithTextViewIdentifier
+        case CustomFieldType.dropdown.rawValue:
+            return Constants.CellIdentifiers.customFieldTableViewCellWithMultipleSelectionIdentifier
         default:
-            return Constants.CellIdentifiers.addReportTableViewCellWithTextField
+            return Constants.CellIdentifiers.customFieldTableViewCellWithTextFieldIdentifier
         }
     }
 }
@@ -106,7 +100,11 @@ extension RecordReimbursementManager {
 /***********************************/
 extension RecordReimbursementManager {
     /**
-     * Method to get all the expenses that need to be displayed.
+     Record a reimbursement of a report. This will retrieve the payload response from the entries made by the user to the form(UITableView). It will also add the report id & report status to the payload.
+     
+     - Parameter completionHandler: Escaping closure which will return either of the two options below:-
+     Success: An empty response.
+     Failure: Code & message if something went wrong while retrieving the list of approvals.
      */
     func recordReimbursement(completionHandler: (@escaping (ManagerResponseToController<Void>) -> Void)) {
         var payload = getPayload()
@@ -138,9 +136,9 @@ extension RecordReimbursementManager {
         let field = getFields()[indexPath.section][indexPath.row]
         
         // The below checks are done on the field TYPE.
-        if field.fieldType == ExpenseAndReportFieldType.category.rawValue ||
-            field.fieldType == ExpenseAndReportFieldType.currencyAndAmount.rawValue ||
-            field.fieldType == ExpenseAndReportFieldType.dropdown.rawValue {
+        if field.fieldType == CustomFieldType.category.rawValue ||
+            field.fieldType == CustomFieldType.currencyAndAmount.rawValue ||
+            field.fieldType == CustomFieldType.dropdown.rawValue {
             return true
         }
         
@@ -152,17 +150,17 @@ extension RecordReimbursementManager {
         return false
     }
     
-    func getDetailsNavigationController(forIndexPath indexPath: IndexPath, withDelegate delegate: RecordReimbursementViewController) -> UIViewController {
+    func getDetailsNavigationController(forIndexPath indexPath: IndexPath, withDelegate delegate: BaseViewController) -> UIViewController {
         let field = getFields()[indexPath.section][indexPath.row]
         
         // This will be used when setting the selected value.
         lastSelectedNavigationIndex = indexPath
         
-        if field.fieldType == ExpenseAndReportFieldType.category.rawValue {
+        if field.fieldType == CustomFieldType.category.rawValue {
             return UIViewController()
         }
         
-        if field.fieldType == ExpenseAndReportFieldType.currencyAndAmount.rawValue {
+        if field.fieldType == CustomFieldType.currencyAndAmount.rawValue {
         }
         
         if field.jsonParameter == Constants.RequestParameters.Expense.reportId {
@@ -196,59 +194,6 @@ extension RecordReimbursementManager {
     }
 }
 /***********************************/
-// MARK: - Data manipulation
-/***********************************/
-extension RecordReimbursementManager {
-    
-    func updateFields() {
-        // Mandatory fields
-        var amount = ExpenseAndReportField()
-        amount.name = "Amount"
-        amount.fieldType = ExpenseAndReportFieldType.label.rawValue
-        amount.isMandatory = true
-        amount.isEnabled = true
-        
-        var paidTo = ExpenseAndReportField()
-        paidTo.name = "Paid To"
-        paidTo.fieldType = ExpenseAndReportFieldType.label.rawValue
-        paidTo.isMandatory = true
-        paidTo.isEnabled = true
-        
-        fields.append([amount, paidTo])
-        
-        var date = ExpenseAndReportField()
-        date.name = "Reimbursed Date"
-        date.jsonParameter = "reimburseOn"
-        date.fieldType = ExpenseAndReportFieldType.date.rawValue
-        date.isMandatory = true
-        date.isEnabled = true
-        
-        var paidThrough = ExpenseAndReportField()
-        paidThrough.name = "Paid Through"
-        paidThrough.fieldType = ExpenseAndReportFieldType.dropdown.rawValue
-        paidThrough.jsonParameter = "paidThrough"
-        paidThrough.dropdownValues = ["Petty Cash", "Undeposited Funds"]
-        paidThrough.isMandatory = false
-        paidThrough.isEnabled = true
-        
-        var notes = ExpenseAndReportField()
-        notes.name = "Notes"
-        notes.fieldType = ExpenseAndReportFieldType.textView.rawValue
-        notes.jsonParameter = "notes"
-        notes.isMandatory = false
-        notes.isEnabled = true
-        
-        var referenceNumber = ExpenseAndReportField()
-        referenceNumber.name = "Reference #"
-        referenceNumber.fieldType = ExpenseAndReportFieldType.text.rawValue
-        referenceNumber.jsonParameter = "referenceNumber"
-        referenceNumber.isMandatory = false
-        referenceNumber.isEnabled = true
-        
-        fields.append([date, paidThrough, notes, referenceNumber])
-    }
-}
-/***********************************/
 // MARK: - Helpers
 /***********************************/
 extension RecordReimbursementManager {
@@ -267,11 +212,11 @@ extension RecordReimbursementManager {
         
         for index in fields[0].indices {
             if fields[0][index].name == "Amount" {
-                fields[0][index].value = Utilities.getFormattedAmount(forReport: report)
+                fields[0][index].values[Constants.CustomFieldKeys.value] = Utilities.getFormattedAmount(forReport: report)
             }
             
             if fields[0][index].name == "Paid To" {
-                fields[0][index].value = report.submitter.name
+                fields[0][index].values[Constants.CustomFieldKeys.value] = report.submitter.name
             }
         }
     }

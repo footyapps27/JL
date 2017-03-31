@@ -54,9 +54,9 @@ extension HomeViewController {
      * This will add a navigation controller before presenting the add expense controller
      */
     func navigateToAddExpense() {
-        let addExpenseViewController = UIStoryboard(name: Constants.StoryboardIds.expenseStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.addExpenseViewController) as! AddExpenseViewController
-        addExpenseViewController.delegate = self
-        let navigationController = UINavigationController.init(rootViewController: addExpenseViewController)
+        let addEditExpenseViewController = UIStoryboard(name: Constants.StoryboardIds.expenseStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.Expense.addEditExpenseViewController) as! AddEditExpenseViewController
+        addEditExpenseViewController.delegate = self
+        let navigationController = UINavigationController.init(rootViewController: addEditExpenseViewController)
         self.present(navigationController, animated: true, completion: nil)
     }
     
@@ -65,26 +65,26 @@ extension HomeViewController {
      * This will add a navigation controller before presenting the add report controller
      */
     func navigateToAddReport() {
-        let addReportViewController = UIStoryboard(name: Constants.StoryboardIds.reportStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.addReportViewController) as! AddReportViewController
-        addReportViewController.delegate = self
-        let navigationController = UINavigationController.init(rootViewController: addReportViewController)
+        let addEditReportViewController = UIStoryboard(name: Constants.StoryboardIds.reportStoryboard, bundle: nil).instantiateViewController(withIdentifier: Constants.StoryboardIds.Report.addEditReportViewController) as! AddEditReportViewController
+        addEditReportViewController.delegate = self
+        let navigationController = UINavigationController.init(rootViewController: addEditReportViewController)
         self.present(navigationController, animated: true, completion: nil)
     }
 }
 /***********************************/
-// MARK: - AddExpenseDelegate
+// MARK: - AddEditExpenseDelegate
 /***********************************/
-extension HomeViewController: AddExpenseDelegate {
-    func expenseCreated() {
+extension HomeViewController: AddEditExpenseDelegate {
+    func expenseCreatedOrModified() {
          _ = UIStoryboard(name: Constants.StoryboardIds.dashboardStoryboard, bundle: nil).instantiateViewController(withIdentifier: manager.getDashboardIdentifier()) as! UITabBarController
         // TODO = Here we need to navigate to the expense list controller.
     }
 }
 /***********************************/
-// MARK: - AddReportDelegate
+// MARK: - AddEditReportDelegate
 /***********************************/
-extension HomeViewController: AddReportDelegate {
-    func reportCreated() {
+extension HomeViewController: AddEditReportDelegate {
+    func reportCreatedOrModified() {
         _ = UIStoryboard(name: Constants.StoryboardIds.dashboardStoryboard, bundle: nil).instantiateViewController(withIdentifier: manager.getDashboardIdentifier()) as! UITabBarController
         // TODO = Here we need to navigate to the report list controller.
     }

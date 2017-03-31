@@ -39,7 +39,7 @@ extension RecordReimbursementViewController {
         super.viewDidLoad()
         manager.report = report!
         updateUI()
-        manager.populateCells(fromController: self)
+        manager.populateCells(fromController: self, delegate: self)
     }
 }
 /***********************************/
@@ -48,14 +48,10 @@ extension RecordReimbursementViewController {
 extension RecordReimbursementViewController {
     func updateUI() {
         self.navigationItem.title = Constants.ViewControllerTitles.reimbursement
-        
         addBarButtonItems()
         initializeDatePicker()
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 44
-        
-        // Make sure the manager has a reference to all the cell before hand
-        manager.populateCells(fromController: self)
     }
     
     /**
@@ -190,7 +186,7 @@ extension RecordReimbursementViewController: UITextFieldDelegate {
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         
-        if textField.tag == ExpenseAndReportFieldType.date.rawValue {
+        if textField.tag == CustomFieldType.date.rawValue {
             currentTextField = textField
             textField.inputView = datePicker
             textField.inputAccessoryView = toolbar
@@ -199,12 +195,12 @@ extension RecordReimbursementViewController: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField.tag == ExpenseAndReportFieldType.date.rawValue {
+        if textField.tag == CustomFieldType.date.rawValue {
             dismissDatePicker(nil)
         }
         
         // For the amount, round it to 2 decimal places
-        if textField.tag == ExpenseAndReportFieldType.currencyAndAmount.rawValue {
+        if textField.tag == CustomFieldType.currencyAndAmount.rawValue {
             if let amount = Double(textField.text!) {
                 textField.text = String(amount.roundTo(places: 2))
             }
@@ -212,7 +208,7 @@ extension RecordReimbursementViewController: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField.tag == ExpenseAndReportFieldType.date.rawValue {
+        if textField.tag == CustomFieldType.date.rawValue {
             return false
         }
         textField.resignFirstResponder()
