@@ -9,22 +9,34 @@
 import Foundation
 import UIKit
 
+/***********************************/
+// MARK: - SignUpDelegate Protocol Declaration
+/***********************************/
+protocol SignUpDelegate: class {
+    func signUpSuccessful()
+}
+/***********************************/
+// MARK: - Properties
+/***********************************/
 class SignUpViewController: BaseViewController {
     
-    /***********************************/
-    // MARK: - View Lifecycle
-    /***********************************/
+    weak var delegate: SignUpDelegate?
+}
+/***********************************/
+// MARK: - View Lifecycle
+/***********************************/
+extension SignUpViewController {
     
     override func viewDidLoad() {
         let cancel = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelTapped))
         
         navigationItem.leftBarButtonItems = [cancel]
     }
-    
-    /***********************************/
-    // MARK: - Actions
-    /***********************************/
-    
+}
+/***********************************/
+// MARK: - Actions
+/***********************************/
+extension SignUpViewController {
     /**
      Method to dismiss the controller when cancel is tapped.
      */
@@ -41,9 +53,7 @@ class SignUpViewController: BaseViewController {
         // For demo, now we are navigating to Admin flow from here.
         
         // Inform the parent that the user logged in successfully, and the user that has logged in.
-        NotificationCenter.default.post(name: Notification.Name(Constants.Notifications.loginSuccessful), object: nil)
+        delegate?.signUpSuccessful()
         dismiss(animated: false, completion: nil)
     }
-    
-    
 }

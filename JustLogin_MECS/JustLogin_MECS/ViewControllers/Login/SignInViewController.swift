@@ -9,12 +9,17 @@
 import Foundation
 import UIKit
 
+/***********************************/
+// MARK: - SignInDelegate Protocol Declaration
+/***********************************/
+protocol SignInDelegate: class {
+    func loginSuccessful()
+}
+/***********************************/
+// MARK: - Properties
+/***********************************/
 class SignInViewController: BaseViewController {
-    
-    /***********************************/
-    // MARK: - Properties
-    /***********************************/
-    
+
     @IBOutlet weak var txtCompanyId: UITextField!
     
     @IBOutlet weak var txtUserId: UITextField!
@@ -25,11 +30,15 @@ class SignInViewController: BaseViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     
-    let manager: SignInManager = SignInManager()
+    weak var delegate: SignInDelegate?
     
-    /***********************************/
-    // MARK: - View Lifecycle
-    /***********************************/
+    let manager: SignInManager = SignInManager()
+}
+/***********************************/
+// MARK: - View Lifecycle
+/***********************************/
+extension SignInViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateUI()
@@ -66,6 +75,10 @@ extension SignInViewController {
      */
     @IBAction func signInTapped(_ sender: UIButton) {
         
+//        txtCompanyId.text = "fargotest"
+//        txtUserId.text = "admin"
+//        txtPassword.text = "admin"
+        
         let validationResponse = manager.validateLoginParameters(organizationName: txtCompanyId.text!, userId: txtUserId.text!, password: txtPassword.text!)
         view.endEditing(true)
         switch validationResponse {
@@ -96,8 +109,7 @@ extension SignInViewController {
             switch(result) {
             case .success( _):
                 // Inform the parent that the user logged in successfully, and the member that has logged in.
-                // TODO - Replace this with delegate
-                NotificationCenter.default.post(name: Notification.Name(Constants.Notifications.loginSuccessful), object: nil)
+                self.delegate?.loginSuccessful()
                 self.dismiss(animated: false, completion: nil)
             case .failure(_ , let message):
                 Utilities.showErrorAlert(withMessage: message, onController: self)

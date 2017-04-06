@@ -19,10 +19,11 @@ class LaunchViewController: BaseViewController {
     @IBOutlet weak var pageControl: UIPageControl!
     
     let manager = LaunchManager()
-    
-    /***********************************/
-    // MARK: - View Lifecycle
-    /***********************************/
+}
+/***********************************/
+// MARK: - View Lifecycle
+/***********************************/
+extension LaunchViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,22 +32,31 @@ class LaunchViewController: BaseViewController {
         // Hide the navigation bar
         navigationController?.isNavigationBarHidden = true
         
-        // Register to the login successful notification
-        NotificationCenter.default.addObserver(self, selector: #selector(LaunchViewController.navigateToDashboard), name: Notification.Name(Constants.Notifications.loginSuccessful), object: nil)
-        
         automaticallyAdjustsScrollViewInsets = false;
         
         setCustomLayoutForCollectionView()
     }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self, name: Notification.Name(Constants.Notifications.loginSuccessful), object: nil)
+}
+/***********************************/
+// MARK: - Navigation
+/***********************************/
+extension LaunchViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Constants.SegueIds.signIn {
+            let navigationController = segue.destination as! UINavigationController
+            let signInController = navigationController.viewControllers.first as! SignInViewController
+            signInController.delegate = self
+        } else if segue.identifier == Constants.SegueIds.signUp {
+            let navigationController = segue.destination as! UINavigationController
+            let signUpController = navigationController.viewControllers.first as! SignUpViewController
+            signUpController.delegate = self
+        }
     }
-    
-    /***********************************/
-    // MARK: - Helpers
-    /***********************************/
-    
+}
+/***********************************/
+// MARK: - Helpers
+/***********************************/
+extension LaunchViewController {
     /**
      Method to set custom layout to the collection view. Removes the spaces between the cells, which was not possible to remove in the default flow layout.
      */
@@ -93,7 +103,25 @@ class LaunchViewController: BaseViewController {
         navigationController?.pushViewController(approverAndAdminDashboard, animated: true)
     }
 }
-
+/***********************************/
+// MARK: - SignInDelegate
+/***********************************/
+extension LaunchViewController: SignInDelegate {
+    func loginSuccessful() {
+        navigateToDashboard()
+    }
+}
+/***********************************/
+// MARK: - SignUpDelegate
+/***********************************/
+extension LaunchViewController: SignUpDelegate {
+    func signUpSuccessful() {
+        navigateToDashboard()
+    }
+}
+/***********************************/
+// MARK: - UICollectionViewDataSource
+/***********************************/
 extension LaunchViewController: UICollectionViewDataSource {
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -110,7 +138,9 @@ extension LaunchViewController: UICollectionViewDataSource {
         return cell
     }
 }
-
+/***********************************/
+// MARK: - UICollectionViewDelegate
+/***********************************/
 extension LaunchViewController: UICollectionViewDelegate {
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {

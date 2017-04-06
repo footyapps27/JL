@@ -9,7 +9,7 @@
 import Foundation
 
 /**
- * Manager for SignInViewController
+ * Manager for LaunchViewController
  */
 class LaunchManager {
     

@@ -16,6 +16,7 @@ protocol ImagePickerControllerUtilityDelegate: class {
     
     func didFinishSelectingImage(atURL url: URL)
     
+    // TODO - Need to send the correct error message along with this.
     func didFail()
 }
 

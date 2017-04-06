@@ -44,7 +44,6 @@ extension Constants {
 /***********************************/
 extension Constants {
     struct Notifications {
-        static let loginSuccessful = "loginSuccessful"
         static let refreshReportList = "refreshReportList"
         static let refreshExpenseList = "refreshExpenseList"
         static let refreshReportDetails = "refreshReportDetails"
@@ -143,6 +142,11 @@ extension Constants {
         
         static let reportDetailsTableViewCellIdentifier = "reportDetailsTableViewCellIdentifier"
         static let approversListTableViewCellIdentifier = "approversListTableViewCellIdentifier"
+    }
+    
+    struct SegueIds {
+        static let signIn = "signIn"
+        static let signUp = "signUp"
     }
     
     struct StoryboardIds {

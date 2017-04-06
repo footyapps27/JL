@@ -65,6 +65,7 @@
 		8C825D811E8C9BBC000DB586 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C825D801E8C9BBC000DB586 /* ServiceFactory.swift */; };
 		8C825D841E8D0028000DB586 /* AlamofireNetworkAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C825D831E8D0028000DB586 /* AlamofireNetworkAdapter.swift */; };
 		8C825D861E8E0D7C000DB586 /* ImagePickerControllerUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C825D851E8E0D7C000DB586 /* ImagePickerControllerUtility.swift */; };
+		8C825D881E8E3698000DB586 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C825D871E8E3698000DB586 /* UIImageView.swift */; };
 		8C8995D51E60821200482317 /* AddEditExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8995D41E60821200482317 /* AddEditExpenseViewController.swift */; };
 		8C8995D71E60822B00482317 /* ExpenseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8995D61E60822B00482317 /* ExpenseDetailsViewController.swift */; };
 		8C8995D91E60836C00482317 /* AddEditExpenseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8995D81E60836C00482317 /* AddEditExpenseManager.swift */; };
@@ -234,6 +235,7 @@
 		8C825D801E8C9BBC000DB586 /* ServiceFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceFactory.swift; sourceTree = "<group>"; };
 		8C825D831E8D0028000DB586 /* AlamofireNetworkAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireNetworkAdapter.swift; sourceTree = "<group>"; };
 		8C825D851E8E0D7C000DB586 /* ImagePickerControllerUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerControllerUtility.swift; sourceTree = "<group>"; };
+		8C825D871E8E3698000DB586 /* UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		8C8995D41E60821200482317 /* AddEditExpenseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditExpenseViewController.swift; sourceTree = "<group>"; };
 		8C8995D61E60822B00482317 /* ExpenseDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseDetailsViewController.swift; sourceTree = "<group>"; };
 		8C8995D81E60836C00482317 /* AddEditExpenseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditExpenseManager.swift; sourceTree = "<group>"; };
@@ -520,6 +522,7 @@
 				8C0A01CE1E77C38100A96867 /* Dictionary.swift */,
 				8C0A01CF1E77C38100A96867 /* Double.swift */,
 				8C1766511E7A7B3A00D1CDE0 /* UIColor.swift */,
+				8C825D871E8E3698000DB586 /* UIImageView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1287,6 +1290,7 @@
 				8C9602101E1FDB7F00EE66A3 /* SignUpViewController.swift in Sources */,
 				8C9602141E1FDB9900EE66A3 /* HomeViewController.swift in Sources */,
 				8C42DFDD1E6436C900A3B69A /* ExpenseAndReportField.swift in Sources */,
+				8C825D881E8E3698000DB586 /* UIImageView.swift in Sources */,
 				8C753AA21E8A787A00B0906C /* AddReportDefaultConfiguration.swift in Sources */,
 				8CC68F1A1E84E6C7002F9DCD /* ReviewSelectExpenseViewController.swift in Sources */,
 				8C37681E1E7F887200E82044 /* ReportDetailsAuditHistoryStrategy.swift in Sources */,
